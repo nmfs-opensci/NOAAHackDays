@@ -147,7 +147,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "The Enabling Analysis in the Cloud Using NASA Earth Science Data will take place on Sunday, December 10 from 13:00-16:30.\nZoom links will be shared directly with this group via a (calendar) meeting invite.\nNote, hands-on exercises will be executed from a Jupyter Lab instance in 2i2c. Click here to deploy the instance and simultaneously clone this GitHub repository to follow along with the tutorials. Please pass along your GitHub Username to get access.",
+    "text": "December 19 from 8:00am-3:00pm PT.\nGoogle Meet links are in the calendar invite.\nLink to our JupyterHub: This is in the calendar event and will be emailed out.",
     "crumbs": [
       "Schedule"
     ]
@@ -157,7 +157,7 @@
     "href": "schedule.html#workshop-schedule",
     "title": "Schedule",
     "section": "Workshop Schedule",
-    "text": "Workshop Schedule\n\nDecember 10, 2023\n\n\n\nTime, PST (UTC-7)\nEvent\nLeads/Instructors\n\n\n\n\n1:00 pm\nWelcome / Open Science Mindset\nCassie Nickles (PO.DAAC)\n\n\n1:20 pm\nIntroduction to NASA Earthdata Cloud\nMichele Thornton (ORNL DAAC)\n\n\n1:40 pm\nOrientation and setup in JupyterHub in the Cloud\nMichele Thornton (ORNL DAAC)\n\n\n2:00 pm\nTutorial: In-cloud Science Workflow: Search & Discovery\nAaron Friesz (LP DAAC)\n\n\n2:30 pm\nBreak\n\n\n\n2:45 pm\nTutorial: In-cloud Science Workflow: Access, Subset & Plot\nDanny Kaufman (ASDC DAAC)\n\n\n3:45 pm\nQ & A\nAll NASA Openscapes Mentors\n\n\n4:15 pm\nClosing Survey\nCassie Nickles (PO.DAAC)",
+    "text": "Workshop Schedule\n\nDecember 19, 2023\n\n8-10am Welcome and 2 geospatial tutorials in R\n10-11am Explore data and come up with a project\n11-12pm Break and lunch\n12-12:30pm Pitch a project!\n12:30-2:30pm Hack and co-work on the project\n2:30-3pm Report out!",
     "crumbs": [
       "Schedule"
     ]
@@ -167,7 +167,7 @@
     "href": "schedule.html#closing---close-out-your-jupyter-hub",
     "title": "Schedule",
     "section": "Closing - Close out your Jupyter Hub!",
-    "text": "Closing - Close out your Jupyter Hub!\n\nClose out your JupyterHub instance if you are finished for the day, following these instructions.\nYou will continue to have access to the 2i2c JupyterHub in AWS for two weeks following this Workshop. You may use that time on your own to continue work and learn more about migrating data access routines and science workflows to the cloud. This cloud compute environment is supported by the NASA Openscapes project.\n\n\nThank you!",
+    "text": "Closing - Close out your Jupyter Hub!\n\nClose out your JupyterHub instance if you are finished for the day, following these instructions.",
     "crumbs": [
       "Schedule"
     ]
@@ -175,9 +175,9 @@
   {
     "objectID": "index.html#welcome",
     "href": "index.html#welcome",
-    "title": "Enabling Analysis in the Cloud Using NASA Earth Science Data",
+    "title": "Using NASA Earth Science Data",
     "section": "Welcome",
-    "text": "Welcome\nWelcome to the 2023 NASA Openscapes AGU Workshop hosted by NASA Openscapes!\nThe workshop will take place in person and virtually at AGU on Sunday, December 10, 2023 from 1pm-4:30pm PST (UTC-7).",
+    "text": "Welcome\nThe workshop will take place virtually on December 19, 2023 from 8am-3pm PT (UTC-7).\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”.",
     "crumbs": [
       "Welcome"
     ]
@@ -185,9 +185,9 @@
   {
     "objectID": "index.html#about",
     "href": "index.html#about",
-    "title": "Enabling Analysis in the Cloud Using NASA Earth Science Data",
+    "title": "Using NASA Earth Science Data",
     "section": "About",
-    "text": "About\n\nWorkshop Goals\n\nProvide an inclusive place to learn about and experience working with NASA Earthdata Cloud;\nProvide strategies and best practices for finding and accessing NASA Earthdata Cloud data to help promote interdisciplinary research. Specifically, participants will learn how to access data from AWS S3 buckets and have a better understanding of the Python ecosystem used to analyze the data depending on size and data formats;\nBetter understand the needs of Earthdata data scientists by providing a pre/post survey and engaging in discussions with workshop participants;\nIdentify and practice using popular open source tools and utilities.\n\n\n\nWorkshop Description\nEarth science data, including NASA Earthdata, is increasingly more available from the cloud. By leveraging cloud compute resources, open science principles, and technologies that foster transparency and reproducibility, science can be done at rates and scales that are not achievable by using personal/local machines. Building modern data skills in a friendly environment is crucial for accelerating science and reducing barriers to inclusive scientific research. In this workshop, NASA Openscapes Mentors from NASA’s Earth Observing System Data and Information System (EOSDIS) DAACs (data centers) will teach the foundations of an open science mindset and apply these concepts to work in the cloud with NASA Earthdata. Participants will take part in hands-on tutorials using a JupyterHub managed by 2i2c in AWS. Participants will leave with a better understanding of how to leverage data and services from NASA Earthdata Cloud within their work across a variety of disciplines and data types, as well as how to apply the concepts of open science as a daily practice. The workshop will encourage discussion and reflection on how Earth science is evolving. Tutorials will be taught in Python. The target audience is anyone interested in using NASA Earth Science data within the AWS cloud. Previous experience in the AWS cloud is not necessary. Experience using Python is recommended but not required.\n\n\nLearning Outcomes\nUpon completion of the proposed workshop, participants will leave with a better understanding of how NASA Earthdata Cloud data and services can best be leveraged and integrated within their work across a variety of disciplines and data types, while being exposed to open science practices and workflows in Python. Participants will be engaged on two different levels: (1) through an open science mindset, and (2) through science use cases that demonstrate capabilities for efficient data discovery, access, and use within the cloud. These learning objectives will encourage discussion and reflection on how the Earth science, data science, and informatics communities are evolving, and how this evolution presents challenges and opportunities in scientific research.",
+    "text": "About\n\nWorkshop Goals\nThis is a session for interested NOAA staff to gain more familiarity with JupyterHubs and working with NASA Earth Data via code and geospatial packages in R and Python. This session is part of development of larger hack day events in 2024.\n\nProvide an inclusive place to learn about and experience working with NASA Earthdata Cloud;\nProvide strategies and best practices for finding and accessing NASA Earthdata Cloud data.\nPractice using remote-sensing data in R and Python with code.\nLearn by working together on a small group project/task.\n\n\n\nWorkshop Description\nFrom the NASA (Data Centers) Openscapes mentors:\n“Earth science data, including NASA Earthdata, is increasingly more available from the cloud. By leveraging cloud compute resources, open science principles, and technologies that foster transparency and reproducibility, science can be done at rates and scales that are not achievable by using personal/local machines. Building modern data skills in a friendly environment is crucial for accelerating science and reducing barriers to inclusive scientific research.”\nParticipants will take part in hands-on tutorials using a JupyterHub on the NOAA Azure account. The target audience is any interested NOAA staff. Note, this is a “pilot” hack day to start building content and experience in preparation for more polished multi-day events in 2024.\nFAQ: Can I bring my own content/code to the event and JupyterHub? Absolutely, please do!!",
     "crumbs": [
       "Welcome"
     ]
@@ -195,9 +195,9 @@
   {
     "objectID": "index.html#acknowledgements",
     "href": "index.html#acknowledgements",
-    "title": "Enabling Analysis in the Cloud Using NASA Earth Science Data",
+    "title": "Using NASA Earth Science Data",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis Workshop has been developed as a cross-DAAC collaboration by the NASA-Openscapes Team. Learn more at nasa-openscapes.github.io.",
+    "text": "Acknowledgements\nMuch of the workshop content has been developed as a cross-DAAC collaboration by the NASA-Openscapes Team. Learn more at nasa-openscapes.github.io. Other content was developed with OceanHackWeek participants. R content developed with Carl Boettiger (UC Berkeley) and Boettiger lab along with the NASA and NMFS Openscapes mentors.",
     "crumbs": [
       "Welcome"
     ]
@@ -235,7 +235,7 @@
     "href": "prerequisites.html#before-the-workshop-you-will-need-the-following",
     "title": "Prerequisites",
     "section": "Before the Workshop, you will need the following:",
-    "text": "Before the Workshop, you will need the following:\n\n1. Earthdata Login Account\nAn Earthdata Login account is required to access data, as well as discover restricted data, from the NASA Earthdata system. Thus, to access NASA data, you need Earthdata Login. Please visit https://urs.earthdata.nasa.gov to register and manage your Earthdata Login account. This account is free to create and only takes a moment to set up. Please remember your username and password!\n\n\n2. GitHub Account\nA GitHub account is required to gain access to the provided 2i2c cloud computing platform. Please visit https://github.com/join to register and create a free GitHub account. Make sure you have sent your username to the workshop leaders via this Google Form once you have done so for access to our cloud computing environment.\n\n\n3. Laptop or tablet\nParticipation in the exercises requires a laptop or tablet. Yes, a tablet works too! All participants will have access to a 2i2c Jupyter Lab instance running in AWS us-west 2.",
+    "text": "Before the Workshop, you will need the following:\n\n1. Earthdata Login Account\nAn Earthdata Login account is required to access data, as well as discover restricted data, from the NASA Earthdata system. Thus, to access NASA data, you need Earthdata Login. Please visit https://urs.earthdata.nasa.gov to register and manage your Earthdata Login account. This account is free to create and only takes a moment to set up. Please remember your username and password!\n\n\n2. GitHub Account\nA GitHub account is required to gain access to the JupyterHub.\n\n\n3. Laptop or tablet\nParticipation in the exercises requires a laptop or tablet. Yes, a tablet works too!",
     "crumbs": [
       "Prerequisites"
     ]
@@ -243,7 +243,7 @@
   {
     "objectID": "slides.html#enabling-analysis-in-the-cloud-using-nasa-earth-science-data",
     "href": "slides.html#enabling-analysis-in-the-cloud-using-nasa-earth-science-data",
-    "title": "Workshop Slides",
+    "title": "NASA AGU 2023 Workshop Slides",
     "section": "Enabling Analysis in the Cloud Using NASA Earth Science Data",
     "text": "Enabling Analysis in the Cloud Using NASA Earth Science Data",
     "crumbs": [
