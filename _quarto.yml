@@ -41,7 +41,26 @@ website:
             href: tutorials/Earthdata_Search_Discovery_earthaccess.ipynb
           - text: "Access, Subset & Plot"
             href: tutorials/Earthdata_Subset_and_Plot.ipynb
-
+  navbar:
+    background: primary
+    search: true
+    right: 
+      - icon: server
+        href: https://dhub.opensci.live/
+        text: "JupyterHub"
+      - icon: wechat
+        href: https://github.com/nmfs-opensci/NOAAHackDay-Dec-2023/discussions
+        text: "Discussions"
+#      - icon: slack
+#        href: https://app.slack.com/client/T05PV2USY56/C05P7QP47UL
+#        text: "Slack"
+      - icon: github
+        href: https://github.com/nmfs-opensci/NOAAHackDay-Dec-2023
+        text: "repo"
+      - icon: globe
+        href: https://github.com/nmfs-opensci
+        text: "GH org"
+        
 format:
   html:
     theme:
