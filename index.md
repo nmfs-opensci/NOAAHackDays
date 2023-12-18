@@ -14,6 +14,8 @@ Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and m
 
 ## About
 
+The content and tutorials today will be largely based off a workshop by the NASA Openscapes mentors at AGU Dec 10, 2023: [2023 Cloud AGU Workshop](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/).
+
 ### Workshop Goals
 
 This is a session for interested NOAA staff to gain more familiarity with JupyterHubs and working with NASA Earth Data via code and geospatial packages in R and Python. This session is part of development of larger hack day events in 2024.
