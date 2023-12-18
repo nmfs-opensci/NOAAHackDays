@@ -5,6 +5,7 @@ format:
     code-fold: true
 ---
 
+Running this tutorial assumes you have gone through [set-up](tutorials/setup.html).
 
 ## Summary
 

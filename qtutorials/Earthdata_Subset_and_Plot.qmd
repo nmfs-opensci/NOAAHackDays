@@ -1,5 +1,5 @@
 ---
-title: Earthdata Subset and Plot"
+title: Earthdata Subset and Plot
 format:
   html:
     code-fold: true
