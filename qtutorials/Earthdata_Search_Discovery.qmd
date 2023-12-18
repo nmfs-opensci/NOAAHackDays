@@ -1,4 +1,4 @@
----
+# ---
 title: Earthdata Search and Discovery
 format:
   html:
@@ -41,9 +41,7 @@ We will start by authenticating using our Earthdata Login credentials. Authentic
 
 ```{python}
 auth = earthaccess.login()
-# are we authenticated?
 if not auth.authenticated:
-    # ask for credentials and persist them in a .netrc file
     auth.login(strategy="interactive", persist=True)
 ```
 
@@ -89,7 +87,7 @@ We can refine our search by passing more parameters that describe the spatiotemp
 For our bounding box, we are going to read in a GeoJSON file containing a single feature and extract the coordinate pairs for the southeast corner and the northwest corner (or lowerleft and upperright corners) of the bounding box around the feature.  
 
 ```{python}
-inGeojson = gpd.read_file('../../2023-Cloud-Workshop-AGU/data/sf_to_sierranvmt.geojson')
+inGeojson = gpd.read_file('../../NOAAHackDay-Dec-2023/data/sf_to_sierranvmt.geojson')
 ```
 
 ```{python}
@@ -100,7 +98,6 @@ We will assign our start date and end date to a variable named `date_range` and 
 
 ```{python}
 date_range = ("2022-11-19", "2023-04-06")
-#bbox = (-127.0761, 31.6444, -113.9039, 42.6310)
 bbox = (xmin, ymin, xmax, ymax)
 ```
 

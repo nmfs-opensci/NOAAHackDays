@@ -28,3 +28,16 @@ PATH = "/usr/bin:/srv/conda/envs/notebook/bin:/srv/conda/condabin:/usr/bin:/usr/
 ```
 
 3. Restart R. Session > Restart R
+
+4. Double-check Python environment
+
+```
+system("conda env list")
+```
+You should see this 
+```
+# conda environments:
+#
+base                     /srv/conda
+notebook              *  /srv/conda/envs/notebook
+```
