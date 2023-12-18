@@ -13,4 +13,5 @@ An Earthdata Login account is required to access data, as well as discover restr
 A GitHub account is required to gain access to the JupyterHub. 
 
 ### 3. Laptop or tablet
+
 Participation in the exercises requires a laptop or tablet. Yes, a tablet works too! 
