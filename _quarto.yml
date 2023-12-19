@@ -6,6 +6,7 @@ project:
     - "!itutorials/*_Harmony.ipynb"
     - "!qtutorials/*_Harmony.qmd"
     - "!qtutorials/Earthdata_*"
+    - "!qtutorials/earthdatalogin_sst.qmd"
 
 execute:
   freeze: auto
@@ -39,7 +40,9 @@ website:
         href: slides.md
       - section: "R Tutorials"
         contents: 
-          - text: "Introduction"
+          - text: "NASA Earth Data Access"
+            href: qtutorials/earthdataaccess.qmd
+          - text: "Historical red-lining and tree cover in SF"
             href: qtutorials/Introduction_to_Cloud_R.qmd
       - section: "Python Tutorials"
         contents: 

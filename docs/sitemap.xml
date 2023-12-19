@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/about.html</loc>
-    <lastmod>2023-12-19T04:33:44.492Z</lastmod>
+    <lastmod>2023-12-19T15:13:49.907Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/coc.html</loc>
-    <lastmod>2023-12-19T04:33:44.884Z</lastmod>
+    <lastmod>2023-12-19T15:13:50.315Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/index.html</loc>
-    <lastmod>2023-12-19T04:33:45.276Z</lastmod>
+    <lastmod>2023-12-19T15:13:50.723Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/itutorials/Earthdata_Search_Discovery_earthaccess.html</loc>
-    <lastmod>2023-12-19T04:33:45.896Z</lastmod>
+    <lastmod>2023-12-19T15:13:51.367Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/itutorials/Earthdata_Subset_and_Plot.html</loc>
-    <lastmod>2023-12-19T04:33:46.496Z</lastmod>
+    <lastmod>2023-12-19T15:13:51.963Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/itutorials/Introduction_to_Cloud_Python.html</loc>
-    <lastmod>2023-12-19T04:33:46.912Z</lastmod>
+    <lastmod>2023-12-19T15:13:52.391Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/prerequisites.html</loc>
-    <lastmod>2023-12-19T04:33:47.284Z</lastmod>
+    <lastmod>2023-12-19T15:13:52.763Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/qtutorials/Introduction_to_Cloud_R.html</loc>
-    <lastmod>2023-12-19T04:33:47.884Z</lastmod>
+    <lastmod>2023-12-19T15:13:53.379Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/qtutorials/earthdataaccess.html</loc>
+    <lastmod>2023-12-19T15:16:09.090Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/qtutorials/setup.html</loc>
-    <lastmod>2023-12-19T04:33:48.236Z</lastmod>
+    <lastmod>2023-12-19T15:16:09.462Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/slides.html</loc>
-    <lastmod>2023-12-19T04:33:48.572Z</lastmod>
+    <lastmod>2023-12-19T15:16:09.814Z</lastmod>
   </url>
 </urlset>

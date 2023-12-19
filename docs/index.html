@@ -160,7 +160,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qtutorials/Introduction_to_Cloud_R.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="./qtutorials/earthdataaccess.html" class="sidebar-item-text sidebar-link">NASA Earth Data Access</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qtutorials/Introduction_to_Cloud_R.html" class="sidebar-item-text sidebar-link">Historical red-lining and tree cover in SF</a>
   </div>
 </li>
       </ul>
@@ -200,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
-  <li><a href="#closing---close-out-your-jupyter-hub" id="toc-closing---close-out-your-jupyter-hub" class="nav-link" data-scroll-target="#closing---close-out-your-jupyter-hub">Closing - Close out your Jupyter Hub!</a></li>
+  <li><a href="#stop-your-jupyter-hub-at-the-end-of-the-day" id="toc-stop-your-jupyter-hub-at-the-end-of-the-day" class="nav-link" data-scroll-target="#stop-your-jupyter-hub-at-the-end-of-the-day">Stop your Jupyter Hub at the end of the day</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nmfs-opensci/NOAAHackDay-Dec-2023/edit/main/index.md" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nmfs-opensci/NOAAHackDay-Dec-2023/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/nmfs-opensci/NOAAHackDay-Dec-2023/blob/main/index.md" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -243,8 +248,10 @@ function googleTranslateElementInit() {
 <ul>
 <li>8-10am PT Welcome and 2 geospatial tutorials in R and Python
 <ul>
-<li>Lecture on earth data in the cloud by Michele Thornton (NASA Openscapes)</li>
-<li><a href="https://boettiger-lab.github.io/nasa-topst-env-justice/contents/intro.html">https://boettiger-lab.github.io/nasa-topst-env-justice/contents/intro.html</a></li>
+<li>Lecture on earth data in the cloud by Michele Thornton (NASA Openscapes) <a href="https://drive.google.com/drive/folders/1F2o5sP-efoDW_u3-ccQd8thLahO0S2Qr">Video</a></li>
+<li><a href="https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Search_Discovery_earthaccess.html">NASA Earth Data Access in Python</a></li>
+<li><a href="https://boettiger-lab.github.io/earthdatalogin/">NASA Earth data in R</a></li>
+<li><a href="https://boettiger-lab.github.io/nasa-topst-env-justice/contents/intro.html">Intro to geospatial data in cloud by Carl Boettiger</a></li>
 </ul></li>
 <li>10-11am PT Explore data and come up with a project</li>
 <li>11-12pm PT Break and lunch</li>
@@ -254,10 +261,22 @@ function googleTranslateElementInit() {
 </ul>
 </section>
 </section>
-<section id="closing---close-out-your-jupyter-hub" class="level2">
-<h2 class="anchored" data-anchor-id="closing---close-out-your-jupyter-hub">Closing - Close out your Jupyter Hub!</h2>
+<section id="stop-your-jupyter-hub-at-the-end-of-the-day" class="level2">
+<h2 class="anchored" data-anchor-id="stop-your-jupyter-hub-at-the-end-of-the-day">Stop your Jupyter Hub at the end of the day</h2>
+<p>If you are in Jupyter lab in the browser:</p>
 <ul>
-<li>Close out your JupyterHub instance if you are finished for the day, following <a href="https://podaac.github.io/2022-SWOT-Ocean-Cloud-Workshop/tutorials/00_Setup.html#how-do-i-end-my-session">these instructions</a>.</li>
+<li>File &gt; Hub Control Panel &gt; Stop my server</li>
+</ul>
+<p>If you are in RStudio and you still have the Jupyter lab tab open in your browser:</p>
+<ul>
+<li>Go to the Jupyter lab tab</li>
+<li>File &gt; Hub Control Panel &gt; Stop my server</li>
+</ul>
+<p>If you are in RStudio and you do not have the Jupyter lab tab open in your browser because you closed that tab:</p>
+<ul>
+<li><p>Go to the url <code>https://&lt;jupyterhub url&gt;/user/&lt;your username in the hub&gt;/lab/</code> That will open the Jupyter lab tab</p></li>
+<li><p>File &gt; Hub Control Panel &gt; Stop my server</p></li>
+<li><p>Close out your JupyterHub instance if you are finished for the day, following <a href="https://podaac.github.io/2022-SWOT-Ocean-Cloud-Workshop/tutorials/00_Setup.html#how-do-i-end-my-session">these instructions</a>.</p></li>
 </ul>
 
 

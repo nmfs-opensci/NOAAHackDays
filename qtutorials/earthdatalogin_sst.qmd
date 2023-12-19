@@ -1,0 +1,180 @@
+---
+title: "Earth Data Access with R"
+author: Carl Boettiger with suggestions by Eli
+---
+
+```{r setup}
+library(earthdatalogin)
+library(rstac)
+library(tidyverse)
+library(stars)
+library(tmap)
+library(maptiles)
+```
+
+Authenticate. You can say 'no' to the query.
+
+```{r}
+earthdatalogin::edl_set_token()
+```
+
+
+```{r}
+turtles <- 
+  read_csv("https://raw.githubusercontent.com/nmfs-opensci/NOAAHackDays-2024/main/r-tutorials/data/occ_all.csv") |> 
+  st_as_sf(coords = c("decimalLongitude", "decimalLatitude"))
+
+st_crs(turtles) <- 4326
+dates <- turtles |> distinct(date) |> pull(date)
+
+```
+
+
+```{r}
+# Quick plot of the turtle data
+tm_basemap("CartoDB.DarkMatter") + 
+  tm_shape(turtles) + tm_dots("sst")
+```
+
+
+```{r}
+bench::bench_time({
+start =  min(turtles$date) # "2018-01-01" #
+end =  max(turtles$date) # "2018-12-31"   #
+items <- stac("https://cmr.earthdata.nasa.gov/stac/POCLOUD") |>
+  stac_search(collections = "MUR-JPL-L4-GLOB-v4.1",
+              bbox = c(st_bbox(turtles)),
+              datetime = paste(start,end, sep = "/")) |>
+  get_request() |>
+  items_fetch()
+})
+```
+We only want assets matching dates in our data, not all days in the full range.
+
+```{r}
+# Only those dates that are found in turtles data please
+stac_dates <- rstac::items_datetime(items) |> as.Date()
+matched <- items$features[ stac_dates %in% dates ]
+urls <- map_chr(matched, list("assets", "data", "href"))
+```
+
+
+```{r}
+# potentially faster but not general
+source(system.file("examples/search.R",package="earthdatalogin"))
+# max search of 2000 results
+resp <- edl_search(short_name = "MUR-JPL-L4-GLOB-v4.1",
+                   temporal = c("2018-01-01", "2019-12-31"))
+
+urls <- edl_extract_urls(resp)
+
+# Only those dates that are found in turtles data please
+all_dates <- as.Date(gsub(".*(\\d{8})\\d{6}.*", "\\1", urls), format="%Y%m%d")
+urls <- urls[ all_dates %in% dates ]
+
+# in case API does not return full coverage: only turtle dates for which we have SST dates:
+mini_turtle <- turtles |> filter(date %in% url_dates)
+
+```
+
+
+```{r}
+url_dates <- as.Date(gsub(".*(\\d{8})\\d{6}.*", "\\1", urls), format="%Y%m%d")
+```
+
+
+
+This approach works on a subset of URLs,  unfortunately stars is not particularly robust at reading in large numbers of URLs
+
+
+```{r}
+some_urls <- urls[1:20]
+some_dates <- as.Date(gsub(".*(\\d{8})\\d{6}.*", "\\1", some_urls), format="%Y%m%d")
+# If we test with a subset of urls, we need to test with a subset of turtles too!
+mini_turtle <- turtles |> filter(date %in% some_dates)
+
+bench::bench_time({ # 1.02 min for 20 urls
+  sst <- read_stars(paste0("/vsicurl/", some_urls), "analysed_sst", quiet=TRUE)
+  st_crs(sst) <- 4326  # Christ, someone omitted CRS from metadata
+  # before we can extract on dates, we need to populate this date information
+  sst <- st_set_dimensions(sst, "time", values = some_dates)
+})
+
+bench::bench_time({
+  turtle_temp <- st_extract(sst, mini_turtle, time_column = "date")
+})
+```
+
+
+## gdalcubes
+
+```{r}
+library(gdalcubes)
+gdalcubes_set_gdal_config("GDAL_NUM_THREADS", "ALL_CPUS")
+gdalcubes_options(parallel = TRUE)
+```
+
+Access to NASA's EarthData collection requires an authentication token.
+The `earthdatalogin` package exists only to handle this!  
+Unlike `sf`, `terra` etc, the way `gdalcubes` calls `gdal` 
+does not inherit global environmental variables, so 
+we set the variables it uses with it's own configuration utility:
+  
+```{r}
+earthdatalogin::edl_unset_token()
+
+header <- edl_set_token(format="header", set_env_var = FALSE)
+gdalcubes_set_gdal_config("GDAL_HTTP_HEADERS", header)
+```
+
+
+Unfortunately, NASA's netcdf files lack some typical metadata regarding projection and extent (bounding box) of the data.  Some tools are happy to ignore this, just assuming a regular grid, but because GDAL supports explicitly spatial extraction, it wants to know this information.  Nor is this information even provided in the STAC entries! Oh well -- here we provide it rather manually using GDAL's "virtual dataset" prefix-suffix syntax (e.g. note the `a_srs=OGC:CRS84`), so that GDAL does not complain that the CRS (coordinate reference system) is missing.  Additional metadata such as the timestamp for each image is always included in a STAC entry and so can be automatically extracted by `stac_image_collection`.  (`stars` is more forgiving about letting us tack this information on later)
+
+```{r}
+vrt <- function(url) {
+  prefix <-  "vrt://NETCDF:/vsicurl/"
+  suffix <- ":analysed_sst?a_srs=OGC:CRS84&a_ullr=-180,90,180,-90"
+  paste0(prefix, url, suffix)
+}
+```
+
+
+Now we're good to go.  This time, we use the full cube at native resolution. (The `cube_view()` approach isn't a good strategy since we don't want a cube that has a regular interval `dt`).  gdalcubes does a much better job at leveraging multi-core compute and handling the vageries of the remote network connections at scale.
+
+
+```{r}
+bench::bench_time({
+  
+cube <- gdalcubes::stack_cube(vrt(urls), datetime_values = url_dates)
+sst_df <- cube |> extract_geom(mini_turtle,  time_column = "date")
+
+})
+```
+
+The resulting data.frame has the NASA value for SST matching the time and space noted noted in the data.  The NetCDF appears to encodes temperatures to two decimal points of accuracy by using integers with a scale factor of 100 (integers are more compact to store than floating points), so we have to convert these.  There are also what looks like some spurious negative values that may signal missing data.  
+
+
+```{r}
+# re-attach the spatial information
+turtle_sst <- 
+  mini_turtle |> 
+  tibble::rowid_to_column("FID") |>
+  inner_join(sst_df, by="FID") |> 
+  # NA fill and convert to celsius
+  mutate(x1 = replace_na(x1, -32768),
+         x1 = case_when(x1 < -300 ~ NA, .default = x1),
+         nasa_sst = (x1 + 27315) * 0.001)
+```
+
+
+```{r}
+turtle_sst |> as_tibble() |> ggplot(aes(sst, nasa_sst)) + geom_point(aes(col=date)) + geom_abline(slope=1, intercept = 0)
+```
+
+```{r}
+pal <- tmap::tm_scale_continuous(5, values="hcl.blue_red")
+
+# Quick plot of the turtle data
+tm_basemap("CartoDB.DarkMatter") + 
+  tm_shape(turtle_sst) + tm_dots("nasa_sst", fill.scale = pal)
+```
