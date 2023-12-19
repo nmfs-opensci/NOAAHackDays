@@ -1,44 +1,26 @@
 ---
-title: "Using NASA Earth Science Data"
+title: "Using Earth Data in R and Python"
 subtitle: "A remote mini hack day for NOAA staff"
- 
-author: "Eli Holmes, NASA Openscapes Mentors, NMFS Openscapes Mentors"
 ---
 
 ## Welcome
 
-**The workshop will take place virtually on December 19, 2023 from 8am-3pm PT [(UTC-7)](https://www.timeanddate.com/time/zones/pdt)**.
-
 Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses "Eli" not "Elizabeth".
 
-See the [Workshop Google Doc](https://docs.google.com/document/d/1Za7lPGo7XXFXvEBwnB221auL95q-5Ra-6lWQdoha43w/edit?usp=sharing) (NOAA internal) for the link to the JupyterHub.
+See the [Workshop Google Doc](https://docs.google.com/document/d/1Za7lPGo7XXFXvEBwnB221auL95q-5Ra-6lWQdoha43w/edit?usp=sharing) (NOAA internal) for the link to the JupyterHub and Google Meet link.
+
+### December 19, 2023
+
+* 8-10am PT Welcome and 2 geospatial tutorials in R and Python
+    - Lecture on earth data in the cloud by Michele Thornton (NASA Openscapes)
+    - [https://boettiger-lab.github.io/nasa-topst-env-justice/contents/intro.html](https://boettiger-lab.github.io/nasa-topst-env-justice/contents/intro.html)
+* 10-11am PT Explore data and come up with a project
+* 11-12pm PT Break and lunch
+* 12-12:30pm PT Pitch a project!
+* 12:30-2:30pm PT Hack and co-work on the project
+* 2:30-3pm PT Report out!
 
 
-## About
+## Closing - Close out your Jupyter Hub!
 
-The content and tutorials today will be largely based off a workshop by the NASA Openscapes mentors at AGU Dec 10, 2023: [2023 Cloud AGU Workshop](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/).
-
-### Workshop Goals
-
-This is a session for interested NOAA staff to gain more familiarity with JupyterHubs and working with NASA Earth Data via code and geospatial packages in R and Python. This session is part of development of larger hack day events in 2024.
-
-- Provide an inclusive place to learn about and experience working with NASA Earthdata Cloud;
-- Provide strategies and best practices for finding and accessing NASA Earthdata Cloud data. 
-- Practice using remote-sensing data in R and Python with code. 
-- Learn by working together on a small group project/task. 
-
-
-### Workshop Description
-
-*From the NASA (Data Centers) Openscapes mentors*:
-
-"Earth science data, including [NASA Earthdata](https://www.earthdata.nasa.gov/), is increasingly more available from the cloud. By leveraging cloud compute resources, open science principles, and technologies that foster transparency and reproducibility, science can be done at rates and scales that are not achievable by using personal/local machines. Building modern data skills in a friendly environment is crucial for accelerating science and reducing barriers to inclusive scientific research."
-
-Participants will take part in hands-on tutorials using a JupyterHub on the NOAA Azure account. The target audience is any interested NOAA staff. Note, this is a "pilot" hack day to start building content and experience in preparation for more polished multi-day events in 2024.
-
-FAQ: Can I bring my own content/code to the event and JupyterHub? Absolutely, please do!!
-
-
-## Acknowledgements
-
-Much of the workshop content has been developed as a cross-DAAC collaboration by the NASA-Openscapes Team. Learn more at [nasa-openscapes.github.io](https://nasa-openscapes.github.io). Other content was developed with OceanHackWeek participants. R content developed with Carl Boettiger (UC Berkeley) and Boettiger lab along with the NASA and NMFS Openscapes mentors.
+- Close out your JupyterHub instance if you are finished for the day, following [these instructions](https://podaac.github.io/2022-SWOT-Ocean-Cloud-Workshop/tutorials/00_Setup.html#how-do-i-end-my-session). 

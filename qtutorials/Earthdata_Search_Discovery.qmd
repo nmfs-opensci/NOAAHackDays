@@ -1,11 +1,9 @@
-# ---
+---
 title: Earthdata Search and Discovery
 format:
   html:
     code-fold: true
 ---
-
-Running this tutorial assumes you have gone through [set-up](tutorials/setup.html).
 
 ## Summary
 
@@ -64,7 +62,7 @@ https://search.earthdata.nasa.gov/search?q=GPM_3IMERGDF
 #### Search by collection
 
 ```{python}
-collection_id = 'C2723754864-GES_DISC'
+collection_id = 'C1598621096-GES_DISC'
 ```
 
 ```{python}
@@ -97,7 +95,7 @@ xmin, ymin, xmax, ymax = inGeojson.total_bounds
 We will assign our start date and end date to a variable named `date_range` and we'll assign the southeast and the northwest corner coordinates to a variable named `bbox` to be passed to our `earthaccess` search request.  
 
 ```{python}
-date_range = ("2022-11-19", "2023-04-06")
+date_range = ("2019-11-19", "2019-12-06")
 bbox = (xmin, ymin, xmax, ymax)
 ```
 
@@ -139,7 +137,7 @@ In some cases you may want to download your assets. `earthaccess` makes download
 ```{python}
 downloaded_files = earthaccess.download(
     results[0:9],
-    local_path='../../2023-Cloud-Workshop-AGU/data',
+    local_path='../../NOAAHackDay-Dec-2023/data',
 )
 ```
 
@@ -148,7 +146,7 @@ downloaded_files = earthaccess.download(
 We're going to remove those files to keep our space clean.
 
 ```{python}
-!rm ../../2023-Cloud-Workshop-AGU/data/*.nc4
+!rm ../../NOAAHackDay-Dec-2023/data/*.nc4
 ```
 
 #### Explore `earthaccess` search response
