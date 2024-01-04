@@ -5,6 +5,8 @@ subtitle: "A remote mini hack day for NOAA staff"
 
 ## Welcome
 
+Use this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: [SIGN-UP FORM](https://forms.gle/ckUYr4aZPeyScLRX6)
+
 Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses "Eli" not "Elizabeth".
 
 See the [Workshop Google Doc](https://docs.google.com/document/d/1Za7lPGo7XXFXvEBwnB221auL95q-5Ra-6lWQdoha43w/edit?usp=sharing) (NOAA internal) for the link to the JupyterHub and Google Meet link.
