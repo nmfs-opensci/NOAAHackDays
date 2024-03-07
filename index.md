@@ -1,6 +1,6 @@
 ---
 title: "Using Earth Data in R and Python"
-subtitle: "A remote mini hack day for NOAA staff"
+subtitle: "A remote mini hack days for NOAA staff"
 ---
 
 ## Welcome
@@ -10,6 +10,18 @@ Use this form to sign-up to be alerted for future hackdays and Intro to JupyterH
 Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses "Eli" not "Elizabeth".
 
 See the [Workshop Google Doc](https://docs.google.com/document/d/1Za7lPGo7XXFXvEBwnB221auL95q-5Ra-6lWQdoha43w/edit?usp=sharing) (NOAA internal) for the link to the JupyterHub and Google Meet link.
+
+### Fridays Hackhours in March 2024 12pm PT/3pm ET. 1 hour of geospatial in Python and R
+
+During these 1 hour hackhours, we will use a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with JupyterHubs, Jupyter notebooks, and Python/R for geospatial analysis.
+
+* March 8th. Using daily precipitation data from [IMERG](https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDF_07/summary) [tutorial](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Subset_and_Plot.html)
+* March 15th. TBD. Maybe let's do a Coastwatch tutorial or GIS (via the arcgic Python API).
+* March 22nd. Species distribution modeling. Let's fit a SDM using ocean climate variables (R).
+* March 29th. Machine learning with tensorflow! It is not that hard. Let's do some machine-learning with SST rasters (Python).
+
+I don't know Python? Python is not as commonly use in NMFS. There are lots of free tutorials and classes. Feel free to use the JupyterHub to run through Python course material. 
+
 
 ### December 19, 2023
 
