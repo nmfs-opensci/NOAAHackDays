@@ -1,1 +1,1 @@
-Sitemap: https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023/sitemap.xml
+Sitemap: https://nmfs-opensci.github.io/NOAAHackDays/sitemap.xml

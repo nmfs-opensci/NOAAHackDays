@@ -13,10 +13,10 @@ execute:
   
 website:
   page-navigation: true  
-  title: "Hack Day Dec 19"
+  title: "NOAA Fisheries Hackdays"
   favicon: "images/favicon-16x16.png"
-  site-url: https://nmfs-opensci.github.io/NOAAHackDay-Dec-2023
-  repo-url: https://github.com/nmfs-opensci/NOAAHackDay-Dec-2023
+  site-url: https://nmfs-opensci.github.io/NOAAHackDays
+  repo-url: https://github.com/nmfs-opensci/NOAAHackDays
   repo-actions: [edit, issue, source]
   
   page-footer: <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br />NMFS Open Science (2023)
@@ -36,8 +36,8 @@ website:
         href: prerequisites.md 
       - text: "About"
         href: about.md
-      - text: "Slides"
-        href: slides.md
+#      - text: "Slides"
+#        href: slides.md
       - section: "R Tutorials"
         contents: 
           - text: "NASA Earth Data Access"
@@ -60,13 +60,13 @@ website:
         href: https://dhub.opensci.live/
         text: "JupyterHub"
       - icon: wechat
-        href: https://github.com/nmfs-opensci/NOAAHackDay-Dec-2023/discussions
+        href: https://github.com/nmfs-opensci/NOAAHackDays/discussions
         text: "Discussions"
 #      - icon: slack
 #        href: https://app.slack.com/client/T05PV2USY56/C05P7QP47UL
 #        text: "Slack"
       - icon: github
-        href: https://github.com/nmfs-opensci/NOAAHackDay-Dec-2023
+        href: https://github.com/nmfs-opensci/NOAAHackDays
         text: "repo"
       - icon: globe
         href: https://github.com/nmfs-opensci
