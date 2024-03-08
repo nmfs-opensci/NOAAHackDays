@@ -11,7 +11,7 @@ Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and m
 
 ### Friday Hackhours in March 2024 12-1pm PT/3-4pm ET
 
-During these 1 hour hackhours, we will use a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with JupyterHubs, Jupyter notebooks, and Python/R for geospatial analysis.
+During these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python/R for geospatial analysis.
 
 [Add event to your calendar](https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=M245ZDZkbDFva2tmamcxNmZ2dDY4YWx2ZGFfMjAyNDAzMDhUMjAwMDAwWiBlbGkuaG9sbWVzQG5vYWEuZ292&tmsrc=eli.holmes%40noaa.gov&scp=ALL) Use this form to sign-up for access to the JupyterHub and to be alerted for future hackdays: [SIGN-UP FORM](https://forms.gle/ckUYr4aZPeyScLRX6)
 
