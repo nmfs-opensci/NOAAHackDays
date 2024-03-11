@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -83,7 +83,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -98,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
@@ -110,9 +116,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">NOAA Fisheries Hackdays</span>
     </a>
@@ -124,30 +130,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://dhub.opensci.live/" rel="" target=""><i class="bi bi-server" role="img">
+    <a class="nav-link" href="https://dhub.opensci.live/"> <i class="bi bi-server" role="img">
 </i> 
- <span class="menu-text">JupyterHub</span></a>
+<span class="menu-text">JupyterHub</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays/discussions" rel="" target=""><i class="bi bi-wechat" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays/discussions"> <i class="bi bi-wechat" role="img">
 </i> 
- <span class="menu-text">Discussions</span></a>
+<span class="menu-text">Discussions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text">repo</span></a>
+<span class="menu-text">repo</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci" rel="" target=""><i class="bi bi-globe" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci"> <i class="bi bi-globe" role="img">
 </i> 
- <span class="menu-text">GH org</span></a>
+<span class="menu-text">GH org</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
@@ -155,9 +161,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../itutorials/Introduction_to_Cloud_Python.html">Python Tutorials</a></li><li class="breadcrumb-item"><a href="../itutorials/Earthdata_Search_Discovery_earthaccess.html">Earthdata Search</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../itutorials/Introduction_to_Cloud_Python.html">Python Tutorials</a></li><li class="breadcrumb-item"><a href="../itutorials/Earthdata_Search_Discovery_earthaccess.html">Earthdata Search</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
@@ -258,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#get-started" id="toc-get-started" class="nav-link" data-scroll-target="#get-started">Get Started</a></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/itutorials/Earthdata_Search_Discovery_earthaccess.ipynb" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/itutorials/Earthdata_Search_Discovery_earthaccess.ipynb" class="toc-action">View source</a></p></div></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/itutorials/Earthdata_Search_Discovery_earthaccess.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/itutorials/Earthdata_Search_Discovery_earthaccess.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -272,7 +278,7 @@ function googleTranslateElementInit() {
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../itutorials/Introduction_to_Cloud_Python.html">Python Tutorials</a></li><li class="breadcrumb-item"><a href="../itutorials/Earthdata_Search_Discovery_earthaccess.html">Earthdata Search</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Data discovery with earthaccess</h1>
 </div>
@@ -287,7 +293,9 @@ function googleTranslateElementInit() {
   </div>
   
 
+
 </header>
+
 
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
@@ -310,17 +318,17 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="get-started">Get Started</h2>
 <section id="import-required-packages" class="level3">
 <h3 class="anchored" data-anchor-id="import-required-packages">Import Required Packages</h3>
-<div class="cell" data-tags="[]" data-execution_count="1">
+<div id="1a6fad23-fa66-4e3d-818b-96f797025b00" class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="42">
+<div id="81459133-865c-44dc-b821-45e0e9638c7f" class="cell" data-tags="[]" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"HOME"</span>] <span class="op">=</span> <span class="st">"/home/jovyan"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="43">
+<div id="a944299b-4f83-425a-a248-27968c963480" class="cell" data-tags="[]" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># are we authenticated?</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> auth.authenticated:</span>
@@ -369,11 +377,11 @@ function googleTranslateElementInit() {
 <p>https://search.earthdata.nasa.gov/search?q=GPM_3IMERGDF</p>
 <section id="search-by-collection" class="level4">
 <h4 class="anchored" data-anchor-id="search-by-collection">Search by collection</h4>
-<div class="cell" data-tags="[]" data-execution_count="44">
+<div id="9cf2a5cd-940a-4206-8944-728d48995094" class="cell" data-tags="[]" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collection_id = 'C2723754864-GES_DISC'</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>collection_id <span class="op">=</span> <span class="st">'C1598621096-GES_DISC'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="45">
+<div id="30d096dc-c8ee-44d3-a130-b1dc5d9ae3bb" class="cell" data-tags="[]" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    concept_id <span class="op">=</span> collection_id,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    cloud_hosted <span class="op">=</span> <span class="va">True</span>,</span>
@@ -392,19 +400,19 @@ function googleTranslateElementInit() {
 <p><strong>NOTE:</strong> Each Earthdata collect has a unique <code>concept_id</code> and <code>doi</code>. This is not the case with <code>short_name</code>. A <strong>shortname</strong> can be associated with multiple versions of a collection. If multiple versions of a collection are publicaly available, using the <code>short_name</code> parameter with return all versions available. It is advised to use the <code>version</code> parameter in conjunction with the <code>short_name</code> parameter with searching.</p>
 <p>We can refine our search by passing more parameters that describe the spatiotemporal domain of our use case. Here, we use the <code>temporal</code> parameter to request a date range and the <code>bounding_box</code> parameter to request granules that intersect with a bounding box.</p>
 <p>For our bounding box, we are going to read in a GeoJSON file containing a single feature and extract the coordinate pairs for the southeast corner and the northwest corner (or lowerleft and upperright corners) of the bounding box around the feature.</p>
-<div class="cell" data-tags="[]" data-execution_count="36">
+<div id="0657b16d-b7f1-4e7a-a196-0c2209d5d7a0" class="cell" data-tags="[]" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>inGeojson <span class="op">=</span> gpd.read_file(<span class="st">'../../NOAAHackDay-Dec-2023/data/sf_to_sierranvmt.geojson'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="37">
+<div id="55396853-47ef-4a66-9181-cb75b16810d0" class="cell" data-tags="[]" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xmin, ymin, xmax, ymax <span class="op">=</span> inGeojson.total_bounds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will assign our start date and end date to a variable named <code>date_range</code> and we’ll assign the southeast and the northwest corner coordinates to a variable named <code>bbox</code> to be passed to our <code>earthaccess</code> search request.</p>
-<div class="cell" data-tags="[]" data-execution_count="63">
+<div id="55c4bf4d-45d0-4bea-a910-4e065f670f16" class="cell" data-tags="[]" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#date_range = ("2022-11-19", "2023-04-06")</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>date_range <span class="op">=</span> (<span class="st">"2019-11-19"</span>, <span class="st">"2019-12-06"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> (xmin, ymin, xmax, ymax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="64">
+<div id="e521d54f-47f9-48ee-9773-b2853495e707" class="cell" data-tags="[]" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    concept_id <span class="op">=</span> collection_id,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    cloud_hosted <span class="op">=</span> <span class="va">True</span>,</span>
@@ -427,7 +435,7 @@ function googleTranslateElementInit() {
 <li><code>cloud_cover = (0, 10)</code></li>
 </ul></li>
 </ul>
-<div class="cell" data-tags="[]" data-execution_count="9">
+<div id="b5b159c3-6bce-4d99-989b-503ac4231703" class="cell" data-tags="[]" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># col_ids = ['C2723754864-GES_DISC', 'C1646609808-NSIDC_ECS', 'C2531308461-NSIDC_ECS', 'C2537927247-NSIDC_ECS']    # Specify a list of collections to pass to the search</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># results = earthaccess.search_data(</span></span>
@@ -445,7 +453,7 @@ function googleTranslateElementInit() {
 <section id="download-earthaccess-results" class="level4">
 <h4 class="anchored" data-anchor-id="download-earthaccess-results">Download <code>earthaccess</code> results</h4>
 <p>In some cases you may want to download your assets. <code>earthaccess</code> makes downloading the data from the search results very easy using the <code>earthaccess.download()</code> function.</p>
-<div class="cell" data-tags="[]" data-execution_count="65">
+<div id="5de5127f-843a-4ab3-8bc1-4eb815f19056" class="cell" data-tags="[]" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>downloaded_files <span class="op">=</span> earthaccess.download(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    results[<span class="dv">0</span>:<span class="dv">9</span>],</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    local_path<span class="op">=</span><span class="st">'../../NOAAHackDay-Dec-2023/data'</span>,</span>
@@ -471,26 +479,26 @@ function googleTranslateElementInit() {
 </div>
 <p><code>earthaccess</code> did a lot of heavy lifting for us. It identified the downloadable links, passed our Earthdata Login credentials, and save off the file with the proper name. Amazing right!?</p>
 <p>We’re going to remove those files to keep our space clean.</p>
-<div class="cell" data-tags="[]" data-execution_count="66">
+<div id="2cc46baa-4f4a-467d-b5ed-4d1f99cb3ba1" class="cell" data-tags="[]" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>rm ..<span class="op">/</span>..<span class="op">/</span>NOAAHackDay<span class="op">-</span>Dec<span class="op">-</span><span class="dv">2023</span><span class="op">/</span>data<span class="op">/*</span>.nc4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="explore-earthaccess-search-response" class="level4">
 <h4 class="anchored" data-anchor-id="explore-earthaccess-search-response">Explore <code>earthaccess</code> search response</h4>
-<div class="cell" data-tags="[]" data-execution_count="67">
+<div id="d6ad180d-ec74-4245-bb41-ec745912b5fb" class="cell" data-tags="[]" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The results variable is a </span><span class="sc">{</span><span class="bu">type</span>(results)<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span><span class="bu">type</span>(results[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The results variable is a &lt;class 'list'&gt; of &lt;class 'earthaccess.results.DataGranule'&gt;</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="68">
+<div id="9271ada5-e4b3-4397-be59-4ef6a1613576" class="cell" data-tags="[]" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="68">
 <pre><code>18</code></pre>
 </div>
 </div>
 <p>We can explore the first item (<code>earthaccess.results.DataGranule</code>) in our list.</p>
-<div class="cell" data-tags="[]" data-execution_count="69">
+<div id="33c8ee09-fccd-4938-9d7c-775292600ca3" class="cell" data-tags="[]" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>item <span class="op">=</span> results[<span class="dv">0</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(item)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="69">
@@ -498,13 +506,13 @@ function googleTranslateElementInit() {
 </div>
 </div>
 <p>Each item contains three keys that can be used to explore the item</p>
-<div class="cell" data-tags="[]" data-execution_count="70">
+<div id="6362bef8-48c8-4a08-82a3-0f97c5aea2ff" class="cell" data-tags="[]" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>item.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="70">
 <pre><code>dict_keys(['meta', 'umm', 'size'])</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="71">
+<div id="5bfa2d9d" class="cell" data-tags="[]" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>item[<span class="st">'umm'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="71">
 <pre><code>{'RelatedUrls': [{'URL': 'https://data.gesdisc.earthdata.nasa.gov/data/GPM_L3/GPM_3IMERGDF.06/2019/11/3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4', 'Type': 'GET DATA', 'Description': 'Download 3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4'}, {'URL': 's3://gesdisc-cumulus-prod-protected/GPM_L3/GPM_3IMERGDF.06/2019/11/3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4', 'Type': 'GET DATA VIA DIRECT ACCESS', 'Description': 'This link provides direct download access via S3 to the granule'}, {'URL': 'https://gpm1.gesdisc.eosdis.nasa.gov/opendap/GPM_L3/GPM_3IMERGDF.06/2019/11/3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4', 'Type': 'USE SERVICE API', 'Subtype': 'OPENDAP DATA', 'Description': 'The OPENDAP location for the granule.', 'MimeType': 'application/x-netcdf-4'}, {'URL': 'https://data.gesdisc.earthdata.nasa.gov/s3credentials', 'Type': 'VIEW RELATED INFORMATION', 'Description': 'api endpoint to retrieve temporary credentials valid for same-region direct s3 access'}], 'SpatialExtent': {'HorizontalSpatialDomain': {'Geometry': {'BoundingRectangles': [{'WestBoundingCoordinate': -180.0, 'EastBoundingCoordinate': 180.0, 'NorthBoundingCoordinate': 90.0, 'SouthBoundingCoordinate': -90.0}]}}}, 'ProviderDates': [{'Date': '2020-02-27T16:10:05.000Z', 'Type': 'Insert'}, {'Date': '2020-02-27T16:10:05.000Z', 'Type': 'Update'}], 'CollectionReference': {'ShortName': 'GPM_3IMERGDF', 'Version': '06'}, 'DataGranule': {'DayNightFlag': 'Unspecified', 'Identifiers': [{'Identifier': '3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4', 'IdentifierType': 'ProducerGranuleId'}], 'ProductionDateTime': '2020-02-27T16:10:05.000Z', 'ArchiveAndDistributionInformation': [{'Name': 'Not provided', 'Size': 29.92357635498047, 'SizeUnit': 'MB'}]}, 'TemporalExtent': {'RangeDateTime': {'BeginningDateTime': '2019-11-19T00:00:00.000Z', 'EndingDateTime': '2019-11-19T23:59:59.999Z'}}, 'GranuleUR': 'GPM_3IMERGDF.06:3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4', 'MetadataSpecification': {'URL': 'https://cdn.earthdata.nasa.gov/umm/granule/v1.6.5', 'Name': 'UMM-G', 'Version': '1.6.5'}}</code></pre>
@@ -514,21 +522,21 @@ function googleTranslateElementInit() {
 <section id="get-data-urls-s3-uris" class="level4">
 <h4 class="anchored" data-anchor-id="get-data-urls-s3-uris">Get data URLs / S3 URIs</h4>
 <p>Get links to data. The <code>data_links()</code> method is used to return the URL(s)/data link(s) for the item. By default the method returns the HTTPS URL to download or access the item.</p>
-<div class="cell" data-tags="[]" data-execution_count="72">
+<div id="c34ef01c-ba42-475e-9ee0-c47d25b4dc06" class="cell" data-tags="[]" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>item.data_links()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="72">
 <pre><code>['https://data.gesdisc.earthdata.nasa.gov/data/GPM_L3/GPM_3IMERGDF.06/2019/11/3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4']</code></pre>
 </div>
 </div>
 <p>The <code>data_links()</code> method can also be used to get the s3 URI when we want to perform direct s3 access of the data in the cloud. To get the s3 URI, pass <code>access = 'direct'</code> to the method.</p>
-<div class="cell" data-tags="[]" data-execution_count="73">
+<div id="e35871bd-6d09-4459-beac-88c899f0af55" class="cell" data-tags="[]" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>item.data_links(access<span class="op">=</span><span class="st">'direct'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="73">
 <pre><code>['s3://gesdisc-cumulus-prod-protected/GPM_L3/GPM_3IMERGDF.06/2019/11/3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4']</code></pre>
 </div>
 </div>
 <p>If we want to extract all of the data links from our search results and add or save them to a list, we can.</p>
-<div class="cell" data-tags="[]" data-execution_count="74">
+<div id="8e4cc751-a62e-4515-8bbc-1042aadefae2" class="cell" data-tags="[]" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data_link_list <span class="op">=</span> []</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> granule <span class="kw">in</span> results:</span>
@@ -536,7 +544,7 @@ function googleTranslateElementInit() {
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        data_link_list.append(asset)</span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="75">
+<div id="f4c149a0-8766-4881-a82d-56c855e552ed" class="cell" data-tags="[]" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data_link_list[<span class="dv">0</span>:<span class="dv">9</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
 <pre><code>['s3://gesdisc-cumulus-prod-protected/GPM_L3/GPM_3IMERGDF.06/2019/11/3B-DAY.MS.MRG.3IMERG.20191119-S000000-E235959.V06.nc4',
@@ -555,7 +563,7 @@ function googleTranslateElementInit() {
 <section id="open-results-in-xarray" class="level4">
 <h4 class="anchored" data-anchor-id="open-results-in-xarray">Open results in <code>xarray</code></h4>
 <p>We use <code>earthaccess</code>’s <code>open()</code> method to make a connection to and open the files from our search result.</p>
-<div class="cell" data-tags="[]" data-execution_count="76">
+<div id="4bfbd34d-2bc2-40a1-bc96-6452ee3ea419" class="cell" data-tags="[]" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fileset <span class="op">=</span> earthaccess.<span class="bu">open</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Opening 18 granules, approx size: 0.53 GB</code></pre>
@@ -577,15 +585,14 @@ function googleTranslateElementInit() {
 </div>
 </div>
 <p>Then we pass the <code>fileset</code> object to xarray.</p>
-<div class="cell" data-tags="[]" data-execution_count="77">
+<div id="8e1e98b1-3a65-48a8-a68e-c5cbad4420bb" class="cell" data-tags="[]" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(fileset, chunks <span class="op">=</span> {})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Some really cool things just happened here! Not only were we able to seamlessly stream our <code>earthaccess</code> search results into a <code>xarray</code> <code>dataset</code> using the <code>open_mfdataset()</code> (multi-file) method, but <code>earthaccess</code> whether we were working from within AWS us-west-2 and could use direct S3 access or if not, would use https. We didn’t have to create a session or a filesystem to authenticate and connect to the data. <code>earthaccess</code> did this for us using the <code>auth</code> object we created at the beginning of this tutorial.</p>
 <p>Let’s take a quick lock at our <code>xarray</code> <code>dataset</code></p>
-<div class="cell" data-tags="[]" data-execution_count="78">
+<div id="3b87bdda-7dc8-458a-ab99-50aca9ed41c9" class="cell" data-tags="[]" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="78">
-
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -1048,7 +1055,7 @@ int8
 <div class="xr-var-preview xr-preview">
 dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
 </div>
-<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiIgLz48L3N2Zz4=" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIiAvPjwvc3ZnPg==" class="icon xr-icon-database img-fluid">
 <div class="xr-var-attrs">
 <dl>
 <dt><span>units :</span></dt>
@@ -1115,7 +1122,7 @@ int8
 <div class="xr-var-preview xr-preview">
 dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
 </div>
-<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiIgLz48L3N2Zz4=" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIiAvPjwvc3ZnPg==" class="icon xr-icon-database img-fluid">
 <div class="xr-var-attrs">
 <dl>
 <dt><span>units :</span></dt>
@@ -1182,7 +1189,7 @@ float32
 <div class="xr-var-preview xr-preview">
 dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
 </div>
-<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiIgLz48L3N2Zz4=" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIiAvPjwvc3ZnPg==" class="icon xr-icon-database img-fluid">
 <div class="xr-var-attrs">
 <dl>
 <dt><span>units :</span></dt>
@@ -1249,7 +1256,7 @@ int8
 <div class="xr-var-preview xr-preview">
 dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
 </div>
-<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiIgLz48L3N2Zz4=" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIiAvPjwvc3ZnPg==" class="icon xr-icon-database img-fluid">
 <div class="xr-var-attrs">
 <dl>
 <dt><span>units :</span></dt>
@@ -1316,7 +1323,7 @@ int8
 <div class="xr-var-preview xr-preview">
 dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
 </div>
-<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiIgLz48L3N2Zz4=" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIiAvPjwvc3ZnPg==" class="icon xr-icon-database img-fluid">
 <div class="xr-var-attrs">
 <dl>
 <dt><span>units :</span></dt>
@@ -1383,7 +1390,7 @@ float32
 <div class="xr-var-preview xr-preview">
 dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
 </div>
-<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiIgLz48L3N2Zz4=" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIiAvPjwvc3ZnPg==" class="icon xr-icon-database img-fluid">
 <div class="xr-var-attrs">
 <dl>
 <dt><span>units :</span></dt>
@@ -1450,7 +1457,7 @@ int8
 <div class="xr-var-preview xr-preview">
 dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
 </div>
-<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiIgLz48L3N2Zz4=" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIiAvPjwvc3ZnPg==" class="icon xr-icon-database img-fluid">
 <div class="xr-var-attrs">
 <dl>
 <dt><span>units :</span></dt>
@@ -1517,7 +1524,7 @@ object
 <div class="xr-var-preview xr-preview">
 dask.array&lt;chunksize=(1, 2), meta=np.ndarray&gt;
 </div>
-<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiIgLz48L3N2Zz4=" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIiAvPjwvc3ZnPg==" class="icon xr-icon-database img-fluid">
 <div class="xr-var-attrs">
 <dl>
 <dt><span>coordinates :</span></dt>
@@ -1657,6 +1664,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -1723,13 +1757,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1808,10 +1844,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1821,8 +1856,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1835,6 +1879,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1878,6 +2044,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1903,6 +2070,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1964,12 +2157,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../itutorials/Introduction_to_Cloud_Python.html" class="pagination-link">
+      <a href="../itutorials/Introduction_to_Cloud_Python.html" class="pagination-link  aria-label=" introduction"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../itutorials/Earthdata_Subset_and_Plot.html" class="pagination-link">
+      <a href="../itutorials/Earthdata_Subset_and_Plot.html" class="pagination-link" aria-label="Access, Subset &amp; Plot">
         <span class="nav-page-text">Access, Subset &amp; Plot</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1980,12 +2173,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</div>
+    <div class="nav-footer-center">
+<p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

@@ -11,14 +11,16 @@ Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and m
 
 ### Friday Hackhours in March 2024 12-1pm PT/3-4pm ET
 
-During these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python/R for geospatial analysis.
+During these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python for geospatial analysis.
 
-[Add event to your calendar](https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=M245ZDZkbDFva2tmamcxNmZ2dDY4YWx2ZGFfMjAyNDAzMDhUMjAwMDAwWiBlbGkuaG9sbWVzQG5vYWEuZ292&tmsrc=eli.holmes%40noaa.gov&scp=ALL) Use this form to sign-up for access to the JupyterHub and to be alerted for future hackdays: [SIGN-UP FORM](https://forms.gle/ckUYr4aZPeyScLRX6)
+[Add event to your calendar](https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MXQ4bzFuaDViZzFudHFtNWlzZjVtZ2JqZGVfMjAyNDAzMDhUMjAwMDAwWiBlbGkuaG9sbWVzQG5vYWEuZ292&tmsrc=eli.holmes%40noaa.gov&scp=ALL) 
 
-* March 8th. Using MODIS/Terra Snow Cover Daily L3 Global 0.05Deg from [tutorial Appendix 1](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Subset_and_Plot.html)
-* March 15th. TBD. Maybe let's do a Coastwatch tutorial or GIS (via the arcgic Python API).
-* March 22nd. Species distribution modeling. Let's fit a SDM using ocean climate variables (R).
-* March 29th. Machine learning with tensorflow! It is not that hard. Let's do some machine-learning with SST rasters (Python).
+[SIGN-UP FORM](https://forms.gle/ckUYr4aZPeyScLRX6) Use this form to sign-up for access to the JupyterHub and to be alerted for future hackhours and hackdays
+
+* March 8th. Using precipitation estimates from IMERG [tutorial](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Subset_and_Plot.html) (Python)
+* March 15th. [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) with Sunny Hospital and Dale Robinson (Python)
+* March 22nd. TBD
+* March 29th. Using ArcGIS via the arcgis Python API. Tim Haverford (Python)
 
 Don't know Python? Python is not as commonly use in NMFS. There are lots of free tutorials and classes. Feel free to use the JupyterHub to run through Python course material. 
 
