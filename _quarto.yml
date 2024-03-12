@@ -65,6 +65,9 @@ website:
 #      - icon: slack
 #        href: https://app.slack.com/client/T05PV2USY56/C05P7QP47UL
 #        text: "Slack"
+      - icon: people-fill
+        href: https://github.com/orgs/nmfs-opensci/teams/daskhub
+        text: GH Team
       - icon: github
         href: https://github.com/nmfs-opensci/NOAAHackDays
         text: "repo"
