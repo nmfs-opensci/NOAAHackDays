@@ -18,7 +18,7 @@ During these 1 hour hackhours, we will learn to do cloud computing with a Jupyte
 [SIGN-UP FORM](https://forms.gle/ckUYr4aZPeyScLRX6) Use this form to sign-up for access to the JupyterHub and to be alerted for future hackhours and hackdays
 
 * March 8th. Using precipitation estimates from IMERG [tutorial](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Subset_and_Plot.html) (Python)
-* March 15th. [CoastWatch tutorials](https://github.com/nmfs-opensci/CoastWatch-Tutorials) see the "March15" folder. Sunny Hospital and Dale Robinson (Python) [Set-up](https://youtu.be/FqzaVS7UpHs)
+* March 15th. [CoastWatch tutorials](https://github.com/nmfs-opensci/CoastWatch-Tutorials-march15) see the "March15" folder. Sunny Hospital and Dale Robinson (Python) [Set-up](https://youtu.be/FqzaVS7UpHs)
 * March 22nd. TBD
 * March 29th. Using ArcGIS via the arcgis Python API. Tim Haverford (Python)
 
