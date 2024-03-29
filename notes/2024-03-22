@@ -1,0 +1,20 @@
+https://www.cos.io/yos-conference
+https://nmfs-opensci.github.io/NOAAHackDays/
+
+My jupyterhub didn't spin up with rstudio. Just python and desktop. What did I miss?
+
+when starting up the jupyterhub, make sure you select the one says Py-R coastwatch
+
+you need to use the launcher to start Rstudio, then navigate to the rmd file
+
+https://coastwatch.pfeg.noaa.gov/erddap/info/index.html?page=1&itemsPerPage=1000
+
+https://coastwatch.noaa.gov/cwn/about/coastwatch-nodes.html
+each node has their own erddap server
+and data catalog
+
+erddap.com
+
+RE: values being zero, or Nan, its' important to read metadata first ; metadata will tell you if  some values are flags for certain things like land, lakes, cloud, and no/missing data, etc.
+
+CWUtility is a stand-alone software coastwatch developed you can download and install.  https://coastwatch.noaa.gov/cwn/data-access-tools/coastwatch-utilities.html
