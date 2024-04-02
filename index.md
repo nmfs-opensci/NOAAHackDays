@@ -21,7 +21,7 @@ During these 1 hour hackhours, we will learn to do cloud computing with a Jupyte
 * March 15th. [CoastWatch tutorials](https://github.com/coastwatch-training/Workshops/tree/main) in Python. Sunny Hospital and Dale Robinson. [Set-up](https://youtu.be/FqzaVS7UpHs)
 * March 22nd. 1pm PT [CoastWatch tutorials](https://github.com/coastwatch-training/Workshops/tree/main) in R. Sunny Hospital and Daisy Shi (R)
 * March 29th. Accessing acoustics data from NCEI (echopype example). Eli Holmes (Python)
-* April 5th. Using ArcGIS via the arcgis Python API. Tim Haverford (Python)
+* April 5th. Using ArcGIS via the arcgis Python API. Tim Haverland (Python)
 * April 12th. TBD (R)
 * April 19th. More acoustics with echopype.  Wu-Jung (Python)
 
