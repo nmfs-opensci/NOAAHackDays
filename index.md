@@ -20,10 +20,10 @@ During these 1 hour hackhours, we will learn to do cloud computing with a Jupyte
 * March 8th. Using precipitation estimates from IMERG [tutorial](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Subset_and_Plot.html) (Python)
 * March 15th. [CoastWatch tutorials](https://github.com/coastwatch-training/Workshops/tree/main) in Python. Sunny Hospital and Dale Robinson. [Set-up](https://youtu.be/FqzaVS7UpHs)
 * March 22nd. 1pm PT [CoastWatch tutorials](https://github.com/coastwatch-training/Workshops/tree/main) in R. Sunny Hospital and Daisy Shi (R)
-* March 29th. Accessing acoustics data from NCEI (echopype example). Eli Holmes (Python)
+* March 29th. Accessing acoustics data from AWS Open Data (echopype example). Eli Holmes (Python)
 * April 5th. Using ArcGIS via the arcgis Python API. Tim Haverland (OST)
-* April 12th. TBD (R)
-* April 19th. More acoustics with echopype.  Wu-Jung (Python)
+* April 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. [CMIP6 Cookbook](https://projectpythia.org/cmip6-cookbook/README.html)
+* April 19th. More acoustics data with echopype.  Wu-Jung Lee (Python)
 
 Don't know Python? There are lots of free tutorials and classes. Feel free to use the JupyterHub to run through Python course material. 
 
