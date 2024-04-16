@@ -1,0 +1,18 @@
+### December 9, 2023
+
+Image: Openscapes Python
+
+Tutorials: 2023-12-09 NASA Earth Data Intro
+
+We went through
+
+* [Intro_to_Cloud_Python.ipynb](Intro_to_Cloud_Python.ipynb)
+* [Earthdata_Search_Discovery.ipynb](Earthdata_Search_Discovery.ipynb)
+* Earthdata_Subset_and_Plot.ipynb
+
+
+## Acknowledgements
+
+This content is from the NASA Openscapes AGU 2023 workshop
+
+https://github.com/NASA-Openscapes/2023-Cloud-Workshop-AGU

@@ -1,0 +1,20 @@
+---
+title: Geospatial HackDay in RStudio (R and Python)
+---
+
+## December 19, 2023
+
+Start with setup.qmd
+
+[Workshop Google Doc](https://docs.google.com/document/d/1Za7lPGo7XXFXvEBwnB221auL95q-5Ra-6lWQdoha43w/edit?usp=sharing) (NOAA internal)
+
+* 8-10am PT Welcome and 2 geospatial tutorials in R and Python
+    - Lecture on earth data in the cloud by Michele Thornton (NASA Openscapes) [Video](https://drive.google.com/drive/folders/1F2o5sP-efoDW_u3-ccQd8thLahO0S2Qr)
+    - [NASA Earth Data Access in Python](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Search_Discovery_earthaccess.html)
+    - [NASA Earth data in R](https://boettiger-lab.github.io/earthdatalogin/)
+    - [Intro to geospatial data in cloud by Carl Boettiger](https://boettiger-lab.github.io/nasa-topst-env-justice/tutorials/R/1-intro-R.html)
+* 10-11am PT Explore data and come up with a project
+* 11-12pm PT Break and lunch
+* 12-12:30pm PT Pitch a project!
+* 12:30-2:30pm PT Hack and co-work on the project
+* 2:30-3pm PT Report out!

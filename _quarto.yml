@@ -3,58 +3,36 @@ project:
   output-dir: docs
   render:
     - "*.*"
-    - "!itutorials/*_Harmony.ipynb"
-    - "!qtutorials/*_Harmony.qmd"
-    - "!qtutorials/Earthdata_*"
-    - "!qtutorials/earthdatalogin_sst.qmd"
+    - "!topics-2023/2023-12-09-earthdataaccess-intro/*_Harmony.ipynb"
+    - "!topics-2023/2023-12-19-earthdatalogin-intro/Earthdata/*_Harmony.qmd"
+    - "!topics-2023/2023-12-19-earthdatalogin-intro/Earthdata_*"
+    - "!topics-2023/2023-12-19-earthdatalogin-intro/earthdatalogin_sst.qmd"
 
 execute:
   freeze: auto
   
 website:
   page-navigation: true  
-  title: "NOAA Fisheries Hackdays"
+  title: "NOAA Fisheries HackHours"
   favicon: "images/favicon-16x16.png"
   site-url: https://nmfs-opensci.github.io/NOAAHackDays
   repo-url: https://github.com/nmfs-opensci/NOAAHackDays
   repo-actions: [edit, issue, source]
   
   page-footer: <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br />NMFS Open Science (2023)
- 
-  sidebar:
-    logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
-    pinned: true
-    align: center
-    
-    style: "docked"
-    collapse-level: 1
-    toc-expand: false
-    contents:
-      - text: "Welcome"
-        href: index.md
-      - text: "Prerequisites"
-        href: prerequisites.md 
-      - text: "About"
-        href: about.md
-#      - text: "Slides"
-#        href: slides.md
-      - section: "R Tutorials"
-        contents: 
-          - text: "NASA Earth Data Access"
-            href: qtutorials/earthdataaccess.qmd
-          - text: "Historical red-lining and tree cover in SF"
-            href: qtutorials/Introduction_to_Cloud_R.qmd
-      - section: "Python Tutorials"
-        contents: 
-          - text: "Introduction"
-            href: itutorials/Introduction_to_Cloud_Python.ipynb
-          - text: "Earthdata Search"
-            href: itutorials/Earthdata_Search_Discovery_earthaccess.ipynb
-          - text: "Access, Subset & Plot"
-            href: itutorials/Earthdata_Subset_and_Plot.ipynb
+
   navbar:
     background: primary
     search: true
+    left:
+      - href: index.md
+        text: Home
+      - text: Topics
+        menu: 
+          - text: HackHours 2023
+            href: topics-2023/index.md
+          - text: HackHours 2024
+            href: topics-2024/index.md
     right: 
       - icon: server
         href: https://dhub.opensci.live/
@@ -62,19 +40,53 @@ website:
       - icon: wechat
         href: https://github.com/nmfs-opensci/NOAAHackDays/discussions
         text: "Discussions"
-#      - icon: slack
-#        href: https://app.slack.com/client/T05PV2USY56/C05P7QP47UL
-#        text: "Slack"
-      - icon: people-fill
-        href: https://github.com/orgs/nmfs-opensci/teams/daskhub
-        text: GH Team
       - icon: github
         href: https://github.com/nmfs-opensci/NOAAHackDays
         text: "repo"
       - icon: globe
         href: https://github.com/nmfs-opensci
         text: "GH org"
-        
+  sidebar:
+    - id: home
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - href: about.md
+          text: About
+        - href: nav.md
+          text: Navigation
+        - href: setup.md
+          text: Set-up
+        - href: coc.md
+          text: Code of Conduct
+        - href: reuse.md
+          text: Reuse Statement
+    - id: topics-2023
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: Earth Data Access in Python
+          href: topics-2023/2023-12-09-earthdataaccess-intro/index.qmd
+        - text: Earth Data Login in R
+          href: topics-2023/2023-12-19-earthdatalogin-intro/index.qmd
+    - id: topics-2024
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: ArcGIS in Python
+          href: topics-2024/2024-04-05-ArcGIS/index.qmd
 format:
   html:
     theme:

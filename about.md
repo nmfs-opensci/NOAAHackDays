@@ -1,12 +1,13 @@
 ---
 title: About
+author: Eli E Holmes
 ---
 
 The content and tutorials will be a mix of content from workshops by the [NASA Openscapes mentors](https://nasa-openscapes.github.io) (for example [2023 Cloud AGU Workshop](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/)), content developed by Carl Boettiger for NASA TOPS-T [Cloud Native Geospatial in R & Python](https://boettiger-lab.github.io/nasa-topst-env-justice/), content by [NMFS CoastWatch](https://github.com/coastwatch-training/CoastWatch-Tutorials), and other internal tutorials.
 
-### Hackday Goals
+### HackHour Goals
 
-These sessions are for NOAA staff to gain more familiarity with JupyterHubs and working with remote-sensing (satellite) data via code and via geospatial packages in R and Python. 
+These sessions are for NOAA staff to gain more familiarity with JupyterHubs and working with spatial data, esp big data hosted in the cloud in databses, via code and via geospatial packages in R and Python. 
 
 - Provide an inclusive place to learn and practice new skills
 - Get practice working in a JupyterHub with R and Python
