@@ -4,7 +4,7 @@ subtitle:  "Remote mini hack events for NOAA staff"
 author: Eli E Holmes
 ---
 
-## Friday Hackhours in April 2024 12-1pm PT/3-4pm ET
+## NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET
 
 Use this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: [SIGN-UP FORM](https://forms.gle/ckUYr4aZPeyScLRX6)
 

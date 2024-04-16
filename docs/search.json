@@ -173,11 +173,11 @@
     ]
   },
   {
-    "objectID": "index.html#friday-hackhours-in-april-2024-12-1pm-pt3-4pm-et",
-    "href": "index.html#friday-hackhours-in-april-2024-12-1pm-pt3-4pm-et",
+    "objectID": "index.html#noaa-fisheries-friday-hackhours-12-1pm-pt3-4pm-et",
+    "href": "index.html#noaa-fisheries-friday-hackhours-12-1pm-pt3-4pm-et",
     "title": "HackHours in R and Python",
-    "section": "Friday Hackhours in April 2024 12-1pm PT/3-4pm ET",
-    "text": "Friday Hackhours in April 2024 12-1pm PT/3-4pm ET\nUse this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: SIGN-UP FORM\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”.\nDuring these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python for geospatial analysis.\nAdd event to your calendar\n\nApril 19th. More acoustics data with echopype. Wu-Jung Lee from UW/APL (Python) Set-up\nApril 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. Pythia CMIP6 Cookbook\nApril 5th. Using ArcGIS via the arcgis Python API. Tim Haverland from OST/DisMap.\nMarch 29th. Accessing acoustics data from AWS Open Data (echopype examples). Eli Holmes (Python)\nMarch 22nd. 1pm PT CoastWatch tutorials in R. Sunny Hospital and Daisy Shi from CoastWatch (R)\nMarch 15th. CoastWatch tutorials. Sunny Hospital and Dale Robinson from CoastWatch (Python)\nMarch 8th. Using precipitation estimates from IMERG tutorial Eli Holmes (Python)"
+    "section": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET",
+    "text": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET\nUse this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: SIGN-UP FORM\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”.\nDuring these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python for geospatial analysis.\nAdd event to your calendar\n\nApril 19th. More acoustics data with echopype. Wu-Jung Lee from UW/APL (Python) Set-up\nApril 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. Pythia CMIP6 Cookbook\nApril 5th. Using ArcGIS via the arcgis Python API. Tim Haverland from OST/DisMap.\nMarch 29th. Accessing acoustics data from AWS Open Data (echopype examples). Eli Holmes (Python)\nMarch 22nd. 1pm PT CoastWatch tutorials in R. Sunny Hospital and Daisy Shi from CoastWatch (R)\nMarch 15th. CoastWatch tutorials. Sunny Hospital and Dale Robinson from CoastWatch (Python)\nMarch 8th. Using precipitation estimates from IMERG tutorial Eli Holmes (Python)"
   },
   {
     "objectID": "reuse.html",
