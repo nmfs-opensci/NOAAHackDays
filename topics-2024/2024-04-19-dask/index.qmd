@@ -1,0 +1,31 @@
+---
+title: Parallel Computing in Python
+author: Eli Holmes (NMFS Open Sci)
+---
+
+Image: Py - Openscapes
+
+# Tutorials
+
+* [Dask for local parallel compute](Parallel_compute_with_dask.ipynb)
+* [coiled for cloud clusters](Parallel_compute_coiled.ipynb)
+
+# Open the JupyterHub
+
+* dhub.opensci.live
+* Select the Py - Openscapes image
+
+## Get the tutorials
+
+Never cloned the NOAAHackDays repo?
+```
+cd ~
+git clone https://github.com/nmfs-opensci/NOAAHackDays
+```
+
+Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.
+```
+git reset --hard origin/master
+```
+
+

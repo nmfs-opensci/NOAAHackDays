@@ -87,6 +87,10 @@ website:
       contents:
         - text: ArcGIS in Python
           href: topics-2024/2024-04-05-ArcGIS/index.qmd
+        - text: Explore CMIP6 Data
+          href: topics-2024/2024-04-12-cmip6/index.qmd
+        - text: Parallel Computing
+          href: topics-2024/2024-04-19-dask/index.qmd
 format:
   html:
     theme:

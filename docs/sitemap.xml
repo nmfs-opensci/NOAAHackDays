@@ -5,6 +5,22 @@
     <lastmod>2024-04-15T03:11:07.762Z</lastmod>
   </url>
   <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-03-ocean-color/Read_plot_L2_chlorophyll_map_with_xarray.html</loc>
+    <lastmod>2024-04-16T22:19:51.914Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-03-ocean-color/Download_read_visualize_L2_products.html</loc>
+    <lastmod>2024-04-16T22:20:25.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-19-dask/Parallel_compute_with_dask.html</loc>
+    <lastmod>2024-04-23T01:19:00.083Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-12-cmip6/index.html</loc>
+    <lastmod>2024-04-23T01:25:04.385Z</lastmod>
+  </url>
+  <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-05-ArcGIS/index.html</loc>
     <lastmod>2024-04-15T03:29:01.710Z</lastmod>
   </url>
@@ -42,7 +58,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/index.html</loc>
-    <lastmod>2024-04-16T22:08:21.108Z</lastmod>
+    <lastmod>2024-04-16T22:10:23.762Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/reuse.html</loc>
@@ -75,5 +91,21 @@
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-05-ArcGIS/netcdffromthredds03.html</loc>
     <lastmod>2024-04-05T20:40:29.161Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-19-dask/Parallel_compute_coiled.html</loc>
+    <lastmod>2024-04-19T19:08:07.219Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-19-dask/index.html</loc>
+    <lastmod>2024-04-23T01:30:53.745Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-03-ocean-color/L3_files_read_plot.html</loc>
+    <lastmod>2024-04-16T22:20:31.851Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-03-ocean-color/index.html</loc>
+    <lastmod>2024-04-23T01:18:23.986Z</lastmod>
   </url>
 </urlset>

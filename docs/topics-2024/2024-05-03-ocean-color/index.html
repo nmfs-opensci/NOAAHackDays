@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Eli Holmes">
 
-<title>NOAA Fisheries HackHours - HackHours 2024</title>
+<title>NOAA Fisheries HackHours - Ocean Color Mapping</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../images/favicon-16x16.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -79,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">NOAA Fisheries HackHours</span>
     </a>
   </div>
@@ -90,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -99,11 +100,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
         <li>
-    <a class="dropdown-item" href="../topics-2023/index.html">
+    <a class="dropdown-item" href="../../topics-2023/index.html">
  <span class="dropdown-text">HackHours 2023</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../topics-2024/index.html">
+    <a class="dropdown-item" href="../../topics-2024/index.html">
  <span class="dropdown-text">HackHours 2024</span></a>
   </li>  
     </ul>
@@ -142,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">HackHours 2024</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Ocean Color Mapping</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -153,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
+      <a href="../../index.html" class="sidebar-logo-link">
       <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
@@ -161,19 +162,19 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2024/2024-04-05-ArcGIS/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2024/2024-04-05-ArcGIS/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ArcGIS in Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2024/2024-04-12-cmip6/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2024/2024-04-12-cmip6/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explore CMIP6 Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2024/2024-04-19-dask/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2024/2024-04-19-dask/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Parallel Computing</span></a>
   </div>
 </li>
@@ -187,9 +188,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#select-an-event-to-the-left" id="toc-select-an-event-to-the-left" class="nav-link active" data-scroll-target="#select-an-event-to-the-left">Select an event to the left</a></li>
+  <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
+  <li><a href="#open-the-jupyterhub" id="toc-open-the-jupyterhub" class="nav-link" data-scroll-target="#open-the-jupyterhub">Open the JupyterHub</a>
+  <ul class="collapse">
+  <li><a href="#get-the-tutorials" id="toc-get-the-tutorials" class="nav-link" data-scroll-target="#get-the-tutorials">Get the tutorials</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2024/index.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/index.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2024/2024-05-03-ocean-color/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-05-03-ocean-color/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -205,13 +210,19 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HackHours 2024</h1>
+<h1 class="title">Ocean Color Mapping</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Eli Holmes </p>
+          </div>
+  </div>
     
   
     
@@ -222,19 +233,30 @@ function googleTranslateElementInit() {
 </header>
 
 
-<section id="select-an-event-to-the-left" class="level2">
-<h2 class="anchored" data-anchor-id="select-an-event-to-the-left">Select an event to the left</h2>
+<p>Image:</p>
+<section id="tutorials" class="level1">
+<h1>Tutorials</h1>
 <ul>
-<li>April 19th. More acoustics data with <a href="https://echopype.readthedocs.io/en/stable/">echopype</a>. Wu-Jung Lee (Python) <a href="https://youtu.be/FqzaVS7UpHs">Set-up</a></li>
-<li>April 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. <a href="https://projectpythia.org/cmip6-cookbook/README.html">Pythia CMIP6 Cookbook</a></li>
-<li>April 5th. Using ArcGIS via the arcgis Python API. Tim Haverland from OST/<a href="https://apps-st.fisheries.noaa.gov/dismap/">DisMap</a>.</li>
-<li>March 29th. Accessing acoustics data from AWS Open Data (<a href="https://github.com/OSOceanAcoustics/echopype-examples">echopype examples</a>). Eli Holmes (Python)</li>
-<li>March 22nd. 1pm PT <a href="https://github.com/coastwatch-training/Workshops/tree/main">CoastWatch tutorials</a> in R. Sunny Hospital and Daisy Shi from CoastWatch (R)</li>
-<li>March 15th. <a href="https://github.com/coastwatch-training/Workshops/tree/main">CoastWatch tutorials</a>. Sunny Hospital and Dale Robinson from CoastWatch (Python)</li>
-<li>March 8th. Using precipitation estimates from IMERG <a href="https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Subset_and_Plot.html">tutorial</a> Eli Holmes (Python)</li>
+<li><a href="eclipse2024.ipynb">Mapping Eclipse Totality Arc</a></li>
+<li><a href="netcdffromthredds03.ipynb">netcdffromthredds03.ipynb</a></li>
 </ul>
+</section>
+<section id="open-the-jupyterhub" class="level1">
+<h1>Open the JupyterHub</h1>
+<ul>
+<li>dhub.opensci.live</li>
+<li>Select the Py - ArcGIS image</li>
+</ul>
+<section id="get-the-tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-tutorials">Get the tutorials</h2>
+<p>Never cloned the NOAAHackDays repo?</p>
+<pre><code>cd ~
+git clone https://github.com/nmfs-opensci/NOAAHackDays</code></pre>
+<p>Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.</p>
+<pre><code>git reset --hard origin/master</code></pre>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NOAA Fisheries HackHours - HackHours 2024</title>
+<title>NOAA Fisheries HackHours – download_read_visualize_l2_products</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../images/favicon-16x16.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -79,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">NOAA Fisheries HackHours</span>
     </a>
   </div>
@@ -90,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -99,11 +133,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-topics">    
         <li>
-    <a class="dropdown-item" href="../topics-2023/index.html">
+    <a class="dropdown-item" href="../../topics-2023/index.html">
  <span class="dropdown-text">HackHours 2023</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../topics-2024/index.html">
+    <a class="dropdown-item" href="../../topics-2024/index.html">
  <span class="dropdown-text">HackHours 2024</span></a>
   </li>  
     </ul>
@@ -142,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">HackHours 2024</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -153,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
+      <a href="../../index.html" class="sidebar-logo-link">
       <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
@@ -161,19 +195,19 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2024/2024-04-05-ArcGIS/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2024/2024-04-05-ArcGIS/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ArcGIS in Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2024/2024-04-12-cmip6/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2024/2024-04-12-cmip6/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explore CMIP6 Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2024/2024-04-19-dask/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2024/2024-04-19-dask/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Parallel Computing</span></a>
   </div>
 </li>
@@ -183,13 +217,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#select-an-event-to-the-left" id="toc-select-an-event-to-the-left" class="nav-link active" data-scroll-target="#select-an-event-to-the-left">Select an event to the left</a></li>
-  </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2024/index.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/index.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -203,39 +231,223 @@ function googleTranslateElementInit() {
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">HackHours 2024</h1>
+
+
+
+<p><em>Author: Guoqing Wang (guoqing.wang@nasa.gov), OB.DAAC Scientist, NASA GSFC; SSAI</em></p>
+<p><strong><ins>Download, read, and visualize level-2 ocean color data</ins></strong></p>
+<p>This tutorial shows an example of downloading, reading, and plot OB.DAAC standard level 2 ocean color file.</p>
+<div id="4a2ce4b3" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install cartopy</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install netcdf4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="360b07f5" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d40ce297" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netCDF4 <span class="im">as</span> nc</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy  <span class="co">#!pip install cartopy</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cartopy.mpl.ticker <span class="im">import</span> LongitudeFormatter, LatitudeFormatter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>1. Download file</strong> <br>In this example, I will use the MODIS_AQUA L2 OC file on April 30, 2023 (AQUA_MODIS.20221007T175001.L2.OC.nc).</p>
+<ul>
+<li>Specify your <strong>appkey</strong> <br><a href="https://oceandata.sci.gsfc.nasa.gov/appkey/">Generate appkey for your Earthdata login credentials</a> and update the variable “key” correspondingly.</li>
+</ul>
+<div id="c54383f6" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="st">'abcd1234'</span> <span class="co"># paste your appkey here.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">'AQUA_MODIS.20221007T175001.L2.OC.nc'</span> <span class="co"># put here the file name to download</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>urls <span class="op">=</span> <span class="vs">r'https://oceandata.sci.gsfc.nasa.gov/ob/getfile/</span><span class="sc">%s</span><span class="vs">?appkey=</span><span class="sc">%s</span><span class="vs">'</span><span class="op">%</span>(filename, key)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(urls, filename) <span class="co"># download the file to the current path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>('AQUA_MODIS.20221007T175001.L2.OC.nc',
+ &lt;http.client.HTTPMessage at 0x7f3293265180&gt;)</code></pre>
+</div>
+</div>
+<p><strong>2. Loading the Level-2 Dataset</strong> <br> NASA ocean color data are stored in NetCDF files. They can be read with a few different Python modules. The most popular are netCDF4 and gdal. For this script we’ll focus on netCDF4.<br> Loading a dataset is simple, just pass a NetCDF file path to netCDF4.Dataset().</p>
+<div id="6d812a2f" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># open file and print the metadata</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> nc.Dataset(filename, <span class="st">'r'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A NetCDF file consists of three fundamental components: metadata, dimensions, and variables. Variables encompass both metadata and data. The netCDF4 library enables us to retrieve the metadata and data linked to a NetCDF file.</p>
+<p><strong>3. Retrieve Metadata</strong> <br>When we print the dataset f, it provides details about the variables present in the file as well as the groups of variables.</p>
+<div id="8c539962" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'netCDF4._netCDF4.Dataset'&gt;
+root group (NETCDF4 data model, file format HDF5):
+    title: MODISA Level-2 Data
+    product_name: AQUA_MODIS.20221007T175001.L2.OC.nc
+    processing_version: R2022.0
+    equatorCrossingLongitude: 107.35993
+    orbit_number: 108659
+    history: l2gen par=/data19/sdpsoper/vdc/vpu38/workbuf/A2022280175000.L1B_LAC.param metafile=AQUA_MODIS.20221007T175001.L2.OC.nc.meta
+    instrument: MODIS
+    platform: Aqua
+    Conventions: CF-1.6 ACDD-1.3
+    license: https://science.nasa.gov/earth-science/earth-science-data/data-information-policy/
+    naming_authority: gov.nasa.gsfc.sci.oceandata
+    id: R2022.0/L2/AQUA_MODIS.20221007T175001.L2.OC.nc
+    date_created: 2022-11-29T16:08:55.000Z
+    keywords_vocabulary: NASA Global Change Master Directory (GCMD) Science Keywords
+    keywords: Earth Science &gt; Oceans &gt; Ocean Optics &gt; Ocean Color
+    standard_name_vocabulary: CF Standard Name Table v36
+    institution: NASA Goddard Space Flight Center, Ocean Ecology Laboratory, Ocean Biology Processing Group
+    creator_name: NASA/GSFC/OBPG
+    creator_email: data@oceancolor.gsfc.nasa.gov
+    creator_url: https://oceandata.sci.gsfc.nasa.gov
+    project: Ocean Biology Processing Group (NASA/GSFC/OBPG)
+    publisher_name: NASA/GSFC/OBPG
+    publisher_url: https://oceandata.sci.gsfc.nasa.gov
+    publisher_email: data@oceancolor.gsfc.nasa.gov
+    identifier_product_doi_authority: http://dx.doi.org
+    identifier_product_doi: 10.5067/AQUA/MODIS/L2/OC/2022
+    processing_level: L2
+    cdm_data_type: swath
+    equatorCrossingDateTime: 2022-10-07T18:31:34.643Z
+    spatialResolution: 1 km
+    time_coverage_start: 2022-10-07T17:50:01.477Z
+    time_coverage_end: 2022-10-07T17:54:59.854Z
+    start_center_longitude: -66.70454
+    start_center_latitude: 28.26412
+    end_center_longitude: -72.15332
+    end_center_latitude: 46.206642
+    northernmost_latitude: 47.412445
+    southernmost_latitude: 26.05069
+    easternmost_longitude: -54.84424
+    westernmost_longitude: -86.26568
+    geospatial_lat_units: degrees_north
+    geospatial_lon_units: degrees_east
+    geospatial_lat_max: 47.412445
+    geospatial_lat_min: 26.05069
+    geospatial_lon_max: -54.84424
+    geospatial_lon_min: -86.26568
+    startDirection: Ascending
+    endDirection: Ascending
+    day_night_flag: Day
+    earth_sun_distance_correction: 1.001212239265442
+    dimensions(sizes): number_of_lines(2030), pixels_per_line(1354), bands_per_pixel(16), number_of_reflectance_location_values(10), pixel_control_points(1354), number_of_bands(24), number_of_reflective_bands(16)
+    variables(dimensions): 
+    groups: sensor_band_parameters, scan_line_attributes, geophysical_data, navigation_data, processing_control</code></pre>
+</div>
+</div>
+<p>Above you can see information for the file format, data source, data version, citation, dimensions, and variables. In L2 ocean color data, the variables are put in different groups, the ones that we are interested in, such as Rrs, Chla, etc. are in “geophysical_data”, and lat, lon are in “navigation_data”</p>
+<div id="46f3de3e" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print grouped variables</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f.groups.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['sensor_band_parameters', 'scan_line_attributes', 'geophysical_data', 'navigation_data', 'processing_control'])</code></pre>
+</div>
+</div>
+<p><strong>4. Dimensions</strong> <br>Accessing dimensions is akin to accessing file metadata. Each dimension is stored as a dimension class that holds relevant information. To retrieve metadata for all dimensions, one can loop through all the available dimensions, as demonstrated below.</p>
+<div id="af829072" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dim <span class="kw">in</span> f.dimensions.values():</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(dim)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Individual dimensions are accessed like so: f.dimensions['x'].</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'number_of_lines', size = 2030
+&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'pixels_per_line', size = 1354
+&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'bands_per_pixel', size = 16
+&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'number_of_reflectance_location_values', size = 10
+&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'pixel_control_points', size = 1354
+&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'number_of_bands', size = 24
+&lt;class 'netCDF4._netCDF4.Dimension'&gt;: name = 'number_of_reflective_bands', size = 16</code></pre>
+</div>
+</div>
+<p><strong>5. Variable Metadata</strong> <br> Access variable metadata in the groups of “geophysical_data” and “navigation_data”.</p>
+<div id="497b3597" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print(f.groups['geophysical_data'].variables)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if you just want to see the variable names, use the following code</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f.groups[<span class="st">'geophysical_data'</span>].variables.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['aot_869', 'angstrom', 'Rrs_412', 'Rrs_443', 'Rrs_469', 'Rrs_488', 'Rrs_531', 'Rrs_547', 'Rrs_555', 'Rrs_645', 'Rrs_667', 'Rrs_678', 'chlor_a', 'Kd_490', 'pic', 'poc', 'ipar', 'nflh', 'par', 'l2_flags'])</code></pre>
+</div>
+</div>
+<p><strong>6. Access Data Values</strong> <br>The actual precipitation data values are accessed by array indexing, and a numpy array is returned. All variable data is returned as follows:</p>
+<div id="b8b61dc2" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># metadata of variable: chlor_a</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f.groups[<span class="st">'geophysical_data'</span>].variables[<span class="st">'chlor_a'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'netCDF4._netCDF4.Variable'&gt;
+float32 chlor_a(number_of_lines, pixels_per_line)
+    long_name: Chlorophyll Concentration, OCI Algorithm
+    units: mg m^-3
+    standard_name: mass_concentration_of_chlorophyll_in_sea_water
+    _FillValue: -32767.0
+    valid_min: 0.001
+    valid_max: 100.0
+    reference: Hu, C., Lee Z., and Franz, B.A. (2012). Chlorophyll-a algorithms for oligotrophic oceans: A novel approach based on three-band reflectance difference, J. Geophys. Res., 117, C01011, doi:10.1029/2011JC007395.
+path = /geophysical_data
+unlimited dimensions: 
+current shape = (2030, 1354)
+filling on</code></pre>
+</div>
+</div>
+<div id="f9627e67" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># value of chlor_a</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>chlor_a <span class="op">=</span> f.groups[<span class="st">'geophysical_data'</span>].variables[<span class="st">'chlor_a'</span>][:]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chlor_a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0.01556490734219551 0.01509102713316679 0.015974054113030434 ... --
+  0.20154109597206116 0.18869897723197937]
+ [0.01652761548757553 0.015768131241202354 0.015580163337290287 ... -- --
+  --]
+ [0.015834644436836243 0.01573110558092594 0.01611599512398243 ... -- --
+  --]
+ ...
+ [-- 2.553077220916748 1.7888909578323364 ... -- -- --]
+ [-- 4.523899078369141 3.566077470779419 ... -- -- --]
+ [-- 2.478635549545288 2.4827561378479004 ... -- -- --]]</code></pre>
+</div>
+</div>
+<div id="b604bbd7" class="cell" data-scrolled="true" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read information of lat, lon</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f.groups[<span class="st">'navigation_data'</span>].variables.keys())</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> f.groups[<span class="st">'navigation_data'</span>].variables[<span class="st">'latitude'</span>][:]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> f.groups[<span class="st">'navigation_data'</span>].variables[<span class="st">'longitude'</span>][:]</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lat.shape)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lon.shape)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(chlor_a.shape)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>chlor <span class="op">=</span> np.log10(chlor_a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['longitude', 'latitude', 'cntl_pt_cols', 'cntl_pt_rows', 'tilt'])
+(2030, 1354)
+(2030, 1354)
+(2030, 1354)</code></pre>
+</div>
+</div>
+<p><strong>7. Visualization and mapping</strong> <br>Here, we use cartopy for basemap creation and matplotlib to plot data onto the created map. The combination of Matplotlib and Cartopy provides a powerful toolkit for creating geospatial visualizations.</p>
+<div id="2168e936" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Chlor_a data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>map_projection <span class="op">=</span> cartopy.crs.PlateCarree()</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes(projection<span class="op">=</span>map_projection)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.pcolormesh(lon, lat,np.squeeze(chlor),cmap <span class="op">=</span> <span class="st">'jet'</span>, vmin<span class="op">=-</span><span class="dv">2</span>, vmax<span class="op">=</span><span class="fl">1.3</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>ax.coastlines()</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ax.add_feature(cartopy.feature.STATES, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(np.linspace(<span class="op">-</span><span class="dv">90</span>, <span class="op">-</span><span class="fl">52.5</span>, <span class="dv">5</span>), crs<span class="op">=</span>map_projection)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(np.linspace(<span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">5</span>), crs<span class="op">=</span>map_projection)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>lon_formatter <span class="op">=</span> LongitudeFormatter(zero_direction_label<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>lat_formatter <span class="op">=</span> LatitudeFormatter()</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(lon_formatter)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(lat_formatter)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, label<span class="op">=</span><span class="st">'log10(Chlorophyll-a)'</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Download_read_visualize_L2_products_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="select-an-event-to-the-left" class="level2">
-<h2 class="anchored" data-anchor-id="select-an-event-to-the-left">Select an event to the left</h2>
-<ul>
-<li>April 19th. More acoustics data with <a href="https://echopype.readthedocs.io/en/stable/">echopype</a>. Wu-Jung Lee (Python) <a href="https://youtu.be/FqzaVS7UpHs">Set-up</a></li>
-<li>April 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. <a href="https://projectpythia.org/cmip6-cookbook/README.html">Pythia CMIP6 Cookbook</a></li>
-<li>April 5th. Using ArcGIS via the arcgis Python API. Tim Haverland from OST/<a href="https://apps-st.fisheries.noaa.gov/dismap/">DisMap</a>.</li>
-<li>March 29th. Accessing acoustics data from AWS Open Data (<a href="https://github.com/OSOceanAcoustics/echopype-examples">echopype examples</a>). Eli Holmes (Python)</li>
-<li>March 22nd. 1pm PT <a href="https://github.com/coastwatch-training/Workshops/tree/main">CoastWatch tutorials</a> in R. Sunny Hospital and Daisy Shi from CoastWatch (R)</li>
-<li>March 15th. <a href="https://github.com/coastwatch-training/Workshops/tree/main">CoastWatch tutorials</a>. Sunny Hospital and Dale Robinson from CoastWatch (Python)</li>
-<li>March 8th. Using precipitation estimates from IMERG <a href="https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Subset_and_Plot.html">tutorial</a> Eli Holmes (Python)</li>
-</ul>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -780,7 +992,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
-</div>
+<div class="toc-actions"><ul><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-05-03-ocean-color/Download_read_visualize_L2_products.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-05-03-ocean-color/Download_read_visualize_L2_products.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
