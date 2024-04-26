@@ -7,15 +7,19 @@ Image: Py - Openscapes
 
 # Tutorials
 
-* [Dask for local parallel compute](Parallel_compute_with_dask.ipynb)
-* [coiled for cloud clusters](Parallel_compute_coiled.ipynb)
+```{r echo=FALSE, results="asis"}
+files <- dir() |> grep(pattern="ipynb", value= TRUE)
+paste0("* [",files,"](",files,")") |> paste0(collapse="\n") |> cat()
+```
 
-# Open the JupyterHub
+# Instructions
 
-* dhub.opensci.live
-* Select the Py - Openscapes image
+-   dhub.opensci.live
+-   Select the Py - Openscapes image
+-   clone the NOAAHackDays repo
+-   the notebooks are in `topics-2024/2024-04-19-dask`
 
-## Get the tutorials
+## How to clone
 
 Never cloned the NOAAHackDays repo?
 ```

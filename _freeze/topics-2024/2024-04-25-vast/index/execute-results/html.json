@@ -1,0 +1,17 @@
+{
+  "hash": "7276db7c5d5b465874c42f07c5f61a42",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: VAST\nauthor: Eli Holmes\n---\n\n\nImage: R - VAST\n\n# Tutorials\n\n\n* [index_standardization.qmd](index_standardization.qmd)\n\n\n# Instructions\n\n-   dhub.opensci.live\n-   Select the R - VAST image\n-   clone the NOAAHackDays repo\n-   the notebooks are in `topics-2024/2024-04-25-vast`\n\n## How to clone\n\nNever cloned the NOAAHackDays repo?\n\n```         \ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\n```\n\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\n\n```         \ngit reset --hard origin/master\n```\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

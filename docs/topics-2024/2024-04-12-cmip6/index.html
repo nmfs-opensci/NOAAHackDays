@@ -144,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2024/2024-04-12-cmip6/index.html">Explore CMIP6 Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2024/2024-04-12-cmip6/index.html">Python - CMIP6 climate forecasts</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -164,19 +164,37 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2024/2024-04-05-ArcGIS/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ArcGIS in Python</span></a>
+ <span class="menu-text">Python - ArcGIS</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2024/2024-04-12-cmip6/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Explore CMIP6 Data</span></a>
+ <span class="menu-text">Python - CMIP6 climate forecasts</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../topics-2024/2024-04-19-dask/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Parallel Computing</span></a>
+ <span class="menu-text">Python - Parallel Computing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2024/2024-04-25-vast/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R - VAST</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2024/2024-04-26-echopype/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - echopype 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../topics-2024/2024-05-03-ocean-color/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python - PACE Ocean Color</span></a>
   </div>
 </li>
     </ul>
@@ -190,9 +208,9 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
-  <li><a href="#open-the-jupyterhub" id="toc-open-the-jupyterhub" class="nav-link" data-scroll-target="#open-the-jupyterhub">Open the JupyterHub</a>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a>
   <ul class="collapse">
-  <li><a href="#get-the-tutorials" id="toc-get-the-tutorials" class="nav-link" data-scroll-target="#get-the-tutorials">Get the tutorials</a></li>
+  <li><a href="#how-to-clone" id="toc-how-to-clone" class="nav-link" data-scroll-target="#how-to-clone">How to clone</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2024/2024-04-12-cmip6/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-12-cmip6/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -235,14 +253,15 @@ function googleTranslateElementInit() {
 <li><a href="https://projectpythia.org/cmip6-cookbook/README.html">CMIP6 Cookbook</a></li>
 </ul>
 </section>
-<section id="open-the-jupyterhub" class="level1">
-<h1>Open the JupyterHub</h1>
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
 <ul>
 <li>dhub.opensci.live</li>
 <li>Select the Py - CMIP6 image</li>
+<li>clone the CMIP6 Cookbook</li>
 </ul>
-<section id="get-the-tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="get-the-tutorials">Get the tutorials</h2>
+<section id="how-to-clone" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-clone">How to clone</h2>
 <pre><code>cd ~
 git clone https://github.com/ProjectPythia/cmip6-cookbook.git</code></pre>
 
@@ -787,13 +806,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../topics-2024/2024-04-05-ArcGIS/index.html" class="pagination-link  aria-label=" arcgis="" in="" python"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ArcGIS in Python</span>
+      <a href="../../topics-2024/2024-04-05-ArcGIS/index.html" class="pagination-link  aria-label=" python="" -="" arcgis"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python - ArcGIS</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../topics-2024/2024-04-19-dask/index.html" class="pagination-link" aria-label="Parallel Computing">
-        <span class="nav-page-text">Parallel Computing</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../topics-2024/2024-04-19-dask/index.html" class="pagination-link" aria-label="Python - Parallel Computing">
+        <span class="nav-page-text">Python - Parallel Computing</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -10,12 +10,14 @@ Image: [Dockerfile](https://github.com/nmfs-opensci/container-images/blob/86858c
 * [Mapping Eclipse Totality Arc](eclipse2024.ipynb)
 * [netcdffromthredds03.ipynb](netcdffromthredds03.ipynb)
 
-# Open the JupyterHub
+# Instructions
 
-* dhub.opensci.live
-* Select the Py - ArcGIS image
+-   dhub.opensci.live
+-   Select the Py - ArcGIS image
+-   clone the NOAAHackDays repo
+-   the notebooks are in `topics-2024/2024-04-05-ArcGIS`
 
-## Get the tutorials
+## How to clone
 
 Never cloned the NOAAHackDays repo?
 ```

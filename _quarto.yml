@@ -85,12 +85,18 @@ website:
       pinned: true
       align: left
       contents:
-        - text: ArcGIS in Python
+        - text: Python - ArcGIS
           href: topics-2024/2024-04-05-ArcGIS/index.qmd
-        - text: Explore CMIP6 Data
+        - text: Python - CMIP6 climate forecasts
           href: topics-2024/2024-04-12-cmip6/index.qmd
-        - text: Parallel Computing
+        - text: Python - Parallel Computing
           href: topics-2024/2024-04-19-dask/index.qmd
+        - text: R - VAST
+          href: topics-2024/2024-04-25-vast/index.qmd
+        - text: Python - echopype 2
+          href: topics-2024/2024-04-26-echopype/index.qmd
+        - text: Python - PACE Ocean Color
+          href: topics-2024/2024-05-03-ocean-color/index.qmd
 format:
   html:
     theme:

@@ -8,12 +8,13 @@ Exploring CMIP6 data with Pangeo Python tools. From [Project Pythia](https://pro
 
 * [CMIP6 Cookbook](https://projectpythia.org/cmip6-cookbook/README.html)
 
-# Open the JupyterHub
+# Instructions
 
 * dhub.opensci.live
 * Select the Py - CMIP6 image
+* clone the CMIP6 Cookbook
 
-## Get the tutorials
+## How to clone
 
 ```
 cd ~

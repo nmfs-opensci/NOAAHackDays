@@ -1,0 +1,17 @@
+{
+  "hash": "60c4a2c84cddb944c02a3d056c1881ba",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: Ocean Color Mapping\nauthor: Eli Holmes\n---\n\n\nImage:\n\n# Tutorials\n\n\n* [Download_read_visualize_L2_products.ipynb](Download_read_visualize_L2_products.ipynb)\n* [L3_files_read_plot.ipynb](L3_files_read_plot.ipynb)\n* [Read_plot_L2_chlorophyll_map_with_xarray.ipynb](Read_plot_L2_chlorophyll_map_with_xarray.ipynb)\n\n\n# Instructions\n\n-   dhub.opensci.live\n-   Select the Py - Openscapes image\n-   clone the NOAAHackDays repo\n-   the notebooks are in `topics-2024/2024-05-03-ocean-color`\n\n## How to clone\n\nNever cloned the NOAAHackDays repo?\n\n```         \ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\n```\n\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\n\n```         \ngit reset --hard origin/master\n```\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
