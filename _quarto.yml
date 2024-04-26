@@ -65,6 +65,11 @@ website:
           text: Code of Conduct
         - href: reuse.md
           text: Reuse Statement
+        - text: "---"
+        - text: HackHours 2023
+          href: topics-2023/index.md
+        - text: HackHours 2024
+          href: topics-2024/index.md
     - id: topics-2023
       logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
       style: "docked"
@@ -73,6 +78,8 @@ website:
       pinned: true
       align: left
       contents:
+        - text: HackHours 2023
+        - text: "---"
         - text: Earth Data Access in Python
           href: topics-2023/2023-12-09-earthdataaccess-intro/index.qmd
         - text: Earth Data Login in R
@@ -85,6 +92,8 @@ website:
       pinned: true
       align: left
       contents:
+        - text: HackHours 2024
+        - text: "---"
         - text: Python - ArcGIS
           href: topics-2024/2024-04-05-ArcGIS/index.qmd
         - text: Python - CMIP6 climate forecasts

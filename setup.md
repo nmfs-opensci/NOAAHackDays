@@ -2,21 +2,15 @@
 title: Prerequisites
 ---
 
-## Before the Workshop, you will need the following:
-
 ### 1. Earthdata Login Account
 
-An Earthdata Login account is required to access data, as well as discover restricted data, from the NASA Earthdata system. Thus, to access NASA data, you need Earthdata Login. Please visit https://urs.earthdata.nasa.gov to register and manage your Earthdata Login account. This account is free to create and only takes a moment to set up. Please remember your username and password!
+For content that uses the NASA [Earthdata](https://www.earthdata.nasa.gov/) repository, you will need an Earthdata Login account. Please visit [https://urs.earthdata.nasa.gov](https://urs.earthdata.nasa.gov) to register and manage your Earthdata Login account. This account is free to create. Please jot down your username and password, as you need to enter it in the tutorials.
 
 ### 2. GitHub Account
 
-A GitHub account is required to gain access to the JupyterHub. 
+A GitHub account is required to gain access to the JupyterHub and to clone the tutorials used in the Hackhours.
 
-### 3. Laptop or tablet
-
-Participation in the exercises requires a laptop or tablet. Yes, a tablet works too! 
-
-## Stop your Jupyter Hub and save work
+### 3. When done, please stop the JupyterHub
 
 If you are in Jupyter lab in the browser:
 
