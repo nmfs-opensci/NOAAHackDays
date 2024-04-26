@@ -79,6 +79,7 @@ website:
       align: left
       contents:
         - text: HackHours 2023
+          href: topics-2023/index.md
         - text: "---"
         - text: Earth Data Access in Python
           href: topics-2023/2023-12-09-earthdataaccess-intro/index.qmd
@@ -93,6 +94,7 @@ website:
       align: left
       contents:
         - text: HackHours 2024
+          href: topics-2024/index.md
         - text: "---"
         - text: Python - ArcGIS
           href: topics-2024/2024-04-05-ArcGIS/index.qmd

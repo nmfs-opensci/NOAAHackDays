@@ -14,15 +14,4 @@ During these 1 hour hackhours, we will learn to do cloud computing with a Jupyte
 
 [Add event to your calendar](https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MXQ4bzFuaDViZzFudHFtNWlzZjVtZ2JqZGVfMjAyNDAzMDhUMjAwMDAwWiBlbGkuaG9sbWVzQG5vYWEuZ292&tmsrc=eli.holmes%40noaa.gov&scp=ALL) 
 
-* May 3rd. Visualizing the data from the [PACE satellite](https://pace.oceansciences.org/home.htm) mission by the NASA OB.DAAC [Ocean Color](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/) team. Eli Holmes (Python)
-* April 26th. More acoustics data with [echopype](https://echopype.readthedocs.io/en/stable/).  Wu-Jung Lee from UW/APL (Python)
- [Set-up](https://youtu.be/FqzaVS7UpHs)
-* April 19th. Parallel computing with [dask](https://www.dask.org/) and [coiled.io](https://www.coiled.io/).  Eli Holmes (Python)
- [Set-up](https://youtu.be/FqzaVS7UpHs)
-* April 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. [Pythia CMIP6 Cookbook](https://projectpythia.org/cmip6-cookbook/README.html)
-* April 5th. Using ArcGIS via the [arcgis Python API](https://developers.arcgis.com/python). Tim Haverland from OST/[DisMap](https://apps-st.fisheries.noaa.gov/dismap/).
-* March 29th. Accessing acoustics data from AWS Open Data ([echopype examples](https://github.com/OSOceanAcoustics/echopype-examples)). Eli Holmes (Python)
-* March 22nd. 1pm PT [CoastWatch tutorials](https://github.com/coastwatch-training/Workshops/tree/main) in R. Sunny Hospital and Daisy Shi from CoastWatch (R)
-* March 15th. [CoastWatch tutorials](https://github.com/coastwatch-training/Workshops/tree/main). Sunny Hospital and Dale Robinson from CoastWatch (Python)
-* March 8th. Using precipitation estimates from IMERG [tutorial](https://nasa-openscapes.github.io/2023-Cloud-Workshop-AGU/tutorials/Earthdata_Subset_and_Plot.html) Eli Holmes (Python)
-
+Click "HackHour 2024" for list of events and dates

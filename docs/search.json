@@ -4,7 +4,10 @@
     "href": "topics-2024/index.html#select-an-event-to-the-left",
     "title": "HackHours 2024",
     "section": "Select an event to the left",
-    "text": "Select an event to the left\n\nApril 19th. More acoustics data with echopype. Wu-Jung Lee (Python) Set-up\nApril 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. Pythia CMIP6 Cookbook\nApril 5th. Using ArcGIS via the arcgis Python API. Tim Haverland from OST/DisMap.\nMarch 29th. Accessing acoustics data from AWS Open Data (echopype examples). Eli Holmes (Python)\nMarch 22nd. 1pm PT CoastWatch tutorials in R. Sunny Hospital and Daisy Shi from CoastWatch (R)\nMarch 15th. CoastWatch tutorials. Sunny Hospital and Dale Robinson from CoastWatch (Python)\nMarch 8th. Using precipitation estimates from IMERG tutorial Eli Holmes (Python)"
+    "text": "Select an event to the left\n\nMay 3rd. Visualizing the data from the PACE satellite mission by the NASA OB.DAAC Ocean Color team. Eli Holmes (Python)\nApril 26th. More acoustics data with echopype. Wu-Jung Lee from UW/APL (Python) Set-up\nApril 19th. Parallel computing with dask and coiled.io. Eli Holmes (Python) Set-up\nApril 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. Pythia CMIP6 Cookbook\nApril 5th. Using ArcGIS via the arcgis Python API. Tim Haverland from OST/DisMap.\nMarch 29th. Accessing acoustics data from AWS Open Data (echopype examples). Eli Holmes (Python)\nMarch 22nd. 1pm PT CoastWatch tutorials in R. Sunny Hospital and Daisy Shi from CoastWatch (R)\nMarch 15th. CoastWatch tutorials. Sunny Hospital and Dale Robinson from CoastWatch (Python)\nMarch 8th. Using precipitation estimates from IMERG tutorial Eli Holmes (Python)",
+    "crumbs": [
+      "HackHours 2024"
+    ]
   },
   {
     "objectID": "topics-2024/2024-05-03-ocean-color/Read_plot_L2_chlorophyll_map_with_xarray.html",
@@ -183,7 +186,7 @@
     "href": "index.html#noaa-fisheries-friday-hackhours-12-1pm-pt3-4pm-et",
     "title": "HackHours in R and Python",
     "section": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET",
-    "text": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET\nUse this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: SIGN-UP FORM\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”.\nDuring these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python for geospatial analysis.\nAdd event to your calendar\n\nMay 3rd. Visualizing the data from the PACE satellite mission by the NASA OB.DAAC Ocean Color team. Eli Holmes (Python)\nApril 26th. More acoustics data with echopype. Wu-Jung Lee from UW/APL (Python) Set-up\nApril 19th. Parallel computing with dask and coiled.io. Eli Holmes (Python) Set-up\nApril 12th. Exploring CMIP6 data with pangeo Python tools. Eli Holmes. Pythia CMIP6 Cookbook\nApril 5th. Using ArcGIS via the arcgis Python API. Tim Haverland from OST/DisMap.\nMarch 29th. Accessing acoustics data from AWS Open Data (echopype examples). Eli Holmes (Python)\nMarch 22nd. 1pm PT CoastWatch tutorials in R. Sunny Hospital and Daisy Shi from CoastWatch (R)\nMarch 15th. CoastWatch tutorials. Sunny Hospital and Dale Robinson from CoastWatch (Python)\nMarch 8th. Using precipitation estimates from IMERG tutorial Eli Holmes (Python)"
+    "text": "NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET\nUse this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: SIGN-UP FORM\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”.\nDuring these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python for geospatial analysis.\nAdd event to your calendar\nClick “HackHour 2024” for list of events and dates"
   },
   {
     "objectID": "about.html",
@@ -339,7 +342,10 @@
     "href": "topics-2023/index.html#select-an-event-to-the-left",
     "title": "HackHours 2023",
     "section": "Select an event to the left",
-    "text": "Select an event to the left"
+    "text": "Select an event to the left",
+    "crumbs": [
+      "HackHours 2023"
+    ]
   },
   {
     "objectID": "topics-2024/2024-04-19-dask/Parallel_compute_with_dask.html",
