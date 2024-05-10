@@ -4,7 +4,9 @@ title: "HackHours 2024"
 
 ## Select an event to the left
 
-* [May 3rd](2024-05-03-ocean-color/index.qmd). Visualizing the data from the [PACE satellite](https://pace.oceansciences.org/home.htm) mission by the NASA OB.DAAC [Ocean Color](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/) team. Eli Holmes (Python)
+* [May 17](2024-05-17-ocean-color/index.qmd). Visualizing the data from the [PACE satellite](https://pace.oceansciences.org/home.htm) mission by the NASA OB.DAAC [Ocean Color](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/) team. Eli Holmes (Python)
+* May 10. Accessing Earthdata in Python. Test run of our Python tutorials for the Openscapes mentors' [EDM workshop](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2024/). (Python)
+* May 3. Accessing Earthdata in R. Test run of our R tutorials for the Openscapes mentors' [EDM workshop](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2024/). Eli Holmes (R)
 * [April 26th](2024-04-26-echopype/index.qmd). More acoustics data with [echopype](https://echopype.readthedocs.io/en/stable/).  Wu-Jung Lee from UW/APL (Python)
  [Set-up](https://youtu.be/FqzaVS7UpHs)
 * [April 19th](2024-04-19-dask/index.qmd). Parallel computing with [dask](https://www.dask.org/) and [coiled.io](https://www.coiled.io/).  Eli Holmes (Python)
