@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Eli Holmes (NOAA)">
 
-<title>NOAA Fisheries HackHours - Run simple example with coiled</title>
+<title>NOAA Fisheries HackHours - Run simple coiled example</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -180,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Run simple example with coiled</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Run simple coiled example</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -246,7 +247,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#run-simple-example-with-coiled" id="toc-run-simple-example-with-coiled" class="nav-link active" data-scroll-target="#run-simple-example-with-coiled">Run simple example with coiled</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-19-dask/Parallel_compute_coiled.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-19-dask/Parallel_compute_coiled.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -262,13 +269,19 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Run simple example with coiled</h1>
+<h1 class="title">Run simple coiled example</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Eli Holmes (NOAA) </p>
+          </div>
+  </div>
     
   
     
@@ -279,6 +292,8 @@ function googleTranslateElementInit() {
 </header>
 
 
+<section id="run-simple-example-with-coiled" class="level1">
+<h1>Run simple example with coiled</h1>
 <p>This will spin up virtual machines on our behalf.</p>
 <p>Set-up</p>
 <ul>
@@ -330,6 +345,7 @@ Run setup from AWS CloudShell with the following steps:
     --token 42713203-d \
     --token b82f66c &amp;&amp; \
   coiled setup aws --region us-east-1</code></pre>
+<p>Now that we have coiled set up, we can run a coiled cluster in Python.</p>
 <div id="6306aca9-32b2-42f0-a7d9-8676b475db34" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import needed modules</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time, random</span>
@@ -367,7 +383,7 @@ Wall time: 22.5 s</code></pre>
 <div id="8cf3c758-b8f7-409c-8e18-732930cc75f6" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> coiled <span class="co"># use a Coiled cluster</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Set up cluster in the cloud where we can grab more workers. These 15 workers will cost about $0.05 a minute and this job from start (set-up) to finish is like 5 minutes so $0.25. Almost all the time is the set-up of the workers. You can go to your dashboard on coiled to see how much compute time you used up.</p>
+<p>Set up cluster in the cloud where we can grab more workers. These 15 workers will cost about 5 cents a minute and this job from start (set-up) to finish is like 5 minutes so 25 cents. Almost all the time is the set-up of the workers. You can go to your dashboard on coiled to see how much compute time you used up.</p>
 <div id="b0820d52-5c8b-4c3d-95b2-de34dea2d06a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> coiled.Cluster(n_workers<span class="op">=</span><span class="dv">15</span>) <span class="co"># run on a cluster in the cloud</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> cluster.get_client()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -444,6 +460,7 @@ Wall time: 2.18 s</code></pre>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -988,7 +1005,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
-<div class="toc-actions"><ul><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-19-dask/Parallel_compute_coiled.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-19-dask/Parallel_compute_coiled.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

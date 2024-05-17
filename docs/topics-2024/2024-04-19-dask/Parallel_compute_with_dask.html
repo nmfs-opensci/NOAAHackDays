@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Eli Holmes (NOAA)">
 
-<title>NOAA Fisheries HackHours – parallel_compute_with_dask</title>
+<title>NOAA Fisheries HackHours - Simple dask example</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -180,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Simple dask example</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -260,10 +261,32 @@ function googleTranslateElementInit() {
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Simple dask example</h1>
+</div>
 
 
 
-<div id="6306aca9-32b2-42f0-a7d9-8676b475db34" class="cell" data-execution_count="4">
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Eli Holmes (NOAA) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="6306aca9-32b2-42f0-a7d9-8676b475db34" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import needed modules</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time, random</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -280,7 +303,7 @@ function googleTranslateElementInit() {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    time.sleep(random.random())</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2615f491-338c-4749-848d-5abde2da86c9" class="cell" data-execution_count="3">
+<div id="2615f491-338c-4749-848d-5abde2da86c9" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># a sequential example with no parallelization</span></span>
@@ -293,25 +316,25 @@ function googleTranslateElementInit() {
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-CPU times: user 0 ns, sys: 3.51 ms, total: 3.51 ms
-Wall time: 22.5 s</code></pre>
+CPU times: user 3.4 ms, sys: 92 µs, total: 3.49 ms
+Wall time: 17.4 s</code></pre>
 </div>
 </div>
-<div id="54142545-4a51-486c-a84b-709f99854bdb" class="cell" data-execution_count="1">
+<div id="54142545-4a51-486c-a84b-709f99854bdb" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import dask for parallel work</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.distributed <span class="im">import</span> Client, LocalCluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f2f91506-7cf3-4de0-bf0d-9562dd425ecc" class="cell" data-execution_count="2">
+<div id="f2f91506-7cf3-4de0-bf0d-9562dd425ecc" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up our cluster with default workers and threads</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> LocalCluster(processes<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"85a3deb964e140d6a6aab1bc37432632","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"736ce92e0fa6443683413b4a4e25ae4f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 </div>
-<div id="ea8f2ee7-98c3-401c-8326-09c1f97f9491" class="cell" data-execution_count="5">
+<div id="ea8f2ee7-98c3-401c-8326-09c1f97f9491" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a client for work</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> cluster.get_client()</span>
@@ -327,25 +350,25 @@ Wall time: 22.5 s</code></pre>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>client.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-CPU times: user 332 ms, sys: 12.6 ms, total: 344 ms
-Wall time: 3.66 s</code></pre>
+CPU times: user 450 ms, sys: 63 ms, total: 513 ms
+Wall time: 6.01 s</code></pre>
 </div>
 </div>
-<div id="8d7b0078-46e3-4e85-b120-474c960266f6" class="cell" data-execution_count="6">
+<div id="8d7b0078-46e3-4e85-b120-474c960266f6" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When we are done we can close our dask cluster</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cluster.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="64389c64-01ac-4010-9238-e60b4b52b995" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a new cluster with default 8 workers and 1 thread per worker</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> LocalCluster(n_workers<span class="op">=</span><span class="dv">8</span>, processes<span class="op">=</span><span class="va">False</span>, threads_per_worker<span class="op">=</span><span class="dv">1</span>)</span>
+<div id="64389c64-01ac-4010-9238-e60b4b52b995" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a new cluster with default 4 workers and 1 thread per worker</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> LocalCluster(n_workers<span class="op">=</span><span class="dv">4</span>, processes<span class="op">=</span><span class="va">False</span>, threads_per_worker<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"59a1b3746b9c4c2dbcef09457671b0cf","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"0ce26fd7bef34685af60313e4eaa77d3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 </div>
-<div id="94296958-2460-4872-9a35-5d97653fe0d0" class="cell" data-execution_count="8">
+<div id="94296958-2460-4872-9a35-5d97653fe0d0" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up a client for work</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> cluster.get_client()</span>
@@ -361,182 +384,13 @@ Wall time: 3.66 s</code></pre>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>client.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-CPU times: user 549 ms, sys: 77.6 ms, total: 627 ms
-Wall time: 3.11 s</code></pre>
+CPU times: user 500 ms, sys: 55 ms, total: 555 ms
+Wall time: 4.47 s</code></pre>
 </div>
 </div>
-<div id="d8b01002-947b-4023-945c-018a3db5d786" class="cell" data-execution_count="9">
+<div id="d8b01002-947b-4023-945c-018a3db5d786" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When we are done we can close our dask cluster</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cluster.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="8cf3c758-b8f7-409c-8e18-732930cc75f6" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> coiled <span class="co"># use a Coiled cluster</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="b0820d52-5c8b-4c3d-95b2-de34dea2d06a" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up cluster in the cloud where we can grab more workers</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> coiled.Cluster(n_workers<span class="op">=</span><span class="dv">20</span>) <span class="co"># run on a cluster in the cloud</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> cluster.get_client()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"8bb85a172bcd4eec87ef6423077641f7","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">myst-parser 0.18.1 has requirement mdit-py-plugins~=0.3.1, but you have mdit-py-plugins 0.4.0.
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Package - myst-parser, Pip check had the following issues that need resolving: 
-myst-parser 0.18.1 has requirement mdit-py-plugins~=0.3.1, but you have mdit-py-plugins 0.4.0.
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">╭──────────────────────────────── <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Package Info</span> ────────────────────────────────╮
-│                            ╷                                                 │
-│  <span style="font-weight: bold"> Package                  </span>│<span style="font-weight: bold"> Note                                          </span>  │
-│ ╶──────────────────────────┼───────────────────────────────────────────────╴ │
-│   coiled_local_jovyan      │ Source wheel built from /home/jovyan            │
-│                            ╵                                                 │
-╰──────────────────────────────────────────────────────────────────────────────╯
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">╭────────────────────────── <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">Not Synced with Cluster</span> ───────────────────────────╮
-│               ╷                                                  ╷           │
-│  <span style="font-weight: bold"> Package     </span>│<span style="font-weight: bold"> Error                                            </span>│<span style="font-weight: bold"> Risk    </span>  │
-│ ╶─────────────┼──────────────────────────────────────────────────┼─────────╴ │
-│   myst-parser │ Pip check had the following issues that need     │ Warning   │
-│               │ resolving:                                       │           │
-│               │ myst-parser 0.18.1 has requirement               │           │
-│               │ mdit-py-plugins~=0.3.1, but you have             │           │
-│               │ mdit-py-plugins 0.4.0.                           │           │
-│               ╵                                                  ╵           │
-╰──────────────────────────────────────────────────────────────────────────────╯
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"792bd305440945f2b87a7f49d95314a6","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
-</div>
-</div>
-<div id="6b20b32d-64dd-4ce4-b18d-bd7a6d6b9855" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>): <span class="co"># scale 100x</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> client.submit(inc, x)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> client.submit(dec, result)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    results.append(result)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> client.gather(results)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-CPU times: user 136 ms, sys: 11.4 ms, total: 148 ms
-Wall time: 2.33 s</code></pre>
-</div>
-</div>
-<p>Set up on coiled with free GCP (or AWS or Azure) * go to coiled.io * sign-in * Open a terminal and run</p>
-<pre><code>conda deactivate
-conda create -n coiled -c conda-forge coiled google-cloud-sdk
-conda install -c conda-forge google-cloud-sdk -n notebook
-conda activate coiled
-coiled setup gcp</code></pre>
-<div id="4ab4f6fc-f04a-498a-8c0d-e78ea74dc4d3" class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>```</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>(coiled) jovyan<span class="op">@</span>jupyter<span class="op">-</span>eeholmes:<span class="op">~</span>$ coiled setup aws</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>╭────────────────────────────────────────────────────────────────────────────────────────╮</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>│ Introduction                                                                           │</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>│                                                                                        │</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>│ This uses your AWS credentials to <span class="bu">set</span> up Coiled.                                       │</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>│                                                                                        │</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>│ This will do the following ...                                                         │</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">1.</span> Create limited IAM roles <span class="kw">and</span> grant them to Coiled                                   │</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">2.</span> Check <span class="kw">and</span> expand your AWS quota <span class="cf">if</span> needed                                           │</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">3.</span> Create initial resources to deploy clusters                                         │</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>│                                                                                        │</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>│ This will <span class="kw">not</span> ...                                                                      │</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">1.</span> Create resources that cost money                                                    │</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>│ <span class="fl">2.</span> Grant Coiled access to your data                                                    │</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>╰────────────────────────────────────────────────────────────────────────────────────────╯</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>Missing: You don<span class="st">'t have local AWS credentials.</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="er">That's ok, you can run setup from AWS CloudShell.</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>Run setup <span class="im">from</span> AWS CloudShell <span class="cf">with</span> the following steps:</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Go to https:<span class="op">//</span>console.aws.amazon.com<span class="op">/</span>cloudshell</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Sign <span class="kw">in</span> to your AWS account</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>   (<span class="cf">if</span> you usually switch role <span class="kw">or</span> profile, you should do this)</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Run the following command <span class="kw">in</span> CloudShell:</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  pip3 install coiled <span class="op">&amp;&amp;</span> \ </span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>  coiled login \ </span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>token b2bfb562be4a457da2a74efa <span class="op">\</span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>token <span class="dv">42713203</span><span class="op">-</span>d012864e09b94db <span class="op">\</span></span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">--</span>token b82f66c7c273c6913213a9fa9 <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  coiled setup aws <span class="op">--</span>region us<span class="op">-</span>east<span class="op">-</span><span class="dv">1</span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="06ce58a6-ff3a-46f4-ad29-27f593e53bc9" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>coiled setup aws <span class="op">--</span>quotas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>SyntaxError: invalid syntax (3831637974.py, line 1)</code></pre>
-</div>
-</div>
-<div id="9862307a-63d7-42fc-914b-a48ac3fb4261" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">627</span><span class="op">/</span><span class="dv">148</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>4.236486486486487</code></pre>
-</div>
-</div>
-<div id="be34e942-d756-4105-84ec-37076898f2c7" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span><span class="op">/</span><span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>2.5</code></pre>
-</div>
-</div>
-<div id="21f001b0-5548-4d8d-a2e4-83d06837f493" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"84b1d2ae3bbc4c61803437b31180e743","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">╭─────────────────────────────── <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Coiled Cluster</span> ───────────────────────────────╮
-│           <a href="https://cloud.coiled.io/clusters/445452?account=eeholmes" target="_blank">https://cloud.coiled.io/clusters/445452?account=eeholmes</a>           │
-╰──────────────────────────────────────────────────────────────────────────────╯
-╭────────────── Overview ──────────────╮╭─────────── Configuration ────────────╮
-│                                      ││                                      │
-│ <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Name:</span> eeholmes-ef8daa0e              ││ <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Region:</span> us-east-1                    │
-│                                      ││                                      │
-│ <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Scheduler Status:</span> started            ││ <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Scheduler:</span> m6i.xlarge                │
-│                                      ││                                      │
-│ <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Dashboard:</span>                           ││ <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Workers:</span>   m6i.xlarge (15), Unknown  │
-│ <a href="https://cluster-qajgq.dask.host?token=rKD-dj80QhjCSklb" target="_blank">https://cluster-qajgq.dask.host?toke</a> ││ (5)                                  │
-│ <a href="https://cluster-qajgq.dask.host?token=rKD-dj80QhjCSklb" target="_blank">n=rKD-dj80QhjCSklb</a>                   ││                                      │
-│                                      ││ <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Workers Requested:</span> 20                │
-╰──────────────────────────────────────╯╰──────────────────────────────────────╯
-╭──────────────── Dask Worker States (2024/04/16 19:09:24 UTC) ────────────────╮
-│     Provisioning            <span style="color: #3a3a3a; text-decoration-color: #3a3a3a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span style="color: #800080; text-decoration-color: #800080">0</span>       │
-│     Booting Instance        <span style="color: #3a3a3a; text-decoration-color: #3a3a3a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span style="color: #800080; text-decoration-color: #800080">0</span>       │
-│     Downloading environment <span style="color: #3a3a3a; text-decoration-color: #3a3a3a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span style="color: #800080; text-decoration-color: #800080">0</span>       │
-│     Ready                   <span style="color: #008080; text-decoration-color: #008080">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span style="color: #3a3a3a; text-decoration-color: #3a3a3a">╺━━━━━━━━━</span> <span style="color: #800080; text-decoration-color: #800080">15</span>      │
-│     Stopping                <span style="color: #3a3a3a; text-decoration-color: #3a3a3a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span style="color: #800080; text-decoration-color: #800080">0</span>       │
-│     Stopped                 <span style="color: #3a3a3a; text-decoration-color: #3a3a3a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span style="color: #800080; text-decoration-color: #800080">0</span>       │
-│     Error                   <span style="color: #800000; text-decoration-color: #800000">━━━━━━━━━━</span><span style="color: #3a3a3a; text-decoration-color: #3a3a3a">╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span style="color: #800080; text-decoration-color: #800080">5</span>       │
-╰──────────────────────────────────────────────────────────────────────────────╯
-
-
-
-</pre>
-</div>
 </div>
 
 
