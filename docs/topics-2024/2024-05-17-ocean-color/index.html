@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Eli Holmes">
+<meta name="author" content="Ian Carroll">
 
 <title>NOAA Fisheries HackHours - Ocean Color Mapping</title>
 <style>
@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../topics-2024/2024-04-26-echopype/index.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -143,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Ocean Color Mapping</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2024/2024-05-17-ocean-color/index.html">Python - PACE Ocean Color</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -199,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2024/2024-05-03-ocean-color/index.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../topics-2024/2024-05-17-ocean-color/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Python - PACE Ocean Color</span></a>
   </div>
 </li>
@@ -216,7 +217,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
   <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a>
   <ul class="collapse">
-  <li><a href="#how-to-clone" id="toc-how-to-clone" class="nav-link" data-scroll-target="#how-to-clone">How to clone</a></li>
+  <li><a href="#download-notebooks" id="toc-download-notebooks" class="nav-link" data-scroll-target="#download-notebooks">Download Notebooks</a></li>
+  <li><a href="#start-jupyterlab" id="toc-start-jupyterlab" class="nav-link" data-scroll-target="#start-jupyterlab">Start JupyterLab</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2024/2024-05-17-ocean-color/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-05-17-ocean-color/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -245,7 +247,7 @@ function googleTranslateElementInit() {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Eli Holmes </p>
+             <p>Ian Carroll </p>
           </div>
   </div>
     
@@ -258,30 +260,31 @@ function googleTranslateElementInit() {
 </header>
 
 
-<p>Image:</p>
+<p>Image: Py - Openscapes</p>
 <section id="tutorials" class="level1">
 <h1>Tutorials</h1>
 <ul>
-<li><a href="../../topics-2024/2024-05-17-ocean-color/Download_read_visualize_L2_products.html">Download_read_visualize_L2_products.ipynb</a></li>
-<li><a href="../../topics-2024/2024-05-17-ocean-color/L3_files_read_plot.html">L3_files_read_plot.ipynb</a></li>
-<li><a href="../../topics-2024/2024-05-17-ocean-color/Read_plot_L2_chlorophyll_map_with_xarray.html">Read_plot_L2_chlorophyll_map_with_xarray.ipynb</a></li>
+<li><a href="https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci_data_access/">PACE/OCI Data Access</a></li>
+<li><a href="https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci_file_structure/">PACE/OCI Processing Levels and Viz</a></li>
 </ul>
 </section>
 <section id="instructions" class="level1">
 <h1>Instructions</h1>
+<section id="download-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="download-notebooks">Download Notebooks</h2>
+<ul>
+<li><a href="https://oceancolor.gsfc.nasa.gov/images/notebooks/oci_data_access.ipynb">PACE/OCI Data Access</a></li>
+<li><a href="https://oceancolor.gsfc.nasa.gov/images/notebooks/oci_file_structure.ipynb">PACE/OCI Processing Levels and Viz</a></li>
+</ul>
+</section>
+<section id="start-jupyterlab" class="level2">
+<h2 class="anchored" data-anchor-id="start-jupyterlab">Start JupyterLab</h2>
 <ul>
 <li>dhub.opensci.live</li>
 <li>Select the Py - Openscapes image</li>
-<li>clone the NOAAHackDays repo</li>
-<li>the notebooks are in <code>topics-2024/2024-05-03-ocean-color</code></li>
+<li>In the File Explorer, navigate to your preferred folder</li>
+<li>click the up arrow and upload the downloaded notebooks</li>
 </ul>
-<section id="how-to-clone" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-clone">How to clone</h2>
-<p>Never cloned the NOAAHackDays repo?</p>
-<pre><code>cd ~
-git clone https://github.com/nmfs-opensci/NOAAHackDays</code></pre>
-<p>Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.</p>
-<pre><code>git reset --hard origin/master</code></pre>
 
 
 </section>
@@ -822,6 +825,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../topics-2024/2024-04-26-echopype/index.html" class="pagination-link  aria-label=" python="" -="" echopype="" 2"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python - echopype 2</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
