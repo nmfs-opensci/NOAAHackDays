@@ -1,35 +1,26 @@
 ---
 title: Ocean Color Mapping
-author: Eli Holmes
+author: Ian Carroll
 ---
 
-Image:
+Image: Py - Openscapes
 
 # Tutorials
 
-```{r echo=FALSE, results="asis"}
-files <- dir() |> grep(pattern="ipynb", value= TRUE)
-paste0("* [",files,"](",files,")") |> paste0(collapse="\n") |> cat()
-```
+* [PACE/OCI Data Access](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci_data_access/)
+* [PACE/OCI Processing Levels and Viz](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci_file_structure/)
+
 
 # Instructions
 
+## Download Notebooks
+
+* [PACE/OCI Data Access](https://oceancolor.gsfc.nasa.gov/images/notebooks/oci_data_access.ipynb)
+* [PACE/OCI Processing Levels and Viz](https://oceancolor.gsfc.nasa.gov/images/notebooks/oci_file_structure.ipynb)
+
+## Start JupyterLab
+
 -   dhub.opensci.live
 -   Select the Py - Openscapes image
--   clone the NOAAHackDays repo
--   the notebooks are in `topics-2024/2024-05-03-ocean-color`
-
-## How to clone
-
-Never cloned the NOAAHackDays repo?
-
-```         
-cd ~
-git clone https://github.com/nmfs-opensci/NOAAHackDays
-```
-
-Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.
-
-```         
-git reset --hard origin/master
-```
+-   In the File Explorer, navigate to your preferred folder
+-   click the up arrow and upload the downloaded notebooks
