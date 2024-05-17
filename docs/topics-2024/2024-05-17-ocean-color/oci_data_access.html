@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ian Carroll, NASA">
 
-<title>NOAA Fisheries HackHours - Ocean Color Mapping</title>
+<title>NOAA Fisheries HackHours - Access Data from the Ocean Color Instrument (OCI)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +63,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../topics-2024/2024-04-26-echopype/index.html" rel="prev">
 <link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -144,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../topics-2024/2024-05-17-ocean-color/index.html">Python - PACE Ocean Color</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Access Data from the Ocean Color Instrument (OCI)</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -200,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../topics-2024/2024-05-17-ocean-color/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../topics-2024/2024-05-17-ocean-color/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python - PACE Ocean Color</span></a>
   </div>
 </li>
@@ -214,10 +246,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2024/2024-05-17-ocean-color/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-05-17-ocean-color/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-05-17-ocean-color/oci_data_access.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-05-17-ocean-color/oci_data_access.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -233,19 +265,13 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ocean Color Mapping</h1>
+<h1 class="title">Access Data from the Ocean Color Instrument (OCI)</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ian Carroll, NASA </p>
-          </div>
-  </div>
     
   
     
@@ -256,31 +282,125 @@ function googleTranslateElementInit() {
 </header>
 
 
-<p>Image: Py - Openscapes</p>
-<section id="tutorials" class="level1">
-<h1>Tutorials</h1>
-<ul>
-<li><a href="https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci_data_access/">PACE/OCI Data Access</a></li>
-<li><a href="https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci_file_structure/">PACE/OCI Processing Levels and Viz</a></li>
-</ul>
+<p><strong>Authors:</strong> Anna Windle (NASA, SSAI), Ian Carroll (NASA, UMBC), Carina Poulin (NASA, SSAI)</p>
+<blockquote class="blockquote">
+<p><strong>PREREQUISITES</strong></p>
+<p>This notebook has the following prerequisites: - An <strong><a href="https://urs.earthdata.nasa.gov/" target="_blank">Earthdata Login</a></strong> account is required to access data from the NASA Earthdata system, including NASA ocean color data. - There are no prerequisite notebooks for this module.</p>
+</blockquote>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<hr>
+<p>In this example we will use the <code>earthaccess</code> package to search for OCI products on NASA Earthdata. The <code>earthaccess</code> package, published on the <a href="https://pypi.org/project/earthaccess/">Python Package Index</a> and <a href="https://anaconda.org/conda-forge/earthaccess">conda-forge</a>, facilitates discovery and use of all NASA Earth Science data products by providing an abstraction layer for NASA’s <a href="https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html">Common Metadata Repository (CMR) API</a> and by simplifying requests to NASA’s <a href="https://www.earthdata.nasa.gov/eosdis/cloud-evolution">Earthdata Cloud</a>. Searching for data is more approachable using <code>earthaccess</code> than low-level HTTP requests, and the same goes for S3 requests.</p>
+<p>In short, <code>earthaccess</code> helps <strong>authenticate</strong> with Earthdata Login, makes <strong>search</strong> easier, and provides a stream-lined way to <strong>load data</strong> into <code>xarray</code> containers. For more on <code>earthaccess</code>, visit the <a href="https://earthaccess.readthedocs.io/en/stable/">documentation</a> site. Be aware that <code>earthaccess</code> is under active development.</p>
+<p>To understand the discussions below on downloading and opening data, we need to clearly understand <strong>where our notebook is running</strong>. There are three cases to distinguish:</p>
+<ol type="1">
+<li>The notebook is running on the local host. For instance, you started a Jupyter server on your laptop.</li>
+<li>The notebook is running on a remote host, but it does not have direct access to the NASA Earthdata Cloud. For instance, you are running in <a href="https://github.blog/changelog/2022-11-09-using-codespaces-with-jupyterlab-public-beta/">GitHub Codespaces</a>.</li>
+<li>The notebook is running on a remote host that does have direct access to the NASA Earthdata Cloud. At this time, we cannot provide a “for instance” which is available to everyone.</li>
+</ol>
 </section>
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<hr>
+<p>At the end of this notebook you will know:</p>
 <ul>
-<li><p>Go to dhub.opensci.live</p></li>
-<li><p>Select the Py - Openscapes image</p></li>
-<li><p>If you have the NOAAHackDays tutorials already, then navigate to that folder (click on it) and then click on the Git icon on left and click on the cloud with down arrow icon to do a git pull. Or open a terminal and do</p></li>
+<li>How to store your NASA Earthdata Login credentials with <code>earthaccess</code></li>
+<li>How to use <code>earthaccess</code> to search for OCI data using search filters</li>
+<li>How to download OCI data, but only when you need to</li>
 </ul>
-<pre><code>cd ~/NOAAHackDays
-git pull</code></pre>
-<ul>
-<li>If you have not cloned NOAAHackDays, open a terminal and run</li>
-</ul>
-<pre><code>cd ~
-git clone https://github.com/nmfs-opensci/NOAAHackDays</code></pre>
-<ul>
-<li>Click on NOAAHackDays folder and go to <code>topics-2024/2024-05-17-ocean-color</code></li>
-</ul>
+<p><a name="toc"></a> ## Contents ***</p>
+<ol type="1">
+<li><a href="#setup">Setup</a></li>
+<li><a href="#auth">NASA Earthdata Authentication</a></li>
+<li><a href="#search">Search for Data</a></li>
+<li><a href="#download">Download Data</a></li>
+</ol>
+<p><a name="setup"></a> ## 1. Setup ***</p>
+<p>We begin by importing the only package used in this notebook. If you have created an environment following the <a href="https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials">guidance</a> provided with this tutorial, then the import will be successful.</p>
+<div id="ec3c06f0" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#top">Back to top</a> <a name="auth"></a> ## 2. NASA Earthdata Authentication ***</p>
+<p>Next, we authenticate using our Earthdata Login credentials. Authentication is not needed to search publicaly available collections in Earthdata, but is always needed to access data. We can use the <code>login</code> method from the <code>earthaccess</code> package. This will create an authenticated session when we provide a valid Earthdata Login username and password. The <code>earthaccess</code> package will search for credentials defined by <strong>environmental variables</strong> or within a <strong>.netrc</strong> file saved in the home directory. If credentials are not found, an interactive prompt will allow you to input credentials.</p>
+<div class="alert alert-info" role="alert">
+<p>The <code>persist=True</code> argument ensures any discovered credentials are stored in a <code>.netrc</code> file, so the argument is not necessary (but it’s also harmless) for subsequent calls to <code>earthaccess.login</code>.</p>
+</div>
+<div id="bb3bf42e" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login(persist<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#top">Back to top</a> <a name="search"></a> ## 3. Search for Data ***</p>
+<p>Collections on NASA Earthdata are discovered with the <code>search_datasets</code> function, which accepts an <code>instrument</code> filter as an easy way to get started. Each of the items in the list of collections returned has a “short-name”.</p>
+<div id="1ff1bfc9-97bd-46cf-816d-4615a31a6ffb" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_datasets(instrument<span class="op">=</span><span class="st">"oci"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="60390257-c522-43b5-9b62-2900c2f1259a" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> results:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> item.summary()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(summary[<span class="st">"short-name"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we use the <code>search_data</code> function to find granules within a collection. Let’s use the <code>short_name</code> for the PACE/OCI Level-2 quick-look product for apparent optical properties (although you can search for granules accross collections too).</p>
+<div class="alert alert-info" role="alert">
+<p>The short name can also be found on <a href="https://search.earthdata.nasa.gov/search?fi=SPEXone!HARP2!OCI&amp;fpb0=Space-based%20Platforms" target="_blank"> Eartdata Search</a>, directly under the collection name, after clicking on the “i” button for a collection in any search result.</p>
+</div>
+<p>The <code>count</code> argument limits the number of granules returned and stored in the <code>results</code> list.</p>
+<div id="7c3f3d01" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    short_name<span class="op">=</span><span class="st">"PACE_OCI_L2_AOP_NRT"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can refine our search by passing more parameters that describe the spatiotemporal domain of our use case. Here, we use the <code>temporal</code> parameter to request a date range and the <code>bounding_box</code> parameter to request granules that intersect with a bounding box. We can even provide a <code>cloud_cover</code> threshold to limit files that have a lower percetnage of cloud cover. We do not provide a <code>count</code>, so we’ll get all granules that satisfy the constraints.</p>
+<div id="6e303232" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tspan <span class="op">=</span> (<span class="st">"2024-04-01"</span>, <span class="st">"2024-04-16"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> (<span class="op">-</span><span class="fl">76.75</span>, <span class="fl">36.97</span>, <span class="op">-</span><span class="fl">75.74</span>, <span class="fl">39.01</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>clouds <span class="op">=</span> (<span class="dv">0</span>, <span class="dv">50</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    short_name<span class="op">=</span><span class="st">"PACE_OCI_L2_AOP_NRT"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    temporal<span class="op">=</span>tspan,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    bounding_box<span class="op">=</span>bbox, </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    cloud_cover<span class="op">=</span>clouds,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Displaying a single result shows a direct download link: try it! The link will download the granule to your local machine, which may or may not be what you want to do. Even if you are running the notebook on a remote host, this download link will open a new browser tab or window and offer to save a file to your local machine. If you are running the notebook locally, this may be of use. However, in the next section we’ll see how to download all the results with one command.</p>
+<div id="679f722c" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#top">Back to top</a> <a name="download"></a> ## 4. Download Data ***</p>
+<p>First, let’s understand what the alternative is to downloading granules. The <code>earthaccess.open</code> function accepts the list of results from <code>earthaccess.search_data</code> and returns a list of file-like objects, but no actual files are transferred.</p>
+<div id="3aac97c0" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> earthaccess.<span class="bu">open</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The file-like objects held in <code>paths</code> can each be read like a normal file. Here we load the first few bytes without any specialized reader.</p>
+<div id="24237fd0" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> paths[<span class="dv">0</span>] <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> <span class="bu">file</span>.readline().strip()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>line</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Of course that doesn’t mean anything (does it? 😉), because this is a binary file that needs a reader which understands the file format.</p>
+<p>The <code>earthaccess.open</code> function is used when you want to directly read a bytes from a remote filesystem, but not download a whole file. When running code on a host with direct access to the NASA Earthdata Cloud, you don’t need to download the data and <code>earthaccess.open</code> is the way to go.</p>
+<p>Now, let’s look at the <code>earthaccess.download</code> function, which is used to copy files onto a filesystem local to the machine executing the code. For this function, provide the output of <code>earthaccess.search_data</code> along with a directory where <code>earthaccess</code> will store downloaded granules.</p>
+<p>Even if you only want to read a slice of the data, and downloading seems unncessary, if you use <code>earthaccess.open</code> while not running on a remote host with direct access to the NASA Earthdata Cloud, performance will be very poor. This is not a problem with “the cloud” or with <code>earthaccess</code>, it has to do with the data format and may soon be resolved.</p>
+<p>Let’s continue to downloading the list of granules!</p>
+<div id="696dc73c" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> earthaccess.download(results, <span class="st">"L2_AOP"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>paths</code> list now contains paths to actual files on the local filesystem.</p>
+<div id="4be6ec80" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>paths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="alert alert-block alert-warning">
+Anywhere in any of <a href="https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/">these notebooks</a> where
+<pre>paths = earthaccess.open(...)</pre>
+is used to read data directly from the NASA Earthdata Cloud, you need to substitute
+<pre>paths = earthaccess.download(..., local_path)</pre>
+<p>before running the notebook on a local host or a remote host that does not have direct access to the NASA Earthdata Cloud.</p>
+</div>
+<div class="alert alert-info" role="alert">
+<p>
+You have completed the notebook on downloading and opening datasets. We now suggest starting the notebook on File Structure at Three Processing Levels.
+</p>
+</div>
 
 
 </section>
@@ -820,15 +940,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../topics-2024/2024-04-26-echopype/index.html" class="pagination-link  aria-label=" python="" -="" echopype="" 2"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Python - echopype 2</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
