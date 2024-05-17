@@ -1,6 +1,17 @@
 ---
 title: Ocean Color Mapping
 author: Ian Carroll
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.16.1
+  kernelspec:
+    display_name: notebook
+    language: python
+    name: notebook
 ---
 
 Image: Py - Openscapes
@@ -13,14 +24,15 @@ Image: Py - Openscapes
 
 # Instructions
 
-## Download Notebooks
-
-* [PACE/OCI Data Access](https://oceancolor.gsfc.nasa.gov/images/notebooks/oci_data_access.ipynb)
-* [PACE/OCI Processing Levels and Viz](https://oceancolor.gsfc.nasa.gov/images/notebooks/oci_file_structure.ipynb)
-
-## Start JupyterLab
-
--   dhub.opensci.live
+-   Go to dhub.opensci.live
 -   Select the Py - Openscapes image
--   In the File Explorer, navigate to your preferred folder
--   click the up arrow and upload the downloaded notebooks
+
+* If you have the NOAAHackDays tutorials already, then navigate to that folder (click on it) and then click on the Git icon on left and click on the cloud with down arrow icon to do a git pull. Or open a terminal and do
+```
+cd ~/NOAAHackDays
+git pull
+```
+
+- Click on NOAAHackDays folder and go to `topics-2024/2024-05-17-ocean-color`
+
+
