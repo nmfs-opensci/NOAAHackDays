@@ -33,6 +33,10 @@ cd ~/NOAAHackDays
 git pull
 ```
 
+* If you have not cloned NOAAHackDays, open a terminal and run
+```
+cd ~
+git clone https://github.com/nmfs-opensci/NOAAHackDays
+```
+
 - Click on NOAAHackDays folder and go to `topics-2024/2024-05-17-ocean-color`
-
-
