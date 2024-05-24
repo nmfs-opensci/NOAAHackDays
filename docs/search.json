@@ -45,7 +45,7 @@
     "href": "topics-2024/2024-05-17-ocean-color/index.html#how-to-clone",
     "title": "Ocean Color Mapping",
     "section": "How to clone",
-    "text": "How to clone\nNever cloned the NOAAHackDays repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NOAAHackDays\ngit reset --hard origin/master",
+    "text": "How to clone\nNever cloned the NOAAHackDays repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NOAAHackDays\ngit reset --hard origin/main",
     "crumbs": [
       "Python - PACE Ocean Color"
     ]
@@ -141,7 +141,7 @@
     "href": "topics-2024/2024-04-19-dask/index.html#how-to-clone",
     "title": "Parallel Computing in Python",
     "section": "How to clone",
-    "text": "How to clone\nNever cloned the NOAAHackDays repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ngit reset --hard origin/master",
+    "text": "How to clone\nNever cloned the NOAAHackDays repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NOAAHackDays\ngit reset --hard origin/main",
     "crumbs": [
       "Python - Parallel Computing"
     ]
@@ -396,7 +396,7 @@
     "href": "topics-2024/2024-04-25-vast/index.html#how-to-clone",
     "title": "VAST",
     "section": "How to clone",
-    "text": "How to clone\nNever cloned the NOAAHackDays repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ngit reset --hard origin/master",
+    "text": "How to clone\nNever cloned the NOAAHackDays repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NOAAHackDays\ngit reset --hard origin/main",
     "crumbs": [
       "R - VAST"
     ]
@@ -584,7 +584,7 @@
     "href": "topics-2024/2024-05-24-sits/index.html#how-to-clone",
     "title": "sits R package",
     "section": "How to clone",
-    "text": "How to clone\nNever cloned the NOAAHackDays repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NOAAHackDays\ngit reset --hard origin/master",
+    "text": "How to clone\nNever cloned the NOAAHackDays repo?\ncd ~\ngit clone https://github.com/nmfs-opensci/NOAAHackDays\nHave cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\ncd ~/NOAAHackDays\ngit reset --hard origin/main",
     "crumbs": [
       "R - sits R package"
     ]

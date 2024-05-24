@@ -31,5 +31,5 @@ Have cloned it but need to update? This is going to destroy any changes that you
 
 ```  
 cd ~/NOAAHackDays
-git reset --hard origin/master
+git reset --hard origin/main
 ```
