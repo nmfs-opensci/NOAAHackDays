@@ -222,7 +222,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a>
+  <ul class="collapse">
+  <li><a href="#how-to-clone" id="toc-how-to-clone" class="nav-link" data-scroll-target="#how-to-clone">How to clone</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2024/2024-05-17-ocean-color/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-05-17-ocean-color/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -274,22 +277,22 @@ function googleTranslateElementInit() {
 <section id="instructions" class="level1">
 <h1>Instructions</h1>
 <ul>
-<li><p>Go to dhub.opensci.live</p></li>
-<li><p>Select the Py - Openscapes image</p></li>
-<li><p>If you have the NOAAHackDays tutorials already, then navigate to that folder (click on it) and then click on the Git icon on left and click on the cloud with down arrow icon to do a git pull. Or open a terminal and do</p></li>
+<li>Go to dhub.opensci.live</li>
+<li>Select the Py - Openscapes image</li>
+<li>clone or pull the NOAAHackDays repo</li>
+<li>the notebooks are in <code>topics-2024/2024-05-17-ocean-color</code></li>
 </ul>
-<pre><code>cd ~/NOAAHackDays
-git pull</code></pre>
-<ul>
-<li>If you have not cloned NOAAHackDays, open a terminal and run</li>
-</ul>
+<section id="how-to-clone" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-clone">How to clone</h2>
+<p>Never cloned the NOAAHackDays repo?</p>
 <pre><code>cd ~
 git clone https://github.com/nmfs-opensci/NOAAHackDays</code></pre>
-<ul>
-<li>Click on NOAAHackDays folder and go to <code>topics-2024/2024-05-17-ocean-color</code></li>
-</ul>
+<p>Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.</p>
+<pre><code>cd ~/NOAAHackDays
+git reset --hard origin/master</code></pre>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
