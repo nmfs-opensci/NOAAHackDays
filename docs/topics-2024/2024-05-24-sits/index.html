@@ -282,13 +282,18 @@ function googleTranslateElementInit() {
 <li>Select the Py-R geospatial image (default)</li>
 <li>Choose 3.7 Gb RAM</li>
 <li>Click on the RStudio button</li>
-<li>clone the e-sensing sitsbook repo</li>
+<li>Clone the NOAAHackDays repo</li>
+<li>open the https://e-sensing.github.io/sitsbook</li>
 </ul>
 <section id="how-to-clone" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-clone">How to clone</h2>
 <p>Never cloned the NOAAHackDays repo?</p>
 <pre><code>cd ~
-git clone https://github.com/e-sensing/sitsbook</code></pre>
+git clone https://github.com/nmfs-opensci/NOAAHackDays</code></pre>
+<p>Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.</p>
+<pre><code>cd ~/NOAAHackDays
+git fetch origin
+git reset --hard origin/main</code></pre>
 
 
 </section>
