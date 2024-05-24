@@ -1,0 +1,57 @@
+---
+title: "sits Landsat tutorial"
+---
+
+sits R package
+
+* https://e-sensing.github.io/sitsbook/setup.html
+* https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html#accessing-harmonized-landsat-sentinel-collections
+
+This takes awhile.
+```{r echo=FALSE}
+install.packages("sits", dependencies = TRUE)
+```
+
+## check your netrc file
+
+It wants this at the home dir.
+
+```
+cat(paste0(readLines("~/.netrc"), collapse="\n"))
+```
+
+Should look like this
+```
+machine urs.earthdata.nasa.gov
+login username
+password yourpassword
+```
+
+If you don't see this. You can make it
+```{bash}
+echo -e "machine urs.earthdata.nasa.gov\nlogin username\npassword yourpassword" > ~/.netrc
+```
+
+##
+
+```{r}
+library(sits)
+# define a region of interest
+roi <- c(
+  lon_min = -45.6422, lat_min = -24.0335,
+  lon_max = -45.0840, lat_max = -23.6178
+)
+
+# create a cube from the HLSS30 collection
+hls_cube_s2 <- sits_cube(
+  source = "HLS",
+  collection = "HLSS30",
+  roi = roi,
+  bands = c("BLUE", "GREEN", "RED", "CLOUD"),
+  start_date = as.Date("2020-06-01"),
+  end_date = as.Date("2020-09-01"),
+  progress = FALSE
+)
+# plot the cube
+plot(hls_cube_s2, red = "RED", green = "GREEN", blue = "BLUE", date = "2020-06-20")
+```
