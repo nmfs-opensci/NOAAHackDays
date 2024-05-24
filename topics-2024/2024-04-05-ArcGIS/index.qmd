@@ -29,6 +29,7 @@ Have cloned it but need to update? This is going to destroy any changes that you
 
 ```  
 cd ~/NOAAHackDays
+git fetch origin
 git reset --hard origin/main
 ```
 
