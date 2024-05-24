@@ -108,6 +108,8 @@ website:
           href: topics-2024/2024-04-26-echopype/index.qmd
         - text: Python - PACE Ocean Color
           href: topics-2024/2024-05-17-ocean-color/index.qmd
+        - text: R - sits R package
+          href: topics-2024/2024-05-24-sits/index.qmd
 format:
   html:
     theme:
