@@ -105,6 +105,3 @@ series <- sits_get_data(
 )
 ```
 
-
-plot(series)
-```
