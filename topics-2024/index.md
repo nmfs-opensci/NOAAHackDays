@@ -4,6 +4,7 @@ title: "HackHours 2024"
 
 ## Select an event to the left
 
+* May 31. Another PACE satellite mission tutorial by the NASA OB.DAAC [Ocean Color](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/) team. (Python)
 * [May 24](2024-05-24-sits/index.qmd). Accessing NASA Harmonized Landsat data with the e-sensing R package. [tutorial](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html#accessing-harmonized-landsat-sentinel-collections) Eli Holmes, NOAA (R)
 * [May 17](2024-05-17-ocean-color/index.qmd). Visualizing the data from the [PACE satellite](https://pace.oceansciences.org/home.htm) mission by the NASA OB.DAAC [Ocean Color](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/) team. Ian Carroll, NASA (Python)
 * May 10. Accessing Earthdata in Python. Test run of our Python tutorials for the Openscapes mentors' [EDM workshop](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2024/). Eli Holmes (Python)
