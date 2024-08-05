@@ -110,6 +110,10 @@ website:
           href: topics-2024/2024-05-17-ocean-color/index.qmd
         - text: R - sits R package
           href: topics-2024/2024-05-24-sits/index.qmd
+        - text: R - CoastWatch tutorials
+          href: topics-2024/2024-03-22-Coastwatch-R/index.qmd
+        - text: Python - CoastWatch tutorials
+          href: topics-2024/2024-03-15-Coastwatch-Py/index.qmd
 format:
   html:
     theme:
