@@ -3,6 +3,8 @@ title: Coastwatch Python module
 author: Sunny Hospital and Dale Robinson (CoastWatch)
 ---
 
+Link to originals tutorials in the CoastWatch org: [CoastWatch tutorials in Python](https://github.com/coastwatch-training/Workshops/tree/main/NMFS-HackHour-Cloud-JupyterHubs/15March2024-Python).
+
 # Tutorials
 
 * [Mask shallow pixels for satellite ocean color datasets](mask-shallow-ocean-color.rmd)

@@ -1,6 +1,17 @@
 ---
 title: Ocean Color Mapping
-author: Ian Carroll, NASA
+author: 'Ian Carroll, NASA'
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.16.1
+  kernelspec:
+    display_name: notebook
+    language: python
+    name: notebook
 ---
 
 Image: Py - Openscapes

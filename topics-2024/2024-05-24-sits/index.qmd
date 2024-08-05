@@ -5,6 +5,10 @@ author: Eli Holmes
 
 Image: Py-R Geospatial
 
+Summary: The sits package wraps up rstac, gdalcubes, and tmap, with  nice defaults. It works with [7 collections](https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html?#ard-image-collections-handled-by-sits) which are different combinations of Landsat and Sentinel-2 catalogs.
+
+It has functions for helping with fitting ML models to these data cubes.
+
 # Tutorials
 
 ```{r echo=FALSE, results="asis"}
@@ -17,8 +21,10 @@ paste0("* [",files,"](",files,")") |> paste0(collapse="\n") |> cat()
 
 -   dhub.opensci.live
 -   Select the Py-R geospatial image (default)
--   clone the NOAAHackDays repo
--   the notebooks are in `topics-2024/2024-05-24-sits`
+-   Choose 3.7 Gb RAM
+-   Click on the RStudio button
+-   Clone the NOAAHackDays repo
+-   open the https://e-sensing.github.io/sitsbook
 
 ## How to clone
 
@@ -36,3 +42,4 @@ cd ~/NOAAHackDays
 git fetch origin
 git reset --hard origin/main
 ```
+

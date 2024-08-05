@@ -3,6 +3,8 @@ title: Coastwatch R module
 author: Sunny Hospital and Daisy Shi (CoastWatch)
 ---
 
+Link to original repos in CoastWatch org: [CoastWatch tutorials R](https://github.com/coastwatch-training/Workshops/tree/main/NMFS-HackHour-Cloud-JupyterHubs/22March2024-R)
+
 # Tutorials
 
 * [Mask shallow pixels for satellite ocean color datasets](mask-shallow-ocean-color.rmd)

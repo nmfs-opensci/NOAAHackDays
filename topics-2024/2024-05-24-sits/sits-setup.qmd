@@ -1,0 +1,58 @@
+---
+title: "sits set up in dhub"
+---
+
+sits R package
+
+* https://e-sensing.github.io/sitsbook/setup.html
+* https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html#accessing-harmonized-landsat-sentinel-collections
+
+This takes awhile.
+```{r echo=FALSE}
+install.packages("sits", dependencies = TRUE)
+```
+
+## check your netrc file
+
+It wants this at the home dir.
+
+```{r eval=FALSE}
+cat(paste0(readLines("~/.netrc"), collapse="\n"))
+```
+
+Should look like this
+```
+machine urs.earthdata.nasa.gov
+login username
+password yourpassword
+```
+
+If you don't see this. You can make it
+```{r eval=FALSE}
+use_this::edit_file("~/.netrc")
+```
+
+## Test if it is working
+
+```{r}
+library(sits)
+# Create a data cube covering an area in Brazil
+s2_23MMU_cube <- sits_cube(
+  source = "AWS",
+  collection = "SENTINEL-2-L2A",
+  tiles = "23MMU",
+  bands = c("B02", "B8A", "B11", "CLOUD"),
+  start_date = "2018-07-12",
+  end_date = "2019-07-28"
+)
+```
+
+Make a plot.
+```{r}
+plot(s2_23MMU_cube,
+  red = "B11",
+  blue = "B02",
+  green = "B8A",
+  date = "2018-10-05"
+)
+```
