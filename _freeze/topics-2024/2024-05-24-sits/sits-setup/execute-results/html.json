@@ -1,0 +1,17 @@
+{
+  "hash": "8e43e568ea3002eedec3da58c6b9bf7d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"sits set up in dhub\"\n---\n\n\nsits R package\n\n* https://e-sensing.github.io/sitsbook/setup.html\n* https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html#accessing-harmonized-landsat-sentinel-collections\n\nThis takes awhile.\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n\n```\nInstalling package into '/usr/local/lib/R/site-library'\n(as 'lib' is unspecified)\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nalso installing the dependencies 'shape', 'numDeriv', 'progressr', 'SQUAREM', 'diagram', 'lava', 'cards', 'labelled', 'prodlim', 'broom.helpers', 'patchwork', 'iterators', 'clock', 'gower', 'hardhat', 'ipred', 'timeDate', 'modeltools', 'ggstats', 'poorman', 'foreach', 'ModelMetrics', 'pROC', 'recipes', 'dtw', 'clue', 'flexclust', 'ggrepel', 'RSpectra', 'RcppParallel', 'shinyjs', 'RcppThread', 'globals', 'listenv', 'parallelly', 'zeallot', 'DT', 'GGally', 'ranger', 'philentropy', 'future.apply', 'caret', 'dendextend', 'dtwclust', 'exactextractr', 'future', 'kohonen', 'luz', 'openxlsx', 'randomForest', 'randomForestExplainer', 'supercells', 'xgboost'\n```\n\n\n:::\n:::\n\n\n## check your netrc file\n\nIt wants this at the home dir.\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncat(paste0(readLines(\"~/.netrc\"), collapse=\"\\n\"))\n```\n:::\n\n\nShould look like this\n```\nmachine urs.earthdata.nasa.gov\nlogin username\npassword yourpassword\n```\n\nIf you don't see this. You can make it\n\n::: {.cell}\n\n```{.r .cell-code}\nuse_this::edit_file(\"~/.netrc\")\n```\n:::\n\n\n## Test if it is working\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(sits)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nSITS - satellite image time series analysis.\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nLoaded sits v1.5.1.\n        See ?sits for help, citation(\"sits\") for use in publication.\n        Documentation avaliable in https://e-sensing.github.io/sitsbook/.\n```\n\n\n:::\n\n```{.r .cell-code}\n# Create a data cube covering an area in Brazil\ns2_23MMU_cube <- sits_cube(\n  source = \"AWS\",\n  collection = \"SENTINEL-2-L2A\",\n  tiles = \"23MMU\",\n  bands = c(\"B02\", \"B8A\", \"B11\", \"CLOUD\"),\n  start_date = \"2018-07-12\",\n  end_date = \"2019-07-28\"\n)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n\n  |                                                                            \n  |                                                                      |   0%\n  |                                                                            \n  |======================================================================| 100%\n```\n\n\n:::\n:::\n\n\nMake a plot.\n\n::: {.cell}\n\n```{.r .cell-code}\nplot(s2_23MMU_cube,\n  red = \"B11\",\n  blue = \"B02\",\n  green = \"B8A\",\n  date = \"2018-10-05\"\n)\n```\n\n::: {.cell-output-display}\n![](sits-setup_files/figure-html/unnamed-chunk-5-1.png){width=672}\n:::\n:::",
+    "supporting": [
+      "sits-setup_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
