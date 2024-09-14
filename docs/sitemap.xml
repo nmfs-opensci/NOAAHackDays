@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/index.html</loc>
-    <lastmod>2024-05-24T18:23:46.003Z</lastmod>
+    <lastmod>2024-09-14T01:47:11.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-24-sits/sits-setup.html</loc>
+    <lastmod>2024-09-14T02:33:41.538Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-24-sits/index.html</loc>
-    <lastmod>2024-05-24T20:00:48.460Z</lastmod>
+    <lastmod>2024-09-14T02:08:09.884Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-17-ocean-color/oci_data_access.html</loc>
@@ -39,6 +43,14 @@
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-05-ArcGIS/index.html</loc>
     <lastmod>2024-05-24T18:27:48.520Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-22-Coastwatch-R/matchup_satellite_buoy_data.html</loc>
+    <lastmod>2024-09-14T02:01:47.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-22-Coastwatch-R/index.html</loc>
+    <lastmod>2024-09-14T01:47:11.738Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-19-earthdatalogin-intro/index.html</loc>
@@ -101,6 +113,14 @@
     <lastmod>2024-04-19T19:10:50.665Z</lastmod>
   </url>
   <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-15-Coastwatch-Py/index.html</loc>
+    <lastmod>2024-09-14T01:47:11.726Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-22-Coastwatch-R/mask-shallow-ocean-color.html</loc>
+    <lastmod>2024-09-14T01:47:11.738Z</lastmod>
+  </url>
+  <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-05-ArcGIS/eclipse2024.html</loc>
     <lastmod>2024-04-19T19:10:50.665Z</lastmod>
   </url>
@@ -130,14 +150,18 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-17-ocean-color/index.html</loc>
-    <lastmod>2024-05-24T19:01:15.774Z</lastmod>
+    <lastmod>2024-05-31T18:11:22.559Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-17-ocean-color/oci_file_structure.html</loc>
     <lastmod>2024-05-24T18:15:01.038Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-24-sits/sits-landsat.html</loc>
-    <lastmod>2024-05-24T19:29:25.360Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-24-sits/sits-example.html</loc>
+    <lastmod>2024-09-14T02:30:01.319Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-06-14-cefi/index.html</loc>
+    <lastmod>2024-09-14T01:47:11.738Z</lastmod>
   </url>
 </urlset>

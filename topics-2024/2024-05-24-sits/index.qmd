@@ -25,6 +25,7 @@ paste0("* [",files,"](",files,")") |> paste0(collapse="\n") |> cat()
 -   Click on the RStudio button
 -   Clone the NOAAHackDays repo
 -   open the https://e-sensing.github.io/sitsbook
+-   Install the sits package `install.packages("sits")`
 
 ## How to clone
 

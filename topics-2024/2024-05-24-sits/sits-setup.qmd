@@ -8,7 +8,7 @@ sits R package
 * https://e-sensing.github.io/sitsbook/earth-observation-data-cubes.html#accessing-harmonized-landsat-sentinel-collections
 
 This takes awhile.
-```{r echo=FALSE}
+```{r eval=FALSE}
 install.packages("sits", dependencies = TRUE)
 ```
 

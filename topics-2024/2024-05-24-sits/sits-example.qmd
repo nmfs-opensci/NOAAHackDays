@@ -2,6 +2,8 @@
 title: "landsat imagery for a region"
 ---
 
+**Update: I was unable to get the code to run when I tried to run this months later.**
+
 In this example, I will use `sits` to prepare some imagery for a specific region and get snow estimates. https://www.usgs.gov/landsat-missions/normalized-difference-snow-index
 
 I will use the Microsoft Planetary Computer data since it has a nice vizualization that will help me find tiles.
@@ -10,11 +12,17 @@ I will use the Microsoft Planetary Computer data since it has a nice vizualizati
 
 First step is to go to the visualizer and figure out the tiles I need. I am looking at an area close to the Canadian border of Washington state. [MPC search page](https://planetarycomputer.microsoft.com/explore?c=-120.2907%2C48.6029&z=9.00&v=2&d=sentinel-2-l2a&m=Most+recent+%28low+cloud%29&r=Natural+color&s=false%3A%3A100%3A%3Atrue&sr=desc&ae=0). I want to click on the files in the left nav and get the tile ids around "Early Winters". I need four: "10UFU", "10UGU", "10UGV", "10UFV". 
 
-*Update* At first I used tiles, but later went to a small region of interest (roi). When I went from tiles to roi in the `sits_regularize()` the last date had no data and that caused errors.
+At first I used tiles, but later went to a small region of interest (roi). When I went from tiles to roi in the `sits_regularize()` the last date had no data and that caused errors.
+
+## Load the package
+
+```{r}
+library(sits)
+```
 
 ## Get the data
 
-I am going to get a year of data for a small region.
+I am going to get a month of data for a small region.
 
 ```{r}
 roi <- c(
@@ -27,7 +35,7 @@ s2_cube <- sits_cube(
     roi = roi,
     bands = c("B03", "B11", "CLOUD"),
     start_date = as.Date("2022-07-01"),
-    end_date = as.Date("2023-07-31")
+    end_date = as.Date("2022-07-31")
 )
 ```
 
@@ -41,14 +49,14 @@ sits_timeline(s2_cube)
 
 The documentation says things are faster if we save a copy of our files. And we will reduce the area of interest to a really small area and weekly data.  This is going to save a bunch of little files (4 tiles x 52 weeks x 3 bands) into the tempdir. This saving takes a long time itself and seems kind of pointless for this case. So I skipped this.
 
-```{r eval=FALSE}
+```{r}
 # roi as (lon_min, lon_max, lat_min, lat_max)
 roi <- c(
   lon_min = -120.436866, lat_min = 48.570978,
   lon_max = -120.375207, lat_max = 48.611761
 )
 sits_cube_copy(s2_cube,
-  output_dir = here::here("tempdir/chp4"),
+  output_dir = here::here("topics-2024/2024-05-24-sits/tempdir/chl1"),
   roi = roi
 )
 ```
@@ -60,7 +68,7 @@ Next we need to regularize our cube. I will regularize to 14 day period with a 6
 ```{r}
 reg_cube <- sits_regularize(
   cube = s2_cube,
-  output_dir = here::here("tempdir/chp4"),
+  output_dir = here::here("topics-2024/2024-05-24-sits/tempdir/chl2"),
   roi = roi,
   res  = 60,
   period = "P14D",
@@ -76,15 +84,15 @@ https://sentiwiki.copernicus.eu/web/s2-processing#S2Processing-Step1b:Normalised
 ```{r}
 reg_cube <- sits_apply(reg_cube,
    NDSI = (B03 - B11)/(B03 + B11),
-   output_dir = here::here("tempdir/chp5"),
+   output_dir = here::here("topics-2024/2024-05-24-sits/tempdir/chl2"),
    multicores = 4
    )
 ```
 
 ## Plot
 
-Make a plot. ERROR
-```{r eval=FALSE}
+Make a plot.
+```{r}
 plot(reg_cube,
   band = "NDSI",
   date = "2022-07-15"
