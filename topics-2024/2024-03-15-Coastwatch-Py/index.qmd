@@ -7,8 +7,8 @@ Link to originals tutorials in the CoastWatch org: [CoastWatch tutorials in Pyth
 
 # Tutorials
 
-* [Mask shallow pixels for satellite ocean color datasets](mask-shallow-ocean-color.rmd)
-* [Match up satellite to buoy data](matchup_satellite_buoy_data.Rmd)
+* [Match up satellite to track locations](matchup-satellite-data-to-track-locations.ipynb)
+* [Match up satellite to track locations - xarray](satellite_matchups_to_track_locations_xarray.ipynb)
 
 ## How to clone
 

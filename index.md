@@ -1,17 +1,5 @@
----
-title: "HackHours in R and Python"
-subtitle:  "Remote mini hack events for NOAA staff"
-author: Eli E Holmes
----
 
-## NOAA Fisheries Friday Hackhours 12-1pm PT/3-4pm ET
+The NMFS Openscapes JupyterHub is managed by [Openscapes](https://openscapes.cloud/) and  developed in partnership with the International Interactive Computing Collaboration [2i2c](https://2i2c.org/). Launched in September 2024, the NMFS Openscapes JupyterHub joins the NASA Openscapes JupyterHub in providing a curated interactive computing platform to support training in earth and life science visualization, computing and analysis. The NMFS Openscapes JupyterHub supports [workshops](content/workshops.html) and [trainings](content/hackhours.html) run by NOAA Fisheries. Are you at NOAA? Learn more about NMFS Open Science at [our internal website](https://sites.google.com/noaa.gov/nmfs-hq-st-open-science/open-science).
 
-Use this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: [SIGN-UP FORM](https://forms.gle/ckUYr4aZPeyScLRX6)
 
-Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses "Eli" not "Elizabeth".
-
-During these 1 hour hackhours, we will learn to do cloud computing with a JupyterHub set-up with geospatial packages and data. These sessions will get you more familiar with cloud-computing, JupyterHubs, Jupyter notebooks, and Python for geospatial analysis.
-
-[Add event to your calendar](https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MXQ4bzFuaDViZzFudHFtNWlzZjVtZ2JqZGVfMjAyNDAzMDhUMjAwMDAwWiBlbGkuaG9sbWVzQG5vYWEuZ292&tmsrc=eli.holmes%40noaa.gov&scp=ALL) 
-
-Click "HackHour 2024" for list of events and dates
+![](topics-skills/img/jhub.png)

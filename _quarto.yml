@@ -13,10 +13,10 @@ execute:
   
 website:
   page-navigation: true  
-  title: "NOAA Fisheries HackHours"
+  title: "NOAA Fisheries JupyterHub"
   favicon: "images/favicon-16x16.png"
-  site-url: https://nmfs-opensci.github.io/NOAAHackDays
-  repo-url: https://github.com/nmfs-opensci/NOAAHackDays
+  site-url: https://nmfs-opensci.github.io/NMFS-Cloud-Training
+  repo-url: https://github.com/nmfs-opensci/NMFS-Cloud-Training
   repo-actions: [edit, issue, source]
   
   page-footer: <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br />NMFS Open Science (2023)
@@ -24,18 +24,9 @@ website:
   navbar:
     background: primary
     search: true
-    left:
-      - href: index.md
-        text: Home
-      - text: Topics
-        menu: 
-          - text: HackHours 2023
-            href: topics-2023/index.md
-          - text: HackHours 2024
-            href: topics-2024/index.md
     right: 
       - icon: server
-        href: https://dhub.opensci.live/
+        href: https://nmfs-openscapes.2i2c.cloud/
         text: "JupyterHub"
       - icon: wechat
         href: https://github.com/nmfs-opensci/NOAAHackDays/discussions
@@ -55,21 +46,53 @@ website:
       pinned: true
       align: left
       contents:
-        - href: about.md
+        - href: index.md
           text: About
-        - href: nav.md
-          text: Navigation
-        - href: setup.md
-          text: Set-up
-        - href: coc.md
-          text: Code of Conduct
-        - href: reuse.md
-          text: Reuse Statement
+        - href: content/setup.md
+          text: Quick Start
+        - href: content/hackhours.md
+          text: Hackhours
+        - href: content/workshops.md
+          text: Workshops
         - text: "---"
+        - text: JupyterHub Skills
+          href: topics-skills/index.md
         - text: HackHours 2023
           href: topics-2023/index.md
         - text: HackHours 2024
           href: topics-2024/index.md
+        - text: "---"
+        - href: content/reuse.md
+          text: Reuse Statement
+        - href: coc.md
+          text: Code of Conduct
+    - id: topics-skills
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: JupyterHub Skills
+          href: topics-skills/index.md
+        - text: back
+          href: index.md
+        - text: "---"
+        - text: Intro to JupyterHubs
+          href: topics-skills/01-intro-to-jupyterhub.qmd
+        - text: JupyterLab
+          href: topics-skills/02-intro-to-lab.md
+        - text: Intro to Git
+          href: topics-skills/02-git.md
+        - text: Git Authentication
+          href: topics-skills/02-git-authentication.md
+        - text: Git in JupyterLab
+          href: topics-skills/02-git-jupyter.md
+        - text: RStudio
+          href: topics-skills/02-rstudio.qmd
+        - text: Git in RStudio
+          href: topics-skills/02-git-rstudio.md
     - id: topics-2023
       logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
       style: "docked"
@@ -80,6 +103,8 @@ website:
       contents:
         - text: HackHours 2023
           href: topics-2023/index.md
+        - text: back
+          href: index.md
         - text: "---"
         - text: Earth Data Access in Python
           href: topics-2023/2023-12-09-earthdataaccess-intro/index.qmd
@@ -95,6 +120,8 @@ website:
       contents:
         - text: HackHours 2024
           href: topics-2024/index.md
+        - text: back
+          href: index.md
         - text: "---"
         - text: R - CoastWatch tutorials
           href: topics-2024/2024-03-22-Coastwatch-R/index.qmd

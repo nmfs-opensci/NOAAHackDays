@@ -1,1 +1,1 @@
-Sitemap: https://nmfs-opensci.github.io/NOAAHackDays/sitemap.xml
+Sitemap: https://nmfs-opensci.github.io/NMFS-Cloud-Training/sitemap.xml
