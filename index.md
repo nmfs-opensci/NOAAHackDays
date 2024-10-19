@@ -1,5 +1,12 @@
 
-The NMFS Openscapes JupyterHub is managed by [Openscapes](https://openscapes.cloud/) and  developed in partnership with the International Interactive Computing Collaboration [2i2c](https://2i2c.org/). Launched in September 2024, the NMFS Openscapes JupyterHub joins the NASA Openscapes JupyterHub in providing a curated interactive computing platform to support training in earth and life science visualization, computing and analysis. The NMFS Openscapes JupyterHub supports [workshops](content/workshops.html) and [trainings](content/hackhours.html) run by NOAA Fisheries. Are you at NOAA? Learn more about NMFS Open Science at [our internal website](https://sites.google.com/noaa.gov/nmfs-hq-st-open-science/open-science).
+## NOAA Fisheries Training in Cloud Computing
+
+These are the support pages for the NMFS Open Science resources that support training in data science for the earth and life sciences at NOAA Fisheries. 
+
+* JupyterHub information and orientation pages
+* Tutorials from our HackDays
+* Links to workshops
+
+We provide technical and infrastructure support for any groups within NOAA Fisheries who would like computing support for their workshops or trainings[^1]. In September 2024, we launched a [JupyterHub](content/jhub.html) with a variety of specialized computing environments tailored to needs in fisheries and ocean modeling. We also support the development of a [Docker stack](https://nmfs-opensci.github.io/container-images/) tailored to R and Python workflows. We run regular workshops and trainings in reproducible science. See [NMFS Openscapes](https://nmfs-openscapes.github.io/) and [NMFS Open Science](https://nmfs-opensci.github.io/) (if at NOAA see our [internal site](https://sites.google.com/noaa.gov/nmfs-hq-st-open-science/open-science)).
 
 
-![](topics-skills/img/jhub.png)

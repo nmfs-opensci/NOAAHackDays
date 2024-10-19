@@ -13,10 +13,10 @@ execute:
   
 website:
   page-navigation: true  
-  title: "NOAA Fisheries JupyterHub"
+  title: "NMFS Open Science Cloud Computing Training Hub"
   favicon: "images/favicon-16x16.png"
-  site-url: https://nmfs-opensci.github.io/NMFS-Cloud-Training
-  repo-url: https://github.com/nmfs-opensci/NMFS-Cloud-Training
+  site-url: https://nmfs-opensci.github.io/NOAAHackDays
+  repo-url: https://github.com/nmfs-opensci/NOAAHackDays
   repo-actions: [edit, issue, source]
   
   page-footer: <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br />NMFS Open Science (2023)
@@ -46,8 +46,8 @@ website:
       pinned: true
       align: left
       contents:
-        - href: index.md
-          text: About
+        - href: content/jhub.md
+          text: JupyterHub
         - href: content/setup.md
           text: Quick Start
         - href: content/hackhours.md
