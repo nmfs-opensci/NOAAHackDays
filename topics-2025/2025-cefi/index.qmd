@@ -1,0 +1,13 @@
+---
+title: CEFI Portal
+---
+
+Image: Py-R Geospatial
+
+https://psl.noaa.gov/cefi_portal/#cookbooks
+
+Some useful links below:
+
+* CEFI portal : https://psl.noaa.gov/cefi_portal/#overview 
+* CEFI portal GitHub organization : https://github.com/NOAA-CEFI-Portal 
+* Data OPeNDAP : https://psl.noaa.gov/thredds/catalog/Projects/CEFI/catalog.html 
