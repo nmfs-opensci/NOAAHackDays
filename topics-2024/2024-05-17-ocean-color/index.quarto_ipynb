@@ -1,0 +1,76 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: Ocean Color Mapping\n",
+        "author: 'Ian Carroll, NASA'\n",
+        "jupyter:\n",
+        "  jupytext:\n",
+        "    text_representation:\n",
+        "      extension: .qmd\n",
+        "      format_name: quarto\n",
+        "      format_version: '1.0'\n",
+        "      jupytext_version: 1.16.1\n",
+        "  kernelspec:\n",
+        "    display_name: notebook\n",
+        "    language: python\n",
+        "    name: notebook\n",
+        "---\n",
+        "\n",
+        "\n",
+        "Image: Py - Openscapes\n",
+        "\n",
+        "# Tutorials\n",
+        "\n",
+        "* [PACE/OCI Data Access](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci_data_access/)\n",
+        "* [PACE/OCI Processing Levels and Viz](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/notebooks/oci_file_structure/)\n",
+        "\n",
+        "\n",
+        "# Instructions\n",
+        "\n",
+        "-   Go to dhub.opensci.live\n",
+        "-   Select the Py - Openscapes image\n",
+        "-   clone or pull the NOAAHackDays repo\n",
+        "-   the notebooks are in `topics-2024/2024-05-17-ocean-color`\n",
+        "\n",
+        "## How to clone\n",
+        "\n",
+        "Never cloned the NOAAHackDays repo?\n",
+        "\n",
+        "```         \n",
+        "cd ~\n",
+        "git clone https://github.com/nmfs-opensci/NOAAHackDays\n",
+        "```\n",
+        "\n",
+        "Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.\n",
+        "\n",
+        "```  \n",
+        "cd ~/NOAAHackDays\n",
+        "git fetch origin\n",
+        "git reset --hard origin/main\n",
+        "```"
+      ],
+      "id": "05641056"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "notebook",
+      "language": "python",
+      "name": "notebook"
+    },
+    "jupytext": {
+      "text_representation": {
+        "extension": ".qmd",
+        "format_name": "quarto",
+        "format_version": "1.0",
+        "jupytext_version": "1.16.1"
+      }
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

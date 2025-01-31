@@ -1,0 +1,24 @@
+---
+title: CMIP6 Cookbook
+---
+
+Exploring CMIP6 data with Pangeo Python tools. From [Project Pythia](https://projectpythia.org)
+
+# Tutorials
+
+* [CMIP6 Cookbook](https://projectpythia.org/cmip6-cookbook/README.html)
+
+# Instructions
+
+* dhub.opensci.live
+* Select the Py - CMIP6 image
+* clone the CMIP6 Cookbook
+
+## How to clone
+
+```
+cd ~
+git clone https://github.com/ProjectPythia/cmip6-cookbook.git
+```
+
+

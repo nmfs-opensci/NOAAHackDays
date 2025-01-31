@@ -1,24 +1,26 @@
 # NOAAHackHours
 
+## How to Sign Up
 
-### Overview
+### NOAA staff (any line office)
 
-The the era of big data in the earth sciences is here and learning how to effectively use oceanographic remote-sensing data, both in the cloud and on your computer, is a core skill for modern fisheries science and management. Learning how to access cloud-based data, visualize these data, use these data in models, and use the tools of modern reproducible and collaborative science is the main goal of these hackday events. Through these events, participants will gain experience with assessing remote-sensing data in the cloud, R and RStudio, Python and Jupyter notebooks, and collaborating with Git and GitHub. 
+[Click Here for Instructions for Signing Up]() Requires NOAA email to open.
 
-### Aims and Objectives
+### Non-NOAA
 
-* Learn how to discover and use oceanographic remote-sensing data
-* Familiarize participants with using remote-sensing data in R and Python with code. 
-* Obtain hands-on experience in using remote-sensing data for various science applications.
-* Learn by working together on a small group project/task. 
+## Overview
 
-### What to expect
+The the era of big data in the earth sciences is here and learning how to effectively use ocean big data, both in the cloud and on your computer, is a core skill for modern fisheries science and management. Learning how to access cloud-based data, visualize these data, use these data in models, and use the tools of modern reproducible and collaborative science is the main goal of these hackhour events. Through these events, participants will gain experience with assessing ocean big data in the cloud, R and RStudio, Python and Jupyter notebooks, and collaborating with Git and GitHub. 
 
-* What is a hack event? See the [description of hackweeks](https://escience.washington.edu/using-data-science/hackweeks/) on the University of Washington eScience institute website:
+## Aims and Objectives
 
-*A hackweek is a participant-driven workshop that blends data science education, community building, and project work over a short period of time (one to two weeks). The events are highly immersive and allow participants to work directly with data science professionals to co-shape projects and educational outcomes. Hackweeks often help individuals and teams engage more effectively in open and reproducible science.* - eScience Institute, University of Washington
+* Learn how to discover and use ocean data, esp 'big data' (remote-sensing, acoustics, image, sensor)
+* Familiarize participants with using ocean data in R and Python with code. 
+* Obtain hands-on experience in using ocean data for various science applications.
+* Learn by working together and going through . 
 
-* All tutorials and examples are developed openly and will be publicly available during and following the event. Participants will strengthen their practice of open science, using open source code and collaborating on their projects with course peers.
+
+
 
 <hr>
 

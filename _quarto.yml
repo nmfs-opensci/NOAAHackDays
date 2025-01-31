@@ -7,6 +7,9 @@ project:
     - "!topics-2023/2023-12-19-earthdatalogin-intro/Earthdata/*_Harmony.qmd"
     - "!topics-2023/2023-12-19-earthdatalogin-intro/Earthdata_*"
     - "!topics-2023/2023-12-19-earthdatalogin-intro/earthdatalogin_sst.qmd"
+    - "!topics-2025/2025-cefi/*"
+    - "!topics-2025/2025-echopype/*"
+    - "!topics-2025/2025-PACE/*"
 
 execute:
   freeze: auto
@@ -61,6 +64,8 @@ website:
           href: topics-2023/index.md
         - text: HackHours 2024
           href: topics-2024/index.md
+        - text: HackHours 2025
+          href: topics-2025/index.md
         - text: "---"
         - href: content/reuse.md
           text: Reuse Statement
@@ -143,6 +148,21 @@ website:
           href: topics-2024/2024-05-24-sits/index.qmd
         - text: Python - CEFI Portal
           href: topics-2024/2024-06-14-cefi/index.qmd
+    - id: topics-2024
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: HackHours 2025
+          href: topics-2025/index.md
+        - text: back
+          href: index.md
+        - text: "---"
+        - text: Python - NASA Earth Data
+          href: topics-2025/2025-02-14-earthdata/index.qmd
 format:
   html:
     theme:

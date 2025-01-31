@@ -1,0 +1,29 @@
+---
+title: Coastwatch R module
+author: Sunny Hospital and Daisy Shi (CoastWatch)
+---
+
+Link to original repos in CoastWatch org: [CoastWatch tutorials R](https://github.com/coastwatch-training/Workshops/tree/main/NMFS-HackHour-Cloud-JupyterHubs/22March2024-R)
+
+# Tutorials
+
+* [Mask shallow pixels for satellite ocean color datasets](mask-shallow-ocean-color.rmd)
+* [Match up satellite to buoy data](matchup_satellite_buoy_data.Rmd)
+
+## How to clone
+
+Never cloned the NOAAHackDays repo?
+```
+cd ~
+git clone https://github.com/nmfs-opensci/NOAAHackDays
+```
+
+Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.
+
+```  
+cd ~/NOAAHackDays
+git fetch origin
+git reset --hard origin/main
+```
+
+

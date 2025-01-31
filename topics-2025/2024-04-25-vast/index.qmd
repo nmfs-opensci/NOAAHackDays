@@ -1,0 +1,38 @@
+---
+title: VAST
+author: Eli Holmes
+---
+
+Image: R - VAST
+
+# Tutorials
+
+```{r echo=FALSE, results="asis"}
+files <- dir() |> grep(pattern="qmd", value= TRUE)
+files <- files[files != "index.qmd"]
+paste0("* [",files,"](",files,")") |> paste0(collapse="\n") |> cat()
+```
+
+# Instructions
+
+-   dhub.opensci.live
+-   Select the R - VAST image
+-   clone the NOAAHackDays repo
+-   the notebooks are in `topics-2024/2024-04-25-vast`
+
+## How to clone
+
+Never cloned the NOAAHackDays repo?
+
+```         
+cd ~
+git clone https://github.com/nmfs-opensci/NOAAHackDays
+```
+
+Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.
+
+```  
+cd ~/NOAAHackDays
+git fetch origin
+git reset --hard origin/main
+```

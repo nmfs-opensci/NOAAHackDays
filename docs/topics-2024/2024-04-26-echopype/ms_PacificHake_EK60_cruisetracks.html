@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NMFS Open Science Cloud Computing Training Hub - Exploring ship echosounder data from the Pacific Hake survey</title>
+<title>Exploring ship echosounder data from the Pacific Hake survey – NMFS Open Science Cloud Computing Training Hub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,12 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -149,18 +149,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exploring ship echosounder data from the Pacific Hake survey</li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -4491,54 +4491,7 @@ Attributes:
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>latitude</span>
-</div>
-<div class="xr-var-dims">
-(time1)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-2dcf332c-db18-4996-b84e-c6d10aad374c" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-2dcf332c-db18-4996-b84e-c6d10aad374c" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-14b4c233-ff98-4665-bd7f-6d0513872a3c" class="xr-var-data-in" type="checkbox">
-<label for="data-14b4c233-ff98-4665-bd7f-6d0513872a3c" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Platform latitude
-</dd>
-<dt><span>standard_name :</span></dt>
-<dd>
-latitude
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-degrees_north
-</dd>
-<dt><span>valid_range :</span></dt>
-<dd>
-(-90.0, 90.0)
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>latitude</span></div><div class="xr-var-dims">(time1)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;</div><input id="attrs-2dcf332c-db18-4996-b84e-c6d10aad374c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2dcf332c-db18-4996-b84e-c6d10aad374c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-14b4c233-ff98-4665-bd7f-6d0513872a3c" class="xr-var-data-in" type="checkbox"><label for="data-14b4c233-ff98-4665-bd7f-6d0513872a3c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>valid_range :</span></dt><dd>(-90.0, 90.0)</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -4581,54 +4534,7 @@ degrees_north
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>longitude</span>
-</div>
-<div class="xr-var-dims">
-(time1)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-98bc1584-3e03-4947-b6cc-0e1a343bee0e" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-98bc1584-3e03-4947-b6cc-0e1a343bee0e" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-5d92100d-2d82-48a4-933a-9e49b315804b" class="xr-var-data-in" type="checkbox">
-<label for="data-5d92100d-2d82-48a4-933a-9e49b315804b" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Platform longitude
-</dd>
-<dt><span>standard_name :</span></dt>
-<dd>
-longitude
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-degrees_east
-</dd>
-<dt><span>valid_range :</span></dt>
-<dd>
-(-180.0, 180.0)
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>longitude</span></div><div class="xr-var-dims">(time1)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;</div><input id="attrs-98bc1584-3e03-4947-b6cc-0e1a343bee0e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-98bc1584-3e03-4947-b6cc-0e1a343bee0e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5d92100d-2d82-48a4-933a-9e49b315804b" class="xr-var-data-in" type="checkbox"><label for="data-5d92100d-2d82-48a4-933a-9e49b315804b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>valid_range :</span></dt><dd>(-180.0, 180.0)</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -4671,54 +4577,7 @@ degrees_east
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>pitch</span>
-</div>
-<div class="xr-var-dims">
-(time2)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-5c17360f-b45f-4c65-8658-e9019a9c7f0f" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-5c17360f-b45f-4c65-8658-e9019a9c7f0f" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-b14344cc-5c8d-4594-8b76-689dc142403f" class="xr-var-data-in" type="checkbox">
-<label for="data-b14344cc-5c8d-4594-8b76-689dc142403f" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Platform pitch
-</dd>
-<dt><span>standard_name :</span></dt>
-<dd>
-platform_pitch_angle
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-arc_degree
-</dd>
-<dt><span>valid_range :</span></dt>
-<dd>
-(-90.0, 90.0)
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>pitch</span></div><div class="xr-var-dims">(time2)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;</div><input id="attrs-5c17360f-b45f-4c65-8658-e9019a9c7f0f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5c17360f-b45f-4c65-8658-e9019a9c7f0f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b14344cc-5c8d-4594-8b76-689dc142403f" class="xr-var-data-in" type="checkbox"><label for="data-b14344cc-5c8d-4594-8b76-689dc142403f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform pitch</dd><dt><span>standard_name :</span></dt><dd>platform_pitch_angle</dd><dt><span>units :</span></dt><dd>arc_degree</dd><dt><span>valid_range :</span></dt><dd>(-90.0, 90.0)</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -4761,177 +4620,7 @@ arc_degree
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>position_offset_x</span>
-</div>
-<div class="xr-var-dims">
-()
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-nan
-</div>
-<input id="attrs-15148e35-3d1f-4257-afce-0f6daea8dc99" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-15148e35-3d1f-4257-afce-0f6daea8dc99" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-0994f498-b01a-4380-9de7-d641ce683f73" class="xr-var-data-in" type="checkbox">
-<label for="data-0994f498-b01a-4380-9de7-d641ce683f73" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Distance along the x-axis from the platform coordinate system origin to the latitude/longitude sensor origin
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-m
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
-<pre><code>array(nan)</code></pre>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>position_offset_y</span>
-</div>
-<div class="xr-var-dims">
-()
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-nan
-</div>
-<input id="attrs-b733bded-5e8c-477a-9048-08bc35f7f13e" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-b733bded-5e8c-477a-9048-08bc35f7f13e" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-bd04d679-23e4-44cc-b120-701fa76c3a68" class="xr-var-data-in" type="checkbox">
-<label for="data-bd04d679-23e4-44cc-b120-701fa76c3a68" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Distance along the y-axis from the platform coordinate system origin to the latitude/longitude sensor origin
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-m
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
-<pre><code>array(nan)</code></pre>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>position_offset_z</span>
-</div>
-<div class="xr-var-dims">
-()
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-nan
-</div>
-<input id="attrs-eefb32a8-9e9c-44e2-98ad-e8eda31fe51b" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-eefb32a8-9e9c-44e2-98ad-e8eda31fe51b" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-53a5db18-44eb-4a07-9482-5bb4ad1c55ba" class="xr-var-data-in" type="checkbox">
-<label for="data-53a5db18-44eb-4a07-9482-5bb4ad1c55ba" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Distance along the z-axis from the platform coordinate system origin to the latitude/longitude sensor origin
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-m
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
-<pre><code>array(nan)</code></pre>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>roll</span>
-</div>
-<div class="xr-var-dims">
-(time2)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-2835838a-c602-406d-9ac4-8f94952c71c4" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-2835838a-c602-406d-9ac4-8f94952c71c4" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-d39d2125-e415-41a6-80c9-6a1a34bb1726" class="xr-var-data-in" type="checkbox">
-<label for="data-d39d2125-e415-41a6-80c9-6a1a34bb1726" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Platform roll
-</dd>
-<dt><span>standard_name :</span></dt>
-<dd>
-platform_roll_angle
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-arc_degree
-</dd>
-<dt><span>valid_range :</span></dt>
-<dd>
-(-90.0, 90.0)
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>position_offset_x</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-15148e35-3d1f-4257-afce-0f6daea8dc99" class="xr-var-attrs-in" type="checkbox"><label for="attrs-15148e35-3d1f-4257-afce-0f6daea8dc99" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0994f498-b01a-4380-9de7-d641ce683f73" class="xr-var-data-in" type="checkbox"><label for="data-0994f498-b01a-4380-9de7-d641ce683f73" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the x-axis from the platform coordinate system origin to the latitude/longitude sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>position_offset_y</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-b733bded-5e8c-477a-9048-08bc35f7f13e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b733bded-5e8c-477a-9048-08bc35f7f13e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-bd04d679-23e4-44cc-b120-701fa76c3a68" class="xr-var-data-in" type="checkbox"><label for="data-bd04d679-23e4-44cc-b120-701fa76c3a68" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the y-axis from the platform coordinate system origin to the latitude/longitude sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>position_offset_z</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-eefb32a8-9e9c-44e2-98ad-e8eda31fe51b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-eefb32a8-9e9c-44e2-98ad-e8eda31fe51b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-53a5db18-44eb-4a07-9482-5bb4ad1c55ba" class="xr-var-data-in" type="checkbox"><label for="data-53a5db18-44eb-4a07-9482-5bb4ad1c55ba" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the z-axis from the platform coordinate system origin to the latitude/longitude sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>roll</span></div><div class="xr-var-dims">(time2)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;</div><input id="attrs-2835838a-c602-406d-9ac4-8f94952c71c4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2835838a-c602-406d-9ac4-8f94952c71c4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d39d2125-e415-41a6-80c9-6a1a34bb1726" class="xr-var-data-in" type="checkbox"><label for="data-d39d2125-e415-41a6-80c9-6a1a34bb1726" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform roll</dd><dt><span>standard_name :</span></dt><dd>platform_roll_angle</dd><dt><span>units :</span></dt><dd>arc_degree</dd><dt><span>valid_range :</span></dt><dd>(-90.0, 90.0)</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -4974,42 +4663,7 @@ arc_degree
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>sentence_type</span>
-</div>
-<div class="xr-var-dims">
-(time1)
-</div>
-<div class="xr-var-dtype">
-object
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-8cd99fa4-c2f5-4fa1-8517-797e607f8f44" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-8cd99fa4-c2f5-4fa1-8517-797e607f8f44" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-6d8a8dd1-6d6a-4718-b7ed-b20470eb9eb6" class="xr-var-data-in" type="checkbox">
-<label for="data-6d8a8dd1-6d6a-4718-b7ed-b20470eb9eb6" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-NMEA sentence type
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>sentence_type</span></div><div class="xr-var-dims">(time1)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;</div><input id="attrs-8cd99fa4-c2f5-4fa1-8517-797e607f8f44" class="xr-var-attrs-in" type="checkbox"><label for="attrs-8cd99fa4-c2f5-4fa1-8517-797e607f8f44" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6d8a8dd1-6d6a-4718-b7ed-b20470eb9eb6" class="xr-var-data-in" type="checkbox"><label for="data-6d8a8dd1-6d6a-4718-b7ed-b20470eb9eb6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>NMEA sentence type</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -5052,46 +4706,7 @@ NMEA sentence type
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>transducer_offset_x</span>
-</div>
-<div class="xr-var-dims">
-(channel)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-ec8c1395-f79f-475a-b92c-0e5160aba96d" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-ec8c1395-f79f-475a-b92c-0e5160aba96d" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-84b0bc7c-c7b6-41dd-bd03-77e1cb583b9c" class="xr-var-data-in" type="checkbox">
-<label for="data-84b0bc7c-c7b6-41dd-bd03-77e1cb583b9c" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-x-axis distance from the platform coordinate system origin to the sonar transducer
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-m
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>transducer_offset_x</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-ec8c1395-f79f-475a-b92c-0e5160aba96d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ec8c1395-f79f-475a-b92c-0e5160aba96d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-84b0bc7c-c7b6-41dd-bd03-77e1cb583b9c" class="xr-var-data-in" type="checkbox"><label for="data-84b0bc7c-c7b6-41dd-bd03-77e1cb583b9c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>x-axis distance from the platform coordinate system origin to the sonar transducer</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -5134,46 +4749,7 @@ m
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>transducer_offset_y</span>
-</div>
-<div class="xr-var-dims">
-(channel)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-025e5275-7726-4be6-825c-81562c35c8c8" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-025e5275-7726-4be6-825c-81562c35c8c8" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-260fc617-bace-4834-92b2-100c85b68640" class="xr-var-data-in" type="checkbox">
-<label for="data-260fc617-bace-4834-92b2-100c85b68640" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-y-axis distance from the platform coordinate system origin to the sonar transducer
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-m
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>transducer_offset_y</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-025e5275-7726-4be6-825c-81562c35c8c8" class="xr-var-attrs-in" type="checkbox"><label for="attrs-025e5275-7726-4be6-825c-81562c35c8c8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-260fc617-bace-4834-92b2-100c85b68640" class="xr-var-data-in" type="checkbox"><label for="data-260fc617-bace-4834-92b2-100c85b68640" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>y-axis distance from the platform coordinate system origin to the sonar transducer</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -5216,46 +4792,7 @@ m
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>transducer_offset_z</span>
-</div>
-<div class="xr-var-dims">
-(channel)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-6693dbda-e55f-4b76-a419-3fb52abee199" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-6693dbda-e55f-4b76-a419-3fb52abee199" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-30bb76d8-292a-44d2-8a97-5b63278838d1" class="xr-var-data-in" type="checkbox">
-<label for="data-30bb76d8-292a-44d2-8a97-5b63278838d1" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-z-axis distance from the platform coordinate system origin to the sonar transducer
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-m
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>transducer_offset_z</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-6693dbda-e55f-4b76-a419-3fb52abee199" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6693dbda-e55f-4b76-a419-3fb52abee199" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-30bb76d8-292a-44d2-8a97-5b63278838d1" class="xr-var-data-in" type="checkbox"><label for="data-30bb76d8-292a-44d2-8a97-5b63278838d1" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>z-axis distance from the platform coordinate system origin to the sonar transducer</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -5298,46 +4835,7 @@ m
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>vertical_offset</span>
-</div>
-<div class="xr-var-dims">
-(time2)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-6d3a8d6f-5a56-4759-bbbb-8e49f5fbafbe" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-6d3a8d6f-5a56-4759-bbbb-8e49f5fbafbe" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-c838ae43-e50a-4b99-b184-3acd61c097ca" class="xr-var-data-in" type="checkbox">
-<label for="data-c838ae43-e50a-4b99-b184-3acd61c097ca" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Platform vertical offset from nominal water level
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-m
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>vertical_offset</span></div><div class="xr-var-dims">(time2)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;</div><input id="attrs-6d3a8d6f-5a56-4759-bbbb-8e49f5fbafbe" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6d3a8d6f-5a56-4759-bbbb-8e49f5fbafbe" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c838ae43-e50a-4b99-b184-3acd61c097ca" class="xr-var-data-in" type="checkbox"><label for="data-c838ae43-e50a-4b99-b184-3acd61c097ca" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform vertical offset from nominal water level</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -5380,8 +4878,7 @@ m
 </tr>
 </tbody>
 </table>
-</div>
-</li></ul></div></li><li class="xr-var-item"><div class="xr-var-name"><span>water_level</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">9.15</div><input id="attrs-2dad98f4-978a-437b-b0da-d7d71989b9c0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2dad98f4-978a-437b-b0da-d7d71989b9c0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3bbee44a-6573-4b34-9e97-33aa53d4b01c" class="xr-var-data-in" type="checkbox"><label for="data-3bbee44a-6573-4b34-9e97-33aa53d4b01c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance from the platform coordinate system origin to the nominal water level along the z-axis</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(9.14999962)</pre></div></li></ul></div><li class="xr-section-item"><input id="section-85af4e97-29b1-4f3f-b57b-29b6974ef30f" class="xr-section-summary-in" type="checkbox"><label for="section-85af4e97-29b1-4f3f-b57b-29b6974ef30f" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>channel</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-dcf2240c-8b26-4005-879f-aceffb806fc8" class="xr-index-data-in" type="checkbox"><label for="index-dcf2240c-8b26-4005-879f-aceffb806fc8" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index(['GPT  18 kHz 009072058c8d 1-1 ES18-11',
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>water_level</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">9.15</div><input id="attrs-2dad98f4-978a-437b-b0da-d7d71989b9c0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2dad98f4-978a-437b-b0da-d7d71989b9c0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3bbee44a-6573-4b34-9e97-33aa53d4b01c" class="xr-var-data-in" type="checkbox"><label for="data-3bbee44a-6573-4b34-9e97-33aa53d4b01c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance from the platform coordinate system origin to the nominal water level along the z-axis</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(9.14999962)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-85af4e97-29b1-4f3f-b57b-29b6974ef30f" class="xr-section-summary-in" type="checkbox"><label for="section-85af4e97-29b1-4f3f-b57b-29b6974ef30f" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>channel</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-dcf2240c-8b26-4005-879f-aceffb806fc8" class="xr-index-data-in" type="checkbox"><label for="index-dcf2240c-8b26-4005-879f-aceffb806fc8" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index(['GPT  18 kHz 009072058c8d 1-1 ES18-11',
        'GPT  38 kHz 009072058146 2-1 ES38B',
        'GPT 120 kHz 00907205a6d0 4-1 ES120-7C'],
       dtype='object', name='channel'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>time1</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-9b201b6f-55eb-4b64-8b24-13eff29ccb6b" class="xr-index-data-in" type="checkbox"><label for="index-9b201b6f-55eb-4b64-8b24-13eff29ccb6b" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2017-07-28 00:05:36.103315', '2017-07-28 00:05:37.511097',
@@ -5406,21 +4903,21 @@ m
                '2017-07-30 00:17:45.393536', '2017-07-30 00:17:47.619663',
                '2017-07-30 00:17:49.835791', '2017-07-30 00:17:52.050917',
                '2017-07-30 00:17:54.266043', '2017-07-30 00:17:56.492170'],
-              dtype='datetime64[ns]', name='time2', length=88959, freq=None))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-c9323577-7902-4a6f-8373-67bb6da09a2a" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-c9323577-7902-4a6f-8373-67bb6da09a2a" class="xr-section-summary">Attributes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>platform_code_ICES :</span></dt><dd>315</dd><dt><span>platform_name :</span></dt><dd>Bell M. Shimada</dd><dt><span>platform_type :</span></dt><dd>Research vessel</dd></dl></div></li></div></div>
+              dtype='datetime64[ns]', name='time2', length=88959, freq=None))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-c9323577-7902-4a6f-8373-67bb6da09a2a" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-c9323577-7902-4a6f-8373-67bb6da09a2a" class="xr-section-summary">Attributes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>platform_code_ICES :</span></dt><dd>315</dd><dt><span>platform_name :</span></dt><dd>Bell M. Shimada</dd><dt><span>platform_type :</span></dt><dd>Research vessel</dd></dl></div></li></ul></div></div>
 </div>
-</section></main></div>
+</div>
 <p>We can use <code>time1</code> (the timestamps for NMEA datagrams, or GPS timestamps) to examine the exact timestamp interval spanned by the combined dataset.</p>
 <div id="cell-25" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>platform_ds<span class="sc">.</span>time1<span class="sc">.</span>values<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>platform_ds<span class="sc">.</span>time1<span class="sc">.</span>values<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>platform_ds<span class="sc">.</span>time1<span class="sc">.</span>values<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>platform_ds<span class="sc">.</span>time1<span class="sc">.</span>values<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2017-07-28T00:05:36.103315000, 2017-07-30T00:17:59.381813000</code></pre>
 </div>
 </div>
 <p>To create the GeoPandas GeoDataFrame, first transform the <code>latitude</code> and <code>longitude</code> arrays to a single Pandas DataFrame that retains the <code>time1</code> coordinate as a common index. This is done by using the DataFrame <code>to_dataframe</code> method together with a Pandas <code>join</code> operation. Then, a point GeoDataFrame is created from this DataFrame.</p>
 <div id="cell-27" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gps_df <span class="op">=</span> platform_ds.latitude.to_dataframe().join(platform_ds.longitude.to_dataframe())</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>gps_df.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gps_df <span class="op">=</span> platform_ds.latitude.to_dataframe().join(platform_ds.longitude.to_dataframe())</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>gps_df.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -5432,7 +4929,7 @@ m
 <th data-quarto-table-cell-role="th">latitude</th>
 <th data-quarto-table-cell-role="th">longitude</th>
 </tr>
-<tr class="odd">
+<tr class="even">
 <th data-quarto-table-cell-role="th">time1</th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
@@ -5461,15 +4958,15 @@ m
 </div>
 </div>
 <div id="cell-28" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gps_gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    gps_df,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(gps_df[<span class="st">'longitude'</span>], gps_df[<span class="st">'latitude'</span>]), </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"epsg:4326"</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gps_gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    gps_df,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(gps_df[<span class="st">'longitude'</span>], gps_df[<span class="st">'latitude'</span>]), </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"epsg:4326"</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A simple, easily generated map plot of the point GeoDataFrame</p>
 <div id="cell-30" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gps_gdf.plot(markersize<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gps_gdf.plot(markersize<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -5478,26 +4975,26 @@ m
 </div>
 </div>
 </div>
-
+</section>
 <section id="read-mvbs-and-plot-track-echograms-for-time-periods-corresponding-to-two-ship-tracks" class="level2">
-<h2 data-anchor-id="read-mvbs-and-plot-track-echograms-for-time-periods-corresponding-to-two-ship-tracks">Read MVBS and plot track echograms for time periods corresponding to two ship tracks</h2>
+<h2 class="anchored" data-anchor-id="read-mvbs-and-plot-track-echograms-for-time-periods-corresponding-to-two-ship-tracks">Read MVBS and plot track echograms for time periods corresponding to two ship tracks</h2>
 <section id="read-mvbs-as-a-concatenated-dataset" class="level3">
-<h3 data-anchor-id="read-mvbs-as-a-concatenated-dataset">Read MVBS as a concatenated dataset</h3>
+<h3 class="anchored" data-anchor-id="read-mvbs-as-a-concatenated-dataset">Read MVBS as a concatenated dataset</h3>
 <p>Use <code>xarray.open_mfdataset</code> again to read and concatenate (combine) data files into a single xarray Dataset. This time, we’re reading the MVBS netCDF files.</p>
 <div id="cell-33" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>MVBS_ds <span class="op">=</span> xr.open_mfdataset(</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">str</span>(calibrated_dpath <span class="op">/</span> <span class="st">'MVBS_*.nc'</span>), </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    data_vars<span class="op">=</span><span class="st">'minimal'</span>, coords<span class="op">=</span><span class="st">'minimal'</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    combine<span class="op">=</span><span class="st">'by_coords'</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>MVBS_ds <span class="op">=</span> xr.open_mfdataset(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">str</span>(calibrated_dpath <span class="op">/</span> <span class="st">'MVBS_*.nc'</span>), </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    data_vars<span class="op">=</span><span class="st">'minimal'</span>, coords<span class="op">=</span><span class="st">'minimal'</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    combine<span class="op">=</span><span class="st">'by_coords'</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 2.14 s, sys: 180 ms, total: 2.32 s
 Wall time: 3.16 s</code></pre>
 </div>
 </div>
 <div id="cell-34" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -5936,95 +5433,7 @@ Attributes:
 </tr>
 </tbody>
 </table>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>water_level</span>
-</div>
-<div class="xr-var-dims">
-()
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-9.15
-</div>
-<input id="attrs-ce88f998-3aad-41ef-92c9-37696531a0aa" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-ce88f998-3aad-41ef-92c9-37696531a0aa" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-acbcd5eb-347b-4574-8af3-d7b2118fb046" class="xr-var-data-in" type="checkbox">
-<label for="data-acbcd5eb-347b-4574-8af3-d7b2118fb046" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>long_name :</span></dt>
-<dd>
-Distance from the platform coordinate system origin to the nominal water level along the z-axis
-</dd>
-<dt><span>units :</span></dt>
-<dd>
-m
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
-<pre><code>array(9.14999962)</code></pre>
-</div>
-</li>
-<li class="xr-var-item">
-<div class="xr-var-name">
-<span>frequency_nominal</span>
-</div>
-<div class="xr-var-dims">
-(channel)
-</div>
-<div class="xr-var-dtype">
-float64
-</div>
-<div class="xr-var-preview xr-preview">
-dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;
-</div>
-<input id="attrs-fd750a64-04ed-4924-b7dc-8041b76dba40" class="xr-var-attrs-in" type="checkbox">
-<label for="attrs-fd750a64-04ed-4924-b7dc-8041b76dba40" title="Show/Hide attributes">
-<svg class="icon xr-icon-file-text2">
-<use href="#icon-file-text2"></use>
-</svg>
-</label>
-<input id="data-8615a1e7-f603-4999-b71a-3d651a1e6dbc" class="xr-var-data-in" type="checkbox">
-<label for="data-8615a1e7-f603-4999-b71a-3d651a1e6dbc" title="Show/Hide data repr">
-<svg class="icon xr-icon-database">
-<use href="#icon-database"></use>
-</svg>
-</label>
-<div class="xr-var-attrs">
-<dl>
-<dt><span>units :</span></dt>
-<dd>
-Hz
-</dd>
-<dt><span>long_name :</span></dt>
-<dd>
-Transducer frequency
-</dd>
-<dt><span>valid_min :</span></dt>
-<dd>
-0.0
-</dd>
-<dt><span>standard_name :</span></dt>
-<dd>
-sound_frequency
-</dd>
-</dl>
-</div>
-<div class="xr-var-data">
+</div></li><li class="xr-var-item"><div class="xr-var-name"><span>water_level</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">9.15</div><input id="attrs-ce88f998-3aad-41ef-92c9-37696531a0aa" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ce88f998-3aad-41ef-92c9-37696531a0aa" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-acbcd5eb-347b-4574-8af3-d7b2118fb046" class="xr-var-data-in" type="checkbox"><label for="data-acbcd5eb-347b-4574-8af3-d7b2118fb046" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance from the platform coordinate system origin to the nominal water level along the z-axis</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(9.14999962)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>frequency_nominal</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-fd750a64-04ed-4924-b7dc-8041b76dba40" class="xr-var-attrs-in" type="checkbox"><label for="attrs-fd750a64-04ed-4924-b7dc-8041b76dba40" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8615a1e7-f603-4999-b71a-3d651a1e6dbc" class="xr-var-data-in" type="checkbox"><label for="data-8615a1e7-f603-4999-b71a-3d651a1e6dbc" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>Hz</dd><dt><span>long_name :</span></dt><dd>Transducer frequency</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>standard_name :</span></dt><dd>sound_frequency</dd></dl></div><div class="xr-var-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -6067,8 +5476,7 @@ sound_frequency
 </tr>
 </tbody>
 </table>
-</div>
-</li></ul></div></li></ul></div><li class="xr-section-item"><input id="section-fec48cb9-39db-4636-a006-9995c6e06b83" class="xr-section-summary-in" type="checkbox"><label for="section-fec48cb9-39db-4636-a006-9995c6e06b83" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>ping_time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-f1649318-9ef2-471a-83b3-f82f4a559e45" class="xr-index-data-in" type="checkbox"><label for="index-f1649318-9ef2-471a-83b3-f82f4a559e45" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2017-07-28 00:05:20', '2017-07-28 00:05:40',
+</div></li></ul></div></li><li class="xr-section-item"><input id="section-fec48cb9-39db-4636-a006-9995c6e06b83" class="xr-section-summary-in" type="checkbox"><label for="section-fec48cb9-39db-4636-a006-9995c6e06b83" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>ping_time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-f1649318-9ef2-471a-83b3-f82f4a559e45" class="xr-index-data-in" type="checkbox"><label for="index-f1649318-9ef2-471a-83b3-f82f4a559e45" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2017-07-28 00:05:20', '2017-07-28 00:05:40',
                '2017-07-28 00:06:00', '2017-07-28 00:06:20',
                '2017-07-28 00:06:40', '2017-07-28 00:07:00',
                '2017-07-28 00:07:20', '2017-07-28 00:07:40',
@@ -6085,15 +5493,15 @@ sound_frequency
       dtype='object', name='channel'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>echo_range</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-cc63b223-50b9-4342-90a9-c012de8eb74d" class="xr-index-data-in" type="checkbox"><label for="index-cc63b223-50b9-4342-90a9-c012de8eb74d" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([  0.0,   5.0,  10.0,  15.0,  20.0,  25.0,  30.0,  35.0,  40.0,  45.0,
        ...
        700.0, 705.0, 710.0, 715.0, 720.0, 725.0, 730.0, 735.0, 740.0, 745.0],
-      dtype='float64', name='echo_range', length=150))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b2a21af5-8f39-4840-84eb-42cbae5b6029" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-b2a21af5-8f39-4840-84eb-42cbae5b6029" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>processing_software_name :</span></dt><dd>echopype</dd><dt><span>processing_software_version :</span></dt><dd>0.8.4</dd><dt><span>processing_time :</span></dt><dd>2024-04-25T17:58:23Z</dd><dt><span>processing_function :</span></dt><dd>commongrid.compute_MVBS</dd></dl></div></li></div></div>
+      dtype='float64', name='echo_range', length=150))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b2a21af5-8f39-4840-84eb-42cbae5b6029" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-b2a21af5-8f39-4840-84eb-42cbae5b6029" class="xr-section-summary">Attributes: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>processing_software_name :</span></dt><dd>echopype</dd><dt><span>processing_software_version :</span></dt><dd>0.8.4</dd><dt><span>processing_time :</span></dt><dd>2024-04-25T17:58:23Z</dd><dt><span>processing_function :</span></dt><dd>commongrid.compute_MVBS</dd></dl></div></li></ul></div></div>
 </div>
-
+</div>
 <p>Replace the <code>channel</code> dimension and coordinate with the <code>frequency_nominal</code> variable containing actual frequency values. Note that this step is possible only because there are no duplicated frequencies present.</p>
 <div id="cell-36" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds <span class="op">=</span> ep.consolidate.swap_dims_channel_frequency(MVBS_ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds <span class="op">=</span> ep.consolidate.swap_dims_channel_frequency(MVBS_ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-37" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -6551,37 +5959,37 @@ Attributes:
 </div>
 </section>
 <section id="extract-mvbs-along-two-n-s-tracks-selected-via-geographical-bounding-boxes" class="level3">
-<h3 data-anchor-id="extract-mvbs-along-two-n-s-tracks-selected-via-geographical-bounding-boxes">Extract MVBS along two N-S tracks selected via geographical bounding boxes</h3>
+<h3 class="anchored" data-anchor-id="extract-mvbs-along-two-n-s-tracks-selected-via-geographical-bounding-boxes">Extract MVBS along two N-S tracks selected via geographical bounding boxes</h3>
 <p>Define rectangular bounding boxes around two tracks oriented North-South, then plot a reference map showing all the GPS points (in red), the two bounding boxes (black), and the OOI mooring location (CE04 Oregon Offshore, yellow star) examined in the accompanying Jupyter notebook.</p>
 <div id="cell-40" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tracksouth_bbox <span class="op">=</span> gpd.GeoSeries(box(<span class="op">-</span><span class="fl">125.17</span>, <span class="fl">43.65</span>, <span class="op">-</span><span class="fl">125.14</span>, <span class="fl">43.84</span>), crs<span class="op">=</span>gps_gdf.crs)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>tracknorth_bbox <span class="op">=</span> gpd.GeoSeries(box(<span class="op">-</span><span class="fl">125.17</span>, <span class="fl">43.98</span>, <span class="op">-</span><span class="fl">125.14</span>, <span class="fl">44.17</span>), crs<span class="op">=</span>gps_gdf.crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tracksouth_bbox <span class="op">=</span> gpd.GeoSeries(box(<span class="op">-</span><span class="fl">125.17</span>, <span class="fl">43.65</span>, <span class="op">-</span><span class="fl">125.14</span>, <span class="fl">43.84</span>), crs<span class="op">=</span>gps_gdf.crs)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tracknorth_bbox <span class="op">=</span> gpd.GeoSeries(box(<span class="op">-</span><span class="fl">125.17</span>, <span class="fl">43.98</span>, <span class="op">-</span><span class="fl">125.14</span>, <span class="fl">44.17</span>), crs<span class="op">=</span>gps_gdf.crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-41" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>basemap <span class="op">=</span> cimgt.OSM()</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">7</span>), subplot_kw<span class="op">=</span>{<span class="st">"projection"</span>: basemap.crs}</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>bnd <span class="op">=</span> gps_gdf.geometry.bounds</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>ax.set_extent([bnd.minx.<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, bnd.maxx.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">2</span>, </span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>               bnd.miny.<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.8</span>, bnd.maxy.<span class="bu">max</span>() <span class="op">+</span> <span class="fl">2.2</span>])</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>ax.add_image(basemap, <span class="dv">7</span>)</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>ax.gridlines(draw_labels<span class="op">=</span><span class="va">True</span>, xformatter<span class="op">=</span>LONGITUDE_FORMATTER, yformatter<span class="op">=</span>LATITUDE_FORMATTER)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># GPS points</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>gps_gdf.plot(ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, </span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>             transform<span class="op">=</span>ccrs.PlateCarree())</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box for selected tracks</span></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>tracksouth_bbox.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, facecolor<span class="op">=</span><span class="st">'none'</span>, </span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>                     transform<span class="op">=</span>ccrs.PlateCarree())</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>tracknorth_bbox.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, facecolor<span class="op">=</span><span class="st">'none'</span>, </span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>                     transform<span class="op">=</span>ccrs.PlateCarree())</span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="co"># OOI CE04 Oregon Offshore mooring location</span></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">-</span><span class="fl">124.95</span>, <span class="fl">44.37</span>, marker<span class="op">=</span><span class="st">'*'</span>, color<span class="op">=</span><span class="st">'yellow'</span>, markersize<span class="op">=</span><span class="dv">13</span>, </span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>         transform<span class="op">=</span>ccrs.PlateCarree())<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>basemap <span class="op">=</span> cimgt.OSM()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">7</span>), subplot_kw<span class="op">=</span>{<span class="st">"projection"</span>: basemap.crs}</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>bnd <span class="op">=</span> gps_gdf.geometry.bounds</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>ax.set_extent([bnd.minx.<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, bnd.maxx.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">2</span>, </span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>               bnd.miny.<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.8</span>, bnd.maxy.<span class="bu">max</span>() <span class="op">+</span> <span class="fl">2.2</span>])</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>ax.add_image(basemap, <span class="dv">7</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>ax.gridlines(draw_labels<span class="op">=</span><span class="va">True</span>, xformatter<span class="op">=</span>LONGITUDE_FORMATTER, yformatter<span class="op">=</span>LATITUDE_FORMATTER)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># GPS points</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>gps_gdf.plot(ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, </span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>             transform<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box for selected tracks</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>tracksouth_bbox.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, facecolor<span class="op">=</span><span class="st">'none'</span>, </span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>                     transform<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>tracknorth_bbox.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, facecolor<span class="op">=</span><span class="st">'none'</span>, </span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>                     transform<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="co"># OOI CE04 Oregon Offshore mooring location</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">-</span><span class="fl">124.95</span>, <span class="fl">44.37</span>, marker<span class="op">=</span><span class="st">'*'</span>, color<span class="op">=</span><span class="st">'yellow'</span>, markersize<span class="op">=</span><span class="dv">13</span>, </span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>         transform<span class="op">=</span>ccrs.PlateCarree())<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -6593,61 +6001,61 @@ Attributes:
 <p>Clip the GPS locations GeoPandas GeoDataFrame <code>gps_gdf</code> generated from the <code>Platform</code> group with the two rectangular regions, <code>tracksouth_bbox</code> and <code>tracknorth_bbox</code>. Extract from those clipped GeoDataFrames (<code>tracksouth_gps_gdf</code> and <code>tracknorth_gps_gdf</code>) the minimum and maximum <code>time1</code> timestamps for each track and use them to select the corresponding time span in the MVBS data.</p>
 <p>Finally, create a MVBS Dataset subset for each track (<code>tracksouth_MVBS_ds</code> and <code>tracknorth_MVBS_ds</code>) by taking advantage of xarray’s “label”-based selection capability via the <code>sel</code> method. We select <code>MVBS_ds</code> data with <code>ping_time</code> values within the timestamp interval “slice” extracted from the geographical track. As we can see above, <code>ping_time</code> is a coordinate variable in the <code>MVBS_ds</code> Dataset.</p>
 <div id="cell-43" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tracksouth_gps_gdf <span class="op">=</span> gpd.clip(gps_gdf, tracksouth_bbox)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>tracksouth_MVBS_ds <span class="op">=</span> MVBS_ds.sel(</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    ping_time<span class="op">=</span><span class="bu">slice</span>(tracksouth_gps_gdf.index.<span class="bu">min</span>(), tracksouth_gps_gdf.index.<span class="bu">max</span>())</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>tracknorth_gps_gdf <span class="op">=</span> gpd.clip(gps_gdf, tracknorth_bbox)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>tracknorth_MVBS_ds <span class="op">=</span> MVBS_ds.sel(</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    ping_time<span class="op">=</span><span class="bu">slice</span>(tracknorth_gps_gdf.index.<span class="bu">min</span>(), tracknorth_gps_gdf.index.<span class="bu">max</span>())</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tracksouth_gps_gdf <span class="op">=</span> gpd.clip(gps_gdf, tracksouth_bbox)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tracksouth_MVBS_ds <span class="op">=</span> MVBS_ds.sel(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    ping_time<span class="op">=</span><span class="bu">slice</span>(tracksouth_gps_gdf.index.<span class="bu">min</span>(), tracksouth_gps_gdf.index.<span class="bu">max</span>())</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>tracknorth_gps_gdf <span class="op">=</span> gpd.clip(gps_gdf, tracknorth_bbox)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>tracknorth_MVBS_ds <span class="op">=</span> MVBS_ds.sel(</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    ping_time<span class="op">=</span><span class="bu">slice</span>(tracknorth_gps_gdf.index.<span class="bu">min</span>(), tracknorth_gps_gdf.index.<span class="bu">max</span>())</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plot-mvbs-echograms-for-the-two-n-s-tracks-for-all-3-frequencies" class="level3">
-<h3 data-anchor-id="plot-mvbs-echograms-for-the-two-n-s-tracks-for-all-3-frequencies">Plot MVBS echograms for the two N-S tracks, for all 3 frequencies</h3>
+<h3 class="anchored" data-anchor-id="plot-mvbs-echograms-for-the-two-n-s-tracks-for-all-3-frequencies">Plot MVBS echograms for the two N-S tracks, for all 3 frequencies</h3>
 <p>The final step is to create echogram plots (range vs ping_time) for each echosounder frequency and each of the two selected ship tracks. That’s 6 subplots. We first define two functions to simplify the task. <code>plot_echograms</code> plots the echograms of the 3 frequencies as a column of subplots, extracting the data for each frequency by using xarray’s <code>isel</code> index selector method, which uses index counts rather than values. As we can see above, <code>frequency_nominal</code> is a coordinate of the <code>Sv</code> (MVBS) DataArray.</p>
 <div id="cell-45" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> track_interval_str(trackdt):</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Create the timestamp interval title string for a plot column</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    track_interval_title_str <span class="op">=</span> (</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>trackdt<span class="sc">.</span>index<span class="sc">.</span><span class="bu">min</span>()<span class="sc">.</span>strftime(<span class="st">'%b-</span><span class="sc">%d</span><span class="st"> %H:%MZ'</span>)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f" to </span><span class="sc">{</span>trackdt<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">.</span>strftime(<span class="st">'%b-</span><span class="sc">%d</span><span class="st"> %H:%MZ'</span>)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> track_interval_title_str</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_echograms(ds, freq_len, column_idx):</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot echograms of the 3 frequencies for xarray dataset ds,</span></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">       as a column of subplots"""</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(freq_len):</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> axes[f][column_idx]</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select Sv data by frequency using the frequency_nominal coordinate index "f",</span></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># then plot the echogram of the selected data</span></span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>        ds.Sv.isel(frequency_nominal<span class="op">=</span>f).plot(</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>            ax<span class="op">=</span>ax, </span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'ping_time'</span>,</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'echo_range'</span>,</span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>            yincrease<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>            vmin<span class="op">=-</span><span class="dv">80</span>,</span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>            vmax<span class="op">=-</span><span class="dv">50</span>,</span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> f <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>            ax.set_xlabel(<span class="va">None</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> track_interval_str(trackdt):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Create the timestamp interval title string for a plot column</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    track_interval_title_str <span class="op">=</span> (</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>trackdt<span class="sc">.</span>index<span class="sc">.</span><span class="bu">min</span>()<span class="sc">.</span>strftime(<span class="st">'%b-</span><span class="sc">%d</span><span class="st"> %H:%MZ'</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f" to </span><span class="sc">{</span>trackdt<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">.</span>strftime(<span class="st">'%b-</span><span class="sc">%d</span><span class="st"> %H:%MZ'</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> track_interval_title_str</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_echograms(ds, freq_len, column_idx):</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot echograms of the 3 frequencies for xarray dataset ds,</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">       as a column of subplots"""</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(freq_len):</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> axes[f][column_idx]</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select Sv data by frequency using the frequency_nominal coordinate index "f",</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># then plot the echogram of the selected data</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>        ds.Sv.isel(frequency_nominal<span class="op">=</span>f).plot(</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>            ax<span class="op">=</span>ax, </span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'ping_time'</span>,</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'echo_range'</span>,</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>            yincrease<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>            vmin<span class="op">=-</span><span class="dv">80</span>,</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>            vmax<span class="op">=-</span><span class="dv">50</span>,</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> f <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>            ax.set_xlabel(<span class="va">None</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-46" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>freq_len <span class="op">=</span> <span class="bu">len</span>(MVBS_ds.frequency_nominal)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span>freq_len, ncols<span class="op">=</span><span class="dv">2</span>, constrained_layout<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">16</span>))</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    (<span class="ss">f"    South Track, </span><span class="sc">{</span>track_interval_str(tracksouth_gps_gdf)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"                                         "</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>     <span class="ss">f"North Track, </span><span class="sc">{</span>track_interval_str(tracknorth_gps_gdf)<span class="sc">}</span><span class="ss">"</span>),</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>plot_echograms(tracksouth_MVBS_ds, freq_len, column_idx<span class="op">=</span><span class="dv">0</span>) <span class="co"># left column</span></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>plot_echograms(tracknorth_MVBS_ds, freq_len, column_idx<span class="op">=</span><span class="dv">1</span>) <span class="co"># right column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>freq_len <span class="op">=</span> <span class="bu">len</span>(MVBS_ds.frequency_nominal)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span>freq_len, ncols<span class="op">=</span><span class="dv">2</span>, constrained_layout<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">16</span>))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    (<span class="ss">f"    South Track, </span><span class="sc">{</span>track_interval_str(tracksouth_gps_gdf)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"                                         "</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>     <span class="ss">f"North Track, </span><span class="sc">{</span>track_interval_str(tracknorth_gps_gdf)<span class="sc">}</span><span class="ss">"</span>),</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>plot_echograms(tracksouth_MVBS_ds, freq_len, column_idx<span class="op">=</span><span class="dv">0</span>) <span class="co"># left column</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>plot_echograms(tracknorth_MVBS_ds, freq_len, column_idx<span class="op">=</span><span class="dv">1</span>) <span class="co"># right column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -6659,13 +6067,13 @@ Attributes:
 </section>
 </section>
 <section id="package-versions" class="level2">
-<h2 data-anchor-id="package-versions">Package versions</h2>
+<h2 class="anchored" data-anchor-id="package-versions">Package versions</h2>
 <div id="cell-48" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime, s3fs</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"echopype: </span><span class="sc">{</span>ep<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, xarray: </span><span class="sc">{</span>xr<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, geopandas: </span><span class="sc">{</span>gpd<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, "</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"fsspec: </span><span class="sc">{</span>fsspec<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, s3fs: </span><span class="sc">{</span>s3fs<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>datetime<span class="sc">.</span>datetime<span class="sc">.</span>utcnow()<span class="sc">}</span><span class="ss"> +00:00"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime, s3fs</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"echopype: </span><span class="sc">{</span>ep<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, xarray: </span><span class="sc">{</span>xr<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, geopandas: </span><span class="sc">{</span>gpd<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, "</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"fsspec: </span><span class="sc">{</span>fsspec<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, s3fs: </span><span class="sc">{</span>s3fs<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>datetime<span class="sc">.</span>datetime<span class="sc">.</span>utcnow()<span class="sc">}</span><span class="ss"> +00:00"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>echopype: 0.8.4, xarray: 2024.3.0, geopandas: 0.14.3, fsspec: 2024.3.1, s3fs: 2024.3.1
 
@@ -6676,7 +6084,7 @@ Attributes:
 
 </section>
 
- <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -6856,18 +6264,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -6899,7 +6296,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/nmfs-opensci\.github\.io\/NOAAHackDays");
@@ -6907,7 +6324,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -7004,7 +6421,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -7230,7 +6646,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
- <!-- /content -->
+</div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">

@@ -1,0 +1,14 @@
+Package: NOAA Hack Hours
+Type: Package
+Title: R packages for the hack hours
+Version: 1.0.0
+Authors@R: person("Eli", "Holmes", email = "eli.holmes@noaa.gov",
+                  role = c("aut", "cre"))
+Description: R packages for the hack hours.
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 3.1)
+Imports:
+    stringr
+    
