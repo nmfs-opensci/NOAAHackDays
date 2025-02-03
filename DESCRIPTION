@@ -4,11 +4,10 @@ Title: R packages for the hack hours
 Version: 1.0.0
 Authors@R: person("Eli", "Holmes", email = "eli.holmes@noaa.gov",
                   role = c("aut", "cre"))
-Description: R packages for the hack hours.
+Description: R packages for the hack hours. Switch to the NOAAHackDays repository and run `remotes::install_deps(dependencies=TRUE, upgrade="always")`.
 Encoding: UTF-8
 LazyData: true
 Depends: 
-    R (>= 3.1)
-Imports:
-    stringr
-    
+    R (>= 3.1), ggplot2, rerddap, raster,
+    ncdf4, plotdap, httr,lubridate, gridGraphics,  mapdata,
+    RColorBrewer, grid, PBSmapping, rerddapXtracto, dplyr, viridis, cmocean

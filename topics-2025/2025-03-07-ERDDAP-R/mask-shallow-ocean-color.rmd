@@ -164,7 +164,7 @@ plot(depth_mask,main="Shallow pixel mask")
 
 ```{r}
 # Read in the files previousely downloaded
-files = list.files('chl_data/', full.names = T)
+files = list.files('chl_data', full.names = T)
 # Read the file into R and make it to rasterstack
 stack_chl = stack(files)
 # Convert raster data to dataframe for calculating climatology
@@ -197,7 +197,7 @@ contour(r_bathy,levels=c(-30,-1000,-2000),add=TRUE)
 ```{r}
 
 # Grab var name and unit from unmasked nc file
-nc = nc_open(paste0(files))
+nc = nc_open(paste0(files[1]))
 variable_name = as.character(nc$var[[1]][2])
 variable_unit = as.character(nc$var[[1]][8])
 x_name = nc$dim$longitude$name

@@ -3,7 +3,7 @@
 ## Set and rebuilding GH Pages
 
 ```
-remotes::install_deps()
+remotes::install_deps(dependencies=TRUE, upgrade="always")
 ```
 Then Render Website from the Build Tab
 

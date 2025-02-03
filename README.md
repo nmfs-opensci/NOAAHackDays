@@ -4,9 +4,11 @@
 
 ### NOAA staff (any line office)
 
-[Click Here for Instructions for Signing Up]() Requires NOAA email to open.
+[Click Here for Video Link](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
 
 ### Non-NOAA
+
+Recording of the sessions will be posted to this website and all content is open source in the [NOAAHackDays 2025](https://github.com/nmfs-opensci/NOAAHackDays/tree/main/topics-2025) repo.
 
 ## Overview
 
