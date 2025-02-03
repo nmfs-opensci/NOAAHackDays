@@ -1,5 +1,5 @@
 
-## NOAA Fisheries Training in Cloud Computing
+## NOAA Fisheries Training in Ocean Data and Cloud Computing
 
 These are the support pages for the NMFS Open Science resources that support training in data science for the earth and life sciences at NOAA Fisheries. 
 

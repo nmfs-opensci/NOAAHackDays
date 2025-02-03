@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data subsetting and plotting with earthaccess and xarray – NMFS Open Science Cloud Computing Training Hub</title>
+<title>NMFS Open Science Cloud Computing Training Hub - Data subsetting and plotting with earthaccess and xarray</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
@@ -69,25 +69,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -96,14 +90,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
@@ -115,44 +108,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">NMFS Open Science Cloud Computing Training Hub</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://nmfs-openscapes.2i2c.cloud/"> <i class="bi bi-server" role="img">
+    <a class="nav-link" href="https://nmfs-openscapes.2i2c.cloud/" rel="" target=""><i class="bi bi-server" role="img">
 </i> 
-<span class="menu-text">JupyterHub</span></a>
+ <span class="menu-text">JupyterHub</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays/discussions"> <i class="bi bi-wechat" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays/discussions" rel="" target=""><i class="bi bi-wechat" role="img">
 </i> 
-<span class="menu-text">Discussions</span></a>
+ <span class="menu-text">Discussions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
-<span class="menu-text">repo</span></a>
+ <span class="menu-text">repo</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci"> <i class="bi bi-globe" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci" rel="" target=""><i class="bi bi-globe" role="img">
 </i> 
-<span class="menu-text">GH org</span></a>
+ <span class="menu-text">GH org</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -170,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#authenticate-to-nasa-earthdata" id="toc-authenticate-to-nasa-earthdata" class="nav-link" data-scroll-target="#authenticate-to-nasa-earthdata">Authenticate to NASA Earthdata</a></li>
   <li><a href="#xarray-subsetting---precipitation-estimates-from-imerg-daily-level-3" id="toc-xarray-subsetting---precipitation-estimates-from-imerg-daily-level-3" class="nav-link" data-scroll-target="#xarray-subsetting---precipitation-estimates-from-imerg-daily-level-3">Xarray Subsetting - Precipitation estimates from IMERG, Daily Level 3</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Subset_and_Plot.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Subset_and_Plot.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Subset_and_Plot.ipynb" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Subset_and_Plot.ipynb" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -199,9 +192,7 @@ function googleTranslateElementInit() {
   </div>
   
 
-
 </header>
-
 
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
@@ -215,7 +206,7 @@ function googleTranslateElementInit() {
 </ol>
 <section id="import-required-packages" class="level3">
 <h3 class="anchored" data-anchor-id="import-required-packages">Import Required Packages</h3>
-<div id="f04a653d-b9e5-4cfe-a198-b5b612389742" class="cell" data-tags="[]" data-execution_count="8">
+<div class="cell" data-tags="[]" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress warnings</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>warnings.simplefilter(<span class="st">'ignore'</span>)</span>
@@ -236,12 +227,12 @@ function googleTranslateElementInit() {
 <section id="authenticate-to-nasa-earthdata" class="level2">
 <h2 class="anchored" data-anchor-id="authenticate-to-nasa-earthdata">Authenticate to NASA Earthdata</h2>
 <p>We will authenticate our Earthaccess session, and then open the results like we did in the Search &amp; Discovery section.</p>
-<div id="bfbfed50-eb5a-4a5b-bd64-d48108cc1b50" class="cell" data-tags="[]" data-execution_count="9">
+<div class="cell" data-tags="[]" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bug on dhub settings is setting the home to /home/rstudio</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"HOME"</span>] <span class="op">=</span> <span class="st">"/home/jovyan"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0fe0002f-c759-4611-8dd7-861b8bd38971" class="cell" data-tags="[]" data-execution_count="10">
+<div class="cell" data-tags="[]" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># are we authenticated?</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> auth.authenticated:</span>
@@ -263,7 +254,7 @@ Using .netrc file for EDL</code></pre>
 <p><a href="https://search.earthdata.nasa.gov/search?p=C2723754864-GES_DISC&amp;pg%5B0%5D%5Bv%5D=f&amp;pg%5B0%5D%5Bgsk%5D=start_date&amp;q=C2723754864-GES_DISC&amp;tl=1702946000.519%213%21%21">Link to data on NASA Earthdata</a></p>
 <p>The IMERG data has 0.1 x 0.1 degree latitude-longitude resolution (approximately 11 by 11 km at the Equator). The grid covers the globe, although precipitation cannot always be estimated near the Poles. The dataset and algorithm are described in the <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/doc/README.GPM.pdf">data user guide</a> and the <a href="https://arthurhou.pps.eosdis.nasa.gov/Documents/IMERG_V07_ATBD_final.pdf">Algorithm Theoretical Basis Document (ATBD)</a>.</p>
 <p>Please cite the dataset as: &gt; Huffman, G.J., E.F. Stocker, D.T. Bolvin, E.J. Nelkin, Jackson Tan (2023), GPM IMERG Final Precipitation L3 1 day 0.1 degree x 0.1 degree V07, Edited by Andrey Savtchenko, Greenbelt, MD, Goddard Earth Sciences Data and Information Services Center (GES DISC), https://doi.org/10.5067/GPM/IMERGDF/DAY/07</p>
-<div id="3dbe9828-37e9-4949-846f-297057e5b0d5" class="cell" data-tags="[]" data-execution_count="15">
+<div class="cell" data-tags="[]" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>collection_id <span class="op">=</span> <span class="st">'C2723754864-GES_DISC'</span>  <span class="co"># GPM IMERG Final Precipitation L3 1 day 0.1 degree x 0.1 degree V07 (GPM_3IMERGDF)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Seems to be a bug in the collection above so I am using older data</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -286,7 +277,7 @@ Using .netrc file for EDL</code></pre>
 <pre><code>Granules found: 2</code></pre>
 </div>
 </div>
-<div id="36985cec-3b0f-4422-8bd5-cbbc8a01a0a5" class="cell" data-tags="[]" data-execution_count="16">
+<div class="cell" data-tags="[]" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_mfdataset(earthaccess.<span class="bu">open</span>(results))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Opening 2 granules, approx size: 0.05 GB</code></pre>
@@ -309,7 +300,7 @@ Using .netrc file for EDL</code></pre>
 </div>
 <p>Note that <code>xarray</code> works with “lazy” computation whenever possible. In this case, the metadata are loaded into JupyterHub memory, but the data arrays and their values are not —&nbsp;until there is a need for them.</p>
 <p>Let’s print out all the variable names.</p>
-<div id="0f8beea9-bc30-4d02-9401-5b8605ad6847" class="cell" data-tags="[]" data-execution_count="17">
+<div class="cell" data-tags="[]" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> ds.variables:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -329,21 +320,21 @@ time_bnds</code></pre>
 </div>
 </div>
 <p>Of the variables listed above, we are interested in three variables: <code>precipitation</code>, <code>precipitation_cnt_cond</code>, and <code>probabilityLiquidPrecipitation</code>. Let’s print their attributes.</p>
-<div id="f0241c11-ac86-418a-92e4-bb289468cc16" class="cell" data-tags="[]" data-execution_count="26">
+<div class="cell" data-tags="[]" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ds.variables[<span class="st">'precipitation'</span>].attrs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>{'units': 'mm/day',
  'long_name': 'Daily mean precipitation rate (combined microwave-IR) estimate. Formerly precipitationCal.'}</code></pre>
 </div>
 </div>
-<div id="91434dd4-8aad-4b95-9ee4-b5dce04c60a0" class="cell" data-tags="[]" data-execution_count="27">
+<div class="cell" data-tags="[]" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ds.variables[<span class="st">'precipitation_cnt_cond'</span>].attrs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>{'units': 'count',
  'long_name': 'Count of half-hourly precipitation retrievals for the day where precipitation is at least 0.01 mm/hr'}</code></pre>
 </div>
 </div>
-<div id="635f9e55-aa5e-4c4a-a571-2f29917e360e" class="cell" data-tags="[]" data-execution_count="28">
+<div class="cell" data-tags="[]" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ds.variables[<span class="st">'probabilityLiquidPrecipitation'</span>].attrs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>{'units': 'percent',
@@ -357,7 +348,7 @@ time_bnds</code></pre>
 <p>In addition to directly accessing the files archived and distributed by each of the NASA DAACs, many datasets also support services that allow us to customize the data via subsetting, reformatting, reprojection/regridding, and file aggregation. What does subsetting mean? To <strong>subset</strong> means to extract only the portions of a dataset that are needed for a given purpose.</p>
 <p>There are three primary types of subsetting that we will walk through: 1. Temporal 2. Spatial 3. Variable</p>
 <p>In each case, we will be excluding parts of the dataset that are not wanted using <code>xarray</code>. Note that “subsetting” is also called a data “transformation”.</p>
-<div id="a228b00d-9659-4766-b25b-d9ba82506006" class="cell" data-tags="[]" data-execution_count="29">
+<div class="cell" data-tags="[]" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ds.time.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>array(['2015-02-25T00:00:00.000000000', '2015-02-26T00:00:00.000000000'],
@@ -365,10 +356,11 @@ time_bnds</code></pre>
 </div>
 </div>
 <p>We start with a subset that represents the U.S. state of California. Notice the dimensions of the Dataset and each variable —&nbsp;time, lon, lat, and ‘nv’ (number of vertices) for the bounds variable.</p>
-<div id="29355579-79f2-4ebf-b7d7-5a5c60a59d2e" class="cell" data-tags="[]" data-execution_count="30">
+<div class="cell" data-tags="[]" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the full dataset's metadata</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
+
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -753,14 +745,14 @@ Data variables:
 Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-9826ea75-04bc-46b5-be10-1d35d5558fad" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-9826ea75-04bc-46b5-be10-1d35d5558fad" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 2</li><li><span class="xr-has-index">lon</span>: 3600</li><li><span class="xr-has-index">lat</span>: 1800</li><li><span>nv</span>: 2</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-efdc1316-18dc-43c0-bf53-5160177006bb" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-efdc1316-18dc-43c0-bf53-5160177006bb" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">-179.9 -179.9 ... 179.9 179.9</div><input id="attrs-3f32fac3-247c-487f-9eb7-cbcf344dd76e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3f32fac3-247c-487f-9eb7-cbcf344dd76e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-dd1b1e18-725e-418d-9e2e-2bdd37b2fa07" class="xr-var-data-in" type="checkbox"><label for="data-dd1b1e18-725e-418d-9e2e-2bdd37b2fa07" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>long_name :</span></dt><dd>Longitude</dd></dl></div><div class="xr-var-data"><pre>array([-179.95, -179.85, -179.75, ...,  179.75,  179.85,  179.95],
       dtype=float32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">-89.95 -89.85 ... 89.85 89.95</div><input id="attrs-2f1402c6-b0ea-42e3-a9a9-a6c0e35b6485" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2f1402c6-b0ea-42e3-a9a9-a6c0e35b6485" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8679d024-bad3-48b0-931c-060bc041c3ac" class="xr-var-data-in" type="checkbox"><label for="data-8679d024-bad3-48b0-931c-060bc041c3ac" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>long_name :</span></dt><dd>Latitude</dd></dl></div><div class="xr-var-data"><pre>array([-89.95, -89.85, -89.75, ...,  89.75,  89.85,  89.95])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2015-02-25 2015-02-26</div><input id="attrs-1f92156c-a67a-4363-8682-aa5989b5ec0b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1f92156c-a67a-4363-8682-aa5989b5ec0b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d69edd4d-39bd-40d1-abf5-1b284741b96f" class="xr-var-data-in" type="checkbox"><label for="data-d69edd4d-39bd-40d1-abf5-1b284741b96f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd></dl></div><div class="xr-var-data"><pre>array(['2015-02-25T00:00:00.000000000', '2015-02-26T00:00:00.000000000'],
       dtype='datetime64[ns]')</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-abe954d0-66d4-4268-a6d9-777c9798e565" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-abe954d0-66d4-4268-a6d9-777c9798e565" class="xr-section-summary">Data variables: <span>(10)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>precipitation</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-af2eef56-47c0-41a6-90f6-f1c745a3d5df" class="xr-var-attrs-in" type="checkbox"><label for="attrs-af2eef56-47c0-41a6-90f6-f1c745a3d5df" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0e1779ea-411b-44fe-986f-94f9a583db63" class="xr-var-data-in" type="checkbox"><label for="data-0e1779ea-411b-44fe-986f-94f9a583db63" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>mm/day</dd><dt><span>long_name :</span></dt><dd>Daily mean precipitation rate (combined microwave-IR) estimate. Formerly precipitationCal.</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -789,21 +781,44 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>precipitation_cnt</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-72071a46-11c6-4542-bc3d-063df9ce48c6" class="xr-var-attrs-in" type="checkbox"><label for="attrs-72071a46-11c6-4542-bc3d-063df9ce48c6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e52d0e5d-90ab-4f6e-a107-fee5a6e6be5b" class="xr-var-data-in" type="checkbox"><label for="data-e52d0e5d-90ab-4f6e-a107-fee5a6e6be5b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of all valid half-hourly precipitation retrievals for the day</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<div class="xr-var-name">
+<span>precipitation_cnt</span>
+</div>
+<div class="xr-var-dims">
+(time, lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of all valid half-hourly precipitation retrievals for the day
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -832,21 +847,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>precipitation_cnt_cond</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-9271df72-9086-463a-addc-662e5a778714" class="xr-var-attrs-in" type="checkbox"><label for="attrs-9271df72-9086-463a-addc-662e5a778714" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f2a4cce5-a869-45ef-b16a-a2e1fc859a1f" class="xr-var-data-in" type="checkbox"><label for="data-f2a4cce5-a869-45ef-b16a-a2e1fc859a1f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of half-hourly precipitation retrievals for the day where precipitation is at least 0.01 mm/hr</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>precipitation_cnt_cond</span>
+</div>
+<div class="xr-var-dims">
+(time, lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of half-hourly precipitation retrievals for the day where precipitation is at least 0.01 mm/hr
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -875,21 +914,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>MWprecipitation</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-74708fe5-5b96-43df-b226-74559657e78a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-74708fe5-5b96-43df-b226-74559657e78a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ca656ad0-5f2b-4e93-8b09-c90e9d2c734d" class="xr-var-data-in" type="checkbox"><label for="data-ca656ad0-5f2b-4e93-8b09-c90e9d2c734d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>mm/day</dd><dt><span>long_name :</span></dt><dd>Daily mean High Quality precipitation rate from all available microwave sources. Formerly HQprecipitation.</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>MWprecipitation</span>
+</div>
+<div class="xr-var-dims">
+(time, lon, lat)
+</div>
+<div class="xr-var-dtype">
+float32
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+mm/day
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Daily mean High Quality precipitation rate from all available microwave sources. Formerly HQprecipitation.
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -918,21 +981,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>MWprecipitation_cnt</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-4f9ac2a1-6862-4e05-abff-97d6e892ceb6" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4f9ac2a1-6862-4e05-abff-97d6e892ceb6" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-15e2c0d9-02d9-4ddb-9fce-b69690042c5e" class="xr-var-data-in" type="checkbox"><label for="data-15e2c0d9-02d9-4ddb-9fce-b69690042c5e" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of all valid half-hourly MWprecipitation retrievals for the day</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>MWprecipitation_cnt</span>
+</div>
+<div class="xr-var-dims">
+(time, lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of all valid half-hourly MWprecipitation retrievals for the day
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -961,21 +1048,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>MWprecipitation_cnt_cond</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-13fc5eb4-78a4-4422-b354-2462faa32762" class="xr-var-attrs-in" type="checkbox"><label for="attrs-13fc5eb4-78a4-4422-b354-2462faa32762" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ab54c4a2-df0d-4136-b6c3-0c456764af49" class="xr-var-data-in" type="checkbox"><label for="data-ab54c4a2-df0d-4136-b6c3-0c456764af49" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of half-hourly MWprecipitation retrievals for the day where precipitation is at least 0.01 mm/hr</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>MWprecipitation_cnt_cond</span>
+</div>
+<div class="xr-var-dims">
+(time, lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of half-hourly MWprecipitation retrievals for the day where precipitation is at least 0.01 mm/hr
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1004,21 +1115,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>randomError</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-1cd7fa44-c613-4160-adbe-449d5bfcc989" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1cd7fa44-c613-4160-adbe-449d5bfcc989" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4e2c94dc-ba88-4094-b1c9-62e646c223d3" class="xr-var-data-in" type="checkbox"><label for="data-4e2c94dc-ba88-4094-b1c9-62e646c223d3" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>mm/day</dd><dt><span>long_name :</span></dt><dd>Root-mean-square error estimate for combined microwave-IR daily precipitation rate</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>randomError</span>
+</div>
+<div class="xr-var-dims">
+(time, lon, lat)
+</div>
+<div class="xr-var-dtype">
+float32
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+mm/day
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Root-mean-square error estimate for combined microwave-IR daily precipitation rate
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1047,21 +1182,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>randomError_cnt</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-b72a5577-1cd3-4df6-9610-1cba1389e545" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b72a5577-1cd3-4df6-9610-1cba1389e545" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e7670d58-166e-477b-a71b-373c19712356" class="xr-var-data-in" type="checkbox"><label for="data-e7670d58-166e-477b-a71b-373c19712356" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of valid half-hourly randomError retrievals for the day</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>randomError_cnt</span>
+</div>
+<div class="xr-var-dims">
+(time, lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of valid half-hourly randomError retrievals for the day
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1090,21 +1249,49 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>probabilityLiquidPrecipitation</span></div><div class="xr-var-dims">(time, lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;</div><input id="attrs-d080acaa-112d-47b8-8798-de5aea8e256c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-d080acaa-112d-47b8-8798-de5aea8e256c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ddca358c-a440-48fd-b3d9-4dfc931d123d" class="xr-var-data-in" type="checkbox"><label for="data-ddca358c-a440-48fd-b3d9-4dfc931d123d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>percent</dd><dt><span>long_name :</span></dt><dd>Probability of liquid precipitation</dd><dt><span>description :</span></dt><dd>Probability of liquid precipitation estimated with a diagnostic parameterization using ancillary data. 0=missing values; 1=likely solid; 100=likely liquid or no precipitation.  Screen by positive precipitation or precipitation_cnt_cond to locate meaningful probabilities.</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>probabilityLiquidPrecipitation</span>
+</div>
+<div class="xr-var-dims">
+(time, lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 3600, 1800), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+percent
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Probability of liquid precipitation
+</dd>
+<dt><span>description :</span></dt>
+<dd>
+Probability of liquid precipitation estimated with a diagnostic parameterization using ancillary data. 0=missing values; 1=likely solid; 100=likely liquid or no precipitation. Screen by positive precipitation or precipitation_cnt_cond to locate meaningful probabilities.
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1133,21 +1320,41 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="134" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="17" y1="7" x2="17" y2="127"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="70" y2="0" style="stroke-width:2"></line> <line x1="17" y1="7" x2="77" y2="7"></line> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="70" y1="0" x2="84" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 70.0,0.0 84.9485979497544,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="84" y2="14" style="stroke-width:2"></line> <line x1="24" y1="134" x2="84" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="84" y1="14" x2="84" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 84.9485979497544,14.948597949754403 84.9485979497544,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="54.948598" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">1800</text> <text x="104.948598" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,104.948598,74.948598)">3600</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMjAiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjEwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iMTciIHkyPSIxMjciPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjI0IiB5Mj0iMTM0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEwLjAsMC4wIDI0Ljk0ODU5Nzk0OTc1NDQsMTQuOTQ4NTk3OTQ5NzU0NDAzIDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQgMTAuMCwxMjAuMCIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iNzAiIHkyPSIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTciIHkxPSI3IiB4Mj0iNzciIHkyPSI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMCIgeDI9Ijg0IiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgNzAuMCwwLjAgODQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMzQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9Ijg0IiB5MT0iMTQiIHgyPSI4NCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyA4NC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNTQuOTQ4NTk4IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTgwMDwvdGV4dD4KICA8dGV4dCB4PSIxMDQuOTQ4NTk4IiB5PSI3NC45NDg1OTgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgtOTAsMTA0Ljk0ODU5OCw3NC45NDg1OTgpIj4zNjAwPC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjI8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>time_bnds</span></div><div class="xr-var-dims">(time, nv)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(1, 2), meta=np.ndarray&gt;</div><input id="attrs-27ff4491-0ae3-4c64-a9ac-cfceb0cfee37" class="xr-var-attrs-in" type="checkbox"><label for="attrs-27ff4491-0ae3-4c64-a9ac-cfceb0cfee37" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5c0cd7dc-9d02-49bf-92b6-a3f26fae8d92" class="xr-var-data-in" type="checkbox"><label for="data-5c0cd7dc-9d02-49bf-92b6-a3f26fae8d92" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>coordinates :</span></dt><dd>time nv</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>time_bnds</span>
+</div>
+<div class="xr-var-dims">
+(time, nv)
+</div>
+<div class="xr-var-dtype">
+datetime64[ns]
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(1, 2), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>coordinates :</span></dt>
+<dd>
+time nv
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1176,12 +1383,11 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="60" x2="120" y2="60"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">2</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,60.000000)">2</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iNjAiIHgyPSIxMjAiIHkyPSI2MCI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSI2MC4wMDAwMDAiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsNjAuMDAwMDAwKSI+MjwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div></li></ul></div></li><li class="xr-section-item"><input id="section-b7d11d6a-0d55-44ca-b19e-eac9ff5f6133" class="xr-section-summary-in" type="checkbox"><label for="section-b7d11d6a-0d55-44ca-b19e-eac9ff5f6133" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-0de0ede1-3aab-4813-82e7-f6b23ea01c7d" class="xr-index-data-in" type="checkbox"><label for="index-0de0ede1-3aab-4813-82e7-f6b23ea01c7d" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Float64Index([ -179.9499969482422, -179.85000610351562,             -179.75,
               -179.64999389648438,  -179.5500030517578,  -179.4499969482422,
               -179.35000610351562,             -179.25, -179.14999389648438,
@@ -1205,10 +1411,11 @@ StopGranuleDateTime=2015-02-25T23:59:59.999Z</dd><dt><span>InputPointer :</span>
 </div>
 </div>
 <p>Now we will prepare a subset. We’re using essentially the same spatial bounds as above; however, as opposed to the <code>earthaccess</code> inputs above, here we must provide inputs in the formats expected by <code>xarray</code>. Instead of a single, four-element, bounding box, we use Python <code>slice</code> objects, which are defined by starting and ending numbers.</p>
-<div id="e3b5b217-246c-4549-8e7d-773dec50bf40" class="cell" data-tags="[]" data-execution_count="36">
+<div class="cell" data-tags="[]" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ds_subset <span class="op">=</span> ds.sel(time<span class="op">=</span>date_start, lat<span class="op">=</span><span class="bu">slice</span>(<span class="dv">31</span>, <span class="dv">43</span>), lon<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="dv">125</span>, <span class="op">-</span><span class="dv">113</span>)) </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ds_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
+
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -1617,14 +1824,14 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
        40.05, 40.15, 40.25, 40.35, 40.45, 40.55, 40.65, 40.75, 40.85, 40.95,
        41.05, 41.15, 41.25, 41.35, 41.45, 41.55, 41.65, 41.75, 41.85, 41.95,
        42.05, 42.15, 42.25, 42.35, 42.45, 42.55, 42.65, 42.75, 42.85, 42.95])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>time</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2015-02-25</div><input id="attrs-a3de92d3-9e21-4297-8520-3b748cb5f9aa" class="xr-var-attrs-in" type="checkbox"><label for="attrs-a3de92d3-9e21-4297-8520-3b748cb5f9aa" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-165793c8-2a0f-4a43-aa91-23fc2c4abf39" class="xr-var-data-in" type="checkbox"><label for="data-165793c8-2a0f-4a43-aa91-23fc2c4abf39" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd></dl></div><div class="xr-var-data"><pre>array('2015-02-25T00:00:00.000000000', dtype='datetime64[ns]')</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-2370b9c8-aaaf-412b-ae01-7ac895e6317d" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-2370b9c8-aaaf-412b-ae01-7ac895e6317d" class="xr-section-summary">Data variables: <span>(10)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>precipitation</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-1b0e4791-7946-4c26-a8b0-ad26e3d85f07" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1b0e4791-7946-4c26-a8b0-ad26e3d85f07" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4e731f20-8004-4d4e-b8af-d60605d8a216" class="xr-var-data-in" type="checkbox"><label for="data-4e731f20-8004-4d4e-b8af-d60605d8a216" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>mm/day</dd><dt><span>long_name :</span></dt><dd>Daily mean precipitation rate (combined microwave-IR) estimate. Formerly precipitationCal.</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1653,21 +1860,44 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>precipitation_cnt</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-2e327ccf-6b34-4f29-a312-7c60aa5f44a0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2e327ccf-6b34-4f29-a312-7c60aa5f44a0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-bf74cb5f-1f18-42e6-a08b-bb64226dc6da" class="xr-var-data-in" type="checkbox"><label for="data-bf74cb5f-1f18-42e6-a08b-bb64226dc6da" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of all valid half-hourly precipitation retrievals for the day</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<div class="xr-var-name">
+<span>precipitation_cnt</span>
+</div>
+<div class="xr-var-dims">
+(lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of all valid half-hourly precipitation retrievals for the day
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1696,21 +1926,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>precipitation_cnt_cond</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-fb5f32b1-cac2-48a9-9911-82e20d6cc76b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-fb5f32b1-cac2-48a9-9911-82e20d6cc76b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e87ad9f3-2448-42da-976e-68108419c251" class="xr-var-data-in" type="checkbox"><label for="data-e87ad9f3-2448-42da-976e-68108419c251" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of half-hourly precipitation retrievals for the day where precipitation is at least 0.01 mm/hr</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>precipitation_cnt_cond</span>
+</div>
+<div class="xr-var-dims">
+(lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of half-hourly precipitation retrievals for the day where precipitation is at least 0.01 mm/hr
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1739,21 +1993,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>MWprecipitation</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-286d2431-8668-4631-904f-97ca5e065841" class="xr-var-attrs-in" type="checkbox"><label for="attrs-286d2431-8668-4631-904f-97ca5e065841" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-781f4a46-40c2-44c3-b61e-84012fe57105" class="xr-var-data-in" type="checkbox"><label for="data-781f4a46-40c2-44c3-b61e-84012fe57105" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>mm/day</dd><dt><span>long_name :</span></dt><dd>Daily mean High Quality precipitation rate from all available microwave sources. Formerly HQprecipitation.</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>MWprecipitation</span>
+</div>
+<div class="xr-var-dims">
+(lon, lat)
+</div>
+<div class="xr-var-dtype">
+float32
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+mm/day
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Daily mean High Quality precipitation rate from all available microwave sources. Formerly HQprecipitation.
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1782,21 +2060,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>MWprecipitation_cnt</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-1bb3b52d-3966-4226-ab6e-43c0d618aa5d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1bb3b52d-3966-4226-ab6e-43c0d618aa5d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6b5e2710-aca3-447d-b35f-881fecae8b14" class="xr-var-data-in" type="checkbox"><label for="data-6b5e2710-aca3-447d-b35f-881fecae8b14" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of all valid half-hourly MWprecipitation retrievals for the day</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>MWprecipitation_cnt</span>
+</div>
+<div class="xr-var-dims">
+(lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of all valid half-hourly MWprecipitation retrievals for the day
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1825,21 +2127,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>MWprecipitation_cnt_cond</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-a0d9618d-5a43-4789-9a70-df5d63c94e63" class="xr-var-attrs-in" type="checkbox"><label for="attrs-a0d9618d-5a43-4789-9a70-df5d63c94e63" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-718b9b4b-ff0f-48b9-83e3-33a0168076e2" class="xr-var-data-in" type="checkbox"><label for="data-718b9b4b-ff0f-48b9-83e3-33a0168076e2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of half-hourly MWprecipitation retrievals for the day where precipitation is at least 0.01 mm/hr</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>MWprecipitation_cnt_cond</span>
+</div>
+<div class="xr-var-dims">
+(lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of half-hourly MWprecipitation retrievals for the day where precipitation is at least 0.01 mm/hr
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1868,21 +2194,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>randomError</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-4996549e-a016-4e06-b39f-14530fff389a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-4996549e-a016-4e06-b39f-14530fff389a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ce2a6a94-0386-459b-899a-332da2ffee31" class="xr-var-data-in" type="checkbox"><label for="data-ce2a6a94-0386-459b-899a-332da2ffee31" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>mm/day</dd><dt><span>long_name :</span></dt><dd>Root-mean-square error estimate for combined microwave-IR daily precipitation rate</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>randomError</span>
+</div>
+<div class="xr-var-dims">
+(lon, lat)
+</div>
+<div class="xr-var-dtype">
+float32
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+mm/day
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Root-mean-square error estimate for combined microwave-IR daily precipitation rate
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1911,21 +2261,45 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>randomError_cnt</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-13d89fc7-722d-44e3-bbc5-f11067842ec8" class="xr-var-attrs-in" type="checkbox"><label for="attrs-13d89fc7-722d-44e3-bbc5-f11067842ec8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-aa90e35e-582d-42b1-83c4-d8a7e090f48f" class="xr-var-data-in" type="checkbox"><label for="data-aa90e35e-582d-42b1-83c4-d8a7e090f48f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>count</dd><dt><span>long_name :</span></dt><dd>Count of valid half-hourly randomError retrievals for the day</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>randomError_cnt</span>
+</div>
+<div class="xr-var-dims">
+(lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+count
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Count of valid half-hourly randomError retrievals for the day
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1954,21 +2328,49 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>probabilityLiquidPrecipitation</span></div><div class="xr-var-dims">(lon, lat)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;</div><input id="attrs-7a33739f-679f-46b8-a279-01b702123f69" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7a33739f-679f-46b8-a279-01b702123f69" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-1f775e3d-b60f-440f-850f-9f0ac165d7c8" class="xr-var-data-in" type="checkbox"><label for="data-1f775e3d-b60f-440f-850f-9f0ac165d7c8" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>percent</dd><dt><span>long_name :</span></dt><dd>Probability of liquid precipitation</dd><dt><span>description :</span></dt><dd>Probability of liquid precipitation estimated with a diagnostic parameterization using ancillary data. 0=missing values; 1=likely solid; 100=likely liquid or no precipitation.  Screen by positive precipitation or precipitation_cnt_cond to locate meaningful probabilities.</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>probabilityLiquidPrecipitation</span>
+</div>
+<div class="xr-var-dims">
+(lon, lat)
+</div>
+<div class="xr-var-dtype">
+int8
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(120, 120), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+percent
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Probability of liquid precipitation
+</dd>
+<dt><span>description :</span></dt>
+<dd>
+Probability of liquid precipitation estimated with a diagnostic parameterization using ancillary data. 0=missing values; 1=likely solid; 100=likely liquid or no precipitation. Screen by positive precipitation or precipitation_cnt_cond to locate meaningful probabilities.
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -1997,21 +2399,41 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">120</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">120</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjE3MCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iMTIwIiB4Mj0iMTIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMTIwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIwLjAsMC4wIDEyMC4wLDAuMCAxMjAuMCwxMjAuMCAwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSIxNDAuMDAwMDAwIiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIwPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjYwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKC05MCwxNDAuMDAwMDAwLDYwLjAwMDAwMCkiPjEyMDwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>time_bnds</span></div><div class="xr-var-dims">(nv)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(2,), meta=np.ndarray&gt;</div><input id="attrs-27ba7d35-937f-49d2-8aa9-16d40c4856f4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-27ba7d35-937f-49d2-8aa9-16d40c4856f4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2edfe623-1bbc-4f95-82d4-774455d0da05" class="xr-var-data-in" type="checkbox"><label for="data-2edfe623-1bbc-4f95-82d4-774455d0da05" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>coordinates :</span></dt><dd>time nv</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>time_bnds</span>
+</div>
+<div class="xr-var-dims">
+(nv)
+</div>
+<div class="xr-var-dtype">
+datetime64[ns]
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(2,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>coordinates :</span></dt>
+<dd>
+time nv
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -2040,12 +2462,11 @@ Attributes: (9)</pre><div class="xr-wrap" style="display:none"><div class="xr-he
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="110" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="60" x2="120" y2="60" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="60" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="60" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,60.0 0.0,60.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="80.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">2</text> <text x="140.000000" y="30.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,30.000000)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjExMCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjAiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIwIiB5MT0iNjAiIHgyPSIxMjAiIHkyPSI2MCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gVmVydGljYWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjYwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTIwIiB5MT0iMCIgeDI9IjEyMCIgeTI9IjYwIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBDb2xvcmVkIFJlY3RhbmdsZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjAuMCwwLjAgMTIwLjAsMC4wIDEyMC4wLDYwLjAgMC4wLDYwLjAiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSI4MC4wMDAwMDAiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0PgogIDx0ZXh0IHg9IjE0MC4wMDAwMDAiIHk9IjMwLjAwMDAwMCIgZm9udC1zaXplPSIxLjByZW0iIGZvbnQtd2VpZ2h0PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRyYW5zZm9ybT0icm90YXRlKDAsMTQwLjAwMDAwMCwzMC4wMDAwMDApIj4xPC90ZXh0Pgo8L3N2Zz4=" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div></li></ul></div></li><li class="xr-section-item"><input id="section-a73ef3fa-9f1b-45d2-b7ff-42e497992701" class="xr-section-summary-in" type="checkbox"><label for="section-a73ef3fa-9f1b-45d2-b7ff-42e497992701" class="xr-section-summary">Indexes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-ed224de5-d3fa-42c6-afe4-87a608727e69" class="xr-index-data-in" type="checkbox"><label for="index-ed224de5-d3fa-42c6-afe4-87a608727e69" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Float64Index([-124.94999694824219,  -124.8499984741211,             -124.75,
                -124.6500015258789, -124.55000305175781, -124.44999694824219,
                -124.3499984741211,             -124.25,  -124.1500015258789,
@@ -2074,19 +2495,15 @@ StopGranuleDateTime=2015-02-25T23:59:59.999Z</dd><dt><span>InputPointer :</span>
 <h3 class="anchored" data-anchor-id="plotting">Plotting</h3>
 <p>We will first plot using the methods built-in to the <code>xarray</code> package.</p>
 <p>Note that, as opposed to the “lazy” loading of metadata previously, this will now perform “eager” computation, pulling the required data chunks.</p>
-<div id="d97b5757-eb9e-4816-b2c8-5516823080ae" class="cell" data-tags="[]" data-execution_count="33">
+<div class="cell" data-tags="[]" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ds_subset[<span class="st">'precipitation'</span>].plot(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>), x<span class="op">=</span><span class="st">'lon'</span>, y<span class="op">=</span><span class="st">'lat'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Earthdata_Subset_and_Plot_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p><img src="Earthdata_Subset_and_Plot_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Now let’s utilize the “Probability of liquid precipitation phase” (<code>probabilityLiquidPrecipitation</code>) variable to split apart the snow precipitation from everything else. From the variable’s description attribute, we can see that “0=missing values; 1=likely solid; 100=likely liquid or no precipitation”.</p>
 <p>Moreover, we’ll utilize <code>precipitation_cnt_cond</code> to filter out data points that had less than 0.01 mm/hr preciptation amounts.</p>
-<div id="5c8222e6-df93-496b-ac47-0dcff427fb33" class="cell" data-tags="[]" data-execution_count="34">
+<div class="cell" data-tags="[]" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>snow <span class="op">=</span> ds_subset[<span class="st">'precipitation'</span>].where(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    (ds_subset.precipitation_cnt_cond<span class="op">&gt;</span><span class="dv">0</span>) <span class="op">&amp;</span> (ds_subset.probabilityLiquidPrecipitation <span class="op">==</span> <span class="dv">1</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -2097,7 +2514,7 @@ StopGranuleDateTime=2015-02-25T23:59:59.999Z</dd><dt><span>InputPointer :</span>
 </div>
 <p>In the following plotting commands, we utilize <code>cartopy</code> and <code>matplotlib</code> to generate a more customized figure.</p>
 <p><code>cartopy</code> is used to set the map projection (to PlateCarree) and to add U.S. state boundary lines to the figure. <code>matplotlib</code>’s pcolormesh is used to generate the color plot, with colors determined by the third argument’s value.</p>
-<div id="62e9dcc1-c311-4bef-8a65-08beb54f0453" class="cell" data-tags="[]" data-execution_count="35">
+<div class="cell" data-tags="[]" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the plot</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>proj <span class="op">=</span> ccrs.PlateCarree()</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">5</span>), dpi<span class="op">=</span><span class="dv">130</span>, facecolor<span class="op">=</span><span class="st">"w"</span>, subplot_kw<span class="op">=</span><span class="bu">dict</span>(projection<span class="op">=</span>proj))</span>
@@ -2113,11 +2530,7 @@ StopGranuleDateTime=2015-02-25T23:59:59.999Z</dd><dt><span>InputPointer :</span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Earthdata_Subset_and_Plot_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p><img src="Earthdata_Subset_and_Plot_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Notice the enhancements?</p>
@@ -2170,33 +2583,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -2265,15 +2651,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2308,7 +2692,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2340,48 +2735,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/nmfs-opensci\.github\.io\/NOAAHackDays");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2391,17 +2749,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2413,129 +2762,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -2579,7 +2806,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2605,32 +2831,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2696,15 +2896,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">
-<p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Subset_and_Plot.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Subset_and_Plot.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-center"><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
 
 
 

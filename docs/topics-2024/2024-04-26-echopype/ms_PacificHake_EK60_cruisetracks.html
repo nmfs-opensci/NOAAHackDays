@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exploring ship echosounder data from the Pacific Hake survey – NMFS Open Science Cloud Computing Training Hub</title>
+<title>NMFS Open Science Cloud Computing Training Hub - Exploring ship echosounder data from the Pacific Hake survey</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
@@ -69,25 +69,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -96,14 +90,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -114,61 +107,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">NMFS Open Science Cloud Computing Training Hub</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://nmfs-openscapes.2i2c.cloud/"> <i class="bi bi-server" role="img">
+    <a class="nav-link" href="https://nmfs-openscapes.2i2c.cloud/" rel="" target=""><i class="bi bi-server" role="img">
 </i> 
-<span class="menu-text">JupyterHub</span></a>
+ <span class="menu-text">JupyterHub</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays/discussions"> <i class="bi bi-wechat" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays/discussions" rel="" target=""><i class="bi bi-wechat" role="img">
 </i> 
-<span class="menu-text">Discussions</span></a>
+ <span class="menu-text">Discussions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
-<span class="menu-text">repo</span></a>
+ <span class="menu-text">repo</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/nmfs-opensci"> <i class="bi bi-globe" role="img">
+    <a class="nav-link" href="https://github.com/nmfs-opensci" rel="" target=""><i class="bi bi-globe" role="img">
 </i> 
-<span class="menu-text">GH org</span></a>
+ <span class="menu-text">GH org</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exploring ship echosounder data from the Pacific Hake survey</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exploring ship echosounder data from the Pacific Hake survey</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
       <img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -252,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -266,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#read-mvbs-and-plot-track-echograms-for-time-periods-corresponding-to-two-ship-tracks" id="toc-read-mvbs-and-plot-track-echograms-for-time-periods-corresponding-to-two-ship-tracks" class="nav-link" data-scroll-target="#read-mvbs-and-plot-track-echograms-for-time-periods-corresponding-to-two-ship-tracks">Read MVBS and plot track echograms for time periods corresponding to two ship tracks</a></li>
   <li><a href="#package-versions" id="toc-package-versions" class="nav-link" data-scroll-target="#package-versions">Package versions</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.ipynb" class="toc-action">Edit this page</a></p><p><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.ipynb" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -295,9 +288,7 @@ function googleTranslateElementInit() {
   </div>
   
 
-
 </header>
-
 
 <p>Jupyter notebook accompanying the manuscript:</p>
 <p><em>Echopype: A Python library for interoperable and scalable processing of ocean sonar data for biological information</em><br>
@@ -333,7 +324,7 @@ function googleTranslateElementInit() {
 <section id="note" class="level3">
 <h3 class="anchored" data-anchor-id="note">Note</h3>
 <p>We encourage importing <code>echopype</code> as <code>ep</code> for consistency.</p>
-<div id="cell-3" class="cell" data-tags="[]" data-execution_count="1">
+<div class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fsspec</span>
@@ -359,13 +350,13 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="establish-aws-s3-file-system-connection-and-generate-list-of-target-ek60-.raw-files">Establish AWS S3 file system connection and generate list of target EK60 <code>.raw</code> files</h2>
 <p>Access and inspect the publicly accessible NCEI WCSD S3 bucket on the AWS cloud as if it were a local file system. This will be done through the Python <a href="https://filesystem-spec.readthedocs.io">fsspec</a> file system and bytes storage interface. We will use <code>fsspec.filesystem.glob</code> (<code>fs.glob</code>) to generate a list of all EK60 <code>.raw</code> data files in the bucket, then filter on file names for target dates of interest.</p>
 <p>The directory path on the <a href="https://ncei-wcsd-archive.s3.amazonaws.com/index.html">ncei-wcsd-archive S3 bucket</a> is <code>s3://ncei-wcsd-archive/data/raw/Bell_M._Shimada/SH1707/EK60/</code>. All <code>.raw</code> files from the 2017 Hake survey cruise are found here.</p>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> fsspec.filesystem(<span class="st">'s3'</span>, anon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bucket <span class="op">=</span> <span class="st">"ncei-wcsd-archive"</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>rawdirpath <span class="op">=</span> <span class="st">"data/raw/Bell_M._Shimada/SH1707/EK60"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>s3rawfiles <span class="op">=</span> fs.glob(<span class="ss">f"</span><span class="sc">{</span>bucket<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>rawdirpath<span class="sc">}</span><span class="ss">/*.raw"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print out the last two S3 raw file paths in the list</span></span>
@@ -376,7 +367,7 @@ function googleTranslateElementInit() {
 </div>
 </div>
 <p>Generate list of target EK60 <code>.raw</code> files from AWS S3 bucket based on dates. The dates are found in the middle string token (e.g., “D20170913”). Select files from 2 days, 2017-07-28 and 2017-07-29.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>s3rawfiles <span class="op">=</span> [</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    s3path <span class="cf">for</span> s3path <span class="kw">in</span> s3rawfiles </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">any</span>([<span class="ss">f"D2017</span><span class="sc">{</span>datestr<span class="sc">}</span><span class="ss">"</span> <span class="kw">in</span> s3path <span class="cf">for</span> datestr <span class="kw">in</span> [<span class="st">'0728'</span>, <span class="st">'0729'</span>]])</span>
@@ -391,7 +382,7 @@ function googleTranslateElementInit() {
 <section id="process-s3-hosted-raw-files-with-echopype-convert-calibrate-and-export-to-standardized-files" class="level2">
 <h2 class="anchored" data-anchor-id="process-s3-hosted-raw-files-with-echopype-convert-calibrate-and-export-to-standardized-files">Process S3-hosted raw files with <code>echopype</code>: convert, calibrate and export to standardized files</h2>
 <p>Loop through all the selected raw files on S3 and convert, calibrate and generate Mean Volume Backscattering Strength (MVBS). Save the raw converted and MVBS data to local files, as zarr and netCDF, respectively.</p>
-<div id="cell-10" class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> populate_metadata(ed, raw_fname):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Manually populate into the "ed" EchoData object </span></span>
@@ -418,7 +409,7 @@ function googleTranslateElementInit() {
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    ed[<span class="st">'Platform'</span>].attrs[<span class="st">'platform_code_ICES'</span>] <span class="op">=</span> <span class="st">"315"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create the directories where the exported files will be saved, if these directories don’t already exist.</p>
-<div id="cell-12" class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>base_dpath <span class="op">=</span> Path(<span class="st">'./exports/notebook2'</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>base_dpath.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>, parents<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -432,7 +423,7 @@ function googleTranslateElementInit() {
 <p><code>EchoData</code> is an echopype object for conveniently handling raw converted data from either raw instrument files or previously converted and standardized raw netCDF4 and Zarr files. It is essentially a container for multiple <code>xarray.Dataset</code> objects, each corresponds to one of the netCDF4 groups specified in the SONAR-netCDF4 convention – the convention followed by echopype. The <code>EchoData</code> object can be used to conveniently accesse and explore the echosounder raw data and for calibration and other processing.</p>
 <p>The cell below contains the main echopype workflow steps. For each raw file: - Access file directly from S3 via <code>ep.open_raw</code> to create a converted <code>EchoData</code> object in memory - Add global and platform attributes to <code>EchoData</code> object - Export to a local Zarr dataset (a collection of files encapsulated in a directory) - Generate calibrated <code>Sv</code> and then <code>MVBS</code> from the raw data in the <code>EchoData</code> object - Export <code>MVBS</code> to a local netcdf file</p>
 <p>Note: Depending on your internet speed, this cell may take some time to run (potentially 20-30 mins).</p>
-<div id="cell-14" class="cell" data-scrolled="true" data-tags="[&quot;output_scroll&quot;]" data-execution_count="7">
+<div class="cell" data-scrolled="true" data-tags="[&quot;output_scroll&quot;]" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s3rawfpath <span class="kw">in</span> s3rawfiles:</span>
@@ -479,7 +470,7 @@ Wall time: 9min</code></pre>
 <section id="test-for-time-reversals" class="level3">
 <h3 class="anchored" data-anchor-id="test-for-time-reversals">Test for time reversals</h3>
 <p>Small time reversals are found in EK60 datasets, including the 2017 Pacific Hake survey, where the <code>ping_time</code> (or GPS <code>time1</code>) value may be lower (older) than the preceding <code>ping_time</code> by a second. Such discontinuities can interfere with concatenating individual raw files to produce an aggregated dataset. The capability to identify and address these reversals is in the <code>echopype.qc</code> subpackage.</p>
-<div id="cell-16" class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> datapath <span class="kw">in</span> converted_dpath.glob(<span class="st">'*'</span>):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    ed <span class="op">=</span> ep.open_converted(datapath)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Test for a negative ping_time increment in sequential timestamps, in the Sonar/Beam_group1 group</span></span>
@@ -492,9 +483,10 @@ Wall time: 9min</code></pre>
 <h3 class="anchored" data-anchor-id="examine-the-echodata-object-for-one-of-the-data-files">Examine the EchoData object for one of the data files</h3>
 <p>echopype provides a user-friendly, convenient representation of an <code>EchoData</code> object that leverages the user-friendly xarray <code>Dataset</code> HTML representation. Since an <code>EchoData</code> object is effectively a container for multiple <code>xarray.Dataset</code> objects corresponding to netCDF4 groups, the notebook “print out” provides a summary view of all the groups and interactive access to summaries of each group.</p>
 <p>Here, <code>ed</code> is the last object opened in the time reversal test, in the preceding cell.</p>
-<div id="cell-19" class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
+
 <div>
     <div class="xr-header">
         <div class="xr-obj-type">EchoData: standardized raw data from /Users/wujung/code_git/echopype-examples/notebooks/exports/notebook2/hakesurvey_convertedzarr/Summer2017-D20170728-T151434.zarr</div>
@@ -4038,7 +4030,7 @@ dl.xr-attrs {
 <h2 class="anchored" data-anchor-id="extract-and-process-gps-locations-from-the-platform-group-of-converted-raw-files">Extract and process GPS locations from the <code>Platform</code> group of converted raw files</h2>
 <p>Use <code>xarray.open_mfdataset</code> to open the <code>Platform</code> group from all the converted raw netcdf files as a single concatenated (combined) <code>xarray</code> dataset. Then extract GPS <code>time1</code> (time stamp), <code>latitude</code> and <code>longitude</code> from this group and transform that data into a <a href="https://geopandas.org/">GeoPandas</a> <code>GeoDataFrame</code> containing point-geometry objects that are readily manipulated via geospatial operations. A <code>GeoDataFrame</code> adds geospatial capabilities to a Pandas <code>DataFrame</code>.</p>
 <p>Due to the presence of multiple time coordinates in this group, care must be taken in defining how the concatenation (combine) operation is to be performed. This is captured in the arguments passed to <code>open_mfdataset</code>.</p>
-<div id="cell-22" class="cell" data-tags="[]" data-execution_count="10">
+<div class="cell" data-tags="[]" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>platform_ds <span class="op">=</span> xr.open_mfdataset(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">str</span>(converted_dpath <span class="op">/</span> <span class="st">'*.zarr'</span>), group<span class="op">=</span><span class="st">'Platform'</span>, </span>
@@ -4051,9 +4043,10 @@ dl.xr-attrs {
 Wall time: 34.6 s</code></pre>
 </div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>platform_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
+
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -4449,14 +4442,14 @@ Attributes:
        '2017-07-28T00:05:38.404472000', ..., '2017-07-30T00:17:52.050917000',
        '2017-07-30T00:17:54.266043000', '2017-07-30T00:17:56.492170000'],
       dtype='datetime64[ns]')</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-6d552366-8412-44da-821e-76aaf6a3115e" class="xr-section-summary-in" type="checkbox"><label for="section-6d552366-8412-44da-821e-76aaf6a3115e" class="xr-section-summary">Data variables: <span>(20)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>MRU_offset_x</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-07e2284a-961c-4e60-a937-fbe90e8176d1" class="xr-var-attrs-in" type="checkbox"><label for="attrs-07e2284a-961c-4e60-a937-fbe90e8176d1" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8b07f989-bd83-47c3-b392-1c4b1eebaee1" class="xr-var-data-in" type="checkbox"><label for="data-8b07f989-bd83-47c3-b392-1c4b1eebaee1" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the x-axis from the platform coordinate system origin to the motion reference unit sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>MRU_offset_y</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-30e5f6ed-aa9e-433a-96b8-90ff19b38465" class="xr-var-attrs-in" type="checkbox"><label for="attrs-30e5f6ed-aa9e-433a-96b8-90ff19b38465" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9ec55893-216e-4ca8-883b-b918d20f688a" class="xr-var-data-in" type="checkbox"><label for="data-9ec55893-216e-4ca8-883b-b918d20f688a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the y-axis from the platform coordinate system origin to the motion reference unit sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>MRU_offset_z</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-722127d0-dc21-4cda-aeeb-5c45680c7cd9" class="xr-var-attrs-in" type="checkbox"><label for="attrs-722127d0-dc21-4cda-aeeb-5c45680c7cd9" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-2c68afd8-a6f7-4ac3-a743-26bd85e67f82" class="xr-var-data-in" type="checkbox"><label for="data-2c68afd8-a6f7-4ac3-a743-26bd85e67f82" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the z-axis from the platform coordinate system origin to the motion reference unit sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>MRU_rotation_x</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-794def7d-6b0c-47e5-865c-4a9f52cc80df" class="xr-var-attrs-in" type="checkbox"><label for="attrs-794def7d-6b0c-47e5-865c-4a9f52cc80df" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8ea7e378-eb88-483a-a108-ed591ff94d7d" class="xr-var-data-in" type="checkbox"><label for="data-8ea7e378-eb88-483a-a108-ed591ff94d7d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Extrinsic rotation about the x-axis from the platform to MRU coordinate systems</dd><dt><span>units :</span></dt><dd>arc_degree</dd><dt><span>valid_range :</span></dt><dd>(–180.0, 180.0)</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>MRU_rotation_y</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-1e48c681-894b-4af5-b465-eb2cbae141ff" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1e48c681-894b-4af5-b465-eb2cbae141ff" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a14a5242-10c1-42f7-8c99-42883de5944c" class="xr-var-data-in" type="checkbox"><label for="data-a14a5242-10c1-42f7-8c99-42883de5944c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Extrinsic rotation about the y-axis from the platform to MRU coordinate systems</dd><dt><span>units :</span></dt><dd>arc_degree</dd><dt><span>valid_range :</span></dt><dd>(–180.0, 180.0)</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>MRU_rotation_z</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-f1b0556a-c1bf-4710-a1e7-67dac5cb985d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f1b0556a-c1bf-4710-a1e7-67dac5cb985d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4539dfe5-7949-49f5-8e71-99586e104a47" class="xr-var-data-in" type="checkbox"><label for="data-4539dfe5-7949-49f5-8e71-99586e104a47" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Extrinsic rotation about the z-axis from the platform to MRU coordinate systems</dd><dt><span>units :</span></dt><dd>arc_degree</dd><dt><span>valid_range :</span></dt><dd>(–180.0, 180.0)</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>frequency_nominal</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-fc0a7534-6078-4d8e-92c5-09da0ff5971a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-fc0a7534-6078-4d8e-92c5-09da0ff5971a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f1ea79e9-7edf-437f-b8ad-d5481f24deca" class="xr-var-data-in" type="checkbox"><label for="data-f1ea79e9-7edf-437f-b8ad-d5481f24deca" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Transducer frequency</dd><dt><span>standard_name :</span></dt><dd>sound_frequency</dd><dt><span>units :</span></dt><dd>Hz</dd><dt><span>valid_min :</span></dt><dd>0.0</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4485,21 +4478,52 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="93" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="43" x2="120" y2="43" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="43" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="43" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,43.88583450710766 0.0,43.88583450710766" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="63.885835" font-size="1.0rem" font-weight="100" text-anchor="middle">3</text> <text x="140.000000" y="21.942917" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,21.942917)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjkzIiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSI0MyIgeDI9IjEyMCIgeTI9IjQzIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsNDMuODg1ODM0NTA3MTA3NjYgMC4wLDQzLjg4NTgzNDUwNzEwNzY2IiBzdHlsZT0iZmlsbDojRUNCMTcyQTA7c3Ryb2tlLXdpZHRoOjAiPjwvcG9seWdvbj4KCiAgPCEtLSBUZXh0IC0tPgogIDx0ZXh0IHg9IjYwLjAwMDAwMCIgeT0iNjMuODg1ODM1IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSIyMS45NDI5MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsMjEuOTQyOTE3KSI+MTwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>latitude</span></div><div class="xr-var-dims">(time1)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;</div><input id="attrs-2dcf332c-db18-4996-b84e-c6d10aad374c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2dcf332c-db18-4996-b84e-c6d10aad374c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-14b4c233-ff98-4665-bd7f-6d0513872a3c" class="xr-var-data-in" type="checkbox"><label for="data-14b4c233-ff98-4665-bd7f-6d0513872a3c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>valid_range :</span></dt><dd>(-90.0, 90.0)</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<div class="xr-var-name">
+<span>latitude</span>
+</div>
+<div class="xr-var-dims">
+(time1)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Platform latitude
+</dd>
+<dt><span>standard_name :</span></dt>
+<dd>
+latitude
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+degrees_north
+</dd>
+<dt><span>valid_range :</span></dt>
+<dd>
+(-90.0, 90.0)
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4528,21 +4552,53 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle">244846</text> <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9Ijc1IiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSIyNSIgeDI9IjEyMCIgeTI9IjI1IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsMjUuNDEyNjE2NTE0NTgyNDg1IDAuMCwyNS40MTI2MTY1MTQ1ODI0ODUiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSI0NS40MTI2MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yNDQ4NDY8L3RleHQ+CiAgPHRleHQgeD0iMTQwLjAwMDAwMCIgeT0iMTIuNzA2MzA4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoMCwxNDAuMDAwMDAwLDEyLjcwNjMwOCkiPjE8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>longitude</span></div><div class="xr-var-dims">(time1)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;</div><input id="attrs-98bc1584-3e03-4947-b6cc-0e1a343bee0e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-98bc1584-3e03-4947-b6cc-0e1a343bee0e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-5d92100d-2d82-48a4-933a-9e49b315804b" class="xr-var-data-in" type="checkbox"><label for="data-5d92100d-2d82-48a4-933a-9e49b315804b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>valid_range :</span></dt><dd>(-180.0, 180.0)</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>longitude</span>
+</div>
+<div class="xr-var-dims">
+(time1)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Platform longitude
+</dd>
+<dt><span>standard_name :</span></dt>
+<dd>
+longitude
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+degrees_east
+</dd>
+<dt><span>valid_range :</span></dt>
+<dd>
+(-180.0, 180.0)
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4571,21 +4627,53 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle">244846</text> <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9Ijc1IiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSIyNSIgeDI9IjEyMCIgeTI9IjI1IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsMjUuNDEyNjE2NTE0NTgyNDg1IDAuMCwyNS40MTI2MTY1MTQ1ODI0ODUiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSI0NS40MTI2MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yNDQ4NDY8L3RleHQ+CiAgPHRleHQgeD0iMTQwLjAwMDAwMCIgeT0iMTIuNzA2MzA4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoMCwxNDAuMDAwMDAwLDEyLjcwNjMwOCkiPjE8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>pitch</span></div><div class="xr-var-dims">(time2)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;</div><input id="attrs-5c17360f-b45f-4c65-8658-e9019a9c7f0f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5c17360f-b45f-4c65-8658-e9019a9c7f0f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b14344cc-5c8d-4594-8b76-689dc142403f" class="xr-var-data-in" type="checkbox"><label for="data-b14344cc-5c8d-4594-8b76-689dc142403f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform pitch</dd><dt><span>standard_name :</span></dt><dd>platform_pitch_angle</dd><dt><span>units :</span></dt><dd>arc_degree</dd><dt><span>valid_range :</span></dt><dd>(-90.0, 90.0)</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>pitch</span>
+</div>
+<div class="xr-var-dims">
+(time2)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Platform pitch
+</dd>
+<dt><span>standard_name :</span></dt>
+<dd>
+platform_pitch_angle
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+arc_degree
+</dd>
+<dt><span>valid_range :</span></dt>
+<dd>
+(-90.0, 90.0)
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4614,21 +4702,137 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle">88959</text> <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9Ijc1IiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSIyNSIgeDI9IjEyMCIgeTI9IjI1IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsMjUuNDEyNjE2NTE0NTgyNDg1IDAuMCwyNS40MTI2MTY1MTQ1ODI0ODUiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSI0NS40MTI2MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj44ODk1OTwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSIxMi43MDYzMDgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsMTIuNzA2MzA4KSI+MTwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>position_offset_x</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-15148e35-3d1f-4257-afce-0f6daea8dc99" class="xr-var-attrs-in" type="checkbox"><label for="attrs-15148e35-3d1f-4257-afce-0f6daea8dc99" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0994f498-b01a-4380-9de7-d641ce683f73" class="xr-var-data-in" type="checkbox"><label for="data-0994f498-b01a-4380-9de7-d641ce683f73" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the x-axis from the platform coordinate system origin to the latitude/longitude sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>position_offset_y</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-b733bded-5e8c-477a-9048-08bc35f7f13e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b733bded-5e8c-477a-9048-08bc35f7f13e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-bd04d679-23e4-44cc-b120-701fa76c3a68" class="xr-var-data-in" type="checkbox"><label for="data-bd04d679-23e4-44cc-b120-701fa76c3a68" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the y-axis from the platform coordinate system origin to the latitude/longitude sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>position_offset_z</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">nan</div><input id="attrs-eefb32a8-9e9c-44e2-98ad-e8eda31fe51b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-eefb32a8-9e9c-44e2-98ad-e8eda31fe51b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-53a5db18-44eb-4a07-9482-5bb4ad1c55ba" class="xr-var-data-in" type="checkbox"><label for="data-53a5db18-44eb-4a07-9482-5bb4ad1c55ba" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance along the z-axis from the platform coordinate system origin to the latitude/longitude sensor origin</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(nan)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>roll</span></div><div class="xr-var-dims">(time2)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;</div><input id="attrs-2835838a-c602-406d-9ac4-8f94952c71c4" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2835838a-c602-406d-9ac4-8f94952c71c4" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d39d2125-e415-41a6-80c9-6a1a34bb1726" class="xr-var-data-in" type="checkbox"><label for="data-d39d2125-e415-41a6-80c9-6a1a34bb1726" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform roll</dd><dt><span>standard_name :</span></dt><dd>platform_roll_angle</dd><dt><span>units :</span></dt><dd>arc_degree</dd><dt><span>valid_range :</span></dt><dd>(-90.0, 90.0)</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>position_offset_x</span>
+</div>
+<div class="xr-var-dims">
+()
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+nan
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Distance along the x-axis from the platform coordinate system origin to the latitude/longitude sensor origin
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+m
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<pre><code>array(nan)</code></pre>
+</div>
+<div class="xr-var-name">
+<span>position_offset_y</span>
+</div>
+<div class="xr-var-dims">
+()
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+nan
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Distance along the y-axis from the platform coordinate system origin to the latitude/longitude sensor origin
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+m
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<pre><code>array(nan)</code></pre>
+</div>
+<div class="xr-var-name">
+<span>position_offset_z</span>
+</div>
+<div class="xr-var-dims">
+()
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+nan
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Distance along the z-axis from the platform coordinate system origin to the latitude/longitude sensor origin
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+m
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<pre><code>array(nan)</code></pre>
+</div>
+<div class="xr-var-name">
+<span>roll</span>
+</div>
+<div class="xr-var-dims">
+(time2)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Platform roll
+</dd>
+<dt><span>standard_name :</span></dt>
+<dd>
+platform_roll_angle
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+arc_degree
+</dd>
+<dt><span>valid_range :</span></dt>
+<dd>
+(-90.0, 90.0)
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4657,21 +4861,41 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle">88959</text> <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9Ijc1IiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSIyNSIgeDI9IjEyMCIgeTI9IjI1IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsMjUuNDEyNjE2NTE0NTgyNDg1IDAuMCwyNS40MTI2MTY1MTQ1ODI0ODUiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSI0NS40MTI2MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj44ODk1OTwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSIxMi43MDYzMDgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsMTIuNzA2MzA4KSI+MTwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>sentence_type</span></div><div class="xr-var-dims">(time1)</div><div class="xr-var-dtype">object</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;</div><input id="attrs-8cd99fa4-c2f5-4fa1-8517-797e607f8f44" class="xr-var-attrs-in" type="checkbox"><label for="attrs-8cd99fa4-c2f5-4fa1-8517-797e607f8f44" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6d8a8dd1-6d6a-4718-b7ed-b20470eb9eb6" class="xr-var-data-in" type="checkbox"><label for="data-6d8a8dd1-6d6a-4718-b7ed-b20470eb9eb6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>NMEA sentence type</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>sentence_type</span>
+</div>
+<div class="xr-var-dims">
+(time1)
+</div>
+<div class="xr-var-dtype">
+object
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(244846,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+NMEA sentence type
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4700,21 +4924,45 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle">244846</text> <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9Ijc1IiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSIyNSIgeDI9IjEyMCIgeTI9IjI1IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsMjUuNDEyNjE2NTE0NTgyNDg1IDAuMCwyNS40MTI2MTY1MTQ1ODI0ODUiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSI0NS40MTI2MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yNDQ4NDY8L3RleHQ+CiAgPHRleHQgeD0iMTQwLjAwMDAwMCIgeT0iMTIuNzA2MzA4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoMCwxNDAuMDAwMDAwLDEyLjcwNjMwOCkiPjE8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>transducer_offset_x</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-ec8c1395-f79f-475a-b92c-0e5160aba96d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ec8c1395-f79f-475a-b92c-0e5160aba96d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-84b0bc7c-c7b6-41dd-bd03-77e1cb583b9c" class="xr-var-data-in" type="checkbox"><label for="data-84b0bc7c-c7b6-41dd-bd03-77e1cb583b9c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>x-axis distance from the platform coordinate system origin to the sonar transducer</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>transducer_offset_x</span>
+</div>
+<div class="xr-var-dims">
+(channel)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+x-axis distance from the platform coordinate system origin to the sonar transducer
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+m
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4743,21 +4991,45 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="93" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="43" x2="120" y2="43" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="43" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="43" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,43.88583450710766 0.0,43.88583450710766" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="63.885835" font-size="1.0rem" font-weight="100" text-anchor="middle">3</text> <text x="140.000000" y="21.942917" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,21.942917)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjkzIiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSI0MyIgeDI9IjEyMCIgeTI9IjQzIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsNDMuODg1ODM0NTA3MTA3NjYgMC4wLDQzLjg4NTgzNDUwNzEwNzY2IiBzdHlsZT0iZmlsbDojRUNCMTcyQTA7c3Ryb2tlLXdpZHRoOjAiPjwvcG9seWdvbj4KCiAgPCEtLSBUZXh0IC0tPgogIDx0ZXh0IHg9IjYwLjAwMDAwMCIgeT0iNjMuODg1ODM1IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSIyMS45NDI5MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsMjEuOTQyOTE3KSI+MTwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>transducer_offset_y</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-025e5275-7726-4be6-825c-81562c35c8c8" class="xr-var-attrs-in" type="checkbox"><label for="attrs-025e5275-7726-4be6-825c-81562c35c8c8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-260fc617-bace-4834-92b2-100c85b68640" class="xr-var-data-in" type="checkbox"><label for="data-260fc617-bace-4834-92b2-100c85b68640" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>y-axis distance from the platform coordinate system origin to the sonar transducer</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>transducer_offset_y</span>
+</div>
+<div class="xr-var-dims">
+(channel)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+y-axis distance from the platform coordinate system origin to the sonar transducer
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+m
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4786,21 +5058,45 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="93" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="43" x2="120" y2="43" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="43" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="43" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,43.88583450710766 0.0,43.88583450710766" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="63.885835" font-size="1.0rem" font-weight="100" text-anchor="middle">3</text> <text x="140.000000" y="21.942917" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,21.942917)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjkzIiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSI0MyIgeDI9IjEyMCIgeTI9IjQzIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsNDMuODg1ODM0NTA3MTA3NjYgMC4wLDQzLjg4NTgzNDUwNzEwNzY2IiBzdHlsZT0iZmlsbDojRUNCMTcyQTA7c3Ryb2tlLXdpZHRoOjAiPjwvcG9seWdvbj4KCiAgPCEtLSBUZXh0IC0tPgogIDx0ZXh0IHg9IjYwLjAwMDAwMCIgeT0iNjMuODg1ODM1IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSIyMS45NDI5MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsMjEuOTQyOTE3KSI+MTwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>transducer_offset_z</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-6693dbda-e55f-4b76-a419-3fb52abee199" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6693dbda-e55f-4b76-a419-3fb52abee199" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-30bb76d8-292a-44d2-8a97-5b63278838d1" class="xr-var-data-in" type="checkbox"><label for="data-30bb76d8-292a-44d2-8a97-5b63278838d1" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>z-axis distance from the platform coordinate system origin to the sonar transducer</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>transducer_offset_z</span>
+</div>
+<div class="xr-var-dims">
+(channel)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+z-axis distance from the platform coordinate system origin to the sonar transducer
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+m
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4829,21 +5125,45 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="93" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="43" x2="120" y2="43" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="43" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="43" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,43.88583450710766 0.0,43.88583450710766" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="63.885835" font-size="1.0rem" font-weight="100" text-anchor="middle">3</text> <text x="140.000000" y="21.942917" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,21.942917)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjkzIiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSI0MyIgeDI9IjEyMCIgeTI9IjQzIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsNDMuODg1ODM0NTA3MTA3NjYgMC4wLDQzLjg4NTgzNDUwNzEwNzY2IiBzdHlsZT0iZmlsbDojRUNCMTcyQTA7c3Ryb2tlLXdpZHRoOjAiPjwvcG9seWdvbj4KCiAgPCEtLSBUZXh0IC0tPgogIDx0ZXh0IHg9IjYwLjAwMDAwMCIgeT0iNjMuODg1ODM1IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSIyMS45NDI5MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsMjEuOTQyOTE3KSI+MTwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>vertical_offset</span></div><div class="xr-var-dims">(time2)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;</div><input id="attrs-6d3a8d6f-5a56-4759-bbbb-8e49f5fbafbe" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6d3a8d6f-5a56-4759-bbbb-8e49f5fbafbe" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-c838ae43-e50a-4b99-b184-3acd61c097ca" class="xr-var-data-in" type="checkbox"><label for="data-c838ae43-e50a-4b99-b184-3acd61c097ca" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Platform vertical offset from nominal water level</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+</div>
+<div class="xr-var-name">
+<span>vertical_offset</span>
+</div>
+<div class="xr-var-dims">
+(time2)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(88959,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Platform vertical offset from nominal water level
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+m
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -4872,12 +5192,11 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle">88959</text> <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9Ijc1IiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSIyNSIgeDI9IjEyMCIgeTI9IjI1IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMjUiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsMjUuNDEyNjE2NTE0NTgyNDg1IDAuMCwyNS40MTI2MTY1MTQ1ODI0ODUiIHN0eWxlPSJmaWxsOiNFQ0IxNzJBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iNjAuMDAwMDAwIiB5PSI0NS40MTI2MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj44ODk1OTwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSIxMi43MDYzMDgiIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsMTIuNzA2MzA4KSI+MTwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div></li><li class="xr-var-item"><div class="xr-var-name"><span>water_level</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">9.15</div><input id="attrs-2dad98f4-978a-437b-b0da-d7d71989b9c0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2dad98f4-978a-437b-b0da-d7d71989b9c0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3bbee44a-6573-4b34-9e97-33aa53d4b01c" class="xr-var-data-in" type="checkbox"><label for="data-3bbee44a-6573-4b34-9e97-33aa53d4b01c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance from the platform coordinate system origin to the nominal water level along the z-axis</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(9.14999962)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-85af4e97-29b1-4f3f-b57b-29b6974ef30f" class="xr-section-summary-in" type="checkbox"><label for="section-85af4e97-29b1-4f3f-b57b-29b6974ef30f" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>channel</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-dcf2240c-8b26-4005-879f-aceffb806fc8" class="xr-index-data-in" type="checkbox"><label for="index-dcf2240c-8b26-4005-879f-aceffb806fc8" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index(['GPT  18 kHz 009072058c8d 1-1 ES18-11',
        'GPT  38 kHz 009072058146 2-1 ES38B',
        'GPT 120 kHz 00907205a6d0 4-1 ES120-7C'],
@@ -4907,29 +5226,29 @@ Attributes:
 </div>
 </div>
 <p>We can use <code>time1</code> (the timestamps for NMEA datagrams, or GPS timestamps) to examine the exact timestamp interval spanned by the combined dataset.</p>
-<div id="cell-25" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>platform_ds<span class="sc">.</span>time1<span class="sc">.</span>values<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>platform_ds<span class="sc">.</span>time1<span class="sc">.</span>values<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>platform_ds<span class="sc">.</span>time1<span class="sc">.</span>values<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>platform_ds<span class="sc">.</span>time1<span class="sc">.</span>values<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2017-07-28T00:05:36.103315000, 2017-07-30T00:17:59.381813000</code></pre>
 </div>
 </div>
 <p>To create the GeoPandas GeoDataFrame, first transform the <code>latitude</code> and <code>longitude</code> arrays to a single Pandas DataFrame that retains the <code>time1</code> coordinate as a common index. This is done by using the DataFrame <code>to_dataframe</code> method together with a Pandas <code>join</code> operation. Then, a point GeoDataFrame is created from this DataFrame.</p>
-<div id="cell-27" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gps_df <span class="op">=</span> platform_ds.latitude.to_dataframe().join(platform_ds.longitude.to_dataframe())</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>gps_df.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gps_df <span class="op">=</span> platform_ds.latitude.to_dataframe().join(platform_ds.longitude.to_dataframe())</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>gps_df.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">latitude</th>
 <th data-quarto-table-cell-role="th">longitude</th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th data-quarto-table-cell-role="th">time1</th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
@@ -4957,22 +5276,21 @@ Attributes:
 </div>
 </div>
 </div>
-<div id="cell-28" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gps_gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    gps_df,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(gps_df[<span class="st">'longitude'</span>], gps_df[<span class="st">'latitude'</span>]), </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"epsg:4326"</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gps_gdf <span class="op">=</span> gpd.GeoDataFrame(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    gps_df,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    geometry<span class="op">=</span>gpd.points_from_xy(gps_df[<span class="st">'longitude'</span>], gps_df[<span class="st">'latitude'</span>]), </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    crs<span class="op">=</span><span class="st">"epsg:4326"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A simple, easily generated map plot of the point GeoDataFrame</p>
-<div id="cell-30" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gps_gdf.plot(markersize<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ms_PacificHake_EK60_cruisetracks_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gps_gdf.plot(markersize<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>&lt;Axes: &gt;</code></pre>
 </div>
+<div class="cell-output cell-output-display">
+<p><img src="ms_PacificHake_EK60_cruisetracks_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -4981,21 +5299,22 @@ Attributes:
 <section id="read-mvbs-as-a-concatenated-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="read-mvbs-as-a-concatenated-dataset">Read MVBS as a concatenated dataset</h3>
 <p>Use <code>xarray.open_mfdataset</code> again to read and concatenate (combine) data files into a single xarray Dataset. This time, we’re reading the MVBS netCDF files.</p>
-<div id="cell-33" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>MVBS_ds <span class="op">=</span> xr.open_mfdataset(</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">str</span>(calibrated_dpath <span class="op">/</span> <span class="st">'MVBS_*.nc'</span>), </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    data_vars<span class="op">=</span><span class="st">'minimal'</span>, coords<span class="op">=</span><span class="st">'minimal'</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    combine<span class="op">=</span><span class="st">'by_coords'</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>MVBS_ds <span class="op">=</span> xr.open_mfdataset(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">str</span>(calibrated_dpath <span class="op">/</span> <span class="st">'MVBS_*.nc'</span>), </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    data_vars<span class="op">=</span><span class="st">'minimal'</span>, coords<span class="op">=</span><span class="st">'minimal'</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    combine<span class="op">=</span><span class="st">'by_coords'</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 2.14 s, sys: 180 ms, total: 2.32 s
 Wall time: 3.16 s</code></pre>
 </div>
 </div>
-<div id="cell-34" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
+
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -5391,14 +5710,14 @@ Attributes:
        600., 605., 610., 615., 620., 625., 630., 635., 640., 645., 650., 655.,
        660., 665., 670., 675., 680., 685., 690., 695., 700., 705., 710., 715.,
        720., 725., 730., 735., 740., 745.])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-82d25609-b8dd-456b-b9b9-ff57c81c11bf" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-82d25609-b8dd-456b-b9b9-ff57c81c11bf" class="xr-section-summary">Data variables: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>Sv</span></div><div class="xr-var-dims">(channel, ping_time, echo_range)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3, 60, 150), meta=np.ndarray&gt;</div><input id="attrs-f0467fce-8ac8-4265-b3ca-f4bded4edfc0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f0467fce-8ac8-4265-b3ca-f4bded4edfc0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-bc1c99f6-72ce-4313-9e7e-976d1a6348d7" class="xr-var-data-in" type="checkbox"><label for="data-bc1c99f6-72ce-4313-9e7e-976d1a6348d7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Mean volume backscattering strength (MVBS, mean Sv re 1 m-1)</dd><dt><span>units :</span></dt><dd>dB</dd><dt><span>actual_range :</span></dt><dd>[-98.92  -1.67]</dd><dt><span>cell_methods :</span></dt><dd>ping_time: mean (interval: 20 second comment: ping_time is the interval start) echo_range: mean (interval: 5.0 meter comment: echo_range is the interval start)</dd><dt><span>binning_mode :</span></dt><dd>physical units</dd><dt><span>range_meter_interval :</span></dt><dd>5.0m</dd><dt><span>ping_time_interval :</span></dt><dd>20s</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -5427,21 +5746,80 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="103" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="5" x2="24" y2="20"></line> <line x1="10" y1="9" x2="24" y2="24"></line> <line x1="10" y1="13" x2="24" y2="28"></line> <line x1="10" y1="18" x2="24" y2="32"></line> <line x1="10" y1="22" x2="24" y2="37"></line> <line x1="10" y1="26" x2="24" y2="41"></line> <line x1="10" y1="30" x2="24" y2="45"></line> <line x1="10" y1="36" x2="24" y2="51"></line> <line x1="10" y1="43" x2="24" y2="58"></line> <line x1="10" y1="53" x2="24" y2="68"></line> <line x1="10" y1="60" x2="24" y2="75"></line> <line x1="10" y1="67" x2="24" y2="82"></line> <line x1="10" y1="74" x2="24" y2="89"></line> <line x1="10" y1="82" x2="24" y2="97"></line> <line x1="10" y1="89" x2="24" y2="104"></line> <line x1="10" y1="95" x2="24" y2="110"></line> <line x1="10" y1="104" x2="24" y2="119"></line> <line x1="10" y1="112" x2="24" y2="127"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#8B4903A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="38" y2="0" style="stroke-width:2"></line> <line x1="24" y1="14" x2="53" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="38" y1="0" x2="53" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 38.13335749029437,0.0 53.08195544004877,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="53" y2="14" style="stroke-width:2"></line> <line x1="24" y1="20" x2="53" y2="20"></line> <line x1="24" y1="24" x2="53" y2="24"></line> <line x1="24" y1="28" x2="53" y2="28"></line> <line x1="24" y1="32" x2="53" y2="32"></line> <line x1="24" y1="37" x2="53" y2="37"></line> <line x1="24" y1="41" x2="53" y2="41"></line> <line x1="24" y1="45" x2="53" y2="45"></line> <line x1="24" y1="51" x2="53" y2="51"></line> <line x1="24" y1="58" x2="53" y2="58"></line> <line x1="24" y1="68" x2="53" y2="68"></line> <line x1="24" y1="75" x2="53" y2="75"></line> <line x1="24" y1="82" x2="53" y2="82"></line> <line x1="24" y1="89" x2="53" y2="89"></line> <line x1="24" y1="97" x2="53" y2="97"></line> <line x1="24" y1="104" x2="53" y2="104"></line> <line x1="24" y1="110" x2="53" y2="110"></line> <line x1="24" y1="119" x2="53" y2="119"></line> <line x1="24" y1="127" x2="53" y2="127"></line> <line x1="24" y1="134" x2="53" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="53" y1="14" x2="53" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 53.08195544004877,14.948597949754403 53.08195544004877,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#8B4903A0;stroke-width:0"></polygon> <!-- Text --> <text x="39.015277" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">150</text> <text x="73.081955" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,73.081955,74.948598)">8819</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">3</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAzIiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSI1IiB4Mj0iMjQiIHkyPSIyMCI+PC9saW5lPgogIDxsaW5lIHgxPSIxMCIgeTE9IjkiIHgyPSIyNCIgeTI9IjI0Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMTMiIHgyPSIyNCIgeTI9IjI4Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMTgiIHgyPSIyNCIgeTI9IjMyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMjIiIHgyPSIyNCIgeTI9IjM3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMjYiIHgyPSIyNCIgeTI9IjQxIj48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMzAiIHgyPSIyNCIgeTI9IjQ1Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMzYiIHgyPSIyNCIgeTI9IjUxIj48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNDMiIHgyPSIyNCIgeTI9IjU4Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNTMiIHgyPSIyNCIgeTI9IjY4Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNjAiIHgyPSIyNCIgeTI9Ijc1Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNjciIHgyPSIyNCIgeTI9IjgyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNzQiIHgyPSIyNCIgeTI9Ijg5Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iODIiIHgyPSIyNCIgeTI9Ijk3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iODkiIHgyPSIyNCIgeTI9IjEwNCI+PC9saW5lPgogIDxsaW5lIHgxPSIxMCIgeTE9Ijk1IiB4Mj0iMjQiIHkyPSIxMTAiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMDQiIHgyPSIyNCIgeTI9IjExOSI+PC9saW5lPgogIDxsaW5lIHgxPSIxMCIgeTE9IjExMiIgeDI9IjI0IiB5Mj0iMTI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMTIwIiB4Mj0iMjQiIHkyPSIxMzQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIFZlcnRpY2FsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIxMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIxMC4wLDAuMCAyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyAyNC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDEwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiM4QjQ5MDNBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjM4IiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI1MyIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjM4IiB5MT0iMCIgeDI9IjUzIiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgMzguMTMzMzU3NDkwMjk0MzcsMC4wIDUzLjA4MTk1NTQ0MDA0ODc3LDE0Ljk0ODU5Nzk0OTc1NDQwMyAyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjUzIiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjIwIiB4Mj0iNTMiIHkyPSIyMCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjI0IiB4Mj0iNTMiIHkyPSIyNCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjI4IiB4Mj0iNTMiIHkyPSIyOCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjMyIiB4Mj0iNTMiIHkyPSIzMiI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjM3IiB4Mj0iNTMiIHkyPSIzNyI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjQxIiB4Mj0iNTMiIHkyPSI0MSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjQ1IiB4Mj0iNTMiIHkyPSI0NSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjUxIiB4Mj0iNTMiIHkyPSI1MSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjU4IiB4Mj0iNTMiIHkyPSI1OCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjY4IiB4Mj0iNTMiIHkyPSI2OCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9Ijc1IiB4Mj0iNTMiIHkyPSI3NSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjgyIiB4Mj0iNTMiIHkyPSI4MiI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9Ijg5IiB4Mj0iNTMiIHkyPSI4OSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9Ijk3IiB4Mj0iNTMiIHkyPSI5NyI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjEwNCIgeDI9IjUzIiB5Mj0iMTA0Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTEwIiB4Mj0iNTMiIHkyPSIxMTAiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMTkiIHgyPSI1MyIgeTI9IjExOSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjEyNyIgeDI9IjUzIiB5Mj0iMTI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTM0IiB4Mj0iNTMiIHkyPSIxMzQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIFZlcnRpY2FsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIyNCIgeTE9IjE0IiB4Mj0iMjQiIHkyPSIxMzQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSI1MyIgeTE9IjE0IiB4Mj0iNTMiIHkyPSIxMzQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgNTMuMDgxOTU1NDQwMDQ4NzcsMTQuOTQ4NTk3OTQ5NzU0NDAzIDUzLjA4MTk1NTQ0MDA0ODc3LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiM4QjQ5MDNBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iMzkuMDE1Mjc3IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTUwPC90ZXh0PgogIDx0ZXh0IHg9IjczLjA4MTk1NSIgeT0iNzQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwLDczLjA4MTk1NSw3NC45NDg1OTgpIj44ODE5PC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjM8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
-</div></li><li class="xr-var-item"><div class="xr-var-name"><span>water_level</span></div><div class="xr-var-dims">()</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">9.15</div><input id="attrs-ce88f998-3aad-41ef-92c9-37696531a0aa" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ce88f998-3aad-41ef-92c9-37696531a0aa" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-acbcd5eb-347b-4574-8af3-d7b2118fb046" class="xr-var-data-in" type="checkbox"><label for="data-acbcd5eb-347b-4574-8af3-d7b2118fb046" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance from the platform coordinate system origin to the nominal water level along the z-axis</dd><dt><span>units :</span></dt><dd>m</dd></dl></div><div class="xr-var-data"><pre>array(9.14999962)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>frequency_nominal</span></div><div class="xr-var-dims">(channel)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;</div><input id="attrs-fd750a64-04ed-4924-b7dc-8041b76dba40" class="xr-var-attrs-in" type="checkbox"><label for="attrs-fd750a64-04ed-4924-b7dc-8041b76dba40" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-8615a1e7-f603-4999-b71a-3d651a1e6dbc" class="xr-var-data-in" type="checkbox"><label for="data-8615a1e7-f603-4999-b71a-3d651a1e6dbc" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>Hz</dd><dt><span>long_name :</span></dt><dd>Transducer frequency</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>standard_name :</span></dt><dd>sound_frequency</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<div class="xr-var-name">
+<span>water_level</span>
+</div>
+<div class="xr-var-dims">
+()
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+9.15
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>long_name :</span></dt>
+<dd>
+Distance from the platform coordinate system origin to the nominal water level along the z-axis
+</dd>
+<dt><span>units :</span></dt>
+<dd>
+m
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<pre><code>array(9.14999962)</code></pre>
+</div>
+<div class="xr-var-name">
+<span>frequency_nominal</span>
+</div>
+<div class="xr-var-dims">
+(channel)
+</div>
+<div class="xr-var-dtype">
+float64
+</div>
+<div class="xr-var-preview xr-preview">
+dask.array&lt;chunksize=(3,), meta=np.ndarray&gt;
+</div>
+<img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWZpbGUtdGV4dDIiPjx1c2UgeGxpbms6aHJlZj0iI2ljb24tZmlsZS10ZXh0MiI+PC91c2U+PC9zdmc+" class="icon xr-icon-file-text2 img-fluid"><img src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiB4ci1pY29uLWRhdGFiYXNlIj48dXNlIHhsaW5rOmhyZWY9IiNpY29uLWRhdGFiYXNlIj48L3VzZT48L3N2Zz4=" class="icon xr-icon-database img-fluid">
+<div class="xr-var-attrs">
+<dl>
+<dt><span>units :</span></dt>
+<dd>
+Hz
+</dd>
+<dt><span>long_name :</span></dt>
+<dd>
+Transducer frequency
+</dd>
+<dt><span>valid_min :</span></dt>
+<dd>
+0.0
+</dd>
+<dt><span>standard_name :</span></dt>
+<dd>
+sound_frequency
+</dd>
+</dl>
+</div>
+<div class="xr-var-data">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -5470,12 +5848,11 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="93" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="43" x2="120" y2="43" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="43" style="stroke-width:2"></line> <line x1="120" y1="0" x2="120" y2="43" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,43.88583450710766 0.0,43.88583450710766" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="63.885835" font-size="1.0rem" font-weight="100" text-anchor="middle">3</text> <text x="140.000000" y="21.942917" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,21.942917)">1</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTcwIiBoZWlnaHQ9IjkzIiBzdHlsZT0ic3Ryb2tlOnJnYigwLDAsMCk7c3Ryb2tlLXdpZHRoOjEiPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjAiIHkxPSI0MyIgeDI9IjEyMCIgeTI9IjQzIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIwIiB4Mj0iMTIwIiB5Mj0iNDMiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMC4wLDAuMCAxMjAuMCwwLjAgMTIwLjAsNDMuODg1ODM0NTA3MTA3NjYgMC4wLDQzLjg4NTgzNDUwNzEwNzY2IiBzdHlsZT0iZmlsbDojRUNCMTcyQTA7c3Ryb2tlLXdpZHRoOjAiPjwvcG9seWdvbj4KCiAgPCEtLSBUZXh0IC0tPgogIDx0ZXh0IHg9IjYwLjAwMDAwMCIgeT0iNjMuODg1ODM1IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KICA8dGV4dCB4PSIxNDAuMDAwMDAwIiB5PSIyMS45NDI5MTciIGZvbnQtc2l6ZT0iMS4wcmVtIiBmb250LXdlaWdodD0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB0cmFuc2Zvcm09InJvdGF0ZSgwLDE0MC4wMDAwMDAsMjEuOTQyOTE3KSI+MTwvdGV4dD4KPC9zdmc+" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div></li></ul></div></li><li class="xr-section-item"><input id="section-fec48cb9-39db-4636-a006-9995c6e06b83" class="xr-section-summary-in" type="checkbox"><label for="section-fec48cb9-39db-4636-a006-9995c6e06b83" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>ping_time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-f1649318-9ef2-471a-83b3-f82f4a559e45" class="xr-index-data-in" type="checkbox"><label for="index-f1649318-9ef2-471a-83b3-f82f4a559e45" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2017-07-28 00:05:20', '2017-07-28 00:05:40',
                '2017-07-28 00:06:00', '2017-07-28 00:06:20',
                '2017-07-28 00:06:40', '2017-07-28 00:07:00',
@@ -5497,12 +5874,13 @@ Attributes:
 </div>
 </div>
 <p>Replace the <code>channel</code> dimension and coordinate with the <code>frequency_nominal</code> variable containing actual frequency values. Note that this step is possible only because there are no duplicated frequencies present.</p>
-<div id="cell-36" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds <span class="op">=</span> ep.consolidate.swap_dims_channel_frequency(MVBS_ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds <span class="op">=</span> ep.consolidate.swap_dims_channel_frequency(MVBS_ds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-37" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>MVBS_ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
+
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -5896,14 +6274,14 @@ Attributes:
        600., 605., 610., 615., 620., 625., 630., 635., 640., 645., 650., 655.,
        660., 665., 670., 675., 680., 685., 690., 695., 700., 705., 710., 715.,
        720., 725., 730., 735., 740., 745.])</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">frequency_nominal</span></div><div class="xr-var-dims">(frequency_nominal)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">1.8e+04 3.8e+04 1.2e+05</div><input id="attrs-1dd81f45-c36c-4e78-9a59-98aaf8bd227f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1dd81f45-c36c-4e78-9a59-98aaf8bd227f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-55d52c15-7fcf-40fb-8395-7e39defa73ce" class="xr-var-data-in" type="checkbox"><label for="data-55d52c15-7fcf-40fb-8395-7e39defa73ce" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>units :</span></dt><dd>Hz</dd><dt><span>long_name :</span></dt><dd>Transducer frequency</dd><dt><span>valid_min :</span></dt><dd>0.0</dd><dt><span>standard_name :</span></dt><dd>sound_frequency</dd></dl></div><div class="xr-var-data"><pre>array([ 18000.,  38000., 120000.])</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-d71230db-ded9-4b95-836f-06a52088c3f5" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-d71230db-ded9-4b95-836f-06a52088c3f5" class="xr-section-summary">Data variables: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>Sv</span></div><div class="xr-var-dims">(frequency_nominal, ping_time, echo_range)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">dask.array&lt;chunksize=(3, 60, 150), meta=np.ndarray&gt;</div><input id="attrs-9e402137-fb40-4396-b6aa-99cf3d4b645f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-9e402137-fb40-4396-b6aa-99cf3d4b645f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-1ce6c918-2da7-45ce-af86-8ea47a2776a7" class="xr-var-data-in" type="checkbox"><label for="data-1ce6c918-2da7-45ce-af86-8ea47a2776a7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Mean volume backscattering strength (MVBS, mean Sv re 1 m-1)</dd><dt><span>units :</span></dt><dd>dB</dd><dt><span>actual_range :</span></dt><dd>[-98.92  -1.67]</dd><dt><span>cell_methods :</span></dt><dd>ping_time: mean (interval: 20 second comment: ping_time is the interval start) echo_range: mean (interval: 5.0 meter comment: echo_range is the interval start)</dd><dt><span>binning_mode :</span></dt><dd>physical units</dd><dt><span>range_meter_interval :</span></dt><dd>5.0m</dd><dt><span>ping_time_interval :</span></dt><dd>20s</dd></dl></div><div class="xr-var-data">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<td><table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th></th>
@@ -5932,9 +6310,7 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="103" height="184" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="10" y1="5" x2="24" y2="20"></line> <line x1="10" y1="9" x2="24" y2="24"></line> <line x1="10" y1="13" x2="24" y2="28"></line> <line x1="10" y1="18" x2="24" y2="32"></line> <line x1="10" y1="22" x2="24" y2="37"></line> <line x1="10" y1="26" x2="24" y2="41"></line> <line x1="10" y1="30" x2="24" y2="45"></line> <line x1="10" y1="36" x2="24" y2="51"></line> <line x1="10" y1="43" x2="24" y2="58"></line> <line x1="10" y1="53" x2="24" y2="68"></line> <line x1="10" y1="60" x2="24" y2="75"></line> <line x1="10" y1="67" x2="24" y2="82"></line> <line x1="10" y1="74" x2="24" y2="89"></line> <line x1="10" y1="82" x2="24" y2="97"></line> <line x1="10" y1="89" x2="24" y2="104"></line> <line x1="10" y1="95" x2="24" y2="110"></line> <line x1="10" y1="104" x2="24" y2="119"></line> <line x1="10" y1="112" x2="24" y2="127"></line> <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2"></line> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#8B4903A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="38" y2="0" style="stroke-width:2"></line> <line x1="24" y1="14" x2="53" y2="14" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2"></line> <line x1="38" y1="0" x2="53" y2="14" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 38.13335749029437,0.0 53.08195544004877,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="24" y1="14" x2="53" y2="14" style="stroke-width:2"></line> <line x1="24" y1="20" x2="53" y2="20"></line> <line x1="24" y1="24" x2="53" y2="24"></line> <line x1="24" y1="28" x2="53" y2="28"></line> <line x1="24" y1="32" x2="53" y2="32"></line> <line x1="24" y1="37" x2="53" y2="37"></line> <line x1="24" y1="41" x2="53" y2="41"></line> <line x1="24" y1="45" x2="53" y2="45"></line> <line x1="24" y1="51" x2="53" y2="51"></line> <line x1="24" y1="58" x2="53" y2="58"></line> <line x1="24" y1="68" x2="53" y2="68"></line> <line x1="24" y1="75" x2="53" y2="75"></line> <line x1="24" y1="82" x2="53" y2="82"></line> <line x1="24" y1="89" x2="53" y2="89"></line> <line x1="24" y1="97" x2="53" y2="97"></line> <line x1="24" y1="104" x2="53" y2="104"></line> <line x1="24" y1="110" x2="53" y2="110"></line> <line x1="24" y1="119" x2="53" y2="119"></line> <line x1="24" y1="127" x2="53" y2="127"></line> <line x1="24" y1="134" x2="53" y2="134" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2"></line> <line x1="53" y1="14" x2="53" y2="134" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="24.9485979497544,14.948597949754403 53.08195544004877,14.948597949754403 53.08195544004877,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#8B4903A0;stroke-width:0"></polygon> <!-- Text --> <text x="39.015277" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle">150</text> <text x="73.081955" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,73.081955,74.948598)">8819</text> <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">3</text>
-</svg></td>
+<td><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAzIiBoZWlnaHQ9IjE4NCIgc3R5bGU9InN0cm9rZTpyZ2IoMCwwLDApO3N0cm9rZS13aWR0aDoxIj4KCiAgPCEtLSBIb3Jpem9udGFsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIyNCIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSI1IiB4Mj0iMjQiIHkyPSIyMCI+PC9saW5lPgogIDxsaW5lIHgxPSIxMCIgeTE9IjkiIHgyPSIyNCIgeTI9IjI0Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMTMiIHgyPSIyNCIgeTI9IjI4Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMTgiIHgyPSIyNCIgeTI9IjMyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMjIiIHgyPSIyNCIgeTI9IjM3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMjYiIHgyPSIyNCIgeTI9IjQxIj48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMzAiIHgyPSIyNCIgeTI9IjQ1Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMzYiIHgyPSIyNCIgeTI9IjUxIj48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNDMiIHgyPSIyNCIgeTI9IjU4Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNTMiIHgyPSIyNCIgeTI9IjY4Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNjAiIHgyPSIyNCIgeTI9Ijc1Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNjciIHgyPSIyNCIgeTI9IjgyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iNzQiIHgyPSIyNCIgeTI9Ijg5Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iODIiIHgyPSIyNCIgeTI9Ijk3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iODkiIHgyPSIyNCIgeTI9IjEwNCI+PC9saW5lPgogIDxsaW5lIHgxPSIxMCIgeTE9Ijk1IiB4Mj0iMjQiIHkyPSIxMTAiPjwvbGluZT4KICA8bGluZSB4MT0iMTAiIHkxPSIxMDQiIHgyPSIyNCIgeTI9IjExOSI+PC9saW5lPgogIDxsaW5lIHgxPSIxMCIgeTE9IjExMiIgeDI9IjI0IiB5Mj0iMTI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMTIwIiB4Mj0iMjQiIHkyPSIxMzQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIFZlcnRpY2FsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIxMCIgeTE9IjAiIHgyPSIxMCIgeTI9IjEyMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSIyNCIgeTI9IjEzNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CgogIDwhLS0gQ29sb3JlZCBSZWN0YW5nbGUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIxMC4wLDAuMCAyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyAyNC45NDg1OTc5NDk3NTQ0LDEzNC45NDg1OTc5NDk3NTQ0IDEwLjAsMTIwLjAiIHN0eWxlPSJmaWxsOiM4QjQ5MDNBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIEhvcml6b250YWwgbGluZXMgLS0+CiAgPGxpbmUgeDE9IjEwIiB5MT0iMCIgeDI9IjM4IiB5Mj0iMCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTQiIHgyPSI1MyIgeTI9IjE0IiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjIiPjwvbGluZT4KCiAgPCEtLSBWZXJ0aWNhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMTAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIxNCIgc3R5bGU9InN0cm9rZS13aWR0aDoyIj48L2xpbmU+CiAgPGxpbmUgeDE9IjM4IiB5MT0iMCIgeDI9IjUzIiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMTAuMCwwLjAgMzguMTMzMzU3NDkwMjk0MzcsMC4wIDUzLjA4MTk1NTQ0MDA0ODc3LDE0Ljk0ODU5Nzk0OTc1NDQwMyAyNC45NDg1OTc5NDk3NTQ0LDE0Ljk0ODU5Nzk0OTc1NDQwMyIgc3R5bGU9ImZpbGw6I0VDQjE3MkEwO3N0cm9rZS13aWR0aDowIj48L3BvbHlnb24+CgogIDwhLS0gSG9yaXpvbnRhbCBsaW5lcyAtLT4KICA8bGluZSB4MT0iMjQiIHkxPSIxNCIgeDI9IjUzIiB5Mj0iMTQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjIwIiB4Mj0iNTMiIHkyPSIyMCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjI0IiB4Mj0iNTMiIHkyPSIyNCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjI4IiB4Mj0iNTMiIHkyPSIyOCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjMyIiB4Mj0iNTMiIHkyPSIzMiI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjM3IiB4Mj0iNTMiIHkyPSIzNyI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjQxIiB4Mj0iNTMiIHkyPSI0MSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjQ1IiB4Mj0iNTMiIHkyPSI0NSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjUxIiB4Mj0iNTMiIHkyPSI1MSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjU4IiB4Mj0iNTMiIHkyPSI1OCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjY4IiB4Mj0iNTMiIHkyPSI2OCI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9Ijc1IiB4Mj0iNTMiIHkyPSI3NSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjgyIiB4Mj0iNTMiIHkyPSI4MiI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9Ijg5IiB4Mj0iNTMiIHkyPSI4OSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9Ijk3IiB4Mj0iNTMiIHkyPSI5NyI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjEwNCIgeDI9IjUzIiB5Mj0iMTA0Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTEwIiB4Mj0iNTMiIHkyPSIxMTAiPjwvbGluZT4KICA8bGluZSB4MT0iMjQiIHkxPSIxMTkiIHgyPSI1MyIgeTI9IjExOSI+PC9saW5lPgogIDxsaW5lIHgxPSIyNCIgeTE9IjEyNyIgeDI9IjUzIiB5Mj0iMTI3Ij48L2xpbmU+CiAgPGxpbmUgeDE9IjI0IiB5MT0iMTM0IiB4Mj0iNTMiIHkyPSIxMzQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIFZlcnRpY2FsIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIyNCIgeTE9IjE0IiB4Mj0iMjQiIHkyPSIxMzQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgogIDxsaW5lIHgxPSI1MyIgeTE9IjE0IiB4Mj0iNTMiIHkyPSIxMzQiIHN0eWxlPSJzdHJva2Utd2lkdGg6MiI+PC9saW5lPgoKICA8IS0tIENvbG9yZWQgUmVjdGFuZ2xlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMjQuOTQ4NTk3OTQ5NzU0NCwxNC45NDg1OTc5NDk3NTQ0MDMgNTMuMDgxOTU1NDQwMDQ4NzcsMTQuOTQ4NTk3OTQ5NzU0NDAzIDUzLjA4MTk1NTQ0MDA0ODc3LDEzNC45NDg1OTc5NDk3NTQ0IDI0Ljk0ODU5Nzk0OTc1NDQsMTM0Ljk0ODU5Nzk0OTc1NDQiIHN0eWxlPSJmaWxsOiM4QjQ5MDNBMDtzdHJva2Utd2lkdGg6MCI+PC9wb2x5Z29uPgoKICA8IS0tIFRleHQgLS0+CiAgPHRleHQgeD0iMzkuMDE1Mjc3IiB5PSIxNTQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTUwPC90ZXh0PgogIDx0ZXh0IHg9IjczLjA4MTk1NSIgeT0iNzQuOTQ4NTk4IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwLDczLjA4MTk1NSw3NC45NDg1OTgpIj44ODE5PC90ZXh0PgogIDx0ZXh0IHg9IjcuNDc0Mjk5IiB5PSIxNDcuNDc0Mjk5IiBmb250LXNpemU9IjEuMHJlbSIgZm9udC13ZWlnaHQ9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUsNy40NzQyOTksMTQ3LjQ3NDI5OSkiPjM8L3RleHQ+Cjwvc3ZnPg==" class="img-fluid"></td>
 </tr>
 </tbody>
 </table>
@@ -5961,119 +6337,111 @@ Attributes:
 <section id="extract-mvbs-along-two-n-s-tracks-selected-via-geographical-bounding-boxes" class="level3">
 <h3 class="anchored" data-anchor-id="extract-mvbs-along-two-n-s-tracks-selected-via-geographical-bounding-boxes">Extract MVBS along two N-S tracks selected via geographical bounding boxes</h3>
 <p>Define rectangular bounding boxes around two tracks oriented North-South, then plot a reference map showing all the GPS points (in red), the two bounding boxes (black), and the OOI mooring location (CE04 Oregon Offshore, yellow star) examined in the accompanying Jupyter notebook.</p>
-<div id="cell-40" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tracksouth_bbox <span class="op">=</span> gpd.GeoSeries(box(<span class="op">-</span><span class="fl">125.17</span>, <span class="fl">43.65</span>, <span class="op">-</span><span class="fl">125.14</span>, <span class="fl">43.84</span>), crs<span class="op">=</span>gps_gdf.crs)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tracknorth_bbox <span class="op">=</span> gpd.GeoSeries(box(<span class="op">-</span><span class="fl">125.17</span>, <span class="fl">43.98</span>, <span class="op">-</span><span class="fl">125.14</span>, <span class="fl">44.17</span>), crs<span class="op">=</span>gps_gdf.crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tracksouth_bbox <span class="op">=</span> gpd.GeoSeries(box(<span class="op">-</span><span class="fl">125.17</span>, <span class="fl">43.65</span>, <span class="op">-</span><span class="fl">125.14</span>, <span class="fl">43.84</span>), crs<span class="op">=</span>gps_gdf.crs)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tracknorth_bbox <span class="op">=</span> gpd.GeoSeries(box(<span class="op">-</span><span class="fl">125.17</span>, <span class="fl">43.98</span>, <span class="op">-</span><span class="fl">125.14</span>, <span class="fl">44.17</span>), crs<span class="op">=</span>gps_gdf.crs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-41" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>basemap <span class="op">=</span> cimgt.OSM()</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">7</span>), subplot_kw<span class="op">=</span>{<span class="st">"projection"</span>: basemap.crs}</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>bnd <span class="op">=</span> gps_gdf.geometry.bounds</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>ax.set_extent([bnd.minx.<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, bnd.maxx.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">2</span>, </span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>               bnd.miny.<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.8</span>, bnd.maxy.<span class="bu">max</span>() <span class="op">+</span> <span class="fl">2.2</span>])</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>ax.add_image(basemap, <span class="dv">7</span>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>ax.gridlines(draw_labels<span class="op">=</span><span class="va">True</span>, xformatter<span class="op">=</span>LONGITUDE_FORMATTER, yformatter<span class="op">=</span>LATITUDE_FORMATTER)</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># GPS points</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>gps_gdf.plot(ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, </span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>             transform<span class="op">=</span>ccrs.PlateCarree())</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box for selected tracks</span></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>tracksouth_bbox.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, facecolor<span class="op">=</span><span class="st">'none'</span>, </span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>                     transform<span class="op">=</span>ccrs.PlateCarree())</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>tracknorth_bbox.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, facecolor<span class="op">=</span><span class="st">'none'</span>, </span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>                     transform<span class="op">=</span>ccrs.PlateCarree())</span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="co"># OOI CE04 Oregon Offshore mooring location</span></span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">-</span><span class="fl">124.95</span>, <span class="fl">44.37</span>, marker<span class="op">=</span><span class="st">'*'</span>, color<span class="op">=</span><span class="st">'yellow'</span>, markersize<span class="op">=</span><span class="dv">13</span>, </span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>         transform<span class="op">=</span>ccrs.PlateCarree())<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>basemap <span class="op">=</span> cimgt.OSM()</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">7</span>), subplot_kw<span class="op">=</span>{<span class="st">"projection"</span>: basemap.crs}</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>bnd <span class="op">=</span> gps_gdf.geometry.bounds</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>ax.set_extent([bnd.minx.<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, bnd.maxx.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">2</span>, </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>               bnd.miny.<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.8</span>, bnd.maxy.<span class="bu">max</span>() <span class="op">+</span> <span class="fl">2.2</span>])</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>ax.add_image(basemap, <span class="dv">7</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>ax.gridlines(draw_labels<span class="op">=</span><span class="va">True</span>, xformatter<span class="op">=</span>LONGITUDE_FORMATTER, yformatter<span class="op">=</span>LATITUDE_FORMATTER)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co"># GPS points</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>gps_gdf.plot(ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'red'</span>, </span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>             transform<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box for selected tracks</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>tracksouth_bbox.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, facecolor<span class="op">=</span><span class="st">'none'</span>, </span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>                     transform<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>tracknorth_bbox.plot(ax<span class="op">=</span>ax, edgecolor<span class="op">=</span><span class="st">"black"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, facecolor<span class="op">=</span><span class="st">'none'</span>, </span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>                     transform<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="co"># OOI CE04 Oregon Offshore mooring location</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="op">-</span><span class="fl">124.95</span>, <span class="fl">44.37</span>, marker<span class="op">=</span><span class="st">'*'</span>, color<span class="op">=</span><span class="st">'yellow'</span>, markersize<span class="op">=</span><span class="dv">13</span>, </span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>         transform<span class="op">=</span>ccrs.PlateCarree())<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ms_PacificHake_EK60_cruisetracks_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p><img src="ms_PacificHake_EK60_cruisetracks_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Clip the GPS locations GeoPandas GeoDataFrame <code>gps_gdf</code> generated from the <code>Platform</code> group with the two rectangular regions, <code>tracksouth_bbox</code> and <code>tracknorth_bbox</code>. Extract from those clipped GeoDataFrames (<code>tracksouth_gps_gdf</code> and <code>tracknorth_gps_gdf</code>) the minimum and maximum <code>time1</code> timestamps for each track and use them to select the corresponding time span in the MVBS data.</p>
 <p>Finally, create a MVBS Dataset subset for each track (<code>tracksouth_MVBS_ds</code> and <code>tracknorth_MVBS_ds</code>) by taking advantage of xarray’s “label”-based selection capability via the <code>sel</code> method. We select <code>MVBS_ds</code> data with <code>ping_time</code> values within the timestamp interval “slice” extracted from the geographical track. As we can see above, <code>ping_time</code> is a coordinate variable in the <code>MVBS_ds</code> Dataset.</p>
-<div id="cell-43" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tracksouth_gps_gdf <span class="op">=</span> gpd.clip(gps_gdf, tracksouth_bbox)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tracksouth_MVBS_ds <span class="op">=</span> MVBS_ds.sel(</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    ping_time<span class="op">=</span><span class="bu">slice</span>(tracksouth_gps_gdf.index.<span class="bu">min</span>(), tracksouth_gps_gdf.index.<span class="bu">max</span>())</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>tracknorth_gps_gdf <span class="op">=</span> gpd.clip(gps_gdf, tracknorth_bbox)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>tracknorth_MVBS_ds <span class="op">=</span> MVBS_ds.sel(</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    ping_time<span class="op">=</span><span class="bu">slice</span>(tracknorth_gps_gdf.index.<span class="bu">min</span>(), tracknorth_gps_gdf.index.<span class="bu">max</span>())</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tracksouth_gps_gdf <span class="op">=</span> gpd.clip(gps_gdf, tracksouth_bbox)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>tracksouth_MVBS_ds <span class="op">=</span> MVBS_ds.sel(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    ping_time<span class="op">=</span><span class="bu">slice</span>(tracksouth_gps_gdf.index.<span class="bu">min</span>(), tracksouth_gps_gdf.index.<span class="bu">max</span>())</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>tracknorth_gps_gdf <span class="op">=</span> gpd.clip(gps_gdf, tracknorth_bbox)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>tracknorth_MVBS_ds <span class="op">=</span> MVBS_ds.sel(</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    ping_time<span class="op">=</span><span class="bu">slice</span>(tracknorth_gps_gdf.index.<span class="bu">min</span>(), tracknorth_gps_gdf.index.<span class="bu">max</span>())</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plot-mvbs-echograms-for-the-two-n-s-tracks-for-all-3-frequencies" class="level3">
 <h3 class="anchored" data-anchor-id="plot-mvbs-echograms-for-the-two-n-s-tracks-for-all-3-frequencies">Plot MVBS echograms for the two N-S tracks, for all 3 frequencies</h3>
 <p>The final step is to create echogram plots (range vs ping_time) for each echosounder frequency and each of the two selected ship tracks. That’s 6 subplots. We first define two functions to simplify the task. <code>plot_echograms</code> plots the echograms of the 3 frequencies as a column of subplots, extracting the data for each frequency by using xarray’s <code>isel</code> index selector method, which uses index counts rather than values. As we can see above, <code>frequency_nominal</code> is a coordinate of the <code>Sv</code> (MVBS) DataArray.</p>
-<div id="cell-45" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> track_interval_str(trackdt):</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Create the timestamp interval title string for a plot column</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    track_interval_title_str <span class="op">=</span> (</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>trackdt<span class="sc">.</span>index<span class="sc">.</span><span class="bu">min</span>()<span class="sc">.</span>strftime(<span class="st">'%b-</span><span class="sc">%d</span><span class="st"> %H:%MZ'</span>)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f" to </span><span class="sc">{</span>trackdt<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">.</span>strftime(<span class="st">'%b-</span><span class="sc">%d</span><span class="st"> %H:%MZ'</span>)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> track_interval_title_str</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_echograms(ds, freq_len, column_idx):</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot echograms of the 3 frequencies for xarray dataset ds,</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">       as a column of subplots"""</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(freq_len):</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> axes[f][column_idx]</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select Sv data by frequency using the frequency_nominal coordinate index "f",</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># then plot the echogram of the selected data</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>        ds.Sv.isel(frequency_nominal<span class="op">=</span>f).plot(</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>            ax<span class="op">=</span>ax, </span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'ping_time'</span>,</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'echo_range'</span>,</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>            yincrease<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>            vmin<span class="op">=-</span><span class="dv">80</span>,</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>            vmax<span class="op">=-</span><span class="dv">50</span>,</span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> f <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>            ax.set_xlabel(<span class="va">None</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> track_interval_str(trackdt):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Create the timestamp interval title string for a plot column</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    track_interval_title_str <span class="op">=</span> (</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>trackdt<span class="sc">.</span>index<span class="sc">.</span><span class="bu">min</span>()<span class="sc">.</span>strftime(<span class="st">'%b-</span><span class="sc">%d</span><span class="st"> %H:%MZ'</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f" to </span><span class="sc">{</span>trackdt<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">.</span>strftime(<span class="st">'%b-</span><span class="sc">%d</span><span class="st"> %H:%MZ'</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> track_interval_title_str</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_echograms(ds, freq_len, column_idx):</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot echograms of the 3 frequencies for xarray dataset ds,</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co">       as a column of subplots"""</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(freq_len):</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> axes[f][column_idx]</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Select Sv data by frequency using the frequency_nominal coordinate index "f",</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># then plot the echogram of the selected data</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>        ds.Sv.isel(frequency_nominal<span class="op">=</span>f).plot(</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>            ax<span class="op">=</span>ax, </span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'ping_time'</span>,</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'echo_range'</span>,</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>            yincrease<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>            vmin<span class="op">=-</span><span class="dv">80</span>,</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>            vmax<span class="op">=-</span><span class="dv">50</span>,</span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> f <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>            ax.set_xlabel(<span class="va">None</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-46" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>freq_len <span class="op">=</span> <span class="bu">len</span>(MVBS_ds.frequency_nominal)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span>freq_len, ncols<span class="op">=</span><span class="dv">2</span>, constrained_layout<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">16</span>))</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    (<span class="ss">f"    South Track, </span><span class="sc">{</span>track_interval_str(tracksouth_gps_gdf)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"                                         "</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>     <span class="ss">f"North Track, </span><span class="sc">{</span>track_interval_str(tracknorth_gps_gdf)<span class="sc">}</span><span class="ss">"</span>),</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>plot_echograms(tracksouth_MVBS_ds, freq_len, column_idx<span class="op">=</span><span class="dv">0</span>) <span class="co"># left column</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>plot_echograms(tracknorth_MVBS_ds, freq_len, column_idx<span class="op">=</span><span class="dv">1</span>) <span class="co"># right column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>freq_len <span class="op">=</span> <span class="bu">len</span>(MVBS_ds.frequency_nominal)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span>freq_len, ncols<span class="op">=</span><span class="dv">2</span>, constrained_layout<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">16</span>))</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    (<span class="ss">f"    South Track, </span><span class="sc">{</span>track_interval_str(tracksouth_gps_gdf)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"                                         "</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>     <span class="ss">f"North Track, </span><span class="sc">{</span>track_interval_str(tracknorth_gps_gdf)<span class="sc">}</span><span class="ss">"</span>),</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>plot_echograms(tracksouth_MVBS_ds, freq_len, column_idx<span class="op">=</span><span class="dv">0</span>) <span class="co"># left column</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>plot_echograms(tracknorth_MVBS_ds, freq_len, column_idx<span class="op">=</span><span class="dv">1</span>) <span class="co"># right column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ms_PacificHake_EK60_cruisetracks_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p><img src="ms_PacificHake_EK60_cruisetracks_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 </section>
 <section id="package-versions" class="level2">
 <h2 class="anchored" data-anchor-id="package-versions">Package versions</h2>
-<div id="cell-48" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime, s3fs</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"echopype: </span><span class="sc">{</span>ep<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, xarray: </span><span class="sc">{</span>xr<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, geopandas: </span><span class="sc">{</span>gpd<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, "</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"fsspec: </span><span class="sc">{</span>fsspec<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, s3fs: </span><span class="sc">{</span>s3fs<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>datetime<span class="sc">.</span>datetime<span class="sc">.</span>utcnow()<span class="sc">}</span><span class="ss"> +00:00"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime, s3fs</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"echopype: </span><span class="sc">{</span>ep<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, xarray: </span><span class="sc">{</span>xr<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, geopandas: </span><span class="sc">{</span>gpd<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, "</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"fsspec: </span><span class="sc">{</span>fsspec<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">, s3fs: </span><span class="sc">{</span>s3fs<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span>datetime<span class="sc">.</span>datetime<span class="sc">.</span>utcnow()<span class="sc">}</span><span class="ss"> +00:00"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>echopype: 0.8.4, xarray: 2024.3.0, geopandas: 0.14.3, fsspec: 2024.3.1, s3fs: 2024.3.1
 
@@ -6126,33 +6494,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -6221,15 +6562,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -6264,7 +6603,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -6296,48 +6646,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/nmfs-opensci\.github\.io\/NOAAHackDays");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -6347,17 +6660,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -6369,129 +6673,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -6535,7 +6717,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -6561,32 +6742,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -6652,15 +6807,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">
-<p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-center"><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
 
 
 
