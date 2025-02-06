@@ -926,7 +926,7 @@
     "href": "topics-2025/index.html",
     "title": "HackHours 2025",
     "section": "",
-    "text": "What is the HackHour? When are the 2025 HackHours? Fridays 11am Pacific/2pm Eastern. How do I get access? Video Link and JupyterHub Access (NOAA only)",
+    "text": "These stand-alone sessions are meant for more advanced coders to learn a specific package, method, or toolset with a focus on ocean data access in Python and R. We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need to install anything. About the HackHours\nWhen: Fridays 11am Pacific/2pm Eastern. How do I get access? Click here for Video Link and JupyterHub Access (NOAA only)",
     "crumbs": [
       "HackHours 2025"
     ]

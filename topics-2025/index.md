@@ -2,7 +2,9 @@
 title: "HackHours 2025"
 ---
 
-[What is the HackHour?](https://nmfs-opensci.github.io/NOAAHackDays/content/hackhours.html) When are the 2025 HackHours? Fridays 11am Pacific/2pm Eastern. How do I get access? [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
+These stand-alone sessions are meant for more advanced coders to learn a specific package, method, or toolset with a focus on ocean data access in Python and R. We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need to install anything.  [About the HackHours](https://nmfs-opensci.github.io/NOAAHackDays/content/hackhours.html)
+
+**When:** Fridays 11am Pacific/2pm Eastern. **How do I get access?** Click here for [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
 
 ## Schedule (topic might change)
 
