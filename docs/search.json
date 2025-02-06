@@ -932,11 +932,11 @@
     ]
   },
   {
-    "objectID": "topics-2025/index.html#schedule-topic-might-change",
-    "href": "topics-2025/index.html#schedule-topic-might-change",
+    "objectID": "topics-2025/index.html#schedule-topics-might-change",
+    "href": "topics-2025/index.html#schedule-topics-might-change",
     "title": "HackHours 2025",
-    "section": "Schedule (topic might change)",
-    "text": "Schedule (topic might change)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python. Tutorials from the NMFS Openscapes mentors’ EDM workshop 2024. (Python)\nFeb 21 - Accessing Earthdata in R. Test run of our R tutorials for the Openscapes mentors’ EDM workshop. (R)\nFeb 28 - Programmatic Access to Ocean Data: ERRDAP (Python)\nMar 7 - Programmatic Access to Ocean Data: ERRDAP (R)\nMar 14 - Programmatic Access to Ocean Data: OPenDAP (Python & R)\nMar 21 - Working with acoustic data: echopype (Python)\nMar 28 - Working Argo data (Python & R)\nApr 4 - Parallel computing with coiled: acoustics (Python)\nApr 11 - Creating a Species Distribution Model: robis & sdm (R)\nApr 25 - Machine-Learning for Ocean Data: CNNs (Python)\nMay 2 - Machine-Learning for Ocean Data: XGBoost (Python)\nMay 9 - Test run PACE Data Access and Visualization (EarthAccess)\nMay 16 - Test run PACE Data Access and Visualization (ERRDAP)\nMay 19 - EDMW 3-hour Workshop working with PACE hyper-spectral data",
+    "section": "Schedule (topics might change)",
+    "text": "Schedule (topics might change)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python\nFeb 21 - Accessing NASA Earth Observation data in R\nFeb 28 - Programmatic Access to Ocean Data: ERDDAP (Python)\nMar 7 - Programmatic Access to Ocean Data: ERDDAP (R)\nMar 14 - Programmatic Access to Ocean Data: OPeNDAP (Python & R)\nMar 21 - Working with acoustic data: echopype (Python)\nMar 28 - Working Argo data (Python & R)\nApr 4 - Parallel computing with coiled: acoustics (Python)\nApr 11 - Creating a Species Distribution Model: robis & sdm (R)\nApr 25 - Machine-Learning for Ocean Data: CNNs (Python)\nMay 2 - Machine-Learning for Ocean Data: XGBoost (Python)\nMay 9 - Test run PACE Data Access and Visualization (EarthAccess)\nMay 16 - Test run PACE Data Access and Visualization (ERDDAP)\nMay 19 - EDMW 3-hour Workshop working with PACE hyper-spectral data",
     "crumbs": [
       "HackHours 2025"
     ]
