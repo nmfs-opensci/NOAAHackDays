@@ -2,7 +2,9 @@
 title: "HackHours 2025"
 ---
 
-Fridays 11am Pacific/2pm Eastern. [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
+[What is the HackHour?](https://nmfs-opensci.github.io/NOAAHackDays/content/hackhours.html) When are the 2025 HackHours? Fridays 11am Pacific/2pm Eastern. How do I get access? [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
+
+## Schedule (topic might change)
 
 * Feb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours
 * Feb 14 - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in Python. Tutorials from the NMFS Openscapes mentors' [EDM workshop 2024](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2024/). (Python)

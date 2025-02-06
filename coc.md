@@ -2,13 +2,13 @@
 title: Code of Conduct
 ---
 
-We are dedicated to providing a harassment-free learning experience for everyone regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion. We do not tolerate harassment of participants in any form. Sexual language and imagery is not appropriate either in-person or virtual form, including the Discussion boards and Slack workspace. Participants (including event volunteers and organizers) violating these rules may be sanctioned or expelled from the event at the discretion of the organizers.
+We are dedicated to providing a harassment-free learning experience for everyone. We do not tolerate harassment of participants in any form. Sexual language and imagery is not appropriate either in-person or virtual form, including the Discussion boards and Chats. Participants (including event volunteers and organizers) violating these rules may be sanctioned or expelled from the event at the discretion of the organizers.
 
 ## Definition of Harassment
 
 Harassment includes, but is not limited to:
 
-* Verbal comments that reinforce social structures of domination related to gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age, religion.
+* Verbal comments that harass based on sexual orientation, disability, physical appearance, body size, race, age, religion.
 * Sexual images in public spaces
 * Deliberate intimidation, stalking, or following
 * Harassing photography or recording
@@ -28,4 +28,4 @@ The organizers may take action to redress anything designed to, or with the clea
 
 Harassment and other code of conduct violations reduce the value of the event for everyone. If someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible.
 
-If you feel comfortable contacting someone associated with our event, you may speak with one of the event organizers in person or contact an organizer on a private Slack channel.
+If you feel comfortable contacting someone associated with our event, you may speak with one of the event organizers in person or contact an organizer on a private channel.

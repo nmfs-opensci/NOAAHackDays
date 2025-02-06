@@ -15,11 +15,9 @@ These sessions are for NOAA staff to gain more familiarity with JupyterHubs and 
 
 ### Sign ups
 
-Use this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: [SIGN-UP FORM](https://forms.gle/ckUYr4aZPeyScLRX6) (NOAA access only). The 2025 hack hours will start in January.
+See the [2025 Hackhour](https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/) page for info.
 
-Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses "Eli" not "Elizabeth".
-
-Click "HackHour 2024"  and "HackHour 2023" for list of events in prior years.
+Contact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses "Eli" not "Elizabeth"! There are two Elizabeth Holmes's in NOAA.
 
 ### Orientation
 

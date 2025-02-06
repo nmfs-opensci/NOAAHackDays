@@ -493,7 +493,7 @@
     "href": "index.html#noaa-fisheries-training-in-ocean-data-and-cloud-computing",
     "title": "NMFS Open Science Cloud Computing Training Hub",
     "section": "NOAA Fisheries Training in Ocean Data and Cloud Computing",
-    "text": "NOAA Fisheries Training in Ocean Data and Cloud Computing\nThese are the support pages for the NMFS Open Science resources that support training in data science for the earth and life sciences at NOAA Fisheries.\n\nJupyterHub information and orientation pages\nTutorials from our HackDays\nLinks to workshops\n\nWe provide technical and infrastructure support for any groups within NOAA Fisheries who would like computing support for their workshops or trainings[^1]. In September 2024, we launched a JupyterHub with a variety of specialized computing environments tailored to needs in fisheries and ocean modeling. We also support the development of a Docker stack tailored to R and Python workflows. We run regular workshops and trainings in reproducible science. See NMFS Openscapes and NMFS Open Science (if at NOAA see our internal site)."
+    "text": "NOAA Fisheries Training in Ocean Data and Cloud Computing\nThese are the support pages for the NMFS Open Science resources that support training in data science for the earth and life sciences at NOAA Fisheries.\n\nJupyterHub information and orientation pages\nTutorials from our HackDays\nLinks to workshops\n\nWe provide technical and infrastructure support for any groups within NOAA Fisheries who would like computing support for their workshops or trainings; See our training page (NOAA internal). In September 2024, we launched a JupyterHub with a variety of specialized computing environments tailored to needs in fisheries and ocean modeling. We also support the development of a Docker stack tailored to R and Python workflows. We run regular workshops and trainings in reproducible science. See NMFS Openscapes and NMFS Open Science. If at NOAA see our internal site and the tabs for News and Training."
   },
   {
     "objectID": "content/why-cloud.html#why-would-i-want-to-work-in-the-cloud",
@@ -524,7 +524,7 @@
     "href": "content/hackhours.html",
     "title": "Hackhours",
     "section": "",
-    "text": "HackHour Goals\nThese sessions are for NOAA staff to gain more familiarity with JupyterHubs and working with spatial data, esp big data hosted in the cloud in databases, via code and via geospatial packages in R and Python.\n\nProvide an inclusive place to learn and practice new skills\nGet practice working in a JupyterHub with R and Python\nLearn about and experience working with earth data in the cloud;\nPractice using remote-sensing data in R and Python with code.\nLearn by working together on small projects.\nGive you the skills to be able to join hackweeks focused on big earth data.\n\n\n\nSign ups\nUse this form to sign-up to be alerted for future hackdays and Intro to JupyterHubs sessions: SIGN-UP FORM (NOAA access only). The 2025 hack hours will start in January.\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”.\nClick “HackHour 2024” and “HackHour 2023” for list of events in prior years.\n\n\nOrientation\nSee the Quick Start in left nav bar or go to the “JupyterHub Skills” section.\n\n\nFAQ\n\nCan I bring my own content/code to the event and JupyterHub? Absolutely, please do!! You can clone a GitHub repo or just upload files into the hub.",
+    "text": "HackHour Goals\nThese sessions are for NOAA staff to gain more familiarity with JupyterHubs and working with spatial data, esp big data hosted in the cloud in databases, via code and via geospatial packages in R and Python.\n\nProvide an inclusive place to learn and practice new skills\nGet practice working in a JupyterHub with R and Python\nLearn about and experience working with earth data in the cloud;\nPractice using remote-sensing data in R and Python with code.\nLearn by working together on small projects.\nGive you the skills to be able to join hackweeks focused on big earth data.\n\n\n\nSign ups\nSee the 2025 Hackhour page for info.\nContact or questions: Eli Holmes (NOAA) - Type my name in your NOAA email, and my contact will pop up. Note, it uses “Eli” not “Elizabeth”! There are two Elizabeth Holmes’s in NOAA.\n\n\nOrientation\nSee the Quick Start in left nav bar or go to the “JupyterHub Skills” section.\n\n\nFAQ\n\nCan I bring my own content/code to the event and JupyterHub? Absolutely, please do!! You can clone a GitHub repo or just upload files into the hub.",
     "crumbs": [
       "Hackhours"
     ]
@@ -534,7 +534,7 @@
     "href": "coc.html",
     "title": "Code of Conduct",
     "section": "",
-    "text": "We are dedicated to providing a harassment-free learning experience for everyone regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion. We do not tolerate harassment of participants in any form. Sexual language and imagery is not appropriate either in-person or virtual form, including the Discussion boards and Slack workspace. Participants (including event volunteers and organizers) violating these rules may be sanctioned or expelled from the event at the discretion of the organizers.",
+    "text": "We are dedicated to providing a harassment-free learning experience for everyone. We do not tolerate harassment of participants in any form. Sexual language and imagery is not appropriate either in-person or virtual form, including the Discussion boards and Chats. Participants (including event volunteers and organizers) violating these rules may be sanctioned or expelled from the event at the discretion of the organizers.",
     "crumbs": [
       "JupyterHub",
       "Code of Conduct"
@@ -545,7 +545,7 @@
     "href": "coc.html#definition-of-harassment",
     "title": "Code of Conduct",
     "section": "Definition of Harassment",
-    "text": "Definition of Harassment\nHarassment includes, but is not limited to:\n\nVerbal comments that reinforce social structures of domination related to gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age, religion.\nSexual images in public spaces\nDeliberate intimidation, stalking, or following\nHarassing photography or recording\nSustained disruption of talks or other events\nInappropriate physical contact\nUnwelcome sexual attention\nAdvocating for, or encouraging, any of the above behavior",
+    "text": "Definition of Harassment\nHarassment includes, but is not limited to:\n\nVerbal comments that harass based on sexual orientation, disability, physical appearance, body size, race, age, religion.\nSexual images in public spaces\nDeliberate intimidation, stalking, or following\nHarassing photography or recording\nSustained disruption of talks or other events\nInappropriate physical contact\nUnwelcome sexual attention\nAdvocating for, or encouraging, any of the above behavior",
     "crumbs": [
       "JupyterHub",
       "Code of Conduct"
@@ -567,7 +567,7 @@
     "href": "coc.html#reporting-a-violation",
     "title": "Code of Conduct",
     "section": "Reporting a violation",
-    "text": "Reporting a violation\nHarassment and other code of conduct violations reduce the value of the event for everyone. If someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible.\nIf you feel comfortable contacting someone associated with our event, you may speak with one of the event organizers in person or contact an organizer on a private Slack channel.",
+    "text": "Reporting a violation\nHarassment and other code of conduct violations reduce the value of the event for everyone. If someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible.\nIf you feel comfortable contacting someone associated with our event, you may speak with one of the event organizers in person or contact an organizer on a private channel.",
     "crumbs": [
       "JupyterHub",
       "Code of Conduct"
@@ -605,7 +605,7 @@
     "href": "content/workshops.html",
     "title": "Workshops",
     "section": "",
-    "text": "The NMFS Openscapes JupyterHub supports workshops and trainings run by NOAA Fisheries.\n\nOctober 25, 2024 Oceanographic Satellite and Animal Telemetry Data Training Course\nMay 17, 2024 Introduction to using earth data in the cloud for scientific workflows",
+    "text": "The NMFS Openscapes JupyterHub supports workshops and trainings run by NOAA Fisheries. See the CoastWatch Training for all their events.\n\nOct-Dec 2024 Quarto Workshop\nOctober 25, 2024 Oceanographic Satellite and Animal Telemetry Data Training Course\nMay 17, 2024 Introduction to using earth data in the cloud for scientific workflows",
     "crumbs": [
       "Workshops"
     ]
@@ -926,7 +926,17 @@
     "href": "topics-2025/index.html",
     "title": "HackHours 2025",
     "section": "",
-    "text": "Fridays 11am Pacific/2pm Eastern. Video Link and JupyterHub Access (NOAA only)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python. Tutorials from the NMFS Openscapes mentors’ EDM workshop 2024. (Python)\nFeb 21 - Accessing Earthdata in R. Test run of our R tutorials for the Openscapes mentors’ EDM workshop. (R)\nFeb 28 - Programmatic Access to Ocean Data: ERRDAP (Python)\nMar 7 - Programmatic Access to Ocean Data: ERRDAP (R)\nMar 14 - Programmatic Access to Ocean Data: OPenDAP (Python & R)\nMar 21 - Working with acoustic data: echopype (Python)\nMar 28 - Working Argo data (Python & R)\nApr 4 - Parallel computing with coiled: acoustics (Python)\nApr 11 - Creating a Species Distribution Model: robis & sdm (R)\nApr 25 - Machine-Learning for Ocean Data: CNNs (Python)\nMay 2 - Machine-Learning for Ocean Data: XGBoost (Python)\nMay 9 - Test run PACE Data Access and Visualization (EarthAccess)\nMay 16 - Test run PACE Data Access and Visualization (ERRDAP)\nMay 19 - EDMW 3-hour Workshop working with PACE hyper-spectral data",
+    "text": "What is the HackHour? When are the 2025 HackHours? Fridays 11am Pacific/2pm Eastern. How do I get access? Video Link and JupyterHub Access (NOAA only)",
+    "crumbs": [
+      "HackHours 2025"
+    ]
+  },
+  {
+    "objectID": "topics-2025/index.html#schedule-topic-might-change",
+    "href": "topics-2025/index.html#schedule-topic-might-change",
+    "title": "HackHours 2025",
+    "section": "Schedule (topic might change)",
+    "text": "Schedule (topic might change)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python. Tutorials from the NMFS Openscapes mentors’ EDM workshop 2024. (Python)\nFeb 21 - Accessing Earthdata in R. Test run of our R tutorials for the Openscapes mentors’ EDM workshop. (R)\nFeb 28 - Programmatic Access to Ocean Data: ERRDAP (Python)\nMar 7 - Programmatic Access to Ocean Data: ERRDAP (R)\nMar 14 - Programmatic Access to Ocean Data: OPenDAP (Python & R)\nMar 21 - Working with acoustic data: echopype (Python)\nMar 28 - Working Argo data (Python & R)\nApr 4 - Parallel computing with coiled: acoustics (Python)\nApr 11 - Creating a Species Distribution Model: robis & sdm (R)\nApr 25 - Machine-Learning for Ocean Data: CNNs (Python)\nMay 2 - Machine-Learning for Ocean Data: XGBoost (Python)\nMay 9 - Test run PACE Data Access and Visualization (EarthAccess)\nMay 16 - Test run PACE Data Access and Visualization (ERRDAP)\nMay 19 - EDMW 3-hour Workshop working with PACE hyper-spectral data",
     "crumbs": [
       "HackHours 2025"
     ]

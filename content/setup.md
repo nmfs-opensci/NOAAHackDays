@@ -17,7 +17,7 @@ cd ~
 git clone <url of the github repo>
 ```
 
-**Authenticating to GitHub** You will need to do this to be able to push to GitHub. See [git authentication](topics-skills/02-git-authentication.html).
+**Authenticating to GitHub** You will need to do this to be able to push to GitHub. See [git authentication](https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html).
 
 ### Earthdata Login Account
 

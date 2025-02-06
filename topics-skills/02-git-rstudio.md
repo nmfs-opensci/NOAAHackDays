@@ -57,7 +57,7 @@ It will ask for your GitHub username and password. At the password part, paste i
 
 When the instructions say to use or open or click the Git tab, 
 
-![](./img/rstudio-git-tab.jpg)
+![](./img/rstudio-git-tab.png)
 
 ## The Key Skills
 
