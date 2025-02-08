@@ -12,8 +12,6 @@ title: Intro to Version Control, Git and GitHub
 
 :::
 
-::: {.callout-note icon="false"}
-
 
 ## What is Git and GitHub?
 

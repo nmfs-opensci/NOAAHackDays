@@ -453,7 +453,7 @@
   {
     "objectID": "topics-2023/2023-12-09-earthdataaccess-intro/index.html#acknowledgements",
     "href": "topics-2023/2023-12-09-earthdataaccess-intro/index.html#acknowledgements",
-    "title": "NMFS Open Science Cloud Computing Training Hub",
+    "title": "NOAA HackHours",
     "section": "Acknowledgements",
     "text": "Acknowledgements\nThis content is from the NASA Openscapes AGU 2023 workshop\nhttps://github.com/NASA-Openscapes/2023-Cloud-Workshop-AGU",
     "crumbs": [
@@ -491,14 +491,14 @@
   {
     "objectID": "index.html#noaa-fisheries-training-in-ocean-data-and-cloud-computing",
     "href": "index.html#noaa-fisheries-training-in-ocean-data-and-cloud-computing",
-    "title": "NMFS Open Science Cloud Computing Training Hub",
+    "title": "NOAA HackHours",
     "section": "NOAA Fisheries Training in Ocean Data and Cloud Computing",
     "text": "NOAA Fisheries Training in Ocean Data and Cloud Computing\nThese are the support pages for the NMFS Open Science resources that support training in data science for the earth and life sciences at NOAA Fisheries.\n\nJupyterHub information and orientation pages\nTutorials from our HackDays\nLinks to workshops\n\nWe provide technical and infrastructure support for any groups within NOAA Fisheries who would like computing support for their workshops or trainings; See our training page (NOAA internal). In September 2024, we launched a JupyterHub with a variety of specialized computing environments tailored to needs in fisheries and ocean modeling. We also support the development of a Docker stack tailored to R and Python workflows. We run regular workshops and trainings in reproducible science. See NMFS Openscapes and NMFS Open Science. If at NOAA see our internal site and the tabs for News and Training."
   },
   {
     "objectID": "content/why-cloud.html#why-would-i-want-to-work-in-the-cloud",
     "href": "content/why-cloud.html#why-would-i-want-to-work-in-the-cloud",
-    "title": "NMFS Open Science Cloud Computing Training Hub",
+    "title": "NOAA HackHours",
     "section": "Why would I want to work in the cloud?",
     "text": "Why would I want to work in the cloud?\nWatch this video on “Enabling Analysis in the Cloud Using NASA Earth Science Data” by Michele Thorton, a NASA Openscapes mentor from the Oak Ridge National Laboratory Distributed Active Archive Center.\n\n\nMore earth data tutorials to explore!\nThe content and tutorials is a mix of content from workshops by the NASA Openscapes mentors (for example 2023 Cloud AGU Workshop), content developed by Carl Boettiger for NASA TOPS-T Cloud Native Geospatial in R & Python, content by NMFS CoastWatch, and other internal and external tutorials.\nHow do I get these tutorials into the JHub? clone this https://github.com/NASA-Openscapes/earthdata-cloud-cookbook/ and then look in the examples folder.\nHow do I clone? Since these are Jupyter/Python notebooks, easiest is cloning via Jupyter Lab.\n\nGo to Jupyter lab. How? I closed the tab. Open the JHub url again.\nClick on the little file icon on left until you are at the home directory.\nClick on the little Git icon on left. Which is it? Click on all the icons until you find it.\nWhen you see the ‘Clone repository’ button, click that. Paste in the url of the GitHub repo. I don’t see ‘Clone repository’. Go back to step 1. You are not in the home directory yet.\n\n\n\nFAQ\n\nCan I bring my own content/code to the event and JupyterHub? Absolutely, please do!! You can clone a GitHub repo or just upload files into the hub."
   },
@@ -576,7 +576,7 @@
   {
     "objectID": "content/jhub.html",
     "href": "content/jhub.html",
-    "title": "NMFS Open Science Cloud Computing Training Hub",
+    "title": "NOAA HackHours",
     "section": "",
     "text": "The NMFS Openscapes JupyterHub is managed by Openscapes and developed in partnership with the International Interactive Computing Collaboration 2i2c. Launched in September 2024, the NMFS Openscapes JupyterHub joins the NASA Openscapes JupyterHub in providing a curated interactive computing platform to support training in earth and life science visualization, computing and analysis. The NMFS Openscapes JupyterHub supports workshops and trainings run by NOAA Fisheries.",
     "crumbs": [

@@ -16,7 +16,7 @@ execute:
   
 website:
   page-navigation: true  
-  title: "NMFS Open Science Cloud Computing Training Hub"
+  title: "NOAA HackHours"
   favicon: "images/favicon-16x16.png"
   site-url: https://nmfs-opensci.github.io/NOAAHackDays
   repo-url: https://github.com/nmfs-opensci/NOAAHackDays

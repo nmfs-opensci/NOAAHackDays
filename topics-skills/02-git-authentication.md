@@ -11,8 +11,6 @@ title: GitHub Authentication
 -   clone a repository from the terminal
 :::
 
-::: {.callout-note icon="false"}
-
 ## Tell Git who you are
 
 First open a terminal and run these lines. Replace `<your email>` with your email and remove the angle brackets.
