@@ -1,0 +1,30 @@
+---
+title: XBBoost
+---
+
+Machine Learning in the Earth Sciences: [XGBoost](https://github.com/cemac/XGBoost-notebook). From the LIFD Machine Learning For Earth Sciences
+ [tutorial](https://cemac.github.io/LIFD_ENV_ML_NOTEBOOKS/).
+
+# Tutorials
+
+We will use XGBoost to create predictive models using data from the Surface Heat Budget of the Arctic Ocean Project.
+
+## How to clone
+
+First open a terminal. Copy and run this code.
+
+Never cloned the NOAAHackDays repo?
+```
+cd ~
+git clone https://github.com/nmfs-opensci/NOAAHackDays
+```
+
+Have cloned it but need to update? This is going to destroy any changes that you made to the repo to make it match the current state of the repo on GitHub.
+
+```  
+cd ~/NOAAHackDays
+git fetch origin
+git reset --hard origin/main
+```
+
+

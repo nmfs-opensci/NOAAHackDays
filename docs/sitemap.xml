@@ -21,16 +21,20 @@
     <lastmod>2025-01-14T18:32:46.563Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
-    <lastmod>2025-02-03T18:44:41.709Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-04-04-XGBoost/index.html</loc>
+    <lastmod>2025-02-08T01:20:57.720Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/index.html</loc>
-    <lastmod>2025-01-29T18:13:55.205Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
+    <lastmod>2025-02-03T18:37:45.460Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/matchup-satellite-data-to-track-locations.html</loc>
-    <lastmod>2025-01-29T18:13:55.211Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/satellite_matchups_to_track_locations_xarray.html</loc>
+    <lastmod>2025-01-29T18:13:55.213Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/index.html</loc>
+    <lastmod>2025-01-29T18:13:55.212Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/index.html</loc>
@@ -237,20 +241,24 @@
     <lastmod>2025-01-30T01:10:51.534Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/index.html</loc>
-    <lastmod>2025-01-29T18:13:55.212Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-21-earthdata/index.html</loc>
+    <lastmod>2025-02-08T01:13:36.351Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/satellite_matchups_to_track_locations_xarray.html</loc>
-    <lastmod>2025-01-29T18:13:55.213Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/matchup-satellite-data-to-track-locations.html</loc>
+    <lastmod>2025-01-29T18:13:55.211Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
-    <lastmod>2025-02-03T18:37:45.460Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/index.html</loc>
+    <lastmod>2025-01-29T18:13:55.205Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
+    <lastmod>2025-02-03T18:44:41.709Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/index.html</loc>
-    <lastmod>2025-02-07T23:08:08.146Z</lastmod>
+    <lastmod>2025-02-08T00:51:28.409Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html</loc>
