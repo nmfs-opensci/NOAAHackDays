@@ -305,11 +305,11 @@
     ]
   },
   {
-    "objectID": "topics-2025/index.html#schedule-topics-might-change",
-    "href": "topics-2025/index.html#schedule-topics-might-change",
+    "objectID": "topics-2025/index.html#schedule",
+    "href": "topics-2025/index.html#schedule",
     "title": "HackHours 2025",
-    "section": "Schedule (topics might change)",
-    "text": "Schedule (topics might change)\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python (CoastWatch team) \nMar 7 - Working with ERDDAP data in R (CoastWatch team) \nMar 14 - Working with data on OPeNDAP servers in Python & R  \nMar 21 - Parallel processing NODD model data with Coiled (Rich Signell, Open Science Consulting) \nMar 28 - Machine-Learning with Ocean Data: CNNs \nApr 4 - Machine-Learning with Ocean Data: XGBoost \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei, NOAA PSL) \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization (EarthAccess) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization (ERDDAP) \nMay 19 - EDMW 3-hour Workshop working with PACE hyperspectral data",
+    "section": "Schedule",
+    "text": "Schedule\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (NOAA CoastWatch team) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (NOAA CoastWatch team) \nMar 14 - Working with data on OPeNDAP servers in Python & R  \nMar 21 - Parallel processing NODD model data with Coiled (Rich Signell, Open Science Consulting) \nMar 28 - Machine-Learning with Ocean Data: gap-filling with CNNs \nApr 4 - Machine-Learning with Ocean Data: TBD \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization in Python (earthaccess) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization in R \nMay 19 - EDMW 3-hour Workshop working with PACE hyperspectral data",
     "crumbs": [
       "HackHours 2025"
     ]
