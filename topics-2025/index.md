@@ -19,7 +19,7 @@ These stand-alone sessions are meant for more advanced coders to learn a specifi
 * Apr 4 - Machine-Learning with Ocean Data: XGBoost {{< fa brands python >}} 
 * Apr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei, NOAA PSL) {{< fa brands python >}} 
 * Apr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) {{< fa brands python >}} 
-* May 2 - TBD
+* May 2 - [Coiled](https://www.coiled.io/) demo -- parallel processing for big data pipelines (Coiled team)
 * May 9 - PACE Hyperspectral Ocean Color Data Access and Visualization (EarthAccess) {{< fa brands python >}} 
 * May 16 - PACE Hyperspectral Ocean Color Data Access and Visualization (ERDDAP) {{< fa brands r-project >}} 
 * May 19 - EDMW 3-hour Workshop working with PACE hyperspectral data
