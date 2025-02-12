@@ -2,7 +2,7 @@
 title: NASA Earth Data - Python
 ---
 
-Link to originals tutorials: [EDMW Workshop](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2024/).
+In this session, you will get an introduction to the [earthaccess](https://earthaccess.readthedocs.io/en/latest/) Python library for accessing data from [earthdata.nasa.gov/](https://www.earthdata.nasa.gov/). You will also get a short introduction to [xarray](https://docs.xarray.dev/en/stable/) for working with data cubes. Link to originals tutorials: [EDMW Workshop](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2024/).
 
 # Tutorials
 

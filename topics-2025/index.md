@@ -9,8 +9,8 @@ These stand-alone sessions are meant for more advanced coders to learn a specifi
 ## Schedule
 
 * Feb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours
-* Feb 14 - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in Python (Eli Holmes) {{< fa brands python >}} 
-* Feb 21 - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in R (Eli Holmes) {{< fa brands r-project >}} 
+* [Feb 14](2025-02-14-earthdata/index.qmd) - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in Python (Eli Holmes) {{< fa brands python >}} 
+* [Feb 21](2025-02-21-earthdata/index.qmd) - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in R (Eli Holmes) {{< fa brands r-project >}} 
 * Feb 28 - Working with ERDDAP data in Python: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (NOAA CoastWatch team) {{< fa brands python >}} 
 * Mar 7 - Working with ERDDAP data in R: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (NOAA CoastWatch team) {{< fa brands r-project >}} 
 * Mar 14 - Working with data on OPeNDAP servers in Python & R {{< fa brands python >}} {{< fa brands r-project >}}
