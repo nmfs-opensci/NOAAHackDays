@@ -5,7 +5,11 @@
 ```
 remotes::install_deps(dependencies=TRUE, upgrade="always")
 ```
-Then Render Website from the Build Tab
+Then Render Website from the Build Tab or run in a terminal
+
+```
+quarto render
+````
 
 ## Notice
 

@@ -11,15 +11,11 @@ A GitHub account is required to gain access to the JupyterHub and to clone the t
 How do I get the tutorials into the JupyterHub? 
 
 * You can upload files.
-* Easiest is probably cloning into the hub. Open a terminal and type
-```
-cd ~
-git clone <url of the github repo>
-```
+* Easiest is probably cloning a repo into the hub. See the JupyterHub Skills section if you do not know how to do this.
 
-**Authenticating to GitHub** You will need to do this to be able to push to GitHub. See [git authentication](https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html).
+### Authenticating to GitHub
 
-### Earthdata Login Account
+This is a little different on the JupyterHub. See [git authentication](https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html).
 
 For content that uses the NASA [Earthdata](https://www.earthdata.nasa.gov/) repository, you will need an Earthdata Login account. Please visit [https://urs.earthdata.nasa.gov](https://urs.earthdata.nasa.gov) to register and manage your Earthdata Login account. This account is free to create. Please jot down your username and password, as you need to enter it in the tutorials.
 
