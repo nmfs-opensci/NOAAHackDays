@@ -226,7 +226,7 @@ function googleTranslateElementInit() {
 <p>For this tutorial we will use the <a href="https://cmr.earthdata.nasa.gov/search/concepts/C1996881146-POCLOUD.html">GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis</a> (v4.1) data. This is much higher resolution data than the AVHRR data and we will do spatially subsetting to a small area of interest.</p>
 <section id="for-those-not-working-in-the-jupyterhub" class="level4">
 <h4 class="anchored" data-anchor-id="for-those-not-working-in-the-jupyterhub">For those not working in the JupyterHub</h4>
-<p><a href="https://colab.research.google.com/github/nmfs-opensci/EDMW-EarthData-Workshop-2024/blob/main/tutorials/python/2-subset-and-plot.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="image"></a> and then create a code cell and run <code>pip install earthaccess</code></p>
+<p><a href="https://colab.research.google.com/github/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-14-earthdata/2-subset-and-plot.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="image"></a> and then create a code cell and run <code>pip install earthaccess</code></p>
 </section>
 <section id="import-required-packages" class="level3">
 <h3 class="anchored" data-anchor-id="import-required-packages">Import Required Packages</h3>
@@ -270,7 +270,8 @@ function googleTranslateElementInit() {
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    cloud_hosted <span class="op">=</span> <span class="va">True</span>,</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    temporal <span class="op">=</span> date_range,</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    bounding_box <span class="op">=</span> bbox,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="crop-and-plot-one-netcdf-file" class="level2">
