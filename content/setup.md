@@ -15,6 +15,7 @@ Once we have your information, within the next day or two we will invite you to 
 * No BII or PII whatsoever or confidential data
 * After 30 days of not logging in, you account will be deleted and your user directory removed. You can log back in, but your data will be gone. Make sure to back up, download or pull the data and code you are working on.
 * Clean up after you are done working on something. So if you clone a repo to test something, delete the repo if you don't need it.
+* Please shutdown your hub when done. File > Hub Control Panel > Stop my server. It will stop on its own in 90 minutes but this save some money.
 
 **Non-NOAA participants in a workshop or event**: the workshop organizers will provide instructions for access during the event.
 
@@ -35,22 +36,3 @@ A GitHub account is required to gain access to the JupyterHub and to clone the t
 
 This is a little different on the JupyterHub. See [git authentication](https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html).
 
-### Earthdata Login Account
-
-For content that uses the NASA [Earthdata](https://www.earthdata.nasa.gov/) repository, you will need an Earthdata Login account. Please visit [https://urs.earthdata.nasa.gov](https://urs.earthdata.nasa.gov) to register and manage your Earthdata Login account. This account is free to create. 
-
-### When done, please stop the JupyterHub
-
-If you are in Jupyter Lab in the browser:
-
-- File > Hub Control Panel > Stop my server
-
-If you are in RStudio and you still have the Jupyter lab tab open in your browser:
-
-- Go to the Jupyter Lab tab
-- File > Hub Control Panel > Stop my server
-
-If you are in RStudio and you do not have the Jupyter lab tab open in your browser because you closed that tab:
-
-- Go to the url `https://<jupyterhub url>/user/<your username in the hub>/lab/` That will open the Jupyter lab tab
-- File > Hub Control Panel > Stop my server
