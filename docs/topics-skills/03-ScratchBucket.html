@@ -253,6 +253,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/04-other-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other images</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Earthdata login</span></a>
   </div>
@@ -323,7 +329,7 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="access-the-scratch-bucket">Access the scratch bucket</h2>
 <p>The scratch bucket is hosted at <code>s3://nmfs-openscapes-scratch</code>. The JupyterHub automatically sets an environment variable <code>SCRATCH_BUCKET</code> that appends a suffix to the s3 url with your GitHub username. This is intended to keep track of file ownership, stay organized, and prevent users from overwriting data!</p>
 <pre class="{warning}"><code>Everyone has full access to the scratch bucket, so be careful not to overwrite data from other users when uploading files. Also, any data you put there will be deleted 7 days after it is uploaded</code></pre>
-<pre class="{hint}"><code>If you need more permanent S3 bucket storage refer to [These Docs](./Instructions_for_configuring_AWS_S3_bucket.ipynb) to configure your own S3 Bucket.</code></pre>
+<pre class="{hint}"><code>If you need more permanent S3 bucket storage refer to AWS_S3_bucket documentation (left) to configure your own S3 Bucket.</code></pre>
 <p>We’ll use the <a href="https://s3fs.readthedocs.io/en/latest/">S3FS</a> Python package, which provides a nice interface for interacting with S3 buckets.</p>
 <div id="55048371-a480-410c-9eb6-a5bb2cac067b" class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -334,88 +340,81 @@ function googleTranslateElementInit() {
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="701836a8-a3c9-437d-b210-e83adbde15b1" class="cell" data-tags="[]" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My GitHub username is `scottyhq`</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My GitHub username is `eeholmes`</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>scratch <span class="op">=</span> os.environ[<span class="st">'SCRATCH_BUCKET'</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>scratch </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>'s3://nasa-cryo-scratch/scottyhq'</code></pre>
+<pre><code>'s3://nmfs-openscapes-scratch/eeholmes'</code></pre>
 </div>
 </div>
-<div id="356a9f7d-0ee5-4a6e-99d4-ea1629f62b44" class="cell" data-tags="[]" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here you see I previously uploaded files</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s3fs.S3FileSystem()</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>s3.ls(scratch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>['nasa-cryo-scratch/scottyhq/ATL03_20230103090928_02111806_006_01.h5',
- 'nasa-cryo-scratch/scottyhq/IS2_Alaska.parquet',
- 'nasa-cryo-scratch/scottyhq/Notes.txt',
- 'nasa-cryo-scratch/scottyhq/example',
- 'nasa-cryo-scratch/scottyhq/example_ATL03',
- 'nasa-cryo-scratch/scottyhq/grandmesa-sliderule.parquet']</code></pre>
-</div>
-</div>
-<div id="838cc53e-8c08-49eb-a064-d76e8b9b8645" class="cell" data-tags="[]">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But you can set a different S3 object prefix to use:</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>scratch <span class="op">=</span> <span class="st">'s3://nmfs-openscapes-scratch/octocat-project'</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>s3.ls(scratch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>[]</code></pre>
-</div>
+<div id="838cc53e-8c08-49eb-a064-d76e8b9b8645" class="cell" data-tags="[]" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But you can set a different S3 object prefix to use:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>scratch <span class="op">=</span> <span class="st">'s3://nmfs-openscapes-scratch/hackhours'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="uploading-data" class="level2">
 <h2 class="anchored" data-anchor-id="uploading-data">Uploading data</h2>
 <p>It’s great to store data in S3 buckets because this storage features very high network throughput. If many users are simultaneously accessing the same file on a spinning networked harddrive (<code>/home/jovyan/shared</code>) performance can be quite slow. S3 has much higher performance for such cases.</p>
-<section id="single-file" class="level3">
-<h3 class="anchored" data-anchor-id="single-file">Single file</h3>
-<div id="59cd1127-2ce4-48d0-a9cc-8d2c4d49759f" class="cell" data-tags="[]" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm working with this file downloaded from NSIDC:</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>local_file <span class="op">=</span> <span class="st">'/tmp/ATL03_20230103090928_02111806_006_01.h5'</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>remote_object <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/ATL03_20230103090928_02111806_006_01.h5"</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>s3.upload(local_file, remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<section id="upload-single-file" class="level3">
+<h3 class="anchored" data-anchor-id="upload-single-file">Upload single file</h3>
+<div id="59cd1127-2ce4-48d0-a9cc-8d2c4d49759f" class="cell" data-tags="[]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>local_file <span class="op">=</span> <span class="st">'~/NOAAHackDays/topics-2025/2025-02-14-earthdata/littlecube.nc'</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>remote_object <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/littlecube.nc"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>s3.upload(local_file, remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>[None]</code></pre>
 </div>
 </div>
-<div id="0be1b077-827e-40d5-bfd2-95be2a659509" class="cell" data-tags="[]" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>s3.stat(remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>{'ETag': '"489f0191a8e9c844576ff2d18adfea59-21"',
- 'LastModified': datetime.datetime(2023, 7, 21, 19, 4, 55, tzinfo=tzutc()),
- 'size': 1063571816,
- 'name': 'nasa-cryo-scratch/octocat-project/ATL03_20230103090928_02111806_006_01.h5',
- 'type': 'file',
+<p>Once a bucket has files, I can list them. If the bucket is empty, you will get errors instead of <code>[]</code>.</p>
+<div id="356a9f7d-0ee5-4a6e-99d4-ea1629f62b44" class="cell" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s3fs.S3FileSystem()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>s3.ls(scratch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>['nmfs-openscapes-scratch/hackhours/littlecube.nc']</code></pre>
+</div>
+</div>
+<div id="0be1b077-827e-40d5-bfd2-95be2a659509" class="cell" data-tags="[]" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>s3.stat(remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>{'Key': 'nmfs-openscapes-scratch/hackhours/littlecube.nc',
+ 'LastModified': datetime.datetime(2025, 2, 13, 21, 41, 5, tzinfo=tzlocal()),
+ 'ETag': '"d73616d9e3ad84cf58a4a676b1e3d454"',
+ 'ChecksumAlgorithm': ['CRC32'],
+ 'ChecksumType': 'FULL_OBJECT',
+ 'Size': 50224,
  'StorageClass': 'STANDARD',
- 'VersionId': None,
- 'ContentType': 'application/x-hdf5'}</code></pre>
+ 'type': 'file',
+ 'size': 50224,
+ 'name': 'nmfs-openscapes-scratch/hackhours/littlecube.nc'}</code></pre>
 </div>
 </div>
 </section>
-<section id="directory" class="level3">
-<h3 class="anchored" data-anchor-id="directory">Directory</h3>
-<div id="e9cf6509-b3ee-4962-8fa9-77277a70389f" class="cell" data-tags="[]" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>local_dir <span class="op">=</span> <span class="st">'/tmp/example'</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls <span class="op">-</span>lh {local_dir}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="upload-a-directory" class="level3">
+<h3 class="anchored" data-anchor-id="upload-a-directory">Upload a directory</h3>
+<div id="e9cf6509-b3ee-4962-8fa9-77277a70389f" class="cell" data-tags="[]" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>local_dir <span class="op">=</span> <span class="st">'~/NOAAHackDays/topics-2025/resources'</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls <span class="op">-</span>lh {local_dir}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>total 8.0K
--rw-r--r-- 1 jovyan jovyan 22 Jul 20 23:26 data.txt
--rw-r--r-- 1 jovyan jovyan 11 Jul 20 23:26 icesat.csv</code></pre>
+<pre><code>total 5.9M
+-rw-r--r-- 1 jovyan jovyan 5.9M Feb 12 21:05 e_sst.nc
+drwxr-xr-x 3 jovyan jovyan  281 Feb 12 21:18 longhurst_v4_2010</code></pre>
 </div>
 </div>
-<div id="8f50f4ef-78e1-48e2-9d13-78524b06c237" class="cell" data-tags="[]" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>s3.upload(local_dir, scratch, recursive<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>[None, None]</code></pre>
+<div id="8f50f4ef-78e1-48e2-9d13-78524b06c237" class="cell" data-tags="[]" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>s3.upload(local_dir, scratch, recursive<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>[None, None, None, None, None, None, None, None, None]</code></pre>
 </div>
 </div>
-<div id="f2e159f0-625a-44c3-8d80-55803a4287a7" class="cell" data-tags="[]" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>s3.ls(<span class="ss">f'</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/example'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>['nasa-cryo-scratch/octocat-project/example/data.txt',
- 'nasa-cryo-scratch/octocat-project/example/icesat.csv']</code></pre>
+<p>The directory name is the directory name (only) of the local directory.</p>
+<div id="f2e159f0-625a-44c3-8d80-55803a4287a7" class="cell" data-tags="[]" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>s3.ls(<span class="ss">f'</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/resources'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>['nmfs-openscapes-scratch/hackhours/resources/e_sst.nc',
+ 'nmfs-openscapes-scratch/hackhours/resources/longhurst_v4_2010']</code></pre>
 </div>
 </div>
 </section>
@@ -425,17 +424,23 @@ function googleTranslateElementInit() {
 <p>Some software packages allow you to stream data directly from S3 Buckets. But you can always pull objects from S3 and work with local file paths.</p>
 <p>This download-first, then analyze workflow typically works well for older file formats like HDF and netCDF that were designed to perform well on local hard drives rather than Cloud storage systems like S3.</p>
 <pre class="{important}"><code>For best performance do not work with data in your home directory. Instead use a local scratch space like `/tmp`</code></pre>
-<div id="7b5e0efb-2024-4c67-90e0-2bb97bb9fed4" class="cell" data-tags="[]" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>local_object <span class="op">=</span> <span class="st">'/tmp/test.h5'</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>s3.download(remote_object, local_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div id="60472732-9027-481e-8181-8dabc4187a69" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>remote_object</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>'s3://nmfs-openscapes-scratch/hackhours/littlecube.nc'</code></pre>
+</div>
+</div>
+<div id="7b5e0efb-2024-4c67-90e0-2bb97bb9fed4" class="cell" data-tags="[]" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>local_object <span class="op">=</span> <span class="st">'/tmp/test.nc'</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>s3.download(remote_object, local_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>[None]</code></pre>
 </div>
 </div>
-<div id="a03d2628-ff6e-48b2-851e-c1dcf0488b9f" class="cell" data-tags="[]" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(local_object, group<span class="op">=</span><span class="st">'/gt3r/heights'</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="a03d2628-ff6e-48b2-851e-c1dcf0488b9f" class="cell" data-tags="[]" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(local_object)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -466,13 +471,14 @@ function googleTranslateElementInit() {
   --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
 }
 
-html[theme=dark],
-body[data-theme=dark],
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
   --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
+  --xr-border-color: #1f1f1f;
   --xr-disabled-color: #515151;
   --xr-background-color: #111111;
   --xr-background-color-row-even: #111111;
@@ -517,7 +523,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
 }
 
 .xr-section-item {
@@ -525,7 +531,9 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: none;
+  display: inline-block;
+  opacity: 0;
+  height: 0;
 }
 
 .xr-section-item input + label {
@@ -535,6 +543,10 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -558,7 +570,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: '►';
+  content: "►";
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -569,7 +581,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: '▼';
+  content: "▼";
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -641,15 +653,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: '(';
+  content: "(";
 }
 
 .xr-dim-list:after {
-  content: ')';
+  content: ")";
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ',';
+  content: ",";
   padding-right: 5px;
 }
 
@@ -799,73 +811,48 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class="xr-text-repr-fallback">&lt;xarray.Dataset&gt;
-Dimensions:         (delta_time: 14226389, ds_surf_type: 5)
+</style><pre class="xr-text-repr-fallback">&lt;xarray.Dataset&gt; Size: 97kB
+Dimensions:       (time: 366, lat: 8, lon: 8)
 Coordinates:
-  * delta_time      (delta_time) datetime64[ns] 2023-01-03T09:09:31.975149376...
-    lat_ph          (delta_time) float64 ...
-    lon_ph          (delta_time) float64 ...
-Dimensions without coordinates: ds_surf_type
+  * time          (time) datetime64[ns] 3kB 2020-01-01 2020-01-02 ... 2020-12-31
+  * lat           (lat) float32 32B 33.62 33.88 34.12 ... 34.88 35.12 35.38
+  * lon           (lon) float32 32B -75.38 -75.12 -74.88 ... -73.88 -73.62
 Data variables:
-    dist_ph_across  (delta_time) float32 ...
-    dist_ph_along   (delta_time) float32 ...
-    h_ph            (delta_time) float32 ...
-    pce_mframe_cnt  (delta_time) uint32 ...
-    ph_id_channel   (delta_time) uint8 ...
-    ph_id_count     (delta_time) uint8 ...
-    ph_id_pulse     (delta_time) uint8 ...
-    quality_ph      (delta_time) int8 ...
-    signal_conf_ph  (delta_time, ds_surf_type) int8 ...
-    weight_ph       (delta_time) uint8 ...
-Attributes:
-    Description:  Contains arrays of the parameters for each received photon.
-    data_rate:    Data are stored at the photon detection rate.</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-8b10184f-7323-4857-8568-6fe822e34fef" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-8b10184f-7323-4857-8568-6fe822e34fef" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">delta_time</span>: 14226389</li><li><span>ds_surf_type</span>: 5</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-41d4e52a-9a70-418a-a53f-88efd7b5c2cd" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-41d4e52a-9a70-418a-a53f-88efd7b5c2cd" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">delta_time</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2023-01-03T09:09:31.975149376 .....</div><input id="attrs-6610d8ed-8332-49fe-b451-cbe9ac988572" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6610d8ed-8332-49fe-b451-cbe9ac988572" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-63fe6320-b934-4176-910f-5f38aae4eee7" class="xr-var-data-in" type="checkbox"><label for="data-63fe6320-b934-4176-910f-5f38aae4eee7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Elapsed GPS seconds</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>source :</span></dt><dd>Operations</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>The transmit time of a given photon, measured in seconds from the ATLAS Standard Data Product Epoch. Note that multiple received photons associated with a single transmit pulse will have the same delta_time. The ATLAS Standard Data Products (SDP) epoch offset is defined within /ancillary_data/atlas_sdp_gps_epoch as the number of GPS seconds between the GPS epoch (1980-01-06T00:00:00.000000Z UTC) and the ATLAS SDP epoch. By adding the offset contained within atlas_sdp_gps_epoch to delta time parameters, the time in gps_seconds relative to the GPS epoch can be computed.</dd></dl></div><div class="xr-var-data"><pre>array(['2023-01-03T09:09:31.975149376', '2023-01-03T09:09:31.975149376',
-       '2023-01-03T09:09:31.975149376', ..., '2023-01-03T09:17:59.295561920',
-       '2023-01-03T09:17:59.295561920', '2023-01-03T09:17:59.295561920'],
-      dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-7e5cbf7d-4441-42e5-9647-c7c1e4696b2c" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7e5cbf7d-4441-42e5-9647-c7c1e4696b2c" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a0ac1e71-a3d1-4a21-b4cd-613bfbd7bffe" class="xr-var-data-in" type="checkbox"><label for="data-a0ac1e71-a3d1-4a21-b4cd-613bfbd7bffe" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>source :</span></dt><dd>ATL03g ATBD, Section 3.4</dd><dt><span>valid_min :</span></dt><dd>-90.0</dd><dt><span>valid_max :</span></dt><dd>90.0</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Latitude of each received photon. Computed from the ECF Cartesian coordinates of the bounce point.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float64]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-115f3686-4139-48b7-8ded-ecc6a605c960" class="xr-var-attrs-in" type="checkbox"><label for="attrs-115f3686-4139-48b7-8ded-ecc6a605c960" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-20663969-18cf-4b86-883a-ad20fada363b" class="xr-var-data-in" type="checkbox"><label for="data-20663969-18cf-4b86-883a-ad20fada363b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>source :</span></dt><dd>ATL03g ATBD, Section 3.4</dd><dt><span>valid_min :</span></dt><dd>-180.0</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Longitude of each received photon. Computed from the ECF Cartesian coordinates of the bounce point.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float64]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-85f4a000-02d9-4c90-afdc-a21c02c2e737" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-85f4a000-02d9-4c90-afdc-a21c02c2e737" class="xr-section-summary">Data variables: <span>(10)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>dist_ph_across</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-e7d346ca-d6e5-4508-a785-161d47290594" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e7d346ca-d6e5-4508-a785-161d47290594" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-95781bc8-f548-4e2c-8598-f34c1b0ed011" class="xr-var-data-in" type="checkbox"><label for="data-95781bc8-f548-4e2c-8598-f34c1b0ed011" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance off RGT.</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>source :</span></dt><dd>ATL03 ATBD, Section 3.1</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Across-track distance projected to the ellipsoid of the received photon from the reference ground track.  This is based on the Along-Track Segment algorithm described in Section 3.1.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>dist_ph_along</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-3bd7538a-4965-4136-b1b8-3fa9cee83026" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3bd7538a-4965-4136-b1b8-3fa9cee83026" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4c85738f-325c-49c1-8e15-de1b38590248" class="xr-var-data-in" type="checkbox"><label for="data-4c85738f-325c-49c1-8e15-de1b38590248" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance from equator crossing.</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>source :</span></dt><dd>ATL03 ATBD, Section 3.1</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Along-track distance in a segment projected to the ellipsoid of the received photon, based on the Along-Track Segment algorithm.  Total along track distance can be found by adding this value to the sum of segment lengths measured from the start of the most recent reference groundtrack.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>h_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-731a80f5-4fe3-4aad-b08c-d99197146125" class="xr-var-attrs-in" type="checkbox"><label for="attrs-731a80f5-4fe3-4aad-b08c-d99197146125" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e14b0116-8032-46e0-bfe9-19c9e9456e6b" class="xr-var-data-in" type="checkbox"><label for="data-e14b0116-8032-46e0-bfe9-19c9e9456e6b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Photon WGS84 Height</dd><dt><span>standard_name :</span></dt><dd>height</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>source :</span></dt><dd>ATL03g ATBD, Section 3.4</dd><dt><span>contentType :</span></dt><dd>physicalMeasurement</dd><dt><span>description :</span></dt><dd>Height of each received photon, relative to the WGS-84 ellipsoid including the geophysical corrections noted in Section 6. Please note that neither the geoid, ocean tide nor the dynamic atmosphere (DAC) corrections are applied to the ellipsoidal heights.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>pce_mframe_cnt</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-c1cc4ed9-5ccc-483a-bde4-279e16cab3b1" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c1cc4ed9-5ccc-483a-bde4-279e16cab3b1" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0e1380c9-16d7-4974-b1d0-4253b724a202" class="xr-var-data-in" type="checkbox"><label for="data-0e1380c9-16d7-4974-b1d0-4253b724a202" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>PCE Major frame counter</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>source :</span></dt><dd>Retained from prior a_alt_science_ph packet</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>The major frame counter is read from the digital flow controller in a given PCE card.  The counter identifies individual major frames across diag and science packets. Used as part of the photon ID.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ph_id_channel</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-1658488b-4a6d-4e19-9964-f3dfa6be2687" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1658488b-4a6d-4e19-9964-f3dfa6be2687" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-117ad972-5408-4b30-99fa-1decbc95a51b" class="xr-var-data-in" type="checkbox"><label for="data-117ad972-5408-4b30-99fa-1decbc95a51b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Receive channel id</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>source :</span></dt><dd>Derived as part of Photon ID</dd><dt><span>valid_min :</span></dt><dd>1</dd><dt><span>valid_max :</span></dt><dd>120</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>Channel number assigned for each received photon event. This is part of the photon ID. Values range from 1 to 120 to span all channels and rise/fall edges. Values 1 to 60 are for falling edge; PCE1 (1 to 20), PCE 2 (21 to 40) and PCE3 (41 to 60). Values 61 to 120 are for rising edge; PCE1 (61 to 80), PCE 2 (81 to 100) and PC3 (101 to 120).</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ph_id_count</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-c81f5f3d-6f0f-4eed-8f9d-5516406f7a53" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c81f5f3d-6f0f-4eed-8f9d-5516406f7a53" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4ec24ec8-6649-42e9-aa24-6ff2872a6ed3" class="xr-var-data-in" type="checkbox"><label for="data-4ec24ec8-6649-42e9-aa24-6ff2872a6ed3" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>photon event counter</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>source :</span></dt><dd>Derived as part of Photon ID</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>The photon event counter is part of photon ID and counts from 1 for each channel until reset by laser pulse counter.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ph_id_pulse</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-2be128b9-543e-4c9a-9344-3ff68c52d181" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2be128b9-543e-4c9a-9344-3ff68c52d181" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f74d6269-2af3-406f-ba6d-d473015ef65a" class="xr-var-data-in" type="checkbox"><label for="data-f74d6269-2af3-406f-ba6d-d473015ef65a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>laser pulse counter</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>source :</span></dt><dd>Derived as part of Photon ID</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>The laser pulse counter is part of photon ID and counts from 1 to 200 and is reset for each new major frame.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>quality_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-2ace9e06-8d0e-4db0-9ba4-700bbea9f6dc" class="xr-var-attrs-in" type="checkbox"><label for="attrs-2ace9e06-8d0e-4db0-9ba4-700bbea9f6dc" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ff9590a4-c21a-4923-a7c0-cd3db0de24fc" class="xr-var-data-in" type="checkbox"><label for="data-ff9590a4-c21a-4923-a7c0-cd3db0de24fc" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Photon Quality</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>source :</span></dt><dd>ATL03 ATBD</dd><dt><span>valid_min :</span></dt><dd>0</dd><dt><span>valid_max :</span></dt><dd>3</dd><dt><span>contentType :</span></dt><dd>qualityInformation</dd><dt><span>description :</span></dt><dd>Indicates the quality of the associated photon. 0=nominal, 1=possible_afterpulse, 2=possible_impulse_response_effect, 3=possible_tep. Use this flag in conjunction with signal_conf_ph to identify those photons that are likely noise or likely signal.</dd><dt><span>flag_meanings :</span></dt><dd>nominal possible_afterpulse possible_impulse_response_effect possible_tep</dd><dt><span>flag_values :</span></dt><dd>[0 1 2 3]</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=int8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>signal_conf_ph</span></div><div class="xr-var-dims">(delta_time, ds_surf_type)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-0f2dc184-8f09-4784-8ac5-1ced15cb117b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0f2dc184-8f09-4784-8ac5-1ced15cb117b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-9c38b8c5-c36b-4701-83ff-a7e145e4ef24" class="xr-var-data-in" type="checkbox"><label for="data-9c38b8c5-c36b-4701-83ff-a7e145e4ef24" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Photon Signal Confidence</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>source :</span></dt><dd>ATL03 ATBD, Section 5, Conf</dd><dt><span>valid_min :</span></dt><dd>-2</dd><dt><span>valid_max :</span></dt><dd>4</dd><dt><span>contentType :</span></dt><dd>qualityInformation</dd><dt><span>description :</span></dt><dd>Confidence level associated with each photon event selected as signal. 0=noise. 1=added to allow for buffer but algorithm classifies as background; 2=low; 3=med; 4=high).  This parameter is a 5xN array where N is the number of photons in the granule, and the 5 rows indicate signal finding for each surface type (in order: land, ocean, sea ice, land ice and inland water). Events not associated with a specific surface type have a confidence level of -1. Events evaluated as TEP returns have a confidence level of -2.</dd><dt><span>flag_meanings :</span></dt><dd>possible_tep not_considered noise buffer low medium high</dd><dt><span>flag_values :</span></dt><dd>[-2 -1  0  1  2  3  4]</dd></dl></div><div class="xr-var-data"><pre>[71131945 values with dtype=int8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>weight_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-03f06e75-4592-4a33-b073-8b94c1180991" class="xr-var-attrs-in" type="checkbox"><label for="attrs-03f06e75-4592-4a33-b073-8b94c1180991" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-b44fce30-434d-4757-9e93-2f918e19dfe3" class="xr-var-data-in" type="checkbox"><label for="data-b44fce30-434d-4757-9e93-2f918e19dfe3" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Photon weight</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>source :</span></dt><dd>ATBD Section 5</dd><dt><span>valid_min :</span></dt><dd>0</dd><dt><span>valid_max :</span></dt><dd>255</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Computed weight of each photon. The weight is calculated by a windowed KNN algorithm using the distances between each photon and its K nearest neighbors. Values range from 0 to 255 where 255 is the most heavily weighted photon and would be considered likely signal.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint8]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-7c3e4838-f19d-4583-9515-ca99bc95521c" class="xr-section-summary-in" type="checkbox"><label for="section-7c3e4838-f19d-4583-9515-ca99bc95521c" class="xr-section-summary">Indexes: <span>(1)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>delta_time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-d6ae8416-1708-4e7d-a3e9-19b0396788d4" class="xr-index-data-in" type="checkbox"><label for="index-d6ae8416-1708-4e7d-a3e9-19b0396788d4" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
+    analysed_sst  (time, lat, lon) float32 94kB ...</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-ac2a1295-b826-4d87-99e8-96dcc37b47d7" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-ac2a1295-b826-4d87-99e8-96dcc37b47d7" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 366</li><li><span class="xr-has-index">lat</span>: 8</li><li><span class="xr-has-index">lon</span>: 8</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-dbaff157-3c91-47d6-a655-2a1b681b3c88" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-dbaff157-3c91-47d6-a655-2a1b681b3c88" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2020-01-01 ... 2020-12-31</div><input id="attrs-1dedb3cc-9961-498a-81d1-87b05ec1dc7f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-1dedb3cc-9961-498a-81d1-87b05ec1dc7f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-41d50e43-5077-4013-8141-7821dedd3880" class="xr-var-data-in" type="checkbox"><label for="data-41d50e43-5077-4013-8141-7821dedd3880" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>reference time of sst field</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>comment :</span></dt><dd>Nominal time because observations are from different sources and are made at different times of the day.</dd></dl></div><div class="xr-var-data"><pre>array(['2020-01-01T00:00:00.000000000', '2020-01-02T00:00:00.000000000',
+       '2020-01-03T00:00:00.000000000', ..., '2020-12-29T00:00:00.000000000',
+       '2020-12-30T00:00:00.000000000', '2020-12-31T00:00:00.000000000'],
+      dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">33.62 33.88 34.12 ... 35.12 35.38</div><input id="attrs-e48baf3c-d2ca-4262-9a46-1b9a8842bee1" class="xr-var-attrs-in" type="checkbox"><label for="attrs-e48baf3c-d2ca-4262-9a46-1b9a8842bee1" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-1e91928e-bf8c-4819-be08-d8cf0d83d7b6" class="xr-var-data-in" type="checkbox"><label for="data-1e91928e-bf8c-4819-be08-d8cf0d83d7b6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>valid_min :</span></dt><dd>-90.0</dd><dt><span>valid_max :</span></dt><dd>90.0</dd><dt><span>bounds :</span></dt><dd>lat_bnds</dd><dt><span>comment :</span></dt><dd>Uniform grid with centers from -89.875 to 89.875 by 0.25 degrees</dd></dl></div><div class="xr-var-data"><pre>array([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375],
+      dtype=float32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">-75.38 -75.12 ... -73.88 -73.62</div><input id="attrs-f953f5a0-5b77-4620-8728-1e3de12f13fa" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f953f5a0-5b77-4620-8728-1e3de12f13fa" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-aa26aa6f-57ef-4b97-af03-6264cf85ed52" class="xr-var-data-in" type="checkbox"><label for="data-aa26aa6f-57ef-4b97-af03-6264cf85ed52" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>valid_min :</span></dt><dd>-180.0</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>bounds :</span></dt><dd>lon_bnds</dd><dt><span>comment :</span></dt><dd>Uniform grid with centers from -179.875 to 179.875 by 0.25 degrees</dd></dl></div><div class="xr-var-data"><pre>array([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625],
+      dtype=float32)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-b28b8eaa-651d-45a8-ad10-a4e03cde3c9a" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-b28b8eaa-651d-45a8-ad10-a4e03cde3c9a" class="xr-section-summary">Data variables: <span>(1)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>analysed_sst</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-3baa14a8-be12-4136-aaba-4973b9140e27" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3baa14a8-be12-4136-aaba-4973b9140e27" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-0cd57f4c-adc0-4b4e-ad53-f0d026938c6c" class="xr-var-data-in" type="checkbox"><label for="data-0cd57f4c-adc0-4b4e-ad53-f0d026938c6c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>analysed sea surface temperature</dd><dt><span>standard_name :</span></dt><dd>sea_surface_temperature</dd><dt><span>units :</span></dt><dd>kelvin</dd><dt><span>valid_min :</span></dt><dd>-300</dd><dt><span>valid_max :</span></dt><dd>4500</dd><dt><span>source :</span></dt><dd>UNKNOWN,ICOADS SHIPS,ICOADS BUOYS,ICOADS argos,MMAB_50KM-NCEP-ICE</dd><dt><span>comment :</span></dt><dd>Single-sensor Pathfinder 5.0/5.1 AVHRR SSTs used until 2005; two AVHRRs at a time are used 2007 onward. Sea ice and in-situ data used also are near real time quality for recent period. SST (bulk) is at ambiguous depth because multiple types of observations are used.</dd></dl></div><div class="xr-var-data"><pre>[23424 values with dtype=float32]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-824346c5-1da3-4a96-b699-f32864dd3695" class="xr-section-summary-in" type="checkbox"><label for="section-824346c5-1da3-4a96-b699-f32864dd3695" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-ce8a075b-ca49-477d-961a-9f02124ba808" class="xr-index-data-in" type="checkbox"><label for="index-ce8a075b-ca49-477d-961a-9f02124ba808" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04',
+               '2020-01-05', '2020-01-06', '2020-01-07', '2020-01-08',
+               '2020-01-09', '2020-01-10',
                ...
-               '2023-01-03 09:17:59.295361920',
-               '2023-01-03 09:17:59.295361920',
-               '2023-01-03 09:17:59.295361920',
-               '2023-01-03 09:17:59.295361920',
-               '2023-01-03 09:17:59.295461920',
-               '2023-01-03 09:17:59.295461920',
-               '2023-01-03 09:17:59.295461920',
-               '2023-01-03 09:17:59.295561920',
-               '2023-01-03 09:17:59.295561920',
-               '2023-01-03 09:17:59.295561920'],
-              dtype='datetime64[ns]', name='delta_time', length=14226389, freq=None))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-0135ff82-4b67-427c-ac05-739fa18b1091" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-0135ff82-4b67-427c-ac05-739fa18b1091" class="xr-section-summary">Attributes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>Description :</span></dt><dd>Contains arrays of the parameters for each received photon.</dd><dt><span>data_rate :</span></dt><dd>Data are stored at the photon detection rate.</dd></dl></div></li></ul></div></div>
+               '2020-12-22', '2020-12-23', '2020-12-24', '2020-12-25',
+               '2020-12-26', '2020-12-27', '2020-12-28', '2020-12-29',
+               '2020-12-30', '2020-12-31'],
+              dtype='datetime64[ns]', name='time', length=366, freq=None))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lat</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-bc0527e4-c9b3-44c9-b1f7-b9277f758fdf" class="xr-index-data-in" type="checkbox"><label for="index-bc0527e4-c9b3-44c9-b1f7-b9277f758fdf" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375], dtype='float32', name='lat'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-91c4ab78-e18e-4819-8063-b1e42f489519" class="xr-index-data-in" type="checkbox"><label for="index-91c4ab78-e18e-4819-8063-b1e42f489519" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625], dtype='float32', name='lon'))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-3e0cd20e-6e61-4dc4-868f-d42e444dbbab" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-3e0cd20e-6e61-4dc4-868f-d42e444dbbab" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
 </div>
 </div>
 <pre class="{tip}"><code>If you don't want to think about downloading files you can let `fsspec` handle this behind the scenes for you! This way you only need to think about remote paths</code></pre>
-<div id="148777c9-1d14-4014-8c5f-8b9de1c5b0e6" class="cell" data-tags="[]" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> fsspec.filesystem(<span class="st">"simplecache"</span>, </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                       cache_storage<span class="op">=</span><span class="st">'/tmp/files/'</span>,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                       same_names<span class="op">=</span><span class="va">True</span>,  </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                       target_protocol<span class="op">=</span><span class="st">'s3'</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="148777c9-1d14-4014-8c5f-8b9de1c5b0e6" class="cell" data-tags="[]" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> fsspec.filesystem(<span class="st">"simplecache"</span>, </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                       cache_storage<span class="op">=</span><span class="st">'/tmp/files/'</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                       same_names<span class="op">=</span><span class="va">True</span>,  </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                       target_protocol<span class="op">=</span><span class="st">'s3'</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bb413ee3-5555-4877-b22a-c8f74a4d57df" class="cell" data-tags="[]" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The `simplecache` setting above will download the full file to /tmp/files</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(remote_object)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> fs.<span class="bu">open</span>(remote_object) <span class="im">as</span> f:</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> xr.open_dataset(f.name, group<span class="op">=</span><span class="st">'/gt3r/heights'</span>) <span class="co"># </span><span class="al">NOTE</span><span class="co">: pass f.name for local cached path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bb413ee3-5555-4877-b22a-c8f74a4d57df" class="cell" data-tags="[]" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The `simplecache` setting above will download the full file to /tmp/files</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(remote_object)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> fs.<span class="bu">open</span>(remote_object) <span class="im">as</span> f:</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> xr.open_dataset(f.name) <span class="co"># </span><span class="al">NOTE</span><span class="co">: pass f.name for local cached path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>s3://nasa-cryo-scratch/octocat-project/ATL03_20230103090928_02111806_006_01.h5</code></pre>
+<pre><code>s3://nmfs-openscapes-scratch/hackhours/littlecube.nc</code></pre>
 </div>
 </div>
-<div id="e180a2d8-eaf2-4043-8b97-e361a67c7523" class="cell" data-tags="[]" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div id="e180a2d8-eaf2-4043-8b97-e361a67c7523" class="cell" data-tags="[]" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -896,13 +883,14 @@ Attributes:
   --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
 }
 
-html[theme=dark],
-body[data-theme=dark],
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
   --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
+  --xr-border-color: #1f1f1f;
   --xr-disabled-color: #515151;
   --xr-background-color: #111111;
   --xr-background-color-row-even: #111111;
@@ -947,7 +935,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
 }
 
 .xr-section-item {
@@ -955,7 +943,9 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: none;
+  display: inline-block;
+  opacity: 0;
+  height: 0;
 }
 
 .xr-section-item input + label {
@@ -965,6 +955,10 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -988,7 +982,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: '►';
+  content: "►";
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -999,7 +993,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: '▼';
+  content: "▼";
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -1071,15 +1065,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: '(';
+  content: "(";
 }
 
 .xr-dim-list:after {
-  content: ')';
+  content: ")";
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ',';
+  content: ",";
   padding-right: 5px;
 }
 
@@ -1229,51 +1223,26 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class="xr-text-repr-fallback">&lt;xarray.Dataset&gt;
-Dimensions:         (delta_time: 14226389, ds_surf_type: 5)
+</style><pre class="xr-text-repr-fallback">&lt;xarray.Dataset&gt; Size: 97kB
+Dimensions:       (time: 366, lat: 8, lon: 8)
 Coordinates:
-  * delta_time      (delta_time) datetime64[ns] 2023-01-03T09:09:31.975149376...
-    lat_ph          (delta_time) float64 ...
-    lon_ph          (delta_time) float64 ...
-Dimensions without coordinates: ds_surf_type
+  * time          (time) datetime64[ns] 3kB 2020-01-01 2020-01-02 ... 2020-12-31
+  * lat           (lat) float32 32B 33.62 33.88 34.12 ... 34.88 35.12 35.38
+  * lon           (lon) float32 32B -75.38 -75.12 -74.88 ... -73.88 -73.62
 Data variables:
-    dist_ph_across  (delta_time) float32 ...
-    dist_ph_along   (delta_time) float32 ...
-    h_ph            (delta_time) float32 ...
-    pce_mframe_cnt  (delta_time) uint32 ...
-    ph_id_channel   (delta_time) uint8 ...
-    ph_id_count     (delta_time) uint8 ...
-    ph_id_pulse     (delta_time) uint8 ...
-    quality_ph      (delta_time) int8 ...
-    signal_conf_ph  (delta_time, ds_surf_type) int8 ...
-    weight_ph       (delta_time) uint8 ...
-Attributes:
-    Description:  Contains arrays of the parameters for each received photon.
-    data_rate:    Data are stored at the photon detection rate.</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-a8fb3563-ce21-4f90-ad7b-6a76235bb782" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-a8fb3563-ce21-4f90-ad7b-6a76235bb782" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">delta_time</span>: 14226389</li><li><span>ds_surf_type</span>: 5</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-f1facc50-ace7-451f-b936-6a92a0f2ff80" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-f1facc50-ace7-451f-b936-6a92a0f2ff80" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">delta_time</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2023-01-03T09:09:31.975149376 .....</div><input id="attrs-3820c57a-c69b-457a-a99b-32efe799bfff" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3820c57a-c69b-457a-a99b-32efe799bfff" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6d570bfd-40f1-4980-80ce-f732e9b07c07" class="xr-var-data-in" type="checkbox"><label for="data-6d570bfd-40f1-4980-80ce-f732e9b07c07" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Elapsed GPS seconds</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>source :</span></dt><dd>Operations</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>The transmit time of a given photon, measured in seconds from the ATLAS Standard Data Product Epoch. Note that multiple received photons associated with a single transmit pulse will have the same delta_time. The ATLAS Standard Data Products (SDP) epoch offset is defined within /ancillary_data/atlas_sdp_gps_epoch as the number of GPS seconds between the GPS epoch (1980-01-06T00:00:00.000000Z UTC) and the ATLAS SDP epoch. By adding the offset contained within atlas_sdp_gps_epoch to delta time parameters, the time in gps_seconds relative to the GPS epoch can be computed.</dd></dl></div><div class="xr-var-data"><pre>array(['2023-01-03T09:09:31.975149376', '2023-01-03T09:09:31.975149376',
-       '2023-01-03T09:09:31.975149376', ..., '2023-01-03T09:17:59.295561920',
-       '2023-01-03T09:17:59.295561920', '2023-01-03T09:17:59.295561920'],
-      dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lat_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-fa91ea1b-9317-4a7b-8604-01af34dc5315" class="xr-var-attrs-in" type="checkbox"><label for="attrs-fa91ea1b-9317-4a7b-8604-01af34dc5315" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-306142ee-61ea-42f4-a9fc-aabc5ba3d64b" class="xr-var-data-in" type="checkbox"><label for="data-306142ee-61ea-42f4-a9fc-aabc5ba3d64b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>source :</span></dt><dd>ATL03g ATBD, Section 3.4</dd><dt><span>valid_min :</span></dt><dd>-90.0</dd><dt><span>valid_max :</span></dt><dd>90.0</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Latitude of each received photon. Computed from the ECF Cartesian coordinates of the bounce point.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float64]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>lon_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float64</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-0629d161-d614-4580-b18f-05a523859f9e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0629d161-d614-4580-b18f-05a523859f9e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-e9476b65-17db-4c2d-bf69-9e1dc0b14e0c" class="xr-var-data-in" type="checkbox"><label for="data-e9476b65-17db-4c2d-bf69-9e1dc0b14e0c" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>source :</span></dt><dd>ATL03g ATBD, Section 3.4</dd><dt><span>valid_min :</span></dt><dd>-180.0</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Longitude of each received photon. Computed from the ECF Cartesian coordinates of the bounce point.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float64]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-3918fefa-668c-484f-bcd0-75d4bf1a13c9" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-3918fefa-668c-484f-bcd0-75d4bf1a13c9" class="xr-section-summary">Data variables: <span>(10)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>dist_ph_across</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-c9a691ff-404e-48c7-8aa5-8e0fa44a831f" class="xr-var-attrs-in" type="checkbox"><label for="attrs-c9a691ff-404e-48c7-8aa5-8e0fa44a831f" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-980bd786-dfe0-4d9e-aa8f-b0ff1352ae61" class="xr-var-data-in" type="checkbox"><label for="data-980bd786-dfe0-4d9e-aa8f-b0ff1352ae61" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance off RGT.</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>source :</span></dt><dd>ATL03 ATBD, Section 3.1</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Across-track distance projected to the ellipsoid of the received photon from the reference ground track.  This is based on the Along-Track Segment algorithm described in Section 3.1.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>dist_ph_along</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-32ba38c7-58d6-4b7e-8c07-ec5f89e2904b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-32ba38c7-58d6-4b7e-8c07-ec5f89e2904b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ffb12f63-d57f-4b20-8068-2d7ef1d8692d" class="xr-var-data-in" type="checkbox"><label for="data-ffb12f63-d57f-4b20-8068-2d7ef1d8692d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Distance from equator crossing.</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>source :</span></dt><dd>ATL03 ATBD, Section 3.1</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Along-track distance in a segment projected to the ellipsoid of the received photon, based on the Along-Track Segment algorithm.  Total along track distance can be found by adding this value to the sum of segment lengths measured from the start of the most recent reference groundtrack.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>h_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-5a08d1e2-4f4d-4bfb-85fb-a89f9ed258de" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5a08d1e2-4f4d-4bfb-85fb-a89f9ed258de" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-dbf899ae-e38e-42ff-b539-dfdb99fe7b50" class="xr-var-data-in" type="checkbox"><label for="data-dbf899ae-e38e-42ff-b539-dfdb99fe7b50" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Photon WGS84 Height</dd><dt><span>standard_name :</span></dt><dd>height</dd><dt><span>units :</span></dt><dd>meters</dd><dt><span>source :</span></dt><dd>ATL03g ATBD, Section 3.4</dd><dt><span>contentType :</span></dt><dd>physicalMeasurement</dd><dt><span>description :</span></dt><dd>Height of each received photon, relative to the WGS-84 ellipsoid including the geophysical corrections noted in Section 6. Please note that neither the geoid, ocean tide nor the dynamic atmosphere (DAC) corrections are applied to the ellipsoidal heights.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>pce_mframe_cnt</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-ca920ee0-b392-4196-b8dd-fae7b0d778c8" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ca920ee0-b392-4196-b8dd-fae7b0d778c8" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d4b950ce-b69b-4140-a7ec-cc685f15b671" class="xr-var-data-in" type="checkbox"><label for="data-d4b950ce-b69b-4140-a7ec-cc685f15b671" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>PCE Major frame counter</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>source :</span></dt><dd>Retained from prior a_alt_science_ph packet</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>The major frame counter is read from the digital flow controller in a given PCE card.  The counter identifies individual major frames across diag and science packets. Used as part of the photon ID.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ph_id_channel</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-b9b14f60-2352-45e2-a1df-83bf1dabca22" class="xr-var-attrs-in" type="checkbox"><label for="attrs-b9b14f60-2352-45e2-a1df-83bf1dabca22" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-7c382d25-a0f8-4eee-801c-9fc2f918f35a" class="xr-var-data-in" type="checkbox"><label for="data-7c382d25-a0f8-4eee-801c-9fc2f918f35a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Receive channel id</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>source :</span></dt><dd>Derived as part of Photon ID</dd><dt><span>valid_min :</span></dt><dd>1</dd><dt><span>valid_max :</span></dt><dd>120</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>Channel number assigned for each received photon event. This is part of the photon ID. Values range from 1 to 120 to span all channels and rise/fall edges. Values 1 to 60 are for falling edge; PCE1 (1 to 20), PCE 2 (21 to 40) and PCE3 (41 to 60). Values 61 to 120 are for rising edge; PCE1 (61 to 80), PCE 2 (81 to 100) and PC3 (101 to 120).</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ph_id_count</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-d02445e6-d781-4274-b65c-f953c74b678e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-d02445e6-d781-4274-b65c-f953c74b678e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-39989a00-8a85-4005-8228-f652c2576856" class="xr-var-data-in" type="checkbox"><label for="data-39989a00-8a85-4005-8228-f652c2576856" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>photon event counter</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>source :</span></dt><dd>Derived as part of Photon ID</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>The photon event counter is part of photon ID and counts from 1 for each channel until reset by laser pulse counter.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>ph_id_pulse</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-349caa89-fe0c-4518-8a25-371aa42673c1" class="xr-var-attrs-in" type="checkbox"><label for="attrs-349caa89-fe0c-4518-8a25-371aa42673c1" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-85c0b399-cd49-4413-a805-65693eb2f3f7" class="xr-var-data-in" type="checkbox"><label for="data-85c0b399-cd49-4413-a805-65693eb2f3f7" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>laser pulse counter</dd><dt><span>units :</span></dt><dd>counts</dd><dt><span>source :</span></dt><dd>Derived as part of Photon ID</dd><dt><span>contentType :</span></dt><dd>referenceInformation</dd><dt><span>description :</span></dt><dd>The laser pulse counter is part of photon ID and counts from 1 to 200 and is reset for each new major frame.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>quality_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-ad540dcf-28b4-4b09-b213-56fe2b0d4906" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ad540dcf-28b4-4b09-b213-56fe2b0d4906" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-28700e05-faa4-4bc8-b214-afafbe5c1117" class="xr-var-data-in" type="checkbox"><label for="data-28700e05-faa4-4bc8-b214-afafbe5c1117" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Photon Quality</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>source :</span></dt><dd>ATL03 ATBD</dd><dt><span>valid_min :</span></dt><dd>0</dd><dt><span>valid_max :</span></dt><dd>3</dd><dt><span>contentType :</span></dt><dd>qualityInformation</dd><dt><span>description :</span></dt><dd>Indicates the quality of the associated photon. 0=nominal, 1=possible_afterpulse, 2=possible_impulse_response_effect, 3=possible_tep. Use this flag in conjunction with signal_conf_ph to identify those photons that are likely noise or likely signal.</dd><dt><span>flag_meanings :</span></dt><dd>nominal possible_afterpulse possible_impulse_response_effect possible_tep</dd><dt><span>flag_values :</span></dt><dd>[0 1 2 3]</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=int8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>signal_conf_ph</span></div><div class="xr-var-dims">(delta_time, ds_surf_type)</div><div class="xr-var-dtype">int8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-5d78561c-734c-4043-a177-6f729dec4ec9" class="xr-var-attrs-in" type="checkbox"><label for="attrs-5d78561c-734c-4043-a177-6f729dec4ec9" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3431084a-4279-4e68-81c2-49746781ade6" class="xr-var-data-in" type="checkbox"><label for="data-3431084a-4279-4e68-81c2-49746781ade6" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Photon Signal Confidence</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>source :</span></dt><dd>ATL03 ATBD, Section 5, Conf</dd><dt><span>valid_min :</span></dt><dd>-2</dd><dt><span>valid_max :</span></dt><dd>4</dd><dt><span>contentType :</span></dt><dd>qualityInformation</dd><dt><span>description :</span></dt><dd>Confidence level associated with each photon event selected as signal. 0=noise. 1=added to allow for buffer but algorithm classifies as background; 2=low; 3=med; 4=high).  This parameter is a 5xN array where N is the number of photons in the granule, and the 5 rows indicate signal finding for each surface type (in order: land, ocean, sea ice, land ice and inland water). Events not associated with a specific surface type have a confidence level of -1. Events evaluated as TEP returns have a confidence level of -2.</dd><dt><span>flag_meanings :</span></dt><dd>possible_tep not_considered noise buffer low medium high</dd><dt><span>flag_values :</span></dt><dd>[-2 -1  0  1  2  3  4]</dd></dl></div><div class="xr-var-data"><pre>[71131945 values with dtype=int8]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>weight_ph</span></div><div class="xr-var-dims">(delta_time)</div><div class="xr-var-dtype">uint8</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-0b754511-30b2-42b9-8399-02e23d59133b" class="xr-var-attrs-in" type="checkbox"><label for="attrs-0b754511-30b2-42b9-8399-02e23d59133b" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-ead40f0c-902c-45dc-8283-2c5dd0e5d6e2" class="xr-var-data-in" type="checkbox"><label for="data-ead40f0c-902c-45dc-8283-2c5dd0e5d6e2" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>Photon weight</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>source :</span></dt><dd>ATBD Section 5</dd><dt><span>valid_min :</span></dt><dd>0</dd><dt><span>valid_max :</span></dt><dd>255</dd><dt><span>contentType :</span></dt><dd>modelResult</dd><dt><span>description :</span></dt><dd>Computed weight of each photon. The weight is calculated by a windowed KNN algorithm using the distances between each photon and its K nearest neighbors. Values range from 0 to 255 where 255 is the most heavily weighted photon and would be considered likely signal.</dd></dl></div><div class="xr-var-data"><pre>[14226389 values with dtype=uint8]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-09ff75ba-50fa-4bad-b9a3-201f2514cf99" class="xr-section-summary-in" type="checkbox"><label for="section-09ff75ba-50fa-4bad-b9a3-201f2514cf99" class="xr-section-summary">Indexes: <span>(1)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>delta_time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-010f8e5a-2466-4d3a-8c33-f8b0c695dd5d" class="xr-index-data-in" type="checkbox"><label for="index-010f8e5a-2466-4d3a-8c33-f8b0c695dd5d" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
-               '2023-01-03 09:09:31.975149376',
+    analysed_sst  (time, lat, lon) float32 94kB ...</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-82dc686d-97a0-4b96-b570-23844be72bae" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-82dc686d-97a0-4b96-b570-23844be72bae" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 366</li><li><span class="xr-has-index">lat</span>: 8</li><li><span class="xr-has-index">lon</span>: 8</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-392d2bb1-ffb4-4784-9c6f-b9b18418c576" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-392d2bb1-ffb4-4784-9c6f-b9b18418c576" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2020-01-01 ... 2020-12-31</div><input id="attrs-bd507267-ba40-494b-a25c-5587809bd3d5" class="xr-var-attrs-in" type="checkbox"><label for="attrs-bd507267-ba40-494b-a25c-5587809bd3d5" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-70a822ae-8fce-44ae-b548-e9771a55bca4" class="xr-var-data-in" type="checkbox"><label for="data-70a822ae-8fce-44ae-b548-e9771a55bca4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>reference time of sst field</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>comment :</span></dt><dd>Nominal time because observations are from different sources and are made at different times of the day.</dd></dl></div><div class="xr-var-data"><pre>array(['2020-01-01T00:00:00.000000000', '2020-01-02T00:00:00.000000000',
+       '2020-01-03T00:00:00.000000000', ..., '2020-12-29T00:00:00.000000000',
+       '2020-12-30T00:00:00.000000000', '2020-12-31T00:00:00.000000000'],
+      dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lat</span></div><div class="xr-var-dims">(lat)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">33.62 33.88 34.12 ... 35.12 35.38</div><input id="attrs-ead16415-a3b7-43d7-a4a0-1591e6f76fa7" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ead16415-a3b7-43d7-a4a0-1591e6f76fa7" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-6e246842-faec-4934-a926-f0d8e1e9a2d1" class="xr-var-data-in" type="checkbox"><label for="data-6e246842-faec-4934-a926-f0d8e1e9a2d1" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>valid_min :</span></dt><dd>-90.0</dd><dt><span>valid_max :</span></dt><dd>90.0</dd><dt><span>bounds :</span></dt><dd>lat_bnds</dd><dt><span>comment :</span></dt><dd>Uniform grid with centers from -89.875 to 89.875 by 0.25 degrees</dd></dl></div><div class="xr-var-data"><pre>array([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375],
+      dtype=float32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">lon</span></div><div class="xr-var-dims">(lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">-75.38 -75.12 ... -73.88 -73.62</div><input id="attrs-3da61a51-c175-43cf-acdb-f05fb7dff236" class="xr-var-attrs-in" type="checkbox"><label for="attrs-3da61a51-c175-43cf-acdb-f05fb7dff236" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-bc34ecad-0e99-42f2-8506-a880a2fc27ec" class="xr-var-data-in" type="checkbox"><label for="data-bc34ecad-0e99-42f2-8506-a880a2fc27ec" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>valid_min :</span></dt><dd>-180.0</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>bounds :</span></dt><dd>lon_bnds</dd><dt><span>comment :</span></dt><dd>Uniform grid with centers from -179.875 to 179.875 by 0.25 degrees</dd></dl></div><div class="xr-var-data"><pre>array([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625],
+      dtype=float32)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-a8ee1fe8-af88-4891-9cd4-1f61930ab09b" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-a8ee1fe8-af88-4891-9cd4-1f61930ab09b" class="xr-section-summary">Data variables: <span>(1)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>analysed_sst</span></div><div class="xr-var-dims">(time, lat, lon)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-9e5f1d04-f42f-4773-8f38-7341bde1bac0" class="xr-var-attrs-in" type="checkbox"><label for="attrs-9e5f1d04-f42f-4773-8f38-7341bde1bac0" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-86c4a7f4-667e-48b8-b658-5288cb060955" class="xr-var-data-in" type="checkbox"><label for="data-86c4a7f4-667e-48b8-b658-5288cb060955" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>long_name :</span></dt><dd>analysed sea surface temperature</dd><dt><span>standard_name :</span></dt><dd>sea_surface_temperature</dd><dt><span>units :</span></dt><dd>kelvin</dd><dt><span>valid_min :</span></dt><dd>-300</dd><dt><span>valid_max :</span></dt><dd>4500</dd><dt><span>source :</span></dt><dd>UNKNOWN,ICOADS SHIPS,ICOADS BUOYS,ICOADS argos,MMAB_50KM-NCEP-ICE</dd><dt><span>comment :</span></dt><dd>Single-sensor Pathfinder 5.0/5.1 AVHRR SSTs used until 2005; two AVHRRs at a time are used 2007 onward. Sea ice and in-situ data used also are near real time quality for recent period. SST (bulk) is at ambiguous depth because multiple types of observations are used.</dd></dl></div><div class="xr-var-data"><pre>[23424 values with dtype=float32]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-c2da76ae-9168-46d2-ae21-9e61eafb4b2f" class="xr-section-summary-in" type="checkbox"><label for="section-c2da76ae-9168-46d2-ae21-9e61eafb4b2f" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-6b6a9f83-ac0f-407b-9e3a-501cf0385d43" class="xr-index-data-in" type="checkbox"><label for="index-6b6a9f83-ac0f-407b-9e3a-501cf0385d43" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04',
+               '2020-01-05', '2020-01-06', '2020-01-07', '2020-01-08',
+               '2020-01-09', '2020-01-10',
                ...
-               '2023-01-03 09:17:59.295361920',
-               '2023-01-03 09:17:59.295361920',
-               '2023-01-03 09:17:59.295361920',
-               '2023-01-03 09:17:59.295361920',
-               '2023-01-03 09:17:59.295461920',
-               '2023-01-03 09:17:59.295461920',
-               '2023-01-03 09:17:59.295461920',
-               '2023-01-03 09:17:59.295561920',
-               '2023-01-03 09:17:59.295561920',
-               '2023-01-03 09:17:59.295561920'],
-              dtype='datetime64[ns]', name='delta_time', length=14226389, freq=None))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-dcea1295-5c0f-42aa-95b2-48ac3ff0a5e0" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-dcea1295-5c0f-42aa-95b2-48ac3ff0a5e0" class="xr-section-summary">Attributes: <span>(2)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>Description :</span></dt><dd>Contains arrays of the parameters for each received photon.</dd><dt><span>data_rate :</span></dt><dd>Data are stored at the photon detection rate.</dd></dl></div></li></ul></div></div>
+               '2020-12-22', '2020-12-23', '2020-12-24', '2020-12-25',
+               '2020-12-26', '2020-12-27', '2020-12-28', '2020-12-29',
+               '2020-12-30', '2020-12-31'],
+              dtype='datetime64[ns]', name='time', length=366, freq=None))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lat</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-0f2b407b-2584-4919-8943-c8455eaa4ec2" class="xr-index-data-in" type="checkbox"><label for="index-0f2b407b-2584-4919-8943-c8455eaa4ec2" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375], dtype='float32', name='lat'))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>lon</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-b995b64b-5945-4578-a1e4-ca6ed496b35e" class="xr-index-data-in" type="checkbox"><label for="index-b995b64b-5945-4578-a1e4-ca6ed496b35e" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625], dtype='float32', name='lon'))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-19192328-bc33-48f1-ba64-dcf7eb4f97c1" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-19192328-bc33-48f1-ba64-dcf7eb4f97c1" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
 </div>
 </div>
 </section>
@@ -1281,10 +1250,21 @@ Attributes:
 <h2 class="anchored" data-anchor-id="cloud-optimized-formats">Cloud-optimized formats</h2>
 <p>Other formats like <a href="https://www.cogeo.org">COG</a>, <a href="https://zarr.readthedocs.io/en/stable/">ZARR</a>, <a href="https://parquet.apache.org">Parquet</a> are ‘Cloud-optimized’ and allow for very efficient streaming directly from S3. In other words, you do not need to download entire files and instead can easily read subsets of the data.</p>
 <p>The example below reads a Parquet file directly into memory (RAM) from S3 without using a local disk:</p>
-<div id="83242f41-f756-4afa-8dcb-1d2a4f86b7bd" class="cell" data-tags="[]" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gf <span class="op">=</span> gpd.read_parquet(<span class="st">'s3://nasa-cryo-scratch/scottyhq/IS2_Alaska.parquet'</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>gf.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div id="e0cb4483-ca19-42eb-8d07-00ad8502e636" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first upload the file</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>local_file <span class="op">=</span> <span class="st">'~/NOAAHackDays/topics-2025/resources/example.parquet'</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>remote_object <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/example.parquet"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>s3.upload(local_file, remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>[None]</code></pre>
+</div>
+</div>
+<div id="83242f41-f756-4afa-8dcb-1d2a4f86b7bd" class="cell" data-tags="[]" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gf <span class="op">=</span> gpd.read_parquet(remote_object)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>gf.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
 <div>
 
 
@@ -1292,29 +1272,32 @@ Attributes:
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">producer_granule_id</th>
-<th data-quarto-table-cell-role="th">time_start</th>
-<th data-quarto-table-cell-role="th">time_end</th>
-<th data-quarto-table-cell-role="th">datetime</th>
+<th data-quarto-table-cell-role="th">pop_est</th>
+<th data-quarto-table-cell-role="th">continent</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">iso_a3</th>
+<th data-quarto-table-cell-role="th">gdp_md_est</th>
 <th data-quarto-table-cell-role="th">geometry</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>ATL03_20181014015337_02360103_006_02.h5</td>
-<td>2018-10-14 01:53:36.912</td>
-<td>2018-10-14 01:59:02.315</td>
-<td>2018-10-14 01:56:19.613500</td>
-<td>POLYGON ((-166.98121 80.05247, -167.61386 80.0...</td>
+<td>889953.0</td>
+<td>Oceania</td>
+<td>Fiji</td>
+<td>FJI</td>
+<td>5496</td>
+<td>MULTIPOLYGON (((180 -16.06713, 180 -16.55522, ...</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>ATL03_20181014130413_02430105_006_02.h5</td>
-<td>2018-10-14 13:04:12.567</td>
-<td>2018-10-14 13:09:37.946</td>
-<td>2018-10-14 13:06:55.256500</td>
-<td>POLYGON ((-130.81600 80.02773, -131.44724 80.0...</td>
+<td>58005463.0</td>
+<td>Africa</td>
+<td>Tanzania</td>
+<td>TZA</td>
+<td>63177</td>
+<td>POLYGON ((33.90371 -0.95, 34.07262 -1.05982, 3...</td>
 </tr>
 </tbody>
 </table>
@@ -1325,20 +1308,20 @@ Attributes:
 </section>
 <section id="advanced-access-scratch-bucket-outside-of-jupyterhub" class="level2">
 <h2 class="anchored" data-anchor-id="advanced-access-scratch-bucket-outside-of-jupyterhub">Advanced: Access Scratch bucket outside of JupyterHub</h2>
-<p>Let’s say you have a lot of files on your laptop you want to work with on CryoCloud. The S3 Bucket is a convient way to upload large datasets for collaborative analysis. To do this, you need to copy AWS Credentials from the JupyterHub to use on other machines. More extensive documentation on this workflow can be found in this repository https://github.com/scottyhq/jupyter-cloud-scoped-creds.</p>
-<p>The following code <em>must</em> be run on CryoCloud JupyterHub to get temporary credentials:</p>
+<p>Let’s say you have a lot of files on your laptop you want to work with. The S3 Bucket is a convient way to upload large datasets for collaborative analysis. To do this, you need to copy AWS Credentials from the JupyterHub to use on other machines. More extensive documentation on this workflow can be found in this repository https://github.com/scottyhq/jupyter-cloud-scoped-creds.</p>
+<p>The following code <em>must</em> be run on the JupyterHub to get temporary credentials:</p>
 <div id="a07cb826-7a39-42ea-a446-20dcf7a710ab" class="cell" data-tags="[]" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'sts'</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(os.environ[<span class="st">'AWS_WEB_IDENTITY_TOKEN_FILE'</span>]) <span class="im">as</span> f:</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    TOKEN <span class="op">=</span> f.read()</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.assume_role_with_web_identity(</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span>os.environ[<span class="st">'AWS_ROLE_ARN'</span>],</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    RoleSessionName<span class="op">=</span>os.environ[<span class="st">'JUPYTERHUB_CLIENT_ID'</span>],</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    WebIdentityToken<span class="op">=</span>TOKEN,</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    DurationSeconds<span class="op">=</span><span class="dv">3600</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'sts'</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(os.environ[<span class="st">'AWS_WEB_IDENTITY_TOKEN_FILE'</span>]) <span class="im">as</span> f:</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    TOKEN <span class="op">=</span> f.read()</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.assume_role_with_web_identity(</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span>os.environ[<span class="st">'AWS_ROLE_ARN'</span>],</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    RoleSessionName<span class="op">=</span>os.environ[<span class="st">'JUPYTERHUB_CLIENT_ID'</span>],</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    WebIdentityToken<span class="op">=</span>TOKEN,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    DurationSeconds<span class="op">=</span><span class="dv">3600</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>reponse</code> will be a python dictionary that looks like this:</p>
 <pre><code>{'Credentials': {'AccessKeyId': 'ASIAYLNAJMXY2KXXXXX',
@@ -1348,18 +1331,13 @@ Attributes:
   ...</code></pre>
 <p>You can copy and paste the values to another computer, and use them to configure your access to S3:</p>
 <div id="e945f646-e305-402f-abec-bee17499e42e" class="cell" data-tags="[&quot;skip-execution&quot;]" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s3fs.S3FileSystem(key<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'AccessKeyId'</span>],</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                       secret<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'SecretAccessKey'</span>],</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                       token<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'SessionToken'</span>] )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s3fs.S3FileSystem(key<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'AccessKeyId'</span>],</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                       secret<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'SecretAccessKey'</span>],</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                       token<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'SessionToken'</span>] )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="63764498-1e9c-47ba-b520-0c0d593a2d1c" class="cell" data-tags="[]" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm your credentials give you access</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>s3.ls(<span class="st">'nasa-cryo-scratch'</span>, refresh<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>['nasa-cryo-scratch/octocat-project',
- 'nasa-cryo-scratch/scottyhq',
- 'nasa-cryo-scratch/sliderule-example']</code></pre>
-</div>
+<div id="a06558c6-0c86-48f3-a45a-223c871f4e96" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm your credentials give you access</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>s3.ls(<span class="st">'nmfs-openscapes-scratch'</span>, refresh<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

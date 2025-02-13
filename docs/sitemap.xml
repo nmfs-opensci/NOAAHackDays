@@ -53,91 +53,107 @@
     <lastmod>2025-02-03T21:47:15.019Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/03-earthdata.html</loc>
-    <lastmod>2025-02-13T17:42:40.893Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/04-other-images.html</loc>
+    <lastmod>2025-02-13T21:21:47.217Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/03-AWS_S3_bucket.html</loc>
-    <lastmod>2025-02-13T17:40:13.581Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/03-ScratchBucket.html</loc>
+    <lastmod>2025-02-13T22:05:38.963Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git.html</loc>
-    <lastmod>2025-02-13T17:09:44.829Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-intro-to-lab.html</loc>
+    <lastmod>2025-02-13T17:36:56.201Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-rstudio.html</loc>
-    <lastmod>2025-02-13T19:35:34.024Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-terminal.html</loc>
+    <lastmod>2025-02-13T19:46:53.548Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-jupyter-old.html</loc>
-    <lastmod>2025-02-13T17:08:03.780Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-jupyter.html</loc>
+    <lastmod>2025-02-13T19:32:30.442Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html</loc>
-    <lastmod>2025-02-10T22:41:59.932Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-clinic.html</loc>
+    <lastmod>2025-02-13T17:08:21.705Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
-    <lastmod>2025-02-03T21:47:15.196Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/satellite_matchups_to_track_locations_xarray.html</loc>
-    <lastmod>2025-02-03T21:47:15.187Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/4-data-cubes.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/index.html</loc>
     <lastmod>2025-02-13T17:40:13.483Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/2-subset-and-plot.html</loc>
-    <lastmod>2025-02-13T17:40:13.478Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
+    <lastmod>2025-02-03T21:47:15.196Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/index.html</loc>
-    <lastmod>2025-02-03T21:47:15.177Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/matchup-satellite-data-to-track-locations.html</loc>
+    <lastmod>2025-02-03T21:47:15.186Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-17-ocean-color/oci_data_access.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/3-extract-satellite-data-within-boundary.html</loc>
+    <lastmod>2025-02-13T17:40:13.480Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/1-earthaccess.html</loc>
+    <lastmod>2025-02-13T17:40:13.474Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-17-ocean-color/oci_file_structure.html</loc>
     <lastmod>2025-02-03T21:47:15.158Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks-dask.html</loc>
-    <lastmod>2025-02-03T21:47:15.156Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.html</loc>
+    <lastmod>2025-02-03T21:47:15.157Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/echopype_tour.html</loc>
-    <lastmod>2025-02-03T21:47:15.082Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/ms_OOI_EK60_mooringtimeseries.html</loc>
+    <lastmod>2025-02-03T21:47:15.150Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-19-dask/Parallel_compute_coiled.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-19-dask/Parallel_compute_with_dask.html</loc>
     <lastmod>2025-02-03T21:47:15.042Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-05-ArcGIS/eclipse2024.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-05-ArcGIS/netcdffromthredds03.html</loc>
+    <lastmod>2025-02-03T21:47:15.038Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-22-Coastwatch-R/matchup_satellite_buoy_data.html</loc>
     <lastmod>2025-02-03T21:47:15.034Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-22-Coastwatch-R/mask-shallow-ocean-color.html</loc>
-    <lastmod>2025-02-03T21:47:15.034Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-15-Coastwatch-Py/satellite_matchups_to_track_locations_xarray.html</loc>
+    <lastmod>2025-02-03T21:47:15.026Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-15-Coastwatch-Py/matchup-satellite-data-to-track-locations.html</loc>
-    <lastmod>2025-02-03T21:47:15.025Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-09-earthdataaccess-intro/Intro_to_Cloud_Python.html</loc>
-    <lastmod>2025-02-03T21:47:15.019Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Search_Discovery.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Subset_and_Plot.html</loc>
     <lastmod>2025-02-03T21:47:15.016Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/workshops.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/index.html</loc>
+    <lastmod>2025-02-10T22:41:59.931Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/why-cloud.html</loc>
+    <lastmod>2025-02-13T17:09:13.158Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/signup.html</loc>
+    <lastmod>2025-02-03T21:47:14.845Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/reuse.html</loc>
+    <lastmod>2025-02-03T21:47:14.845Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/hackhours.html</loc>
     <lastmod>2025-02-10T22:41:59.794Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/slides.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/coc.html</loc>
+    <lastmod>2025-02-10T22:41:59.793Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/jhub.html</loc>
     <lastmod>2025-02-03T21:47:14.845Z</lastmod>
   </url>
   <url>
@@ -145,104 +161,92 @@
     <lastmod>2025-02-13T17:41:20.274Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/jhub.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/slides.html</loc>
     <lastmod>2025-02-03T21:47:14.845Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/coc.html</loc>
-    <lastmod>2025-02-10T22:41:59.793Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/hackhours.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/workshops.html</loc>
     <lastmod>2025-02-10T22:41:59.794Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/reuse.html</loc>
-    <lastmod>2025-02-03T21:47:14.845Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/signup.html</loc>
-    <lastmod>2025-02-03T21:47:14.845Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/content/why-cloud.html</loc>
-    <lastmod>2025-02-13T17:09:13.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/index.html</loc>
-    <lastmod>2025-02-10T22:41:59.931Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Subset_and_Plot.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-09-earthdataaccess-intro/Earthdata_Search_Discovery.html</loc>
     <lastmod>2025-02-03T21:47:15.016Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-15-Coastwatch-Py/satellite_matchups_to_track_locations_xarray.html</loc>
-    <lastmod>2025-02-03T21:47:15.026Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-09-earthdataaccess-intro/Intro_to_Cloud_Python.html</loc>
+    <lastmod>2025-02-03T21:47:15.019Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-22-Coastwatch-R/matchup_satellite_buoy_data.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-15-Coastwatch-Py/matchup-satellite-data-to-track-locations.html</loc>
+    <lastmod>2025-02-03T21:47:15.025Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-03-22-Coastwatch-R/mask-shallow-ocean-color.html</loc>
     <lastmod>2025-02-03T21:47:15.034Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-05-ArcGIS/netcdffromthredds03.html</loc>
-    <lastmod>2025-02-03T21:47:15.038Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-05-ArcGIS/eclipse2024.html</loc>
+    <lastmod>2025-02-03T21:47:15.034Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-19-dask/Parallel_compute_with_dask.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-19-dask/Parallel_compute_coiled.html</loc>
     <lastmod>2025-02-03T21:47:15.042Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/ms_OOI_EK60_mooringtimeseries.html</loc>
-    <lastmod>2025-02-03T21:47:15.150Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/echopype_tour.html</loc>
+    <lastmod>2025-02-03T21:47:15.082Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.html</loc>
-    <lastmod>2025-02-03T21:47:15.157Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks-dask.html</loc>
+    <lastmod>2025-02-03T21:47:15.156Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-17-ocean-color/oci_file_structure.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-05-17-ocean-color/oci_data_access.html</loc>
     <lastmod>2025-02-03T21:47:15.158Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/1-earthaccess.html</loc>
-    <lastmod>2025-02-13T17:40:13.474Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/index.html</loc>
+    <lastmod>2025-02-03T21:47:15.177Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/3-extract-satellite-data-within-boundary.html</loc>
-    <lastmod>2025-02-13T17:40:13.480Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/2-subset-and-plot.html</loc>
+    <lastmod>2025-02-13T17:40:13.478Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/matchup-satellite-data-to-track-locations.html</loc>
-    <lastmod>2025-02-03T21:47:15.186Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/mask-shallow-ocean-color.html</loc>
-    <lastmod>2025-02-03T21:47:15.196Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/index.html</loc>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-14-earthdata/4-data-cubes.html</loc>
     <lastmod>2025-02-13T17:40:13.483Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-clinic.html</loc>
-    <lastmod>2025-02-13T17:08:21.705Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-28-ERDDAP-Py/satellite_matchups_to_track_locations_xarray.html</loc>
+    <lastmod>2025-02-03T21:47:15.187Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-jupyter.html</loc>
-    <lastmod>2025-02-13T19:32:30.442Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-03-07-ERDDAP-R/matchup_satellite_buoy_data.html</loc>
+    <lastmod>2025-02-03T21:47:15.196Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-terminal.html</loc>
-    <lastmod>2025-02-13T19:46:53.548Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html</loc>
+    <lastmod>2025-02-10T22:41:59.932Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-intro-to-lab.html</loc>
-    <lastmod>2025-02-13T17:36:56.201Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-jupyter-old.html</loc>
+    <lastmod>2025-02-13T17:08:03.780Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/03-ScratchBucket.html</loc>
-    <lastmod>2025-02-13T20:05:10.950Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-rstudio.html</loc>
+    <lastmod>2025-02-13T19:35:34.024Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git.html</loc>
+    <lastmod>2025-02-13T17:09:44.829Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/03-AWS_S3_bucket.html</loc>
+    <lastmod>2025-02-13T22:05:38.963Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/03-earthdata.html</loc>
+    <lastmod>2025-02-13T17:42:40.893Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/index.html</loc>
