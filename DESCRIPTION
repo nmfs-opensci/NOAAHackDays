@@ -8,6 +8,6 @@ Description: R packages for the hack hours. Switch to the NOAAHackDays repositor
 Encoding: UTF-8
 LazyData: true
 Depends: 
-    R (>= 3.1), ggplot2, rerddap, raster,
+    R (>= 3.1), ggplot2, rmarkdown, rerddap, raster,
     ncdf4, plotdap, httr,lubridate, gridGraphics,  mapdata,
     RColorBrewer, grid, PBSmapping, rerddapXtracto, dplyr, viridis, cmocean

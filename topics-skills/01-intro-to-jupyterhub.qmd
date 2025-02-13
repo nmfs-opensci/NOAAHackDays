@@ -2,18 +2,17 @@
 title: Intro to JupyterHubs
 ---
 
+In this tutorial, you will get an overview of our JupyterHub.
 
 ::: {.callout-note icon=false}
 
-## Goals
+## Learning Objectives
 
-In this lab, you will get an overview of our JupyterHub
-
- * Log into the JupyterHub
- * Open RStudio
- * Understand the directory structure
- * Restart your JupyterHub server
- * Start/Stop your JupyterHub server
+- Log into the JupyterHub and select an image (environment)
+- Open RStudio in a new browser tab
+- Start/Stop your JupyterHub server
+- Restart your JupyterHub server
+- Getting help
 
 :::
 
@@ -38,39 +37,48 @@ You'll see a dropdown that allows you to choose the size of virtual machine. For
 
 ### Start up
 
-After we select our server type and click on start, JupyterHub will allocate our instance using Amazon Web Services (AWS). This may take several minutes. 
+After we select our server type and click on start, JupyterHub will allocate our virtual machine. This may take several minutes. 
 
 ![Jupyterhub Spawning](./img/spawning.png)
 
 
-## Open RStudio
+## The Launcher
 
-When you are in the Jupyter Lab tab (note the Jupyter Logo), you will see a Launcher page. If you don't see this, go to File > New Launcher.
+When you are in the JupyterLab tab (note the Jupyter Logo), you will see a Launcher page. If you don't see this, go to File > New Launcher or click the blue button on the top left. From the Launcher, you will see a buttons to open a new Jupyter Notebook, RStudio, Desktop and VSCode on the top row and buttons to open a Terminal and other file types below. 
 
 ![Jupyterhub Launcher](./img/jhub-launcher.png)
+Clicking on the "Python 3", Terminal, Text File and Markdown File buttons will open a new tab in JupyterLab. You can also use the File dropdown menu for these.
 
-* Open RStudio by clicking on the "RStudio" box in the Launcher tab:
+To get an overview of JupyterLab, go here: [Intro to JupyterLab](./content/02-intro-to-lab.html) 
+
+## RStudio
+
+If you click the RStudio button in Launcher, RStudio will open in a new browser tab. 
 
 ![RStudio](./img/rstudio.png)
 
+To get an overview of RStudio, go here: [Intro to RStudio](./content/02-rstudio.html) 
+
 ## End your session
 
-When you are finished working for the day it is important to log out of the JupyterHub.  When you keep a session active it uses up AWS resources (costs money) and keeps a series of virtual machines deployed.
+When you are finished working for the day you should log out of the JupyterHub, although it will log you out automatically after 90 minutes. You will not lose work; your home directory is persistent.  When you keep a session active it uses up AWS resources (costs money) because it keeps a series of virtual machines deployed.
 
 ::: {.callout-caution}
 
-You log out from the Jupyter Lab tab not the RStudio tab.
+You log out from the JupyterLab tab not the RStudio tab.
 :::
 
-**From the Jupyter Lab tab**, do one of two things to stop the server:
+**From the JupyterLab browser tab**, do one of two things to stop the server:
 
 * Log out File -> Log Out and click "Log Out"!
 * or File -> Hub Control Panel -> Stop My Server
 
 ::: {.callout-tip}
 
-Can't find the Jupyter Lab tab? Go to https://nmfs-openscapes.2i2c.cloud/hub/home
+Can't find the JupyterLab tab? Go to https://nmfs-openscapes.2i2c.cloud/hub/home
 :::
+
+Logging out or stopping your server will **NOT** cause any of your work to be lost or deleted. It simply shuts down some resources. It would be equivalent to turning off your desktop computer at the end of the day.
 
 ## Restart your server
 
@@ -79,12 +87,6 @@ Sometimes the server will crash/stop. This can happen if too many people use a l
 ## Your files
 
 When you start your server, you will have access to your own virtual drive space. No other users will be able to see or access your files. You can upload files to your virtual drive space and save files here. You can create folders to organize your files. You personal directory is `home/jovyan`. Everyone has the same home directory but your files are separate and cannot be seen by others.
-
-There are a number of different ways to create new files. We will practice this in the RStudio lecture.
-
-### Will I lose all of my work?
-
-Logging out will **NOT** cause any of your work to be lost or deleted. It simply shuts down some resources. It would be equivalent to turning off your desktop computer at the end of the day.
 
 ## Shared files
 
@@ -102,17 +104,16 @@ You can open a Jupyter Notebook by clicking on the "Python 3" box. In the Launch
 
 ![Jupyterhub Launcher](./img/jhub-launcher.png)
 
-Get an overview of Jupyter Lab: [Intro to Jupyter Lab](./content/02-intro-to-lab.html) 
 
 ## FAQ
 
 
-**Why do we have the same home directory as /home/jovyan?** /home/jovyan is the default home directory for 'jupyter' based images/dockers. It is the historic home directory for Jupyter deployments. 
+**Why do we have the same home directory as /home/jovyan?** /home/jovyan is the default home directory for 'Jupyter' based images/dockers. It is the historic home directory for Jupyter deployments. 
 
 **Can other users see the files in my /home/jovyan folder?** No, other users can not see your files.
 
 
 ### Acknowledgements
 
-Some sections of this document have been taken from  hackweeks organized by the University of Washington eScience Institute and Openscapes.
+Some sections of this document have been taken from  hackweeks organized by the University of Washington eScience Institute, CryoCloud and Openscapes.
 

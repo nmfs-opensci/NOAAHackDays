@@ -13,7 +13,7 @@ R: rocker/geospatial:4.2
 
 ## SET UP specific for the JupyterHub
 
-This is important. The Dockerfile for RStudio has a bug such that it does not set the path correctly so that the Python is in the conda notebook environment that is on the JHub. You need to run the code below to set this up. Do this from R on the JHub.
+This is important. The Dockerfile for RStudio has a bug such that it does not set the path correctly so that the Python is in the conda notebook environment that is on the JupyterHub. You need to run the code below to set this up. Do this from R on the JHub.
 
 **You only do this once!**
 

@@ -2,13 +2,13 @@
 title: Quick Start
 ---
 
-For those already familiar with Jupyter Lab and unix.
+For those already familiar with JupyterLab and unix.
 
 ### GitHub Account
 
 A GitHub account is required to gain access to the JupyterHub and to clone the tutorials used in the Hackhours.
 
-How do I get the tutorials into the JHub? 
+How do I get the tutorials into the JupyterHub? 
 
 * You can upload files.
 * Easiest is probably cloning into the hub. Open a terminal and type
@@ -26,16 +26,16 @@ For content that uses the NASA [Earthdata](https://www.earthdata.nasa.gov/) repo
 
 ### When done, please stop the JupyterHub
 
-If you are in Jupyter lab in the browser:
+If you are in JupyterLab in the browser:
 
 - File > Hub Control Panel > Stop my server
 
-If you are in RStudio and you still have the Jupyter lab tab open in your browser:
+If you are in RStudio and you still have the JupyterLab tab open in your browser:
 
-- Go to the Jupyter lab tab
+- Go to the JupyterLab tab
 - File > Hub Control Panel > Stop my server
 
-If you are in RStudio and you do not have the Jupyter lab tab open in your browser because you closed that tab:
+If you are in RStudio and you do not have the JupyterLab tab open in your browser because you closed that tab:
 
-- Go to the url `https://<jupyterhub url>/user/<your username in the hub>/lab/` That will open the Jupyter lab tab
+- Go to the url `https://<jupyterhub url>/user/<your username in the hub>/lab/` That will open the JupyterLab tab
 - File > Hub Control Panel > Stop my server

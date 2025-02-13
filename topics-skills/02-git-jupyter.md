@@ -6,7 +6,7 @@ title: Git in JupyterLab
 
 ## Learning Objectives
 
-- Clone a  git repo with the git GUI in Jupyter Lab
+- Clone a  git repo with the git GUI in JupyterLab
 - Make some changes and push the changes with the git GUI
 
 :::
@@ -211,7 +211,7 @@ Now we are all set to collaborate with github on the JupyterHub during the Cloud
 
 **Dangit, Git!?!**: If you are stuck after a git mishap, there are ready-made solutions to common problems at [Dangit, Git!?!](https://dangitgit.com/en)
 
-### Cloning our repository using the [**git Jupyter lab extension**](https://github.com/jupyterlab/jupyterlab-git).
+### Cloning our repository using the [**git JupyterLab extension**](https://github.com/jupyterlab/jupyterlab-git).
 
 If we're already familiar with git commands and feel more confortable using a GUI our Jupyterhub deployment comes with a git extension. This plugin allows us to operate with git using a simple user interface.
 
