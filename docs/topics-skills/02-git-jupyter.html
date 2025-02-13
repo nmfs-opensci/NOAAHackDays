@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Git in JupyterLab – NOAA HackHours</title>
+<title>Basic Git/GitHub Skills in JupyterLab git GUI – NOAA HackHours</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -71,12 +37,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -244,6 +210,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Earthdata login</span></a>
   </div>
@@ -270,7 +242,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#step-3" id="toc-step-3" class="nav-link active" data-scroll-target="#step-3">Step 3:</a></li>
+  <li><a href="#create-a-github-account" id="toc-create-a-github-account" class="nav-link active" data-scroll-target="#create-a-github-account">Create a GitHub account</a></li>
+  <li><a href="#setting-up-git-authentication" id="toc-setting-up-git-authentication" class="nav-link" data-scroll-target="#setting-up-git-authentication">Setting up Git Authentication</a></li>
+  <li><a href="#git-extension-in-jupyterlab" id="toc-git-extension-in-jupyterlab" class="nav-link" data-scroll-target="#git-extension-in-jupyterlab">Git extension in JupyterLab</a></li>
+  <li><a href="#the-key-skills" id="toc-the-key-skills" class="nav-link" data-scroll-target="#the-key-skills">The Key Skills</a></li>
+  <li><a href="#lets-see-it-done" id="toc-lets-see-it-done" class="nav-link" data-scroll-target="#lets-see-it-done">Let’s see it done!</a></li>
+  <li><a href="#clean-up-after-you-are-done" id="toc-clean-up-after-you-are-done" class="nav-link" data-scroll-target="#clean-up-after-you-are-done">Clean up after you are done</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-skills/02-git-jupyter.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-skills/02-git-jupyter.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -288,7 +265,7 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Git in JupyterLab</h1>
+<h1 class="title">Basic Git/GitHub Skills in JupyterLab git GUI</h1>
 </div>
 
 
@@ -316,194 +293,141 @@ Learning Objectives
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Clone a git repo with the git GUI in Jupyter Lab</li>
-<li>Make some changes and push the changes with the git GUI</li>
+<li>Learn how to use the Git GUI in JupyterLab</li>
+<li>Practice 4 basic Git/GitHub skills: cloning, committing, push/pull</li>
 </ul>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Read <a href="topics-skills/02-git.html">Intro to Git</a></li>
+<li>Have a <a href="https://github.com/">GitHub</a> account</li>
+<li><a href="topics-skills/02-git-authentication.html">Git Authentication</a></li>
+</ul>
+</section>
 </div>
 </div>
-<p>In this tutorial, we will provide a brief introduction to version control with Git.</p>
-<section id="what-is-version-control-git-github-and-how-to-set-it-up" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-version-control-git-github-and-how-to-set-it-up">What is version control, git, github, and how to set it up?</h3>
-<p>Version control is managing and tracking changes to your documents (program source code, images, websites, data files, etc.). <code>git</code> is a popular tool used for version control of software code. <a href="https://github.com/">github.com</a> is popular platform that provides remote server hosting for git repositories. A repository is a collection of various files that you are tracking for changes and versions. Currently GitHub is the most popular platform for file sharing code and code packages.</p>
-<p>This section is a step-by-step guide to set up <code>git</code> on our <a href="itcoocean.2i2c.cloud">2i2c JupyterHub</a>. We will also configure <code>git</code> to use your <a href="https://github.com/">github.com</a> account for managing your repositories hosted on <a href="https://github.com/">github.com</a>. There are 5 main steps.</p>
+<section id="create-a-github-account" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-github-account">Create a GitHub account</h2>
+<p>For access to the NMFS Openscapes JupyterHub, you will need at GitHub account. See the main HackHour page on how to request access (NOAA staff). For NMFS staff, you can look at the <a href="http://nmfs-opensci.github.io/GitHub-Guide/#create-a-github-user-account">NMFS OpenSci GitHub Guide</a> information for how to create your user account and you will find lots of information on the <a href="https://sites.google.com/noaa.gov/nmfs-st-github-governance-team/training">NMFS GitHub Governance Team Training Page</a> (visible only to NOAA staff).</p>
 </section>
-<section id="step-1-create-a-github-account" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-create-a-github-account">Step 1: Create a GitHub account</h3>
-<p>To complete the setup, you will need an account on <a href="https://github.com/">github.com</a>. If you don’t have an account, please visit <a href="https://github.com/">github.com</a>, create an account (free) and come back to this guide for setting up git.</p>
+<section id="setting-up-git-authentication" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-git-authentication">Setting up Git Authentication</h2>
+<p>Before we can work with Git in the JupyterHub, your need to authenticate. Do the steps here: <a href="topics-skills/02-git-authentication.html">Git Authentication</a></p>
 </section>
-<section id="step-2-clone-a-repository" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-clone-a-repository">Step 2: Clone a repository</h3>
-<p>We have created a demo repository for you to clone:</p>
-<p>https://github.com/Hackweek-ITCOocean/Git-Lesson</p>
+<section id="git-extension-in-jupyterlab" class="level2">
+<h2 class="anchored" data-anchor-id="git-extension-in-jupyterlab">Git extension in JupyterLab</h2>
+<p>When the instructions say to use or open or click the Git GUI, look here:</p>
+<p><img src="./img/gitextension.png" class="img-fluid"></p>
+</section>
+<section id="the-key-skills" class="level2">
+<h2 class="anchored" data-anchor-id="the-key-skills">The Key Skills</h2>
+<ul>
+<li><p>Skill 1: Create a blank repo on GitHub</p></li>
+<li><p>Skill 2: Clone your <strong>GitHub</strong> repo</p></li>
+<li><p>Skill 3: Make some changes and commit those local changes</p></li>
+<li><p>Skill 4: Push the changes to GitHub</p></li>
+<li><p>Skill 1b: Copy someone else’s GitHub repository</p></li>
+</ul>
+</section>
+<section id="lets-see-it-done" class="level2">
+<h2 class="anchored" data-anchor-id="lets-see-it-done">Let’s see it done!</h2>
+<section id="skill-1-create-a-blank-repo-on-github" class="level3">
+<h3 class="anchored" data-anchor-id="skill-1-create-a-blank-repo-on-github">Skill 1: Create a blank repo on GitHub</h3>
 <ol type="1">
-<li><p>Start your <a href="https://itcoocean.2i2c.cloud">2i2c JupyterHub</a></p></li>
-<li><p>Click on the git icon</p></li>
+<li>Click the + in the upper left from YOUR GitHub account (https://www.github.com/yourusername).</li>
+<li>Give your repo the name <code>Test</code> and make sure it is public.</li>
+<li>Click new and check checkbox to add the Readme file and <code>.gitignore</code></li>
+<li>Copy the URL of your new repo. It’s in the browser where you normally see a URL.</li>
 </ol>
-<p><img src="img/gitextension.png" class="img-fluid"></p>
-<ol start="3" type="1">
-<li><p>Click “Clone a Repository”</p></li>
-<li><p>Where is says “Enter the URI of the remote Git repository”, paste in the URL https://github.com/Hackweek-ITCOocean/Git-Lesson</p></li>
-<li><p>The folder appears and you can enter the folder and edit and create files.</p></li>
-</ol>
-<blockquote class="blockquote">
-<p>Your task: Create a file with your name and save to the Git-Lesson folder</p>
-</blockquote>
 </section>
-<section id="step-3" class="level2">
-<h2 class="anchored" data-anchor-id="step-3">Step 3:</h2>
-<p>Configure git with your name and email address.</p>
-<pre><code>``` bash
-git config --global user.name "Makhan Virdi"
-git config --global user.email "Makhan.Virdi@gmail.com"
-```
-
-**Note:** This name and email could be different from your github.com credentials. Remember `git` is a program that keeps track of your changes locally (on 2i2c JupyterHub or your own computer) and github.com is a platform to host your repositories. However, since your changes are tracked by `git`, the email/name used in git configuration will show up next to your contributions on github.com when you `push` your repository to github.com (`git push` is discussed in a later step).</code></pre>
-<ol start="4" type="1">
-<li><p>Configure <code>git</code> to store your github credentials to avoid having to enter your github username and token each time you push changes to your repository(in <a href="#step-5.-create-access-token-on-github.com">Step 5</a>, we will describe how to use github token instead of a password)</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> credential.helper store</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Copy link for the demo repository from your github account. Click the green “Code” button and copy the link as shown.</p>
-<p><img src="img/github-clone.png" class="img-fluid"></p></li>
-<li><p>Clone the repository using <code>git clone</code> command in the terminal</p>
-<p>To clone a repository from github, copy the link for the repository (previous step) and use <code>git clone</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/YOUR-GITHUB-USERNAME/check_github_setup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Note:</strong> Replace <code>YOUR-GITHUB-USERNAME</code> here with your github.com username. For example, it is <code>virdi</code> for my github.com account as seen in this image.</p>
-<p><img src="img/terminal-clone.png" class="img-fluid" width="520"></p>
-<p>Use <code>ls</code> (list files) to verify the existence of the repository that you just cloned</p>
-<p><img src="img/terminal-clone-confirm-ls.png" class="img-fluid" width="520"></p></li>
-<li><p>Change directory to the cloned repository using <code>cd check_github_setup</code> and check the current directory using <code>pwd</code> command (present working directory)</p>
-<p><img src="img/terminal-cd-repo.png" class="img-fluid" width="520"></p></li>
-<li><p>Check status of your git repository to confirm git set up using <code>git status</code></p>
-<p><img src="img/terminal-git-status.png" class="img-fluid"></p>
-<p>You are all set with using git on your 2i2c JupyterHub! But the collaborative power of git through github needs some additional setup.</p>
-<p>In the next step, we will create a new file in this repository, track changes to this file, and link it with your github.com account.</p></li>
-</ol>
-<section id="step-4.-creating-new-file-and-tracking-changes" class="level3">
-<h3 class="anchored" data-anchor-id="step-4.-creating-new-file-and-tracking-changes">Step 4. Creating new file and tracking changes</h3>
+<section id="skill-2-clone-your-repo" class="level3">
+<h3 class="anchored" data-anchor-id="skill-2-clone-your-repo">Skill 2: Clone your repo</h3>
+<p>First make sure you are at the home directory level. Look at the folder icon under the blue launcher button. It should show, folder icon only like in this image. If not, then click on the folder icon.</p>
+<p><img src="./img/jhub-file-navigation.png" class="img-fluid"></p>
 <ol type="1">
-<li><p>In the left panel on your 2i2c JupyterHub, click on the “directory” icon and then double click on “check_github_setup” directory.</p>
-<p><img src="img/notebook-cd.png" class="img-fluid"></p>
-<p><img src="img/notebook-cd-result.png" class="img-fluid"></p></li>
-<li><p>Once you are in the <strong>check_github_setup</strong> directory, create a new file using the text editor in your 2i2c JupyterHub (<code>File &gt;&gt; New &gt;&gt; Text File</code>).</p>
-<p><img src="img/ notebook-new-file.png" class="img-fluid"></p>
-<p>Name the file lastname.txt. For example, <strong>virdi.txt</strong> for me (use your last name). Add some content to this file (for example, I added this to my <strong>virdi.txt</strong> file: <code>my last name is virdi</code>).</p>
-<p><img src="img/notebook-rename-file.png" class="img-fluid"></p></li>
-<li><p>Now you should have a new file (lastname.txt) in the git repository directory <strong>check_github_setup</strong></p></li>
-<li><p>Check if <code>git</code> can see that you have added a new file using <code>git status</code>. Git reports that you have a new file that is not tracked by git yet, and suggests adding that file to the git tracking system.</p>
-<p><img src="img/git-status.png" class="img-fluid"></p></li>
-<li><p>As seen in this image, <code>git</code> suggests adding that file so it can be tracked for changes. You can add file to <code>git</code> for tracking changes using <code>git add</code>. Then, you can commit changes to this file’s content using <code>git commit</code> as shown in the image.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add virdi.txt</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"adding a new file"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="img/git-add-commit.png" class="img-fluid"></p></li>
-<li><p>As seen in the image above, <code>git</code> is suggesting to push the change that you just committed to the remote server at github.com (so that your collaborators can also see what changes you made).</p>
-<p><strong>Note: DO NOT</strong> execute <code>push</code> yet. Before we push to github.com, let’s configure <code>git</code> further and store our github.com credentials to avoid entering the credentials every time we invoke <code>git push</code>. For doing so, we need to create a <strong>token</strong> on github.com to be used in place of your github.com password.</p></li>
+<li>Copy the URL of your repo. <code>https://www.github.com/yourname/Test</code></li>
+<li>Click on the git icon and then click “Clone a Repository” <img src="img/gitextension.png" class="img-fluid"></li>
+<li>Paste in the URL of your repo from Step 1</li>
+<li>Click Clone. You can stay with the defaults for the checkboxes.</li>
 </ol>
+<p><a href="https://youtu.be/Anw1oXmwMTM">Show me</a></p>
 </section>
-<section id="step-5.-create-access-token-on-github.com" class="level3">
-<h3 class="anchored" data-anchor-id="step-5.-create-access-token-on-github.com">Step 5. Create access token on github.com</h3>
+<section id="skill-3-make-some-changes-and-commit-your-changes" class="level3">
+<h3 class="anchored" data-anchor-id="skill-3-make-some-changes-and-commit-your-changes">Skill 3: Make some changes and commit your changes</h3>
+<p>This writes a note about what changes you have made. It also marks a ‘point’ in time that you can go back to if you need to.</p>
 <ol type="1">
-<li><p>Go to your github account and create a new “personal access token”: <a href="https://github.com/settings/tokens/new" class="uri">https://github.com/settings/tokens/new</a></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://github.com/settings/tokens/new"><img src="img/github-token.png" class="img-fluid figure-img" alt="Generate Personal Access Token on github.com"></a></p>
-<figcaption>Generate Personal Access Token on github.com</figcaption>
-</figure>
-</div></li>
-<li><p>Enter a description in “Note” field as seen above, select “repo” checkbox, and scroll to the bottom and click the green button “Generate Token”. Once generated, copy the token (or save it in a text file for reference).</p>
-<p><strong>IMPORTANT:</strong> You will see this token only once, so be sure to copy this. If you do not copy your token at this stage, you will need to generate a new token.</p>
-<p><img src="img/github-token-generated.png" class="img-fluid"></p></li>
-<li><p>To push (transfer) your changes to github, use <code>git push</code> in terminal. It requires you to enter your github credentials. You will be prompted to enter your github username and “password”. <strong>When prompted for your “password”, DO NOT use your github password, use the github token</strong> that was copied in the previous step.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="img/terminal-github-credentials.png" class="img-fluid"></p>
-<p><strong>Note:</strong> When you paste your token in the terminal window, windows users will press Ctrl+V and mac os users will press Cmd+V. If it does not work, try generating another token and use the copy icon next to the token to copy the token. Then, paste using your computer’s keyboard shortcut for paste.</p></li>
-<li><p>Now your password is stored in <code>~/.git-credentials</code> and you will not be prompted again unless the Github token expires. You can check the presence of this git-credentials file using Terminal. Here the <code>~</code> character represents your home directory (<code>/home/jovyan/</code>).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span> ~</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The output looks like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span> 13 jovyan jovyan 6144 Oct 22 17:35 .</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  1 root   root   4096 Oct  4 16:21 ..</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-------</span>  1 jovyan jovyan 1754 Oct 29 18:30 .bash_history</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  4 jovyan jovyan 6144 Oct 29 16:38 .config</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-------</span>  1 jovyan jovyan   66 Oct 22 17:35 .git-credentials</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  1 jovyan jovyan   84 Oct 22 17:14 .gitconfig</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span> 10 jovyan jovyan 6144 Oct 21 16:19 2021-Cloud-Hackathon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can also verify your git configuration</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">notebook</span><span class="kw">)</span> <span class="ex">jovyan@jupyter-virdi:~$</span> git config <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The output should have <code>credential.helper = store</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">user.email</span>        = Makhan.Virdi@gmail.com</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">user.name</span>         = Makhan Virdi</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">credential.helper</span> = store</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li>Click on the README.md file in the Test repo.</li>
+<li>Make some changes to the file.</li>
+<li>Click the Git icon (in left navbar), and stage the change(s) by checking the “+” next to the files listed.</li>
+<li>Add a commit message in the box.</li>
+<li>Click the Commit button at bottom.</li>
 </ol>
-<p>Now we are all set to collaborate with github on the JupyterHub during the Cloud Hackathon!</p>
+<p><a href="https://youtu.be/-V9GdXNXalQ">Show me</a></p>
 </section>
-<section id="summary-git-commands" class="level3">
-<h3 class="anchored" data-anchor-id="summary-git-commands">Summary: Git Commands</h3>
-<table class="caption-top table">
-<caption>Commonly used git commands (modified from <a href="https://uwhackweek.github.io/jupyterbook-template/tutorials/jupyter.html">source</a>)</caption>
-<thead>
-<tr class="header">
-<th>Git Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>git status</code></td>
-<td>Shows the current state of the repository: the current working branch, files in the staging area, <em>etc.</em></td>
-</tr>
-<tr class="even">
-<td><code>git add</code></td>
-<td>Adds a new, previously untracked file to version control and marks already tracked files to be committed with the next <code>commit</code></td>
-</tr>
-<tr class="odd">
-<td><code>git commit</code></td>
-<td>Saves the current state of the repository and creates an entry in the log</td>
-</tr>
-<tr class="even">
-<td><code>git log</code></td>
-<td>Shows the history for the repository</td>
-</tr>
-<tr class="odd">
-<td><code>git diff</code></td>
-<td>Shows content differences between commits, branches, individual files and more</td>
-</tr>
-<tr class="even">
-<td><code>git clone</code></td>
-<td>Copies a repository to your local environment, including all the history</td>
-</tr>
-<tr class="odd">
-<td><code>git pull</code></td>
-<td>Gets the latest changes of a previously cloned repository</td>
-</tr>
-<tr class="even">
-<td><code>git push</code></td>
-<td>Pushes your local changes to the remote repository, sharing them with others</td>
-</tr>
-</tbody>
-</table>
+<section id="skill-4-push-changes-to-github-pull-changes-from-github" class="level3">
+<h3 class="anchored" data-anchor-id="skill-4-push-changes-to-github-pull-changes-from-github">Skill 4: Push changes to GitHub / Pull changes from GitHub</h3>
+<p>To push changes you committed in Skill #3</p>
+<ol type="1">
+<li>From Git icon, look for the little cloud at the top. It is rather small. Click that to push changes.</li>
+</ol>
+<p>To pull changes on GitHub that are not on your local computer:</p>
+<ol type="1">
+<li>Make some changes directly on GitHub (not in JupyterLab)</li>
+<li>From Git icon, click on the little cloud with a down arrow.</li>
+</ol>
 </section>
-<section id="git-more-details" class="level3">
-<h3 class="anchored" data-anchor-id="git-more-details">Git: More Details</h3>
-<p><strong>Lesson</strong>: For a more detailed self-paced lesson on git, visit <a href="http://swcarpentry.github.io/git-novice/">Git Lesson from Software Carpentry</a></p>
-<p><strong>Cheatsheet</strong>: <a href="https://training.github.com/downloads/github-git-cheat-sheet.pdf">Frequently used git commands</a></p>
-<p><strong>Dangit, Git!?!</strong>: If you are stuck after a git mishap, there are ready-made solutions to common problems at <a href="https://dangitgit.com/en">Dangit, Git!?!</a></p>
+<section id="activity-1" class="level3">
+<h3 class="anchored" data-anchor-id="activity-1">Activity 1</h3>
+<ol type="1">
+<li>Make a copy of README.md</li>
+<li>Rename it to <youname>.md</youname></li>
+<li>Add some text.</li>
+<li>Stage and commit the added file.</li>
+<li>Push to GitHub.</li>
+</ol>
+<p><a href="https://youtu.be/ejmkkjWJ_Es">Show me</a></p>
 </section>
-<section id="cloning-our-repository-using-the-git-jupyter-lab-extension." class="level3">
-<h3 class="anchored" data-anchor-id="cloning-our-repository-using-the-git-jupyter-lab-extension.">Cloning our repository using the <a href="https://github.com/jupyterlab/jupyterlab-git"><strong>git Jupyter lab extension</strong></a>.</h3>
-<p>If we’re already familiar with git commands and feel more confortable using a GUI our Jupyterhub deployment comes with a git extension. This plugin allows us to operate with git using a simple user interface.</p>
-<p>For example we can clone our repository using the extension.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/gitextension.png" class="img-fluid figure-img"></p>
-<figcaption>git extension</figcaption>
-</figure>
-</div>
+<section id="activity-2" class="level3">
+<h3 class="anchored" data-anchor-id="activity-2">Activity 2</h3>
+<ol type="1">
+<li>In the Test repo, create a file called to <code>&lt;yourname&gt;.md</code>.</li>
+<li>Stage and then commit that new file.</li>
+<li>Push to GitHub.</li>
+<li>Make some more changes and push to GitHub.</li>
+</ol>
+</section>
+<section id="activity-3" class="level3">
+<h3 class="anchored" data-anchor-id="activity-3">Activity 3</h3>
+<p>You can copy your own or other people’s repos<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<ol type="1">
+<li>In a browser, go to the GitHub repository <a href="https://github.com/RWorkflow-Workshops/Week5" class="uri">https://github.com/RWorkflow-Workshops/Week5</a></li>
+<li>Copy its URL.</li>
+<li>Navigate to your GitHub page: click your icon in the upper right and then ‘your repositories’</li>
+<li>Click the <code>+</code> in top right and click <code>import repository</code>. Paste in the URL and give your repo a name.</li>
+<li>Use Skill #1 to clone your new repo to JupyterLab</li>
+</ol>
+</section>
+</section>
+<section id="clean-up-after-you-are-done" class="level2">
+<h2 class="anchored" data-anchor-id="clean-up-after-you-are-done">Clean up after you are done</h2>
+<ol type="1">
+<li><p>Open a Terminal</p></li>
+<li><p>Type</p>
+<pre><code>cd ~
+rm -rf Test
+rm -rf Week5</code></pre></li>
+</ol>
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This is different from forking. There is no connection to the original repository.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -730,6 +654,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -840,6 +766,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

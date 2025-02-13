@@ -99,6 +99,10 @@ website:
           href: topics-skills/02-rstudio.qmd
         - text: Git in RStudio
           href: topics-skills/02-git-rstudio.md
+        - text: Git in the terminal
+          href: topics-skills/02-git-terminal.md
+        - text: Other images
+          href: topics-skills/04-other-images.md
         - text: Earthdata login
           href: topics-skills/03-earthdata.md
         - text: S3 Scratch Bucket

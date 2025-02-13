@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>earthdata – NOAA HackHours</title>
+<title>Earthdata Login – NOAA HackHours</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,19 +30,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../topics-skills/03-ScratchBucket.html" rel="next">
-<link href="../topics-skills/02-git-rstudio.html" rel="prev">
+<link href="../topics-skills/02-git-terminal.html" rel="prev">
 <link href="../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -210,6 +210,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Earthdata login</span></a>
   </div>
@@ -236,17 +242,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#earthdata-login" id="toc-earthdata-login" class="nav-link active" data-scroll-target="#earthdata-login">Earthdata Login</a>
-  <ul class="collapse">
-  <li><a href="#why-do-i-need-an-earthdata-login" id="toc-why-do-i-need-an-earthdata-login" class="nav-link" data-scroll-target="#why-do-i-need-an-earthdata-login">Why do I need an Earthdata login?</a></li>
+  <li><a href="#why-do-i-need-an-earthdata-login" id="toc-why-do-i-need-an-earthdata-login" class="nav-link active" data-scroll-target="#why-do-i-need-an-earthdata-login">Why do I need an Earthdata login?</a></li>
   <li><a href="#getting-an-earthdata-login" id="toc-getting-an-earthdata-login" class="nav-link" data-scroll-target="#getting-an-earthdata-login">Getting an Earthdata login</a></li>
   <li><a href="#configure-programmatic-access-to-nasa-servers" id="toc-configure-programmatic-access-to-nasa-servers" class="nav-link" data-scroll-target="#configure-programmatic-access-to-nasa-servers">Configure programmatic access to NASA servers</a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-skills/03-earthdata.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-skills/03-earthdata.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 <div id="google_translate_element"></div>
 
 <script type="text/javascript">
@@ -257,11 +260,25 @@ function googleTranslateElementInit() {
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Earthdata Login</h1>
+</div>
 
 
 
-<section id="earthdata-login" class="level1">
-<h1>Earthdata Login</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>NASA data are stored at one of several Distributed Active Archive Centers (DAACs). If you’re interested in available data for a given area and time of interest, the <a href="https://earthdata.nasa.gov/">Earthdata Search</a> portal provides a convenient web interface.</p>
 <section id="why-do-i-need-an-earthdata-login" class="level2">
 <h2 class="anchored" data-anchor-id="why-do-i-need-an-earthdata-login">Why do I need an Earthdata login?</h2>
@@ -291,7 +308,6 @@ Important
 chmod 0600 ~/.netrc</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -521,6 +537,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -631,6 +649,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -858,8 +877,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../topics-skills/02-git-rstudio.html" class="pagination-link" aria-label="Git in RStudio">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Git in RStudio</span>
+      <a href="../topics-skills/02-git-terminal.html" class="pagination-link" aria-label="Git in the terminal">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Git in the terminal</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

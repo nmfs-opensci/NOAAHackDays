@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,12 +37,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -210,6 +210,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Earthdata login</span></a>
   </div>
@@ -237,12 +243,13 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#log-into-the-jupyterhub" id="toc-log-into-the-jupyterhub" class="nav-link active" data-scroll-target="#log-into-the-jupyterhub">Log into the JupyterHub</a></li>
-  <li><a href="#open-rstudio" id="toc-open-rstudio" class="nav-link" data-scroll-target="#open-rstudio">Open RStudio</a></li>
+  <li><a href="#the-launcher" id="toc-the-launcher" class="nav-link" data-scroll-target="#the-launcher">The Launcher</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a></li>
   <li><a href="#end-your-session" id="toc-end-your-session" class="nav-link" data-scroll-target="#end-your-session">End your session</a></li>
   <li><a href="#restart-your-server" id="toc-restart-your-server" class="nav-link" data-scroll-target="#restart-your-server">Restart your server</a></li>
   <li><a href="#your-files" id="toc-your-files" class="nav-link" data-scroll-target="#your-files">Your files</a></li>
   <li><a href="#shared-files" id="toc-shared-files" class="nav-link" data-scroll-target="#shared-files">Shared files</a></li>
-  <li><a href="#python-users" id="toc-python-users" class="nav-link" data-scroll-target="#python-users">*Python users</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
   <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq">FAQ</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-skills/01-intro-to-jupyterhub.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-skills/01-intro-to-jupyterhub.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -278,23 +285,23 @@ function googleTranslateElementInit() {
 </header>
 
 
+<p>In this tutorial, you will get an overview of our JupyterHub.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Goals
+Learning Objectives
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In this lab, you will get an overview of our JupyterHub</p>
 <ul>
-<li>Log into the JupyterHub</li>
-<li>Open RStudio</li>
-<li>Understand the directory structure</li>
-<li>Restart your JupyterHub server</li>
+<li>Log into the JupyterHub and select an image (environment)</li>
+<li>Open RStudio in a new browser tab</li>
 <li>Start/Stop your JupyterHub server</li>
+<li>Restart your JupyterHub server</li>
+<li>Get tips on how to get help and post issues</li>
 </ul>
 </div>
 </div>
@@ -323,7 +330,7 @@ Goals
 </section>
 <section id="start-up" class="level3">
 <h3 class="anchored" data-anchor-id="start-up">Start up</h3>
-<p>After we select our server type and click on start, JupyterHub will allocate our instance using Amazon Web Services (AWS). This may take several minutes.</p>
+<p>After we select our server type and click on start, JupyterHub will allocate our virtual machine. This may take several minutes.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./img/spawning.png" class="img-fluid figure-img"></p>
@@ -332,28 +339,26 @@ Goals
 </div>
 </section>
 </section>
-<section id="open-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="open-rstudio">Open RStudio</h2>
-<p>When you are in the Jupyter Lab tab (note the Jupyter Logo), you will see a Launcher page. If you don’t see this, go to File &gt; New Launcher.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/jhub-launcher.png" class="img-fluid figure-img"></p>
-<figcaption>Jupyterhub Launcher</figcaption>
-</figure>
-</div>
-<ul>
-<li>Open RStudio by clicking on the “RStudio” box in the Launcher tab:</li>
-</ul>
+<section id="the-launcher" class="level2">
+<h2 class="anchored" data-anchor-id="the-launcher">The Launcher</h2>
+<p>When you are in the JupyterLab tab (note the Jupyter Logo), you will see a Launcher page. If you don’t see this, go to File &gt; New Launcher or click the blue button on the top left. From the Launcher, you will see a buttons to open a new Jupyter Notebook, RStudio, Desktop and VSCode on the top row and buttons to open a Terminal and other file types below.</p>
+<p><img src="./img/jhub-launcher.png" class="img-fluid" alt="Jupyterhub Launcher"> Clicking on the “Python 3”, Terminal, Text File and Markdown File buttons will open a new tab in JupyterLab. You can also use the File dropdown menu for these.</p>
+<p>To get an overview of JupyterLab, go here: <a href="./content/02-intro-to-lab.html">Intro to JupyterLab</a></p>
+</section>
+<section id="rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio">RStudio</h2>
+<p>If you click the RStudio button in Launcher, RStudio will open in a new browser tab.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./img/rstudio.png" class="img-fluid figure-img"></p>
 <figcaption>RStudio</figcaption>
 </figure>
 </div>
+<p>To get an overview of RStudio, go here: <a href="./content/02-rstudio.html">Intro to RStudio</a></p>
 </section>
 <section id="end-your-session" class="level2">
 <h2 class="anchored" data-anchor-id="end-your-session">End your session</h2>
-<p>When you are finished working for the day it is important to log out of the JupyterHub. When you keep a session active it uses up AWS resources (costs money) and keeps a series of virtual machines deployed.</p>
+<p>When you are finished working for the day you should log out of the JupyterHub, although it will log you out automatically after 90 minutes. You will not lose work; your home directory is persistent. When you keep a session active it uses up AWS resources (costs money) because it keeps a series of virtual machines deployed.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -364,10 +369,10 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You log out from the Jupyter Lab tab not the RStudio tab.</p>
+<p>You log out from the JupyterLab tab not the RStudio tab.</p>
 </div>
 </div>
-<p><strong>From the Jupyter Lab tab</strong>, do one of two things to stop the server:</p>
+<p><strong>From the JupyterLab browser tab</strong>, do one of two things to stop the server:</p>
 <ul>
 <li>Log out File -&gt; Log Out and click “Log Out”!</li>
 <li>or File -&gt; Hub Control Panel -&gt; Stop My Server</li>
@@ -382,9 +387,10 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Can’t find the Jupyter Lab tab? Go to https://nmfs-openscapes.2i2c.cloud/hub/home</p>
+<p>Can’t find the JupyterLab tab? Go to https://nmfs-openscapes.2i2c.cloud/hub/home</p>
 </div>
 </div>
+<p>Logging out or stopping your server will <strong>NOT</strong> cause any of your work to be lost or deleted. It simply shuts down some resources. It would be equivalent to turning off your desktop computer at the end of the day.</p>
 </section>
 <section id="restart-your-server" class="level2">
 <h2 class="anchored" data-anchor-id="restart-your-server">Restart your server</h2>
@@ -393,11 +399,6 @@ Tip
 <section id="your-files" class="level2">
 <h2 class="anchored" data-anchor-id="your-files">Your files</h2>
 <p>When you start your server, you will have access to your own virtual drive space. No other users will be able to see or access your files. You can upload files to your virtual drive space and save files here. You can create folders to organize your files. You personal directory is <code>home/jovyan</code>. Everyone has the same home directory but your files are separate and cannot be seen by others.</p>
-<p>There are a number of different ways to create new files. We will practice this in the RStudio lecture.</p>
-<section id="will-i-lose-all-of-my-work" class="level3">
-<h3 class="anchored" data-anchor-id="will-i-lose-all-of-my-work">Will I lose all of my work?</h3>
-<p>Logging out will <strong>NOT</strong> cause any of your work to be lost or deleted. It simply shuts down some resources. It would be equivalent to turning off your desktop computer at the end of the day.</p>
-</section>
 </section>
 <section id="shared-files" class="level2">
 <h2 class="anchored" data-anchor-id="shared-files">Shared files</h2>
@@ -410,24 +411,22 @@ Tip
 <p>In the file panel, you will see a folder called <code>shared</code>. These are read-only shared files that we have prepared for you.</p>
 <p>You will also see <code>shared-public</code>. This is a read-write folder for you to put files for everyone to see and use. You can create a team folder here for shared data and files. Note, everyone can see and change these so be careful to communicate with your team so multiple people don’t work on the same file at the same time. You can also create folders for each team member and agree not to change other team members files.</p>
 </section>
-<section id="python-users" class="level2">
-<h2 class="anchored" data-anchor-id="python-users">*Python users</h2>
-<p>You can open a Jupyter Notebook by clicking on the “Python 3” box. In the Launcher tab:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/jhub-launcher.png" class="img-fluid figure-img"></p>
-<figcaption>Jupyterhub Launcher</figcaption>
-</figure>
-</div>
-<p>Get an overview of Jupyter Lab: <a href="./content/02-intro-to-lab.html">Intro to Jupyter Lab</a></p>
+<section id="getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help">Getting help</h2>
+<ul>
+<li>Discussions https://github.com/nmfs-opensci/NOAAHackDays/discussions</li>
+<li>Add an issue if you see something amiss or you would like a package added https://github.com/nmfs-opensci/NOAAHackDays/issues</li>
+<li>Visit the NMFS Open Science Google Space (NOAA only). Search Google Spaces to find.</li>
+<li>NMFS staff: The <a href="https://chat.google.com/room/AAAA2_VOPOo?cls=4">NMFS Python User Group</a> and <a href="https://nmfs-opensci.github.io/NMFS-R-UG/">NMFS R User Group</a> are great places to get help from fellow users for Python and R questions.</li>
+</ul>
 </section>
 <section id="faq" class="level2">
 <h2 class="anchored" data-anchor-id="faq">FAQ</h2>
-<p><strong>Why do we have the same home directory as /home/jovyan?</strong> /home/jovyan is the default home directory for ‘jupyter’ based images/dockers. It is the historic home directory for Jupyter deployments.</p>
+<p><strong>Why do we have the same home directory as /home/jovyan?</strong> /home/jovyan is the default home directory for ‘Jupyter’ based images/dockers. It is the historic home directory for Jupyter deployments.</p>
 <p><strong>Can other users see the files in my /home/jovyan folder?</strong> No, other users can not see your files.</p>
 <section id="acknowledgements" class="level3">
 <h3 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h3>
-<p>Some sections of this document have been taken from hackweeks organized by the University of Washington eScience Institute and Openscapes.</p>
+<p>Some sections of this document have been taken from hackweeks organized by the University of Washington eScience Institute, CryoCloud and Openscapes.</p>
 
 
 </section>
@@ -660,6 +659,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -770,6 +771,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

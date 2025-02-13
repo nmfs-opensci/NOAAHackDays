@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Using CryoCloud S3 Scratch Bucket – NOAA HackHours</title>
+<title>Using the S3 Scratch Bucket – NOAA HackHours</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,12 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -247,6 +247,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Earthdata login</span></a>
   </div>
@@ -295,7 +301,7 @@ function googleTranslateElementInit() {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Using CryoCloud S3 Scratch Bucket</h1>
+<h1 class="title">Using the S3 Scratch Bucket</h1>
 </div>
 
 
@@ -312,34 +318,33 @@ function googleTranslateElementInit() {
 </header>
 
 
-<p>CryoCloud JupyterHub has a preconfigured S3 “Scratch Bucket” that <em>automatically deletes files after 7 days</em>. This is a great resource for experimenting with large datasets and working collaboratively on a shared dataset with other CryoCloud users.</p>
-<pre class="{tip}"><code>This notebook walks through, uploading, downloading and streaming data from a S3 scratch bucket </code></pre>
+<p>The JupyterHub has a preconfigured S3 “Scratch Bucket” that <em>automatically deletes files after 7 days</em>. This is a great resource for experimenting with large datasets and working collaboratively on a shared dataset with other users.</p>
 <section id="access-the-scratch-bucket" class="level2">
 <h2 class="anchored" data-anchor-id="access-the-scratch-bucket">Access the scratch bucket</h2>
-<p>The CryoCloud scratch bucket is hosted at <code>s3://nasa-cryo-scratch</code>. CryoCloud JupyterHub automatically sets an environment variable <code>SCRATCH_BUCKET</code> that appends a suffix to the s3 url with your GitHub username. This is intended to keep track of file ownership, stay organized, and prevent users from overwriting data!</p>
+<p>The scratch bucket is hosted at <code>s3://nmfs-openscapes-scratch</code>. The JupyterHub automatically sets an environment variable <code>SCRATCH_BUCKET</code> that appends a suffix to the s3 url with your GitHub username. This is intended to keep track of file ownership, stay organized, and prevent users from overwriting data!</p>
 <pre class="{warning}"><code>Everyone has full access to the scratch bucket, so be careful not to overwrite data from other users when uploading files. Also, any data you put there will be deleted 7 days after it is uploaded</code></pre>
 <pre class="{hint}"><code>If you need more permanent S3 bucket storage refer to [These Docs](./Instructions_for_configuring_AWS_S3_bucket.ipynb) to configure your own S3 Bucket.</code></pre>
 <p>We’ll use the <a href="https://s3fs.readthedocs.io/en/latest/">S3FS</a> Python package, which provides a nice interface for interacting with S3 buckets.</p>
 <div id="55048371-a480-410c-9eb6-a5bb2cac067b" class="cell" data-tags="[]" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> s3fs</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fsspec</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> s3fs</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fsspec</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="701836a8-a3c9-437d-b210-e83adbde15b1" class="cell" data-tags="[]" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My GitHub username is `scottyhq`</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>scratch <span class="op">=</span> os.environ[<span class="st">'SCRATCH_BUCKET'</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>scratch </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My GitHub username is `scottyhq`</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>scratch <span class="op">=</span> os.environ[<span class="st">'SCRATCH_BUCKET'</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>scratch </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>'s3://nasa-cryo-scratch/scottyhq'</code></pre>
 </div>
 </div>
 <div id="356a9f7d-0ee5-4a6e-99d4-ea1629f62b44" class="cell" data-tags="[]" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here you see I previously uploaded files</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s3fs.S3FileSystem()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>s3.ls(scratch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here you see I previously uploaded files</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s3fs.S3FileSystem()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>s3.ls(scratch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>['nasa-cryo-scratch/scottyhq/ATL03_20230103090928_02111806_006_01.h5',
  'nasa-cryo-scratch/scottyhq/IS2_Alaska.parquet',
@@ -349,10 +354,10 @@ function googleTranslateElementInit() {
  'nasa-cryo-scratch/scottyhq/grandmesa-sliderule.parquet']</code></pre>
 </div>
 </div>
-<div id="838cc53e-8c08-49eb-a064-d76e8b9b8645" class="cell" data-tags="[]" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But you can set a different S3 object prefix to use:</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>scratch <span class="op">=</span> <span class="st">'s3://nasa-cryo-scratch/octocat-project'</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>s3.ls(scratch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="838cc53e-8c08-49eb-a064-d76e8b9b8645" class="cell" data-tags="[]">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But you can set a different S3 object prefix to use:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>scratch <span class="op">=</span> <span class="st">'s3://nmfs-openscapes-scratch/octocat-project'</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>s3.ls(scratch)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>[]</code></pre>
 </div>
@@ -364,18 +369,18 @@ function googleTranslateElementInit() {
 <section id="single-file" class="level3">
 <h3 class="anchored" data-anchor-id="single-file">Single file</h3>
 <div id="59cd1127-2ce4-48d0-a9cc-8d2c4d49759f" class="cell" data-tags="[]" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm working with this file downloaded from NSIDC:</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>local_file <span class="op">=</span> <span class="st">'/tmp/ATL03_20230103090928_02111806_006_01.h5'</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>remote_object <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/ATL03_20230103090928_02111806_006_01.h5"</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>s3.upload(local_file, remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm working with this file downloaded from NSIDC:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>local_file <span class="op">=</span> <span class="st">'/tmp/ATL03_20230103090928_02111806_006_01.h5'</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>remote_object <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/ATL03_20230103090928_02111806_006_01.h5"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>s3.upload(local_file, remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>[None]</code></pre>
 </div>
 </div>
 <div id="0be1b077-827e-40d5-bfd2-95be2a659509" class="cell" data-tags="[]" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>s3.stat(remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>s3.stat(remote_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>{'ETag': '"489f0191a8e9c844576ff2d18adfea59-21"',
  'LastModified': datetime.datetime(2023, 7, 21, 19, 4, 55, tzinfo=tzutc()),
@@ -391,9 +396,9 @@ function googleTranslateElementInit() {
 <section id="directory" class="level3">
 <h3 class="anchored" data-anchor-id="directory">Directory</h3>
 <div id="e9cf6509-b3ee-4962-8fa9-77277a70389f" class="cell" data-tags="[]" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>local_dir <span class="op">=</span> <span class="st">'/tmp/example'</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls <span class="op">-</span>lh {local_dir}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>local_dir <span class="op">=</span> <span class="st">'/tmp/example'</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls <span class="op">-</span>lh {local_dir}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>total 8.0K
 -rw-r--r-- 1 jovyan jovyan 22 Jul 20 23:26 data.txt
@@ -401,13 +406,13 @@ function googleTranslateElementInit() {
 </div>
 </div>
 <div id="8f50f4ef-78e1-48e2-9d13-78524b06c237" class="cell" data-tags="[]" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>s3.upload(local_dir, scratch, recursive<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>s3.upload(local_dir, scratch, recursive<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>[None, None]</code></pre>
 </div>
 </div>
 <div id="f2e159f0-625a-44c3-8d80-55803a4287a7" class="cell" data-tags="[]" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>s3.ls(<span class="ss">f'</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/example'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>s3.ls(<span class="ss">f'</span><span class="sc">{</span>scratch<span class="sc">}</span><span class="ss">/example'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>['nasa-cryo-scratch/octocat-project/example/data.txt',
  'nasa-cryo-scratch/octocat-project/example/icesat.csv']</code></pre>
@@ -421,15 +426,15 @@ function googleTranslateElementInit() {
 <p>This download-first, then analyze workflow typically works well for older file formats like HDF and netCDF that were designed to perform well on local hard drives rather than Cloud storage systems like S3.</p>
 <pre class="{important}"><code>For best performance do not work with data in your home directory. Instead use a local scratch space like `/tmp`</code></pre>
 <div id="7b5e0efb-2024-4c67-90e0-2bb97bb9fed4" class="cell" data-tags="[]" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>local_object <span class="op">=</span> <span class="st">'/tmp/test.h5'</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>s3.download(remote_object, local_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>local_object <span class="op">=</span> <span class="st">'/tmp/test.h5'</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>s3.download(remote_object, local_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>[None]</code></pre>
 </div>
 </div>
 <div id="a03d2628-ff6e-48b2-851e-c1dcf0488b9f" class="cell" data-tags="[]" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(local_object, group<span class="op">=</span><span class="st">'/gt3r/heights'</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(local_object, group<span class="op">=</span><span class="st">'/gt3r/heights'</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -843,23 +848,23 @@ Attributes:
 </div>
 <pre class="{tip}"><code>If you don't want to think about downloading files you can let `fsspec` handle this behind the scenes for you! This way you only need to think about remote paths</code></pre>
 <div id="148777c9-1d14-4014-8c5f-8b9de1c5b0e6" class="cell" data-tags="[]" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> fsspec.filesystem(<span class="st">"simplecache"</span>, </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                       cache_storage<span class="op">=</span><span class="st">'/tmp/files/'</span>,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                       same_names<span class="op">=</span><span class="va">True</span>,  </span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                       target_protocol<span class="op">=</span><span class="st">'s3'</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> fsspec.filesystem(<span class="st">"simplecache"</span>, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                       cache_storage<span class="op">=</span><span class="st">'/tmp/files/'</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                       same_names<span class="op">=</span><span class="va">True</span>,  </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                       target_protocol<span class="op">=</span><span class="st">'s3'</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="bb413ee3-5555-4877-b22a-c8f74a4d57df" class="cell" data-tags="[]" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The `simplecache` setting above will download the full file to /tmp/files</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(remote_object)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> fs.<span class="bu">open</span>(remote_object) <span class="im">as</span> f:</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> xr.open_dataset(f.name, group<span class="op">=</span><span class="st">'/gt3r/heights'</span>) <span class="co"># </span><span class="al">NOTE</span><span class="co">: pass f.name for local cached path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The `simplecache` setting above will download the full file to /tmp/files</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(remote_object)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> fs.<span class="bu">open</span>(remote_object) <span class="im">as</span> f:</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> xr.open_dataset(f.name, group<span class="op">=</span><span class="st">'/gt3r/heights'</span>) <span class="co"># </span><span class="al">NOTE</span><span class="co">: pass f.name for local cached path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>s3://nasa-cryo-scratch/octocat-project/ATL03_20230103090928_02111806_006_01.h5</code></pre>
 </div>
 </div>
 <div id="e180a2d8-eaf2-4043-8b97-e361a67c7523" class="cell" data-tags="[]" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
@@ -1277,8 +1282,8 @@ Attributes:
 <p>Other formats like <a href="https://www.cogeo.org">COG</a>, <a href="https://zarr.readthedocs.io/en/stable/">ZARR</a>, <a href="https://parquet.apache.org">Parquet</a> are ‘Cloud-optimized’ and allow for very efficient streaming directly from S3. In other words, you do not need to download entire files and instead can easily read subsets of the data.</p>
 <p>The example below reads a Parquet file directly into memory (RAM) from S3 without using a local disk:</p>
 <div id="83242f41-f756-4afa-8dcb-1d2a4f86b7bd" class="cell" data-tags="[]" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>gf <span class="op">=</span> gpd.read_parquet(<span class="st">'s3://nasa-cryo-scratch/scottyhq/IS2_Alaska.parquet'</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>gf.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gf <span class="op">=</span> gpd.read_parquet(<span class="st">'s3://nasa-cryo-scratch/scottyhq/IS2_Alaska.parquet'</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>gf.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
@@ -1323,17 +1328,17 @@ Attributes:
 <p>Let’s say you have a lot of files on your laptop you want to work with on CryoCloud. The S3 Bucket is a convient way to upload large datasets for collaborative analysis. To do this, you need to copy AWS Credentials from the JupyterHub to use on other machines. More extensive documentation on this workflow can be found in this repository https://github.com/scottyhq/jupyter-cloud-scoped-creds.</p>
 <p>The following code <em>must</em> be run on CryoCloud JupyterHub to get temporary credentials:</p>
 <div id="a07cb826-7a39-42ea-a446-20dcf7a710ab" class="cell" data-tags="[]" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'sts'</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(os.environ[<span class="st">'AWS_WEB_IDENTITY_TOKEN_FILE'</span>]) <span class="im">as</span> f:</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    TOKEN <span class="op">=</span> f.read()</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.assume_role_with_web_identity(</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span>os.environ[<span class="st">'AWS_ROLE_ARN'</span>],</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    RoleSessionName<span class="op">=</span>os.environ[<span class="st">'JUPYTERHUB_CLIENT_ID'</span>],</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    WebIdentityToken<span class="op">=</span>TOKEN,</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    DurationSeconds<span class="op">=</span><span class="dv">3600</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'sts'</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(os.environ[<span class="st">'AWS_WEB_IDENTITY_TOKEN_FILE'</span>]) <span class="im">as</span> f:</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    TOKEN <span class="op">=</span> f.read()</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.assume_role_with_web_identity(</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span>os.environ[<span class="st">'AWS_ROLE_ARN'</span>],</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    RoleSessionName<span class="op">=</span>os.environ[<span class="st">'JUPYTERHUB_CLIENT_ID'</span>],</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    WebIdentityToken<span class="op">=</span>TOKEN,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    DurationSeconds<span class="op">=</span><span class="dv">3600</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>reponse</code> will be a python dictionary that looks like this:</p>
 <pre><code>{'Credentials': {'AccessKeyId': 'ASIAYLNAJMXY2KXXXXX',
@@ -1343,13 +1348,13 @@ Attributes:
   ...</code></pre>
 <p>You can copy and paste the values to another computer, and use them to configure your access to S3:</p>
 <div id="e945f646-e305-402f-abec-bee17499e42e" class="cell" data-tags="[&quot;skip-execution&quot;]" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s3fs.S3FileSystem(key<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'AccessKeyId'</span>],</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                       secret<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'SecretAccessKey'</span>],</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                       token<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'SessionToken'</span>] )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> s3fs.S3FileSystem(key<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'AccessKeyId'</span>],</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                       secret<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'SecretAccessKey'</span>],</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                       token<span class="op">=</span>response[<span class="st">'Credentials'</span>][<span class="st">'SessionToken'</span>] )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="63764498-1e9c-47ba-b520-0c0d593a2d1c" class="cell" data-tags="[]" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm your credentials give you access</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>s3.ls(<span class="st">'nasa-cryo-scratch'</span>, refresh<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm your credentials give you access</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>s3.ls(<span class="st">'nasa-cryo-scratch'</span>, refresh<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>['nasa-cryo-scratch/octocat-project',
  'nasa-cryo-scratch/scottyhq',
@@ -1587,6 +1592,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1697,6 +1704,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

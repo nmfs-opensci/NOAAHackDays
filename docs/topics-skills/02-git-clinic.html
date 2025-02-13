@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,12 +69,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -242,6 +242,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Earthdata login</span></a>
   </div>
@@ -315,12 +321,12 @@ Learning Objectives
 <div class="callout-body-container callout-body">
 <ul>
 <li>Open the <strong>terminal</strong>/shell</li>
-<li>Navigating around folders in Jupyter Lab</li>
+<li>Navigating around folders in JupyterLab</li>
 </ul>
 <ol start="3" type="1">
 <li>Version Control (code management using <strong>git</strong>)</li>
-<li>Setting up Git in Jupyter Lab</li>
-<li>The Git GUI in Jupyter Lab</li>
+<li>Setting up Git in JupyterLab</li>
+<li>The Git GUI in JupyterLab</li>
 <li>Basic Git commands</li>
 </ol>
 </div>
@@ -492,8 +498,8 @@ git config --global user.email "Makhan.Virdi@gmail.com"
 <p><strong>Cheatsheet</strong>: <a href="https://training.github.com/downloads/github-git-cheat-sheet.pdf">Frequently used git commands</a></p>
 <p><strong>Dangit, Git!?!</strong>: If you are stuck after a git mishap, there are ready-made solutions to common problems at <a href="https://dangitgit.com/en">Dangit, Git!?!</a></p>
 </section>
-<section id="cloning-our-repository-using-the-git-jupyter-lab-extension." class="level3">
-<h3 class="anchored" data-anchor-id="cloning-our-repository-using-the-git-jupyter-lab-extension.">Cloning our repository using the <a href="https://github.com/jupyterlab/jupyterlab-git"><strong>git Jupyter lab extension</strong></a>.</h3>
+<section id="cloning-our-repository-using-the-git-jupyterlab-extension." class="level3">
+<h3 class="anchored" data-anchor-id="cloning-our-repository-using-the-git-jupyterlab-extension.">Cloning our repository using the <a href="https://github.com/jupyterlab/jupyterlab-git"><strong>git JupyterLab extension</strong></a>.</h3>
 <p>If we’re already familiar with git commands and feel more confortable using a GUI our Jupyterhub deployment comes with a git extension. This plugin allows us to operate with git using a simple user interface.</p>
 <p>For example we can clone our repository using the extension.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -734,6 +740,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -844,6 +852,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

@@ -12,7 +12,7 @@ In this tutorial, you will get an overview of our JupyterHub.
 - Open RStudio in a new browser tab
 - Start/Stop your JupyterHub server
 - Restart your JupyterHub server
-- Getting help
+- Get tips on how to get help and post issues
 
 :::
 
@@ -97,13 +97,12 @@ In the file panel, you will see a folder called `shared`. These are read-only sh
 
 You will also see `shared-public`. This is a read-write folder for you to put files for everyone to see and use. You can create a team folder here for shared data and files.  Note, everyone can see and change these so be careful to communicate with your team so multiple people don't work on the same file at the same time. You can also create folders for each team member and agree not to change other team members files.
 
+## Getting help
 
-## *Python users
-
-You can open a Jupyter Notebook by clicking on the "Python 3" box. In the Launcher tab:
-
-![Jupyterhub Launcher](./img/jhub-launcher.png)
-
+* Discussions https://github.com/nmfs-opensci/NOAAHackDays/discussions
+* Add an issue if you see something amiss or you would like a package added https://github.com/nmfs-opensci/NOAAHackDays/issues
+* Visit the NMFS Open Science Google Space (NOAA only). Search Google Spaces to find.
+* NMFS staff: The [NMFS Python User Group](https://chat.google.com/room/AAAA2_VOPOo?cls=4) and [NMFS R User Group](https://nmfs-opensci.github.io/NMFS-R-UG/) are great places to get help from fellow users for Python and R questions.
 
 ## FAQ
 

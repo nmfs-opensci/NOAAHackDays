@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,12 +37,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -210,6 +210,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Earthdata login</span></a>
   </div>
@@ -265,32 +271,11 @@ function googleTranslateElementInit() {
 </header>
 
 
-<section id="sign-up" class="level3">
-<h3 class="anchored" data-anchor-id="sign-up">Sign up</h3>
-<p><strong>NOAA staff</strong>: Fill out this short&nbsp;form <a href="https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing">NOAA staff access</a>&nbsp;to give us the required credentials and information to get you on the hub.</p>
-<p>Once we have your information, within the next day or two we will invite you to the&nbsp;NMFS Openscapes&nbsp;GitHub organization. You will receive an email when we do this from GitHub <strong>at the email you have linked to your GitHub profile</strong>.&nbsp;Please accept this invitation within 7 days&nbsp;or it will disappear and we will need to resend it. Your membership on that GitHub team provides you with access to the&nbsp;JupyterHub.</p>
-</section>
-<section id="policies-for-use" class="level3">
-<h3 class="anchored" data-anchor-id="policies-for-use">Policies for use</h3>
-<ul>
-<li>This is for learning, participating in trainings and working on pilot projects (testing)</li>
-<li>No BII or PII whatsoever or confidential data</li>
-<li>After 30 days of not logging in, you account will be deleted and your user directory removed. You can log back in, but your data will be gone. Make sure to back up, download or pull the data and code you are working on.</li>
-<li>Clean up after you are done working on something. So if you clone a repo to test something, delete the repo if you don’t need it.</li>
-<li>Please shutdown your hub when done. File &gt; Hub Control Panel &gt; Stop my server. It will stop on its own in 90 minutes but this save some money.</li>
-</ul>
-<p><strong>Non-NOAA participants in a workshop or event</strong>: the workshop organizers will provide instructions for access during the event.</p>
-</section>
-<section id="orientation" class="level3">
-<h3 class="anchored" data-anchor-id="orientation">Orientation</h3>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/SEvHUZI6aj4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section>
+<p>For those already familiar with JupyterLab and unix.</p>
 <section id="github-account" class="level3">
 <h3 class="anchored" data-anchor-id="github-account">GitHub Account</h3>
 <p>A GitHub account is required to gain access to the JupyterHub and to clone the tutorials used in the Hackhours.</p>
-</section>
-<section id="how-do-i-files-into-the-jhub" class="level3">
-<h3 class="anchored" data-anchor-id="how-do-i-files-into-the-jhub">How do I files into the JHub?</h3>
+<p>How do I get the tutorials into the JupyterHub?</p>
 <ul>
 <li>You can upload files.</li>
 <li>Easiest is probably cloning a repo into the hub. See the JupyterHub Skills section if you do not know how to do this.</li>
@@ -299,6 +284,24 @@ function googleTranslateElementInit() {
 <section id="authenticating-to-github" class="level3">
 <h3 class="anchored" data-anchor-id="authenticating-to-github">Authenticating to GitHub</h3>
 <p>This is a little different on the JupyterHub. See <a href="https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html">git authentication</a>.</p>
+<p>For content that uses the NASA <a href="https://www.earthdata.nasa.gov/">Earthdata</a> repository, you will need an Earthdata Login account. Please visit <a href="https://urs.earthdata.nasa.gov">https://urs.earthdata.nasa.gov</a> to register and manage your Earthdata Login account. This account is free to create. Please jot down your username and password, as you need to enter it in the tutorials.</p>
+</section>
+<section id="when-done-please-stop-the-jupyterhub" class="level3">
+<h3 class="anchored" data-anchor-id="when-done-please-stop-the-jupyterhub">When done, please stop the JupyterHub</h3>
+<p>If you are in JupyterLab in the browser:</p>
+<ul>
+<li>File &gt; Hub Control Panel &gt; Stop my server</li>
+</ul>
+<p>If you are in RStudio and you still have the JupyterLab tab open in your browser:</p>
+<ul>
+<li>Go to the JupyterLab tab</li>
+<li>File &gt; Hub Control Panel &gt; Stop my server</li>
+</ul>
+<p>If you are in RStudio and you do not have the JupyterLab tab open in your browser because you closed that tab:</p>
+<ul>
+<li>Go to the url <code>https://&lt;jupyterhub url&gt;/user/&lt;your username in the hub&gt;/lab/</code> That will open the JupyterLab tab</li>
+<li>File &gt; Hub Control Panel &gt; Stop my server</li>
+</ul>
 
 
 </section>
@@ -530,6 +533,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -640,6 +645,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

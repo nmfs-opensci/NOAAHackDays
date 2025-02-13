@@ -1,220 +1,130 @@
 ---
-title: Git in JupyterLab
+title: Basic Git/GitHub Skills in JupyterLab git GUI
 ---
 
 ::: {.callout-note icon=false}
 
 ## Learning Objectives
 
-- Clone a  git repo with the git GUI in JupyterLab
-- Make some changes and push the changes with the git GUI
+- Learn how to use the Git GUI in JupyterLab
+- Practice 4 basic Git/GitHub skills: cloning, committing, push/pull
+
+## Prerequisites
+
+- Read [Intro to Git](topics-skills/02-git.html)
+- Have a [GitHub](https://github.com/) account
+- [Git Authentication](topics-skills/02-git-authentication.html)
 
 :::
 
-In this tutorial, we will provide a brief introduction to version control with Git.
+## Create a GitHub account
 
+For access to the NMFS Openscapes JupyterHub, you will need at GitHub account. See the main HackHour
+page on how to request access (NOAA staff). For NMFS staff, you can look at the [NMFS OpenSci GitHub Guide](http://nmfs-opensci.github.io/GitHub-Guide/#create-a-github-user-account)
+information for how to create your user account and you will find lots of information on the
+[NMFS GitHub Governance Team Training Page](https://sites.google.com/noaa.gov/nmfs-st-github-governance-team/training) (visible only to NOAA staff).
 
-### What is version control, git, github, and how to set it up?
+## Setting up Git Authentication
 
-Version control is managing and tracking changes to your documents (program source code, images, websites, data files, etc.). `git` is a popular tool used for version control of software code. [github.com](https://github.com/) is popular platform that provides remote server hosting for git repositories. A repository is a collection of various files that you are tracking for changes and versions. Currently GitHub is the most popular platform for file sharing code and code packages.
+Before we can work with Git in the JupyterHub, your need to authenticate. Do the steps here: [Git Authentication](topics-skills/02-git-authentication.html)
 
-This section is a step-by-step guide to set up `git` on our [2i2c JupyterHub](itcoocean.2i2c.cloud). We will also configure `git` to use your [github.com](https://github.com/) account for managing your repositories hosted on [github.com](https://github.com/). There are 5 main steps.
+## Git extension in JupyterLab
 
-### Step 1: Create a GitHub account
+When the instructions say to use or open or click the Git GUI, look here:
 
-To complete the setup, you will need an account on [github.com](https://github.com/). If you don't have an account, please visit [github.com](https://github.com/), create an account (free) and come back to this guide for setting up git.
+![](./img/gitextension.png)
 
-### Step 2: Clone a repository
+## The Key Skills
 
-We have created a demo repository for you to clone:
+* Skill 1: Create a blank repo on GitHub
+* Skill 2: Clone your **GitHub** repo
+* Skill 3: Make some changes and commit those local changes
+* Skill 4: Push the changes to GitHub
 
-https://github.com/Hackweek-ITCOocean/Git-Lesson
+* Skill 1b: Copy someone else's GitHub repository
 
-1.  Start your [2i2c JupyterHub](https://itcoocean.2i2c.cloud)
+## Let's see it done!
 
-2.  Click on the git icon
+### Skill 1: Create a blank repo on GitHub
 
-![](img/gitextension.png)
+1. Click the + in the upper left from YOUR GitHub account (https://www.github.com/yourusername).
+2. Give your repo the name `Test` and make sure it is public.
+3. Click new and check checkbox to add the Readme file and `.gitignore`
+4. Copy the URL of your new repo. It's in the browser where you normally see a URL.
 
-3.  Click "Clone a Repository"
+### Skill 2: Clone your repo
 
-4.  Where is says "Enter the URI of the remote Git repository", paste in the URL https://github.com/Hackweek-ITCOocean/Git-Lesson
+First make sure you are at the home directory level. Look at the folder icon under the blue launcher
+button. It should show, folder icon only like in this image. If not, then click on the folder icon.
 
-5. The folder appears and you can enter the folder and edit and create files.
+![](./img/jhub-file-navigation.png)
 
-> Your task: Create a file with your name and save to the Git-Lesson folder
+1. Copy the URL of your repo. `https://www.github.com/yourname/Test`
+2. Click on the git icon and then click "Clone a Repository"
+    ![](img/gitextension.png)
+3. Paste in the URL of your repo from Step 1
+4. Click Clone. You can stay with the defaults for the checkboxes.
 
-## Step 3: 
+[Show me](https://youtu.be/Anw1oXmwMTM)
 
-Configure git with your name and email address.
+### Skill 3: Make some changes and commit your changes
 
-````         
-``` bash
-git config --global user.name "Makhan Virdi"
-git config --global user.email "Makhan.Virdi@gmail.com"
-```
+This writes a note about what changes you have made. It also marks a 'point' in time that you can go back to if you need to.
 
-**Note:** This name and email could be different from your github.com credentials. Remember `git` is a program that keeps track of your changes locally (on 2i2c JupyterHub or your own computer) and github.com is a platform to host your repositories. However, since your changes are tracked by `git`, the email/name used in git configuration will show up next to your contributions on github.com when you `push` your repository to github.com (`git push` is discussed in a later step).
-````
+1. Click on the README.md file in the Test repo.
+2. Make some changes to the file.
+3. Click the Git icon (in left navbar), and stage the change(s) by checking the "+" next to the files listed.
+4. Add a commit message in the box.
+5. Click the Commit button at bottom.
 
-4.  Configure `git` to store your github credentials to avoid having to enter your github username and token each time you push changes to your repository(in [Step 5](#step-5.-create-access-token-on-github.com), we will describe how to use github token instead of a password)
+[Show me](https://youtu.be/-V9GdXNXalQ)
 
-    ``` bash
-    git config --global credential.helper store
-    ```
+### Skill 4: Push changes to GitHub / Pull changes from GitHub
 
-5.  Copy link for the demo repository from your github account. Click the green "Code" button and copy the link as shown.
+To push changes you committed in Skill #3
 
-    ![](img/github-clone.png)
+1. From Git icon, look for the little cloud at the top. It is rather small. Click that to push changes.
 
-6.  Clone the repository using `git clone` command in the terminal
+To pull changes on GitHub that are not on your local computer:
 
-    To clone a repository from github, copy the link for the repository (previous step) and use `git clone`:
+1. Make some changes directly on GitHub (not in JupyterLab)
+2. From Git icon, click on the little cloud with a down arrow.
 
-    ``` bash
-    git clone https://github.com/YOUR-GITHUB-USERNAME/check_github_setup
-    ```
+### Activity 1
 
-    **Note:** Replace `YOUR-GITHUB-USERNAME` here with your github.com username. For example, it is `virdi` for my github.com account as seen in this image.
+1. Make a copy of README.md
+2. Rename it to <youname>.md
+3. Add some text.
+4. Stage and commit the added file.
+5. Push to GitHub.
 
-    ![](img/terminal-clone.png){width="520"}
+[Show me](https://youtu.be/ejmkkjWJ_Es)
 
-    Use `ls` (list files) to verify the existence of the repository that you just cloned
+### Activity 2
 
-    ![](img/terminal-clone-confirm-ls.png){width="520"}
+1. In the Test repo, create a file called to `<yourname>.md`.
+2. Stage and then commit that new file.
+3. Push to GitHub.
+4. Make some more changes and push to GitHub.
 
-7.  Change directory to the cloned repository using `cd check_github_setup` and check the current directory using `pwd` command (present working directory)
+### Activity 3
 
-    ![](img/terminal-cd-repo.png){width="520"}
+You can copy your own or other people's repos^[This is different from forking. There is no connection to the original repository.].
 
-8.  Check status of your git repository to confirm git set up using `git status`
+1. In a browser, go to the GitHub repository <https://github.com/RWorkflow-Workshops/Week5>
+2. Copy its URL.
+3. Navigate to your GitHub page: click your icon in the upper right and then 'your repositories'
+4. Click the `+` in top right and click `import repository`. Paste in the URL and give your repo a name.
+5. Use Skill #1 to clone your new repo to JupyterLab
 
-    ![](img/terminal-git-status.png)
+## Clean up after you are done
+
+1. Open a Terminal
+2. Type
+   
+   ```
+   cd ~
+   rm -rf Test
+   rm -rf Week5
+   ```
 
-    You are all set with using git on your 2i2c JupyterHub! But the collaborative power of git through github needs some additional setup.
-
-    In the next step, we will create a new file in this repository, track changes to this file, and link it with your github.com account.
-
-### Step 4. Creating new file and tracking changes
-
-1.  In the left panel on your 2i2c JupyterHub, click on the "directory" icon and then double click on "check_github_setup" directory.
-
-    ![](img/notebook-cd.png)
-
-    ![](img/notebook-cd-result.png)
-
-2.  Once you are in the **check_github_setup** directory, create a new file using the text editor in your 2i2c JupyterHub (`File >> New >> Text File`).
-
-    ![](img/%20notebook-new-file.png)
-
-    Name the file lastname.txt. For example, **virdi.txt** for me (use your last name). Add some content to this file (for example, I added this to my **virdi.txt** file: `my last name is virdi`).
-
-    ![](img/notebook-rename-file.png)
-
-3.  Now you should have a new file (lastname.txt) in the git repository directory **check_github_setup**
-
-4.  Check if `git` can see that you have added a new file using `git status`. Git reports that you have a new file that is not tracked by git yet, and suggests adding that file to the git tracking system.
-
-    ![](img/git-status.png)
-
-5.  As seen in this image, `git` suggests adding that file so it can be tracked for changes. You can add file to `git` for tracking changes using `git add`. Then, you can commit changes to this file's content using `git commit` as shown in the image.
-
-    ``` bash
-    git add virdi.txt
-    git status
-    git commit -m "adding a new file"
-    git status
-    ```
-
-    ![](img/git-add-commit.png)
-
-6.  As seen in the image above, `git` is suggesting to push the change that you just committed to the remote server at github.com (so that your collaborators can also see what changes you made).
-
-    **Note: DO NOT** execute `push` yet. Before we push to github.com, let's configure `git` further and store our github.com credentials to avoid entering the credentials every time we invoke `git push`. For doing so, we need to create a **token** on github.com to be used in place of your github.com password.
-
-### Step 5. Create access token on github.com {#step-5.-create-access-token-on-github.com}
-
-1.  Go to your github account and create a new "personal access token": <https://github.com/settings/tokens/new>
-
-    [![Generate Personal Access Token on github.com](img/github-token.png)](https://github.com/settings/tokens/new)
-
-2.  Enter a description in "Note" field as seen above, select "repo" checkbox, and scroll to the bottom and click the green button "Generate Token". Once generated, copy the token (or save it in a text file for reference).
-
-    **IMPORTANT:** You will see this token only once, so be sure to copy this. If you do not copy your token at this stage, you will need to generate a new token.
-
-    ![](img/github-token-generated.png)
-
-3.  To push (transfer) your changes to github, use `git push` in terminal. It requires you to enter your github credentials. You will be prompted to enter your github username and "password". **When prompted for your "password", DO NOT use your github password, use the github token** that was copied in the previous step.
-
-    ``` bash
-    git push
-    ```
-
-    ![](img/terminal-github-credentials.png)
-
-    **Note:** When you paste your token in the terminal window, windows users will press Ctrl+V and mac os users will press Cmd+V. If it does not work, try generating another token and use the copy icon next to the token to copy the token. Then, paste using your computer's keyboard shortcut for paste.
-
-4.  Now your password is stored in `~/.git-credentials` and you will not be prompted again unless the Github token expires. You can check the presence of this git-credentials file using Terminal. Here the `~` character represents your home directory (`/home/jovyan/`).
-
-    ``` bash
-    ls -la ~
-    ```
-
-    The output looks like this:
-
-    ``` bash
-    drwxr-xr-x 13 jovyan jovyan 6144 Oct 22 17:35 .
-    drwxr-xr-x  1 root   root   4096 Oct  4 16:21 ..
-    -rw-------  1 jovyan jovyan 1754 Oct 29 18:30 .bash_history
-    drwxr-xr-x  4 jovyan jovyan 6144 Oct 29 16:38 .config
-    -rw-------  1 jovyan jovyan   66 Oct 22 17:35 .git-credentials
-    -rw-r--r--  1 jovyan jovyan   84 Oct 22 17:14 .gitconfig
-    drwxr-xr-x 10 jovyan jovyan 6144 Oct 21 16:19 2021-Cloud-Hackathon
-    ```
-
-    You can also verify your git configuration
-
-    ``` bash
-    (notebook) jovyan@jupyter-virdi:~$ git config -l
-    ```
-
-    The output should have `credential.helper = store`:
-
-    ``` bash
-    user.email        = Makhan.Virdi@gmail.com
-    user.name         = Makhan Virdi
-    credential.helper = store
-    ```
-
-Now we are all set to collaborate with github on the JupyterHub during the Cloud Hackathon!
-
-### Summary: Git Commands
-
-| Git Command  | Description                                                                                                                     |
-|-------------|----------------------------------------------------------|
-| `git status` | Shows the current state of the repository: the current working branch, files in the staging area, *etc.*                        |
-| `git add`    | Adds a new, previously untracked file to version control and marks already tracked files to be committed with the next `commit` |
-| `git commit` | Saves the current state of the repository and creates an entry in the log                                                       |
-| `git log`    | Shows the history for the repository                                                                                            |
-| `git diff`   | Shows content differences between commits, branches, individual files and more                                                  |
-| `git clone`  | Copies a repository to your local environment, including all the history                                                        |
-| `git pull`   | Gets the latest changes of a previously cloned repository                                                                       |
-| `git push`   | Pushes your local changes to the remote repository, sharing them with others                                                    |
-
-: Commonly used git commands (modified from [source](https://uwhackweek.github.io/jupyterbook-template/tutorials/jupyter.html))
-
-### Git: More Details
-
-**Lesson**: For a more detailed self-paced lesson on git, visit [Git Lesson from Software Carpentry](http://swcarpentry.github.io/git-novice/)
-
-**Cheatsheet**: [Frequently used git commands](https://training.github.com/downloads/github-git-cheat-sheet.pdf)
-
-**Dangit, Git!?!**: If you are stuck after a git mishap, there are ready-made solutions to common problems at [Dangit, Git!?!](https://dangitgit.com/en)
-
-### Cloning our repository using the [**git JupyterLab extension**](https://github.com/jupyterlab/jupyterlab-git).
-
-If we're already familiar with git commands and feel more confortable using a GUI our Jupyterhub deployment comes with a git extension. This plugin allows us to operate with git using a simple user interface.
-
-For example we can clone our repository using the extension.
-
-![git extension](img/gitextension.png)

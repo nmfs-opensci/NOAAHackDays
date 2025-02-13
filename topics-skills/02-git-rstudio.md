@@ -11,51 +11,26 @@ title: Basic Git/GitHub Skills in RStudio
 
 ## Prerequisites
 
-- [Intro to Git](topics-skills/02-git.html)
+- Read [Intro to Git](topics-skills/02-git.html)
+- Have a [GitHub](https://github.com/) account
 - [Git Authentication](topics-skills/02-git-authentication.html)
 
 :::
 
+## Create a GitHub account
 
+For access to the NMFS Openscapes JupyterHub, you will need at GitHub account. See the main HackHour
+page on how to request access (NOAA staff). For NMFS staff, you can look at the [NMFS OpenSci GitHub Guide](http://nmfs-opensci.github.io/GitHub-Guide/#create-a-github-user-account)
+information for how to create your user account and you will find lots of information on the
+[NMFS GitHub Governance Team Training Page](https://sites.google.com/noaa.gov/nmfs-st-github-governance-team/training) (visible only to NOAA staff).
 
-## Setting up Git
+## Setting up Git Authentication
 
-**You should have gotten this done on Tuesday but if not here are the instructions**
+Before we can work with Git in the JupyterHub, your need to do some set up. Do the steps here: [Git Authentication](topics-skills/02-git-authentication.html)
 
-Before we can work with Git in the JupyterHub, we need to do some set up.
+## Git tab in RStudio
 
-1. Tell Git who you are and to store your credentials (GitHub login info)
-
-[Show me](https://youtu.be/F0jsBeMcU24)
-
-Paste this into a terminal window:
-```
-git config --global user.email "<your email>"
-git config --global user.name "<your name>"
-git config --global pull.rebase false
-git config --global credential.helper store
-```
-
-2. Get a Personal Access Token from GitHub
-
-Copy the token! You will need it in the next step.
-
-[Show me](https://youtu.be/tkioJhF_gO8) Note, one change to this video is that you need to specify that you want a **classic** token.
-
-3. Trigger Git to ask for your password (that personal access token)
-
-You can do this by cloning a private repo. In the Terminal, issue this command
-
-```shell
-git clone https://github.com/Hackweek-ITCOocean/github_setup_check
-```
-
-It will ask for your GitHub username and password. At the password part, paste in the Personal Access Token.
-
-
-## Git tab
-
-When the instructions say to use or open or click the Git tab, 
+When the instructions say to use or open or click the Git tab, look here:
 
 ![](./img/rstudio-git-tab.png)
 
@@ -85,7 +60,7 @@ In RStudio we do this by making a new project.
 
 1. Copy the URL of your repo. `https://www.github.com/yourname/Test`
 2. File > New Project > Version Control > Git
-3. Past in the URL of your repo from Step 1
+3. Paste in the URL of your repo from Step 1
 3. Check that it is being created in your Home directory which will be denoted `~` in the JupyterHub.
 4. Click Create.
 
@@ -109,14 +84,14 @@ To push changes you committed in Skill #3
 
 1. From Git tab, click on the Green up arrow that says Push.
 
-2. To pull changes on GitHub that are not on your local computer:
+To pull changes on GitHub that are not on your local computer:
 
 1. Make some changes directly on GitHub (not in RStudio)
 2. From Git tab, click on the down arrow that says Pull.
 
 [Show me](https://youtu.be/wcQNQH0matE)
 
-### Pair-activity 1
+### Activity 1
 
 In RStudio,
 
@@ -126,24 +101,16 @@ In RStudio,
 4. Stage and commit the added file.
 5. Push to GitHub.
 
-Try before watching.
+[Show me in RStudio](https://youtu.be/xUbxqzp7Rss)
 
-[Show me in RStudio](https://youtu.be/xUbxqzp7Rss) -- [Show me in the shell](https://youtu.be/tvmX41b5pTU) -- [Show me in jupyter-git](https://youtu.be/ejmkkjWJ_Es)
+### Activity 2
 
-### Pair-activity 2
+1. Go to your Test repo on GitHub. `https://www.github.com/yourname/Test`
+2. Create a file called `test.md`.
+2. Stage and then commit that new file.
+3. Go to RStudio and pull in that new file.
 
-All of this activity is in RStudio.
-
-1. Clone this repo <https://github.com/Hackweek-ITCOocean/git-basics> to RStudio and create a new project
-2. Navigate to the files in your new project, create a filed called to `<yourname>.md`. Use your actual name so the filename is different from everyone elses.
-3. Stage and then commit that new file.
-4. Push to GitHub.
-5. Make some more changes and push to GitHub.
-6. Pull in your partner's (and everyone elses) changes
-
-[Show me in RStudio](https://youtu.be/y8YWuPHC60g) -- [Show me in JupyterLab](https://youtu.be/w0ub1hBZh70)
-
-### Pair-activity 3
+### Activity 3
 
 You can copy your own or other people's repos^[This is different from forking. There is no connection to the original repository.].
 
@@ -152,4 +119,16 @@ You can copy your own or other people's repos^[This is different from forking. T
 3. Navigate to your GitHub page: click your icon in the upper right and then 'your repositories'
 4. Click the `+` in top right and click `import repository`. Paste in the URL and give your repo a name.
 5. Use Skill #1 to clone your new repo to RStudio and create a new project
+
+## Clean up after you are done
+
+1. Open a Terminal
+2. Type
+   
+   ```
+   cd ~
+   rm -rf Test
+   rm -rf Week5
+   ```
+
 

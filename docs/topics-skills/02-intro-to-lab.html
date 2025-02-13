@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,12 +37,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -210,6 +210,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/02-git-terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in the terminal</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Earthdata login</span></a>
   </div>
@@ -239,7 +245,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#terminalshell" id="toc-terminalshell" class="nav-link active" data-scroll-target="#terminalshell">Terminal/Shell</a></li>
   <li><a href="#file-navigation" id="toc-file-navigation" class="nav-link" data-scroll-target="#file-navigation">File Navigation</a></li>
   <li><a href="#create-a-new-jupyter-notebook" id="toc-create-a-new-jupyter-notebook" class="nav-link" data-scroll-target="#create-a-new-jupyter-notebook">Create a new Jupyter notebook</a></li>
-  <li><a href="#stop-and-restart-the-jhub" id="toc-stop-and-restart-the-jhub" class="nav-link" data-scroll-target="#stop-and-restart-the-jhub">Stop and Restart the JHub</a></li>
+  <li><a href="#basic-jupyter-notebook-navigation" id="toc-basic-jupyter-notebook-navigation" class="nav-link" data-scroll-target="#basic-jupyter-notebook-navigation">Basic Jupyter notebook navigation</a></li>
+  <li><a href="#running-code-in-a-cell" id="toc-running-code-in-a-cell" class="nav-link" data-scroll-target="#running-code-in-a-cell">Running code in a cell</a></li>
+  <li><a href="#creating-and-rendering-markdown" id="toc-creating-and-rendering-markdown" class="nav-link" data-scroll-target="#creating-and-rendering-markdown">Creating and rendering markdown</a></li>
+  <li><a href="#running-all-cells-in-a-notebook" id="toc-running-all-cells-in-a-notebook" class="nav-link" data-scroll-target="#running-all-cells-in-a-notebook">Running all cells in a notebook</a></li>
+  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages">Install packages</a></li>
+  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn more</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-skills/02-intro-to-lab.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-skills/02-intro-to-lab.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -286,26 +297,21 @@ Learning Objectives
 <div class="callout-body-container callout-body">
 <ul>
 <li>Basic navigation within JupyterLab</li>
-<li>How to restart the JHub</li>
+<li>How to restart the JupyterHub</li>
 <li>How to open a terminal window</li>
 </ul>
 </div>
 </div>
-<p>When you start the JupyterHub, you will be in JupyterLab. From there you can click on the RStudio box and open RStudio. However for this tutorial, we will stay in JuptyerLab.</p>
+<p>When you start the JupyterHub, you will be in JupyterLab.</p>
 <section id="terminalshell" class="level2">
 <h2 class="anchored" data-anchor-id="terminalshell">Terminal/Shell</h2>
-<p>Log into the JupyterHub. If you do not see this</p>
+<p>Log into the JupyterHub. If you do not see something like this</p>
 <p><img src="img/jhub-launcher.png" class="img-fluid"></p>
 <p>Then go to File &gt; New Launcher</p>
 <p>Click on the “Terminal” box to open a new terminal window.</p>
 <section id="shell-or-terminal-basics" class="level3">
 <h3 class="anchored" data-anchor-id="shell-or-terminal-basics">Shell or Terminal Basics</h3>
-<ol type="1">
-<li><a href="https://swcarpentry.github.io/shell-novice/01-intro/index.html">What is Terminal or Shell?</a></li>
-<li><a href="https://swcarpentry.github.io/shell-novice/02-filedir/index.html">Navigating Files and Directories</a></li>
-<li><a href="https://swcarpentry.github.io/shell-novice/03-create/index.html">Working with Files and Directories</a></li>
-<li>Optional: Detailed self-paced lesson on running scripts from the shell: <a href="http://swcarpentry.github.io/shell-novice/">Shell Lesson from Software Carpentry</a></li>
-</ol>
+<p>If you have no experience working in a terminal, check out this self-paced lesson on running scripts from the shell: <a href="http://swcarpentry.github.io/shell-novice/">Shell Lesson from Software Carpentry</a></p>
 <p>Basic shell commands:</p>
 <ul>
 <li><code>pwd</code> where am I</li>
@@ -315,34 +321,24 @@ Learning Objectives
 <li><code>ls -a</code> list the files including hidden files</li>
 <li><code>ls -l</code> list the files with more info</li>
 <li><code>cat filename</code> print out the contents of a file</li>
+<li><code>rm filename</code> remove a file</li>
+<li><code>rm -r directoryname</code> remove a directory</li>
+<li><code>rm -rf directoryname</code> force remove a directory; careful no recovery</li>
 </ul>
-</section>
-<section id="lets-try" class="level3">
-<h3 class="anchored" data-anchor-id="lets-try">Let’s try</h3>
-<pre><code>ls
-ls -a
-cd shared
-ls</code></pre>
-</section>
-<section id="close-the-terminal" class="level3">
-<h3 class="anchored" data-anchor-id="close-the-terminal">Close the terminal</h3>
-<p>Just click on the X in the terminal tab</p>
+<p>Close the terminal by clicking on the X in the terminal tab.</p>
 </section>
 </section>
 <section id="file-navigation" class="level2">
 <h2 class="anchored" data-anchor-id="file-navigation">File Navigation</h2>
 <p>In the far left, you will see a line of icons. The top one is a folder and allows us to move around our file system.</p>
 <ol type="1">
-<li><p>Click on <code>shared</code>. Now you can see the files in the shared directory.</p></li>
-<li><p>Click on <code>shell-tutorial</code>. Then click on <code>lesson1.sh</code>. The file opens. You won’t be able to save changes here because you don’t have write permission on this drive.</p></li>
+<li><p>Click on file icon below the blue button with a <code>+</code>. Now you see files in your home directory.</p></li>
 <li><p>Click on the folder icon that looks like this. Click on the actual folder image. <img src="img/folder-icon.png" class="img-fluid"></p>
-<p>Now it should look like this folder /</p>
 <p>This shows me doing this</p>
 <p><img src="img/folder-select.gif" class="img-fluid"></p></li>
 <li><p>Create a new folder.</p>
 <ul>
 <li>Next to the blue rectange with a +, is a grey folder with a +. Click that to create a new folder, called <code>lesson-scripts</code>.</li>
-<li>Then click on <code>lesson-scripts</code> to enter the folder</li>
 </ul>
 <p><img src="img/folder-create-folder.gif" class="img-fluid"></p></li>
 <li><p>Create a new file</p>
@@ -359,9 +355,36 @@ ls</code></pre>
 </section>
 <section id="create-a-new-jupyter-notebook" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-new-jupyter-notebook">Create a new Jupyter notebook</h2>
+<p>From Launcher, click on the “Python 3” button, this will open a new Jupyter notebook.</p>
+<p><img src="img/jhub-launcher.png" class="img-fluid"></p>
 </section>
-<section id="stop-and-restart-the-jhub" class="level2">
-<h2 class="anchored" data-anchor-id="stop-and-restart-the-jhub">Stop and Restart the JHub</h2>
+<section id="basic-jupyter-notebook-navigation" class="level2">
+<h2 class="anchored" data-anchor-id="basic-jupyter-notebook-navigation">Basic Jupyter notebook navigation</h2>
+<p>A Jupyter notebook is a series of cells than can be code (default), markdown or raw text.</p>
+<p><img src="img/jlab-basic.png" class="img-fluid"></p>
+<p>Look at the top cell, this is a code cell which I could see if I click on the cell and look at the top navbar. Next to “Download”, it says “Code”. I can click that dropdown and change the cell type to markdown or raw.</p>
+<p>To the left of the “Save” icon in the top navbar is a “+”. This will add a new cell.</p>
+<p>Within a cell, you will see some icons on the right. Roll over these icons to see what they do.</p>
+</section>
+<section id="running-code-in-a-cell" class="level2">
+<h2 class="anchored" data-anchor-id="running-code-in-a-cell">Running code in a cell</h2>
+<p>To run code in a cell, click in the cell and then hit “Shift Return”. You can also click “Run” in the menu or click the little right arrow in the top navbar above the cells.</p>
+</section>
+<section id="creating-and-rendering-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="creating-and-rendering-markdown">Creating and rendering markdown</h2>
+<p>Create an new cell (you can click the “+” in the top navbar) and then change to markdown by clicking the dropdown next to “Download” in the top navbar. Type in some markdown and the run the cell (see above on how to run cells).</p>
+</section>
+<section id="running-all-cells-in-a-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="running-all-cells-in-a-notebook">Running all cells in a notebook</h2>
+<p>Use the “Run” menu.</p>
+</section>
+<section id="install-packages" class="level2">
+<h2 class="anchored" data-anchor-id="install-packages">Install packages</h2>
+<p>Use <code>pip install</code> in a cell. This will not persist between sessions.</p>
+</section>
+<section id="learn-more" class="level2">
+<h2 class="anchored" data-anchor-id="learn-more">Learn more</h2>
+<p>There are lots of tutorials on JupyterLab out there. Do a search to find content that works for you.</p>
 
 
 </section>
@@ -593,6 +616,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -703,6 +728,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
