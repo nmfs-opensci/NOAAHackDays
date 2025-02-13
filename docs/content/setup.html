@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../content/hackhours.html" rel="next">
+<link href="../topics-skills/01-intro-to-jupyterhub.html" rel="next">
 <link href="../content/jhub.html" rel="prev">
 <link href="../images/favicon-16x16.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -143,8 +143,21 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../topics-skills/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterHub Skills</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">back</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../content/jhub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JupyterHub</span></a>
+ <span class="menu-text">About the Hub</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -155,52 +168,62 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/hackhours.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hackhours</span></a>
+  <a href="../topics-skills/01-intro-to-jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to JupyterHubs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/workshops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Workshops</span></a>
-  </div>
-</li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../topics-skills/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JupyterHub Skills</span></a>
+  <a href="../topics-skills/02-intro-to-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterLab</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2023/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HackHours 2023</span></a>
+  <a href="../topics-skills/02-git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intro to Git</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2024/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HackHours 2024</span></a>
+  <a href="../topics-skills/02-git-authentication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git Authentication</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics-2025/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HackHours 2025</span></a>
-  </div>
-</li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../content/reuse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reuse Statement</span></a>
+  <a href="../topics-skills/02-git-jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in JupyterLab</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../coc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code of Conduct</span></a>
+  <a href="../topics-skills/02-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../topics-skills/02-git-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git in RStudio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../topics-skills/03-earthdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthdata login</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../topics-skills/03-ScratchBucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S3 Scratch Bucket</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../topics-skills/03-AWS_S3_bucket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AWS S3 Bucket</span></a>
   </div>
 </li>
     </ul>
@@ -242,32 +265,53 @@ function googleTranslateElementInit() {
 </header>
 
 
-<p>For those already familiar with Jupyter Lab and unix.</p>
+<section id="sign-up" class="level3">
+<h3 class="anchored" data-anchor-id="sign-up">Sign up</h3>
+<p><strong>NOAA staff</strong>: Fill out this short&nbsp;form <a href="https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing">NOAA staff access</a>&nbsp;to give us the required credentials and information to get you on the hub.</p>
+<p>Once we have your information, within the next day or two we will invite you to the&nbsp;NMFS Openscapes&nbsp;GitHub organization. You will receive an email when we do this from GitHub <strong>at the email you have linked to your GitHub profile</strong>.&nbsp;Please accept this invitation within 7 days&nbsp;or it will disappear and we will need to resend it. Your membership on that GitHub team provides you with access to the&nbsp;JupyterHub.</p>
+</section>
+<section id="policies-for-use" class="level3">
+<h3 class="anchored" data-anchor-id="policies-for-use">Policies for use</h3>
+<ul>
+<li>This is for learning, participating in trainings and working on pilot projects (testing)</li>
+<li>No BII or PII whatsoever or confidential data</li>
+<li>After 30 days of not logging in, you account will be deleted and your user directory removed. You can log back in, but your data will be gone. Make sure to back up, download or pull the data and code you are working on.</li>
+<li>Clean up after you are done working on something. So if you clone a repo to test something, delete the repo if you don’t need it.</li>
+</ul>
+<p><strong>Non-NOAA participants in a workshop or event</strong>: the workshop organizers will provide instructions for access during the event.</p>
+</section>
+<section id="orientation" class="level3">
+<h3 class="anchored" data-anchor-id="orientation">Orientation</h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/SEvHUZI6aj4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
 <section id="github-account" class="level3">
 <h3 class="anchored" data-anchor-id="github-account">GitHub Account</h3>
 <p>A GitHub account is required to gain access to the JupyterHub and to clone the tutorials used in the Hackhours.</p>
-<p>How do I get the tutorials into the JHub?</p>
+</section>
+<section id="how-do-i-files-into-the-jhub" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-i-files-into-the-jhub">How do I files into the JHub?</h3>
 <ul>
 <li>You can upload files.</li>
-<li>Easiest is probably cloning into the hub. Open a terminal and type</li>
+<li>Easiest is probably cloning a repo into the hub. See the JupyterHub Skills section if you do not know how to do this.</li>
 </ul>
-<pre><code>cd ~
-git clone &lt;url of the github repo&gt;</code></pre>
-<p><strong>Authenticating to GitHub</strong> You will need to do this to be able to push to GitHub. See <a href="https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html">git authentication</a>.</p>
+</section>
+<section id="authenticating-to-github" class="level3">
+<h3 class="anchored" data-anchor-id="authenticating-to-github">Authenticating to GitHub</h3>
+<p>This is a little different on the JupyterHub. See <a href="https://nmfs-opensci.github.io/NOAAHackDays/topics-skills/02-git-authentication.html">git authentication</a>.</p>
 </section>
 <section id="earthdata-login-account" class="level3">
 <h3 class="anchored" data-anchor-id="earthdata-login-account">Earthdata Login Account</h3>
-<p>For content that uses the NASA <a href="https://www.earthdata.nasa.gov/">Earthdata</a> repository, you will need an Earthdata Login account. Please visit <a href="https://urs.earthdata.nasa.gov">https://urs.earthdata.nasa.gov</a> to register and manage your Earthdata Login account. This account is free to create. Please jot down your username and password, as you need to enter it in the tutorials.</p>
+<p>For content that uses the NASA <a href="https://www.earthdata.nasa.gov/">Earthdata</a> repository, you will need an Earthdata Login account. Please visit <a href="https://urs.earthdata.nasa.gov">https://urs.earthdata.nasa.gov</a> to register and manage your Earthdata Login account. This account is free to create.</p>
 </section>
 <section id="when-done-please-stop-the-jupyterhub" class="level3">
 <h3 class="anchored" data-anchor-id="when-done-please-stop-the-jupyterhub">When done, please stop the JupyterHub</h3>
-<p>If you are in Jupyter lab in the browser:</p>
+<p>If you are in Jupyter Lab in the browser:</p>
 <ul>
 <li>File &gt; Hub Control Panel &gt; Stop my server</li>
 </ul>
 <p>If you are in RStudio and you still have the Jupyter lab tab open in your browser:</p>
 <ul>
-<li>Go to the Jupyter lab tab</li>
+<li>Go to the Jupyter Lab tab</li>
 <li>File &gt; Hub Control Panel &gt; Stop my server</li>
 </ul>
 <p>If you are in RStudio and you do not have the Jupyter lab tab open in your browser because you closed that tab:</p>
@@ -843,13 +887,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../content/jhub.html" class="pagination-link" aria-label="JupyterHub">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">JupyterHub</span>
+      <a href="../content/jhub.html" class="pagination-link" aria-label="About the Hub">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About the Hub</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../content/hackhours.html" class="pagination-link" aria-label="Hackhours">
-        <span class="nav-page-text">Hackhours</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../topics-skills/01-intro-to-jupyterhub.html" class="pagination-link" aria-label="Intro to JupyterHubs">
+        <span class="nav-page-text">Intro to JupyterHubs</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

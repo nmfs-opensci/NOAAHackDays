@@ -49,17 +49,14 @@ website:
       pinned: true
       align: left
       contents:
-        - href: content/jhub.md
-          text: JupyterHub
-        - href: content/setup.md
-          text: Quick Start
         - href: content/hackhours.md
           text: Hackhours
         - href: content/workshops.md
           text: Workshops
         - text: "---"
-        - text: JupyterHub Skills
+        - text: JupyterHub
           href: topics-skills/index.md
+        - text: "---"
         - text: HackHours 2023
           href: topics-2023/index.md
         - text: HackHours 2024
@@ -84,6 +81,10 @@ website:
         - text: back
           href: index.md
         - text: "---"
+        - href: content/jhub.md
+          text: About the Hub
+        - href: content/setup.md
+          text: Quick Start
         - text: Intro to JupyterHubs
           href: topics-skills/01-intro-to-jupyterhub.qmd
         - text: JupyterLab
@@ -98,6 +99,12 @@ website:
           href: topics-skills/02-rstudio.qmd
         - text: Git in RStudio
           href: topics-skills/02-git-rstudio.md
+        - text: Earthdata login
+          href: topics-skills/03-earthdata.md
+        - text: S3 Scratch Bucket
+          href: topics-skills/03-ScratchBucket.ipynb
+        - text: AWS S3 Bucket
+          href: topics-skills/03-AWS_S3_bucket.ipynb
     - id: topics-2023
       logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
       style: "docked"
