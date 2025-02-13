@@ -51,7 +51,7 @@ We'll do this
 These basic skills are all you need to learn to get started:
 
 * Skill 1: Create a blank repo on GitHub (the remote or origin)
-* Skill 2: Clone your **GitHub** repo to your local computer (in our case the JHub)
+* Skill 2: Clone your **GitHub** repo to your local computer (in our case the JupyterHub)
 * Skill 3: Make some changes and commit those local changes
 * Skill 4: Push the changes to GitHub (the remote or origin)
 

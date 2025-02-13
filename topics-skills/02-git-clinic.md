@@ -7,10 +7,10 @@ title: Git Clinic
 ## Learning Objectives
 
 -  Open the **terminal**/shell
--  Navigating around folders in Jupyter Lab
+-  Navigating around folders in JupyterLab
 3.  Version Control (code management using **git**)
-4.  Setting up Git in Jupyter Lab
-5.  The Git GUI in Jupyter Lab
+4.  Setting up Git in JupyterLab
+5.  The Git GUI in JupyterLab
 6.  Basic Git commands
 
 :::
@@ -215,7 +215,7 @@ Now we are all set to collaborate with github on the JupyterHub during the Cloud
 
 **Dangit, Git!?!**: If you are stuck after a git mishap, there are ready-made solutions to common problems at [Dangit, Git!?!](https://dangitgit.com/en)
 
-### Cloning our repository using the [**git Jupyter lab extension**](https://github.com/jupyterlab/jupyterlab-git).
+### Cloning our repository using the [**git JupyterLab extension**](https://github.com/jupyterlab/jupyterlab-git).
 
 If we're already familiar with git commands and feel more confortable using a GUI our Jupyterhub deployment comes with a git extension. This plugin allows us to operate with git using a simple user interface.
 
