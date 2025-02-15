@@ -109,6 +109,8 @@ website:
           href: topics-skills/03-ScratchBucket.ipynb
         - text: AWS S3 Bucket
           href: topics-skills/03-AWS_S3_bucket.ipynb
+        - text: Learning resources
+          href: topics-skills/04-learning.md
     - id: topics-2023
       logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
       style: "docked"
@@ -159,7 +161,7 @@ website:
           href: topics-2024/2024-05-24-sits/index.qmd
         - text: Python - CEFI Portal
           href: topics-2024/2024-06-14-cefi/index.qmd
-    - id: topics-2024
+    - id: topics-2025
       logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
       style: "docked"
       collapse-level: 1

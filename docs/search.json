@@ -215,389 +215,325 @@
     ]
   },
   {
-    "objectID": "topics-skills/03-ScratchBucket.html",
-    "href": "topics-skills/03-ScratchBucket.html",
-    "title": "Using the S3 Scratch Bucket",
+    "objectID": "topics-skills/03-earthdata.html",
+    "href": "topics-skills/03-earthdata.html",
+    "title": "Earthdata Login",
     "section": "",
-    "text": "The JupyterHub has a preconfigured S3 “Scratch Bucket” that automatically deletes files after 7 days. This is a great resource for experimenting with large datasets and working collaboratively on a shared dataset with other users.",
+    "text": "NASA data are stored at one of several Distributed Active Archive Centers (DAACs). If you’re interested in available data for a given area and time of interest, the Earthdata Search portal provides a convenient web interface.",
     "crumbs": [
       "JupyterHub",
-      "S3 Scratch Bucket"
+      "Earthdata login"
     ]
   },
   {
-    "objectID": "topics-skills/03-ScratchBucket.html#access-the-scratch-bucket",
-    "href": "topics-skills/03-ScratchBucket.html#access-the-scratch-bucket",
-    "title": "Using the S3 Scratch Bucket",
-    "section": "Access the scratch bucket",
-    "text": "Access the scratch bucket\nThe scratch bucket is hosted at s3://nmfs-openscapes-scratch. The JupyterHub automatically sets an environment variable SCRATCH_BUCKET that appends a suffix to the s3 url with your GitHub username. This is intended to keep track of file ownership, stay organized, and prevent users from overwriting data!\nEveryone has full access to the scratch bucket, so be careful not to overwrite data from other users when uploading files. Also, any data you put there will be deleted 7 days after it is uploaded\nIf you need more permanent S3 bucket storage refer to AWS_S3_bucket documentation (left) to configure your own S3 Bucket.\nWe’ll use the S3FS Python package, which provides a nice interface for interacting with S3 buckets.\n\nimport os\nimport s3fs\nimport fsspec\nimport boto3\nimport xarray as xr\nimport geopandas as gpd\n\n\n# My GitHub username is `eeholmes`\nscratch = os.environ['SCRATCH_BUCKET']\nscratch \n\n's3://nmfs-openscapes-scratch/eeholmes'\n\n\n\n# But you can set a different S3 object prefix to use:\nscratch = 's3://nmfs-openscapes-scratch/hackhours'",
+    "objectID": "topics-skills/03-earthdata.html#why-do-i-need-an-earthdata-login",
+    "href": "topics-skills/03-earthdata.html#why-do-i-need-an-earthdata-login",
+    "title": "Earthdata Login",
+    "section": "Why do I need an Earthdata login?",
+    "text": "Why do I need an Earthdata login?\nTo programmatically access NASA data from within your Python or R scripts, you will need to enter your Earthdata username and password.",
     "crumbs": [
       "JupyterHub",
-      "S3 Scratch Bucket"
+      "Earthdata login"
     ]
   },
   {
-    "objectID": "topics-skills/03-ScratchBucket.html#uploading-data",
-    "href": "topics-skills/03-ScratchBucket.html#uploading-data",
-    "title": "Using the S3 Scratch Bucket",
-    "section": "Uploading data",
-    "text": "Uploading data\nIt’s great to store data in S3 buckets because this storage features very high network throughput. If many users are simultaneously accessing the same file on a spinning networked harddrive (/home/jovyan/shared) performance can be quite slow. S3 has much higher performance for such cases.\n\nUpload single file\n\nlocal_file = '~/NOAAHackDays/topics-2025/2025-02-14-earthdata/littlecube.nc'\n\nremote_object = f\"{scratch}/littlecube.nc\"\n\ns3.upload(local_file, remote_object)\n\n[None]\n\n\nOnce a bucket has files, I can list them. If the bucket is empty, you will get errors instead of [].\n\ns3 = s3fs.S3FileSystem()\ns3.ls(scratch)\n\n['nmfs-openscapes-scratch/hackhours/littlecube.nc']\n\n\n\ns3.stat(remote_object)\n\n{'Key': 'nmfs-openscapes-scratch/hackhours/littlecube.nc',\n 'LastModified': datetime.datetime(2025, 2, 13, 21, 41, 5, tzinfo=tzlocal()),\n 'ETag': '\"d73616d9e3ad84cf58a4a676b1e3d454\"',\n 'ChecksumAlgorithm': ['CRC32'],\n 'ChecksumType': 'FULL_OBJECT',\n 'Size': 50224,\n 'StorageClass': 'STANDARD',\n 'type': 'file',\n 'size': 50224,\n 'name': 'nmfs-openscapes-scratch/hackhours/littlecube.nc'}\n\n\n\n\nUpload a directory\n\nlocal_dir = '~/NOAAHackDays/topics-2025/resources'\n\n!ls -lh {local_dir}\n\ntotal 5.9M\n-rw-r--r-- 1 jovyan jovyan 5.9M Feb 12 21:05 e_sst.nc\ndrwxr-xr-x 3 jovyan jovyan  281 Feb 12 21:18 longhurst_v4_2010\n\n\n\ns3.upload(local_dir, scratch, recursive=True)\n\n[None, None, None, None, None, None, None, None, None]\n\n\nThe directory name is the directory name (only) of the local directory.\n\ns3.ls(f'{scratch}/resources')\n\n['nmfs-openscapes-scratch/hackhours/resources/e_sst.nc',\n 'nmfs-openscapes-scratch/hackhours/resources/longhurst_v4_2010']",
+    "objectID": "topics-skills/03-earthdata.html#getting-an-earthdata-login",
+    "href": "topics-skills/03-earthdata.html#getting-an-earthdata-login",
+    "title": "Earthdata Login",
+    "section": "Getting an Earthdata login",
+    "text": "Getting an Earthdata login\nIf you do not already have an Earthdata login, then navigate to the Earthdata Login page, a username and password, and then record this somewhere for use during the tutorials:",
     "crumbs": [
       "JupyterHub",
-      "S3 Scratch Bucket"
+      "Earthdata login"
     ]
   },
   {
-    "objectID": "topics-skills/03-ScratchBucket.html#accessing-data",
-    "href": "topics-skills/03-ScratchBucket.html#accessing-data",
-    "title": "Using the S3 Scratch Bucket",
-    "section": "Accessing Data",
-    "text": "Accessing Data\nSome software packages allow you to stream data directly from S3 Buckets. But you can always pull objects from S3 and work with local file paths.\nThis download-first, then analyze workflow typically works well for older file formats like HDF and netCDF that were designed to perform well on local hard drives rather than Cloud storage systems like S3.\nFor best performance do not work with data in your home directory. Instead use a local scratch space like `/tmp`\n\nremote_object\n\n's3://nmfs-openscapes-scratch/hackhours/littlecube.nc'\n\n\n\nlocal_object = '/tmp/test.nc'\ns3.download(remote_object, local_object)\n\n[None]\n\n\n\nds = xr.open_dataset(local_object)\nds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt; Size: 97kB\nDimensions:       (time: 366, lat: 8, lon: 8)\nCoordinates:\n  * time          (time) datetime64[ns] 3kB 2020-01-01 2020-01-02 ... 2020-12-31\n  * lat           (lat) float32 32B 33.62 33.88 34.12 ... 34.88 35.12 35.38\n  * lon           (lon) float32 32B -75.38 -75.12 -74.88 ... -73.88 -73.62\nData variables:\n    analysed_sst  (time, lat, lon) float32 94kB ...xarray.DatasetDimensions:time: 366lat: 8lon: 8Coordinates: (3)time(time)datetime64[ns]2020-01-01 ... 2020-12-31long_name :reference time of sst fieldstandard_name :timeaxis :Tcomment :Nominal time because observations are from different sources and are made at different times of the day.array(['2020-01-01T00:00:00.000000000', '2020-01-02T00:00:00.000000000',\n       '2020-01-03T00:00:00.000000000', ..., '2020-12-29T00:00:00.000000000',\n       '2020-12-30T00:00:00.000000000', '2020-12-31T00:00:00.000000000'],\n      dtype='datetime64[ns]')lat(lat)float3233.62 33.88 34.12 ... 35.12 35.38long_name :latitudestandard_name :latitudeaxis :Yunits :degrees_northvalid_min :-90.0valid_max :90.0bounds :lat_bndscomment :Uniform grid with centers from -89.875 to 89.875 by 0.25 degreesarray([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375],\n      dtype=float32)lon(lon)float32-75.38 -75.12 ... -73.88 -73.62long_name :longitudestandard_name :longitudeaxis :Xunits :degrees_eastvalid_min :-180.0valid_max :180.0bounds :lon_bndscomment :Uniform grid with centers from -179.875 to 179.875 by 0.25 degreesarray([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625],\n      dtype=float32)Data variables: (1)analysed_sst(time, lat, lon)float32...long_name :analysed sea surface temperaturestandard_name :sea_surface_temperatureunits :kelvinvalid_min :-300valid_max :4500source :UNKNOWN,ICOADS SHIPS,ICOADS BUOYS,ICOADS argos,MMAB_50KM-NCEP-ICEcomment :Single-sensor Pathfinder 5.0/5.1 AVHRR SSTs used until 2005; two AVHRRs at a time are used 2007 onward. Sea ice and in-situ data used also are near real time quality for recent period. SST (bulk) is at ambiguous depth because multiple types of observations are used.[23424 values with dtype=float32]Indexes: (3)timePandasIndexPandasIndex(DatetimeIndex(['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04',\n               '2020-01-05', '2020-01-06', '2020-01-07', '2020-01-08',\n               '2020-01-09', '2020-01-10',\n               ...\n               '2020-12-22', '2020-12-23', '2020-12-24', '2020-12-25',\n               '2020-12-26', '2020-12-27', '2020-12-28', '2020-12-29',\n               '2020-12-30', '2020-12-31'],\n              dtype='datetime64[ns]', name='time', length=366, freq=None))latPandasIndexPandasIndex(Index([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375], dtype='float32', name='lat'))lonPandasIndexPandasIndex(Index([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625], dtype='float32', name='lon'))Attributes: (0)\n\n\nIf you don't want to think about downloading files you can let `fsspec` handle this behind the scenes for you! This way you only need to think about remote paths\n\nfs = fsspec.filesystem(\"simplecache\", \n                       cache_storage='/tmp/files/',\n                       same_names=True,  \n                       target_protocol='s3',\n                       )\n\n\n# The `simplecache` setting above will download the full file to /tmp/files\nprint(remote_object)\nwith fs.open(remote_object) as f:\n    ds = xr.open_dataset(f.name) # NOTE: pass f.name for local cached path\n\ns3://nmfs-openscapes-scratch/hackhours/littlecube.nc\n\n\n\nds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt; Size: 97kB\nDimensions:       (time: 366, lat: 8, lon: 8)\nCoordinates:\n  * time          (time) datetime64[ns] 3kB 2020-01-01 2020-01-02 ... 2020-12-31\n  * lat           (lat) float32 32B 33.62 33.88 34.12 ... 34.88 35.12 35.38\n  * lon           (lon) float32 32B -75.38 -75.12 -74.88 ... -73.88 -73.62\nData variables:\n    analysed_sst  (time, lat, lon) float32 94kB ...xarray.DatasetDimensions:time: 366lat: 8lon: 8Coordinates: (3)time(time)datetime64[ns]2020-01-01 ... 2020-12-31long_name :reference time of sst fieldstandard_name :timeaxis :Tcomment :Nominal time because observations are from different sources and are made at different times of the day.array(['2020-01-01T00:00:00.000000000', '2020-01-02T00:00:00.000000000',\n       '2020-01-03T00:00:00.000000000', ..., '2020-12-29T00:00:00.000000000',\n       '2020-12-30T00:00:00.000000000', '2020-12-31T00:00:00.000000000'],\n      dtype='datetime64[ns]')lat(lat)float3233.62 33.88 34.12 ... 35.12 35.38long_name :latitudestandard_name :latitudeaxis :Yunits :degrees_northvalid_min :-90.0valid_max :90.0bounds :lat_bndscomment :Uniform grid with centers from -89.875 to 89.875 by 0.25 degreesarray([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375],\n      dtype=float32)lon(lon)float32-75.38 -75.12 ... -73.88 -73.62long_name :longitudestandard_name :longitudeaxis :Xunits :degrees_eastvalid_min :-180.0valid_max :180.0bounds :lon_bndscomment :Uniform grid with centers from -179.875 to 179.875 by 0.25 degreesarray([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625],\n      dtype=float32)Data variables: (1)analysed_sst(time, lat, lon)float32...long_name :analysed sea surface temperaturestandard_name :sea_surface_temperatureunits :kelvinvalid_min :-300valid_max :4500source :UNKNOWN,ICOADS SHIPS,ICOADS BUOYS,ICOADS argos,MMAB_50KM-NCEP-ICEcomment :Single-sensor Pathfinder 5.0/5.1 AVHRR SSTs used until 2005; two AVHRRs at a time are used 2007 onward. Sea ice and in-situ data used also are near real time quality for recent period. SST (bulk) is at ambiguous depth because multiple types of observations are used.[23424 values with dtype=float32]Indexes: (3)timePandasIndexPandasIndex(DatetimeIndex(['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04',\n               '2020-01-05', '2020-01-06', '2020-01-07', '2020-01-08',\n               '2020-01-09', '2020-01-10',\n               ...\n               '2020-12-22', '2020-12-23', '2020-12-24', '2020-12-25',\n               '2020-12-26', '2020-12-27', '2020-12-28', '2020-12-29',\n               '2020-12-30', '2020-12-31'],\n              dtype='datetime64[ns]', name='time', length=366, freq=None))latPandasIndexPandasIndex(Index([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375], dtype='float32', name='lat'))lonPandasIndexPandasIndex(Index([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625], dtype='float32', name='lon'))Attributes: (0)",
+    "objectID": "topics-skills/03-earthdata.html#configure-programmatic-access-to-nasa-servers",
+    "href": "topics-skills/03-earthdata.html#configure-programmatic-access-to-nasa-servers",
+    "title": "Earthdata Login",
+    "section": "Configure programmatic access to NASA servers",
+    "text": "Configure programmatic access to NASA servers\nRun the following commands on the JupyterHub:\n\n\n\n\n\n\nImportant\n\n\n\nIn the below command, replace EARTHDATA_LOGIN with your personal username and EARTHDATA_PASSWORD with your password\n\n\necho 'machine urs.earthdata.nasa.gov login \"EARTHDATA_LOGIN\" password \"EARTHDATA_PASSWORD\"' &gt; ~/.netrc\nchmod 0600 ~/.netrc",
     "crumbs": [
       "JupyterHub",
-      "S3 Scratch Bucket"
+      "Earthdata login"
     ]
   },
   {
-    "objectID": "topics-skills/03-ScratchBucket.html#cloud-optimized-formats",
-    "href": "topics-skills/03-ScratchBucket.html#cloud-optimized-formats",
-    "title": "Using the S3 Scratch Bucket",
-    "section": "Cloud-optimized formats",
-    "text": "Cloud-optimized formats\nOther formats like COG, ZARR, Parquet are ‘Cloud-optimized’ and allow for very efficient streaming directly from S3. In other words, you do not need to download entire files and instead can easily read subsets of the data.\nThe example below reads a Parquet file directly into memory (RAM) from S3 without using a local disk:\n\n# first upload the file\nlocal_file = '~/NOAAHackDays/topics-2025/resources/example.parquet'\n\nremote_object = f\"{scratch}/example.parquet\"\n\ns3.upload(local_file, remote_object)\n\n[None]\n\n\n\ngf = gpd.read_parquet(remote_object)\ngf.head(2)\n\n\n\n\n\n\n\n\npop_est\ncontinent\nname\niso_a3\ngdp_md_est\ngeometry\n\n\n\n\n0\n889953.0\nOceania\nFiji\nFJI\n5496\nMULTIPOLYGON (((180 -16.06713, 180 -16.55522, ...\n\n\n1\n58005463.0\nAfrica\nTanzania\nTZA\n63177\nPOLYGON ((33.90371 -0.95, 34.07262 -1.05982, 3...",
-    "crumbs": [
-      "JupyterHub",
-      "S3 Scratch Bucket"
-    ]
-  },
-  {
-    "objectID": "topics-skills/03-ScratchBucket.html#advanced-access-scratch-bucket-outside-of-jupyterhub",
-    "href": "topics-skills/03-ScratchBucket.html#advanced-access-scratch-bucket-outside-of-jupyterhub",
-    "title": "Using the S3 Scratch Bucket",
-    "section": "Advanced: Access Scratch bucket outside of JupyterHub",
-    "text": "Advanced: Access Scratch bucket outside of JupyterHub\nLet’s say you have a lot of files on your laptop you want to work with. The S3 Bucket is a convient way to upload large datasets for collaborative analysis. To do this, you need to copy AWS Credentials from the JupyterHub to use on other machines. More extensive documentation on this workflow can be found in this repository https://github.com/scottyhq/jupyter-cloud-scoped-creds.\nThe following code must be run on the JupyterHub to get temporary credentials:\n\nclient = boto3.client('sts')\n\nwith open(os.environ['AWS_WEB_IDENTITY_TOKEN_FILE']) as f:\n    TOKEN = f.read()\n\nresponse = client.assume_role_with_web_identity(\n    RoleArn=os.environ['AWS_ROLE_ARN'],\n    RoleSessionName=os.environ['JUPYTERHUB_CLIENT_ID'],\n    WebIdentityToken=TOKEN,\n    DurationSeconds=3600\n)\n\nreponse will be a python dictionary that looks like this:\n{'Credentials': {'AccessKeyId': 'ASIAYLNAJMXY2KXXXXX',\n  'SecretAccessKey': 'J06p5IOHcxq1Rgv8XE4BYCYl8TG1XXXXXXX',\n  'SessionToken': 'IQoJb3JpZ2luX2VjEDsaCXVzLXdlc////0dsD4zHfjdGi/0+s3XKOUKkLrhdXgZ8nrch2KtzKyYyb...',\n  'Expiration': datetime.datetime(2023, 7, 21, 19, 51, 56, tzinfo=tzlocal())},\n  ...\nYou can copy and paste the values to another computer, and use them to configure your access to S3:\n\ns3 = s3fs.S3FileSystem(key=response['Credentials']['AccessKeyId'],\n                       secret=response['Credentials']['SecretAccessKey'],\n                       token=response['Credentials']['SessionToken'] )\n\n\n# Confirm your credentials give you access\ns3.ls('nmfs-openscapes-scratch', refresh=True)",
-    "crumbs": [
-      "JupyterHub",
-      "S3 Scratch Bucket"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-intro-to-lab.html",
-    "href": "topics-skills/02-intro-to-lab.html",
-    "title": "Intro to JupyterLab",
+    "objectID": "topics-skills/03-AWS_S3_bucket.html",
+    "href": "topics-skills/03-AWS_S3_bucket.html",
+    "title": "Instructions for setting up an AWS S3 bucket for your project",
     "section": "",
-    "text": "When you start the JupyterHub, you will be in JupyterLab.",
+    "text": "This set of instructions will walk through how to setup an AWS S3 bucket for a specific project and how to configure that bucket to allow all members of the project team to have access.\nThis notebook is from the CryoCloud documentation. THE CODE WILL NOT WORK SINCE YOU NEED TO AUTHENTICATE TO THE S3 BUCKET.",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "AWS S3 Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#terminalshell",
-    "href": "topics-skills/02-intro-to-lab.html#terminalshell",
-    "title": "Intro to JupyterLab",
-    "section": "Terminal/Shell",
-    "text": "Terminal/Shell\nLog into the JupyterHub. If you do not see something like this\n\nThen go to File &gt; New Launcher\nClick on the “Terminal” box to open a new terminal window.\n\nShell or Terminal Basics\nIf you have no experience working in a terminal, check out this self-paced lesson on running scripts from the shell: Shell Lesson from Software Carpentry\nBasic shell commands:\n\npwd where am I\ncd nameofdir move into a directory\ncd .. move up a directory\nls list the files in the current directory\nls -a list the files including hidden files\nls -l list the files with more info\ncat filename print out the contents of a file\nrm filename remove a file\nrm -r directoryname remove a directory\nrm -rf directoryname force remove a directory; careful no recovery\n\nClose the terminal by clicking on the X in the terminal tab.",
+    "objectID": "topics-skills/03-AWS_S3_bucket.html#create-an-aws-account-and-s3-bucket",
+    "href": "topics-skills/03-AWS_S3_bucket.html#create-an-aws-account-and-s3-bucket",
+    "title": "Instructions for setting up an AWS S3 bucket for your project",
+    "section": "Create an AWS account and S3 bucket",
+    "text": "Create an AWS account and S3 bucket\nThe first step is to create an AWS account that will be billed to your particular project. This can be done using these instructions.",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "AWS S3 Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#file-navigation",
-    "href": "topics-skills/02-intro-to-lab.html#file-navigation",
-    "title": "Intro to JupyterLab",
-    "section": "File Navigation",
-    "text": "File Navigation\nIn the far left, you will see a line of icons. The top one is a folder and allows us to move around our file system.\n\nClick on file icon below the blue button with a +. Now you see files in your home directory.\nClick on the folder icon that looks like this. Click on the actual folder image. \nThis shows me doing this\n\nCreate a new folder.\n\nNext to the blue rectange with a +, is a grey folder with a +. Click that to create a new folder, called lesson-scripts.\n\n\nCreate a new file\n\nCreate with File &gt; New &gt; Text file\nThe file will open and you can edit it.\nSave with File &gt; Save Text\n\nDelete a file\n\nDelete a file by right-clicking on it and clicking “Delete”",
+    "objectID": "topics-skills/03-AWS_S3_bucket.html#create-aws-s3-bucket",
+    "href": "topics-skills/03-AWS_S3_bucket.html#create-aws-s3-bucket",
+    "title": "Instructions for setting up an AWS S3 bucket for your project",
+    "section": "Create AWS S3 bucket",
+    "text": "Create AWS S3 bucket\nWithin your new AWS account, create an new S3 bucket:\n\nOpen the AWS S3 console (https://console.aws.amazon.com/s3/)\nFrom the navigation pane, choose Buckets\nChoose Create bucket\nName the bucket and select us-west-2 for the region\nLeave all other default options\nClick Create Bucket",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "AWS S3 Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#create-a-new-jupyter-notebook",
-    "href": "topics-skills/02-intro-to-lab.html#create-a-new-jupyter-notebook",
-    "title": "Intro to JupyterLab",
-    "section": "Create a new Jupyter notebook",
-    "text": "Create a new Jupyter notebook\nFrom Launcher, click on the “Python 3” button, this will open a new Jupyter notebook.",
+    "objectID": "topics-skills/03-AWS_S3_bucket.html#create-a-user",
+    "href": "topics-skills/03-AWS_S3_bucket.html#create-a-user",
+    "title": "Instructions for setting up an AWS S3 bucket for your project",
+    "section": "Create a user",
+    "text": "Create a user\nWithin the same AWS account, create a new IAM user:\n\nOn the AWS Console Home page, select the IAM service\nIn the navigation pane, select Users and then select Add users\nName the user and click Next\nAttach policies directly\nDo not select any policies\nClick Next\nCreate user\n\nOnce the user has been created, find the user’s ARN and copy it.\nNow, create access keys for this user:\n\nSelect Users and click the user that you created\nOpen the Security Credentials tab\nCreate access key\nSelect Command Line Interface (CLI)\nCheck the box to agree to the recommendation and click Next\nLeave the tag blank and click Create access key\nIMPORTANT: Copy the access key and the secret access key. This will be used later.",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "AWS S3 Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#basic-jupyter-notebook-navigation",
-    "href": "topics-skills/02-intro-to-lab.html#basic-jupyter-notebook-navigation",
-    "title": "Intro to JupyterLab",
-    "section": "Basic Jupyter notebook navigation",
-    "text": "Basic Jupyter notebook navigation\nA Jupyter notebook is a series of cells than can be code (default), markdown or raw text.\n\nLook at the top cell, this is a code cell which I could see if I click on the cell and look at the top navbar. Next to “Download”, it says “Code”. I can click that dropdown and change the cell type to markdown or raw.\nTo the left of the “Save” icon in the top navbar is a “+”. This will add a new cell.\nWithin a cell, you will see some icons on the right. Roll over these icons to see what they do.",
+    "objectID": "topics-skills/03-AWS_S3_bucket.html#create-the-bucket-policy",
+    "href": "topics-skills/03-AWS_S3_bucket.html#create-the-bucket-policy",
+    "title": "Instructions for setting up an AWS S3 bucket for your project",
+    "section": "Create the bucket policy",
+    "text": "Create the bucket policy\nConfigure a policy for this S3 bucket that will allow the newly created user to access it.\n\nOpen the AWS S3 console (https://console.aws.amazon.com/s3/)\nFrom the navigation pane, choose Buckets\nSelect the new S3 bucket that you created\nOpen the Permissions tab\nAdd the following bucket policy, replacing USER_ARN with the ARN that you copied above and BUCKET_ARN with the bucket ARN, found on the Edit bucket policy page on the AWS console:\n\n{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Sid\": \"ListBucket\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"USER_ARN\"\n            },\n            \"Action\": \"s3:ListBucket\",\n            \"Resource\": \"BUCKET_ARN\"\n        },\n        {\n            \"Sid\": \"AllObjectActions\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"USER_ARN\"\n            },\n            \"Action\": \"s3:*Object\",\n            \"Resource\": \"BUCKET_ARN/*\"\n        }\n    ]\n}",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "AWS S3 Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#running-code-in-a-cell",
-    "href": "topics-skills/02-intro-to-lab.html#running-code-in-a-cell",
-    "title": "Intro to JupyterLab",
-    "section": "Running code in a cell",
-    "text": "Running code in a cell\nTo run code in a cell, click in the cell and then hit “Shift Return”. You can also click “Run” in the menu or click the little right arrow in the top navbar above the cells.",
+    "objectID": "topics-skills/03-AWS_S3_bucket.html#reading-from-the-s3-bucket",
+    "href": "topics-skills/03-AWS_S3_bucket.html#reading-from-the-s3-bucket",
+    "title": "Instructions for setting up an AWS S3 bucket for your project",
+    "section": "Reading from the S3 bucket",
+    "text": "Reading from the S3 bucket\n\nExample: ls bucket using s3fs\n\nimport s3fs\ns3 = s3fs.S3FileSystem(anon=False, profile='icesat2')\n\n\n\nExample: open HDF5 file using xarray\n\nimport s3fs\nimport xarray as xr\n\nfs_s3 = s3fs.core.S3FileSystem(profile='icesat2')\n\ns3_url = 's3://gris-outlet-glacier-seasonality-icesat2/ssh_grids_v2205_1992101012.nc'\ns3_file_obj = fs_s3.open(s3_url, mode='rb')\nssh_ds = xr.open_dataset(s3_file_obj, engine='h5netcdf')\nprint(ssh_ds)\n\n&lt;xarray.Dataset&gt;\nDimensions:      (Longitude: 2160, nv: 2, Latitude: 960, Time: 1)\nCoordinates:\n  * Longitude    (Longitude) float32 0.08333 0.25 0.4167 ... 359.6 359.8 359.9\n  * Latitude     (Latitude) float32 -79.92 -79.75 -79.58 ... 79.58 79.75 79.92\n  * Time         (Time) datetime64[ns] 1992-10-10T12:00:00\nDimensions without coordinates: nv\nData variables:\n    Lon_bounds   (Longitude, nv) float32 ...\n    Lat_bounds   (Latitude, nv) float32 ...\n    Time_bounds  (Time, nv) datetime64[ns] ...\n    SLA          (Time, Latitude, Longitude) float32 ...\n    SLA_ERR      (Time, Latitude, Longitude) float32 ...\nAttributes: (12/21)\n    Conventions:            CF-1.6\n    ncei_template_version:  NCEI_NetCDF_Grid_Template_v2.0\n    Institution:            Jet Propulsion Laboratory\n    geospatial_lat_min:     -79.916664\n    geospatial_lat_max:     79.916664\n    geospatial_lon_min:     0.083333336\n    ...                     ...\n    version_number:         2205\n    Data_Pnts_Each_Sat:     {\"16\": 661578, \"1001\": 636257}\n    source_version:         commit dc95db885c920084614a41849ce5a7d417198ef3\n    SLA_Global_MEAN:        -0.0015108844021796562\n    SLA_Global_STD:         0.09098986023297456\n    latency:                final\n\n\n\nimport s3fs\n\nimport xarray as xr\n\nimport hvplot.xarray\nimport holoviews as hv\n\nfs_s3 = s3fs.core.S3FileSystem(profile='icesat2')\n\ns3_url = 's3://gris-outlet-glacier-seasonality-icesat2/ssh_grids_v2205_1992101012.nc'\ns3_file_obj = fs_s3.open(s3_url, mode='rb')\nssh_ds = xr.open_dataset(s3_file_obj, engine='h5netcdf')\nssh_da = ssh_ds.SLA\n\nssh_da.hvplot.image(x='Longitude', y='Latitude', cmap='Spectral_r', geo=True, tiles='ESRI', global_extent=True)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\nExample: read a geotiff using rasterio\n\nimport rasterio\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nsession = rasterio.env.Env(profile_name='icesat2')\n\nurl = 's3://gris-outlet-glacier-seasonality-icesat2/out.tif'\n\nwith session:\n    with rasterio.open(url) as ds:\n        print(ds.profile)\n        band1 = ds.read(1)\n        \nband1[band1==-9999] = np.nan\nplt.imshow(band1)\nplt.colorbar()\n\n{'driver': 'GTiff', 'dtype': 'float32', 'nodata': -9999.0, 'width': 556, 'height': 2316, 'count': 1, 'crs': CRS.from_epsg(3413), 'transform': Affine(50.0, 0.0, -204376.0,\n       0.0, -50.0, -2065986.0), 'blockysize': 3, 'tiled': False, 'interleave': 'band'}",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "AWS S3 Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#creating-and-rendering-markdown",
-    "href": "topics-skills/02-intro-to-lab.html#creating-and-rendering-markdown",
-    "title": "Intro to JupyterLab",
-    "section": "Creating and rendering markdown",
-    "text": "Creating and rendering markdown\nCreate an new cell (you can click the “+” in the top navbar) and then change to markdown by clicking the dropdown next to “Download” in the top navbar. Type in some markdown and the run the cell (see above on how to run cells).",
+    "objectID": "topics-skills/03-AWS_S3_bucket.html#writing-to-the-s3-bucket",
+    "href": "topics-skills/03-AWS_S3_bucket.html#writing-to-the-s3-bucket",
+    "title": "Instructions for setting up an AWS S3 bucket for your project",
+    "section": "Writing to the S3 bucket",
+    "text": "Writing to the S3 bucket\n\ns3 = s3fs.core.S3FileSystem(profile='icesat2')\n\nwith s3.open('gris-outlet-glacier-seasonality-icesat2/new-file', 'wb') as f:\n    f.write(2*2**20 * b'a')\n    f.write(2*2**20 * b'a') # data is flushed and file closed\n\ns3.du('gris-outlet-glacier-seasonality-icesat2/new-file')\n\n4194304",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "AWS S3 Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#running-all-cells-in-a-notebook",
-    "href": "topics-skills/02-intro-to-lab.html#running-all-cells-in-a-notebook",
-    "title": "Intro to JupyterLab",
-    "section": "Running all cells in a notebook",
-    "text": "Running all cells in a notebook\nUse the “Run” menu.",
+    "objectID": "topics-skills/02-git.html#what-is-git-and-github",
+    "href": "topics-skills/02-git.html#what-is-git-and-github",
+    "title": "Intro to Version Control, Git and GitHub",
+    "section": "What is Git and GitHub?",
+    "text": "What is Git and GitHub?\nGit A program to track your file changes and create a history of those changes. Creates a ‘container’ for a set of files called a repository.\nGitHub A website to host these repositories and allow you to sync local copies (on your computer) to the website. Lots of functionality built on top of this.",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "Intro to Git"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#install-packages",
-    "href": "topics-skills/02-intro-to-lab.html#install-packages",
-    "title": "Intro to JupyterLab",
-    "section": "Install packages",
-    "text": "Install packages\nUse pip install in a cell. This will not persist between sessions.",
+    "objectID": "topics-skills/02-git.html#some-basic-git-jargon",
+    "href": "topics-skills/02-git.html#some-basic-git-jargon",
+    "title": "Intro to Version Control, Git and GitHub",
+    "section": "Some basic Git jargon",
+    "text": "Some basic Git jargon\n\nRepo Repository. It is your code and the record of your changes. This record and also the status of your repo is a hidden folder called .git . You have a local repo and a remote repo. The remote repo is on GitHub (for in our case) is called origin. The local repo is on the JupyterHub.\nStage Tell Git which changes you want to commit (write to the repo history).\nCommit Write a note about what change the staged files and “commit” that note to the repository record. You are also tagging this state of the repo and you could go back to this state if you wanted.\nPush Push local changes (commits) up to the remote repository on GitHub (origin).\nPull Pull changes on GitHub into the local repository on the JupyterHub.\nGit GUIs A graphical interface for Git (which is command line). Today I will use jupyterlab-git which we have installed on JupyterHub.\nShell A terminal window where we can issue git commands.",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "Intro to Git"
     ]
   },
   {
-    "objectID": "topics-skills/02-intro-to-lab.html#learn-more",
-    "href": "topics-skills/02-intro-to-lab.html#learn-more",
-    "title": "Intro to JupyterLab",
-    "section": "Learn more",
-    "text": "Learn more\nThere are lots of tutorials on JupyterLab out there. Do a search to find content that works for you.",
+    "objectID": "topics-skills/02-git.html#overview",
+    "href": "topics-skills/02-git.html#overview",
+    "title": "Intro to Version Control, Git and GitHub",
+    "section": "Overview",
+    "text": "Overview\nToday I will cover the four basic Git/GitHub skills. The goal for today is to first get you comfortable with the basic skills and terminology. We will use what is called a “trunk-based workflow”.\n\nSimple Trunk-based Workflow:\n\nMake local (on your computer) changes to code.\nRecord what those changes were about and commit to the code change record (history).\nPush those changes to your remote repository (aka origin)\n\nWe’ll do this",
     "crumbs": [
       "JupyterHub",
-      "JupyterLab"
+      "Intro to Git"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-terminal.html#prerequisites",
-    "href": "topics-skills/02-git-terminal.html#prerequisites",
-    "title": "Basic Git/GitHub Skills in the Terminal",
+    "objectID": "topics-skills/02-git.html#the-key-skills",
+    "href": "topics-skills/02-git.html#the-key-skills",
+    "title": "Intro to Version Control, Git and GitHub",
+    "section": "The Key Skills",
+    "text": "The Key Skills\nThese basic skills are all you need to learn to get started:\n\nSkill 1: Create a blank repo on GitHub (the remote or origin)\nSkill 2: Clone your GitHub repo to your local computer (in our case the JupyterHub)\nSkill 3: Make some changes and commit those local changes\nSkill 4: Push the changes to GitHub (the remote or origin)\nSkill 1b: Create a new repo from some else’s GitHub repository\n\nIn the next tutorials, you will practice these in RStudio or JuptyerHub.",
+    "crumbs": [
+      "JupyterHub",
+      "Intro to Git"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-git-rstudio.html#prerequisites",
+    "href": "topics-skills/02-git-rstudio.html#prerequisites",
+    "title": "Basic Git/GitHub Skills in RStudio",
     "section": "Prerequisites",
     "text": "Prerequisites\n\nRead Intro to Git\nHave a GitHub account\nGit Authentication",
     "crumbs": [
       "JupyterHub",
-      "Git in the terminal"
+      "Git in RStudio"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-terminal.html#create-a-github-account",
-    "href": "topics-skills/02-git-terminal.html#create-a-github-account",
-    "title": "Basic Git/GitHub Skills in the Terminal",
+    "objectID": "topics-skills/02-git-rstudio.html#create-a-github-account",
+    "href": "topics-skills/02-git-rstudio.html#create-a-github-account",
+    "title": "Basic Git/GitHub Skills in RStudio",
     "section": "Create a GitHub account",
     "text": "Create a GitHub account\nFor access to the NMFS Openscapes JupyterHub, you will need at GitHub account. See the main HackHour page on how to request access (NOAA staff). For NMFS staff, you can look at the NMFS OpenSci GitHub Guide information for how to create your user account and you will find lots of information on the NMFS GitHub Governance Team Training Page (visible only to NOAA staff).",
     "crumbs": [
       "JupyterHub",
-      "Git in the terminal"
+      "Git in RStudio"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-terminal.html#setting-up-git-authentication",
-    "href": "topics-skills/02-git-terminal.html#setting-up-git-authentication",
-    "title": "Basic Git/GitHub Skills in the Terminal",
+    "objectID": "topics-skills/02-git-rstudio.html#setting-up-git-authentication",
+    "href": "topics-skills/02-git-rstudio.html#setting-up-git-authentication",
+    "title": "Basic Git/GitHub Skills in RStudio",
     "section": "Setting up Git Authentication",
     "text": "Setting up Git Authentication\nBefore we can work with Git in the JupyterHub, your need to do some set up. Do the steps here: Git Authentication",
     "crumbs": [
       "JupyterHub",
-      "Git in the terminal"
+      "Git in RStudio"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-terminal.html#git-in-the-terminal",
-    "href": "topics-skills/02-git-terminal.html#git-in-the-terminal",
-    "title": "Basic Git/GitHub Skills in the Terminal",
-    "section": "Git in the terminal",
-    "text": "Git in the terminal\nYou will need to open a terminal in JupyterLab or RStudio.",
+    "objectID": "topics-skills/02-git-rstudio.html#git-tab-in-rstudio",
+    "href": "topics-skills/02-git-rstudio.html#git-tab-in-rstudio",
+    "title": "Basic Git/GitHub Skills in RStudio",
+    "section": "Git tab in RStudio",
+    "text": "Git tab in RStudio\nWhen the instructions say to use or open or click the Git tab, look here:",
     "crumbs": [
       "JupyterHub",
-      "Git in the terminal"
+      "Git in RStudio"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-terminal.html#the-key-skills",
-    "href": "topics-skills/02-git-terminal.html#the-key-skills",
-    "title": "Basic Git/GitHub Skills in the Terminal",
+    "objectID": "topics-skills/02-git-rstudio.html#the-key-skills",
+    "href": "topics-skills/02-git-rstudio.html#the-key-skills",
+    "title": "Basic Git/GitHub Skills in RStudio",
     "section": "The Key Skills",
-    "text": "The Key Skills\n\nSkill 1: Create a blank repo on GitHub\nSkill 2: Clone your GitHub repo\nSkill 3: Make some changes and commit those local changes\nSkill 4: Push the changes to GitHub\nSkill 1b: Copy someone else’s GitHub repository",
+    "text": "The Key Skills\n\nSkill 1: Create a blank repo on GitHub\nSkill 2: Clone your GitHub repo to RStudio\nSkill 3: Make some changes and commit those local changes\nSkill 4: Push the changes to GitHub\nSkill 1b: Copy someone else’s GitHub repository",
     "crumbs": [
       "JupyterHub",
-      "Git in the terminal"
+      "Git in RStudio"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-terminal.html#lets-see-it-done",
-    "href": "topics-skills/02-git-terminal.html#lets-see-it-done",
-    "title": "Basic Git/GitHub Skills in the Terminal",
+    "objectID": "topics-skills/02-git-rstudio.html#lets-see-it-done",
+    "href": "topics-skills/02-git-rstudio.html#lets-see-it-done",
+    "title": "Basic Git/GitHub Skills in RStudio",
     "section": "Let’s see it done!",
-    "text": "Let’s see it done!\n\nSkill 1: Create a blank repo on GitHub\nThis skill is done on GitHub.com.\n\nClick the + in the upper left from YOUR GitHub page.\nGive your repo the name Test and make sure it is public.\nClick new and check checkbox to add the Readme file and .gitignore\nCopy the URL of your new repo. It’s in the browser where you normally see a URL.\n\n\n\nSkill 2: Clone your repo\nThese skills are done in a terminal from JupyterLab or RStudio.\n\nCopy the URL of your repo. https://www.github.com/yourname/Test\nOpen a terminal.\nMake sure you are at the home directory level. Type this: cd ~\nClone the repo with this command. Replace yourname with your username. git clone https://www.github.com/yourname/Test\n\n\n\nSkill 3: Make some changes and commit your changes\nDo step 1 in your editor, JupyterLab or RStudio.\n\nMake some changes to the README.md file in the Test repo.\nGo to the terminal and make sure you are in your Test repo. cd ~/Test\nSee what has changed. You should see that README.md has changed. git status\nStage the change to the README.md git add README.md\nCommit the change. `git commit -m “small change”\n\n\n\nSkill 4: Push changes to GitHub / Pull changes from GitHub\nTo push changes you committed in Skill #3\n\nFrom the terminal, type git push\n\nTo pull changes on GitHub that are not on your local computer:\n\nMake some changes directly on GitHub.com and commit\nFrom the terminal, type git pull\n\n\n\nActivity 1\nDo steps 1 to 3 in your editor, JupyterLab or RStudio, and steps 4 and 5 in the terminal on the JupyterHub.\n\nMake a copy of README.md\nRename it to .md\nAdd some text.\nStage and commit the added file.\nPush to GitHub.\n\nShow me\n\n\nActivity 2\nDo steps 1-3 on GitHub and step 4 from the terminal on the JupyterHub.\n\nGo to your Test repo on GitHub. https://www.github.com/yourname/Test\nCreate a file called test.md.\nStage and then commit that new file.\nPull in that new file.\n\n\n\nActivity 3\nYou can copy your own or other people’s repos1.\n\nIn a browser, go to the GitHub repository https://github.com/RWorkflow-Workshops/Week5\nCopy its URL.\nNavigate to your GitHub page: click your icon in the upper right and then ‘your repositories’\nClick the + in top right and click import repository. Paste in the URL and give your repo a name.\nUse Skill #1 to clone your new repo to the JupyterHub.",
+    "text": "Let’s see it done!\n\nSkill 1: Create a blank repo on GitHub\n\nClick the + in the upper left from YOUR GitHub page.\nGive your repo the name Test and make sure it is public.\nClick new and check checkbox to add the Readme file and .gitignore\nCopy the URL of your new repo. It’s in the browser where you normally see a URL.\n\nShow me\n\n\nSkill 2: Clone your repo to the RStudio\nIn RStudio we do this by making a new project.\n\nCopy the URL of your repo. https://www.github.com/yourname/Test\nFile &gt; New Project &gt; Version Control &gt; Git\nPaste in the URL of your repo from Step 1\nCheck that it is being created in your Home directory which will be denoted ~ in the JupyterHub.\nClick Create.\n\nShow me\n\n\nSkill 3: Make some changes and commit your changes\nThis writes a note about what changes you have made. It also marks a ‘point’ in time that you can go back to if you need to.\n\nMake some changes to the README.md file in the Test repo.\nClick the Git tab, and stage the change(s) by checking the checkboxes next to the files listed.\nClick the Commit button.\nAdd a commit comment, click commit.\n\nShow me\n\n\nSkill 4: Push changes to GitHub / Pull changes from GitHub\nTo push changes you committed in Skill #3\n\nFrom Git tab, click on the Green up arrow that says Push.\n\nTo pull changes on GitHub that are not on your local computer:\n\nMake some changes directly on GitHub (not in RStudio)\nFrom Git tab, click on the down arrow that says Pull.\n\nShow me\n\n\nActivity 1\nIn RStudio,\n\nMake a copy of README.md\nRename it to .md\nAdd some text.\nStage and commit the added file.\nPush to GitHub.\n\nShow me in RStudio\n\n\nActivity 2\n\nGo to your Test repo on GitHub. https://www.github.com/yourname/Test\nCreate a file called test.md.\nStage and then commit that new file.\nGo to RStudio and pull in that new file.\n\n\n\nActivity 3\nYou can copy your own or other people’s repos1.\n\nIn a browser, go to the GitHub repository https://github.com/RWorkflow-Workshops/Week5\nCopy its URL.\nNavigate to your GitHub page: click your icon in the upper right and then ‘your repositories’\nClick the + in top right and click import repository. Paste in the URL and give your repo a name.\nUse Skill #1 to clone your new repo to RStudio and create a new project",
     "crumbs": [
       "JupyterHub",
-      "Git in the terminal"
+      "Git in RStudio"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-terminal.html#clean-up-after-you-are-done",
-    "href": "topics-skills/02-git-terminal.html#clean-up-after-you-are-done",
-    "title": "Basic Git/GitHub Skills in the Terminal",
+    "objectID": "topics-skills/02-git-rstudio.html#clean-up-after-you-are-done",
+    "href": "topics-skills/02-git-rstudio.html#clean-up-after-you-are-done",
+    "title": "Basic Git/GitHub Skills in RStudio",
     "section": "Clean up after you are done",
     "text": "Clean up after you are done\n\nOpen a Terminal\nType\ncd ~\nrm -rf Test\nrm -rf Week5",
     "crumbs": [
       "JupyterHub",
-      "Git in the terminal"
+      "Git in RStudio"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-terminal.html#footnotes",
-    "href": "topics-skills/02-git-terminal.html#footnotes",
-    "title": "Basic Git/GitHub Skills in the Terminal",
+    "objectID": "topics-skills/02-git-rstudio.html#footnotes",
+    "href": "topics-skills/02-git-rstudio.html#footnotes",
+    "title": "Basic Git/GitHub Skills in RStudio",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nThis is different from forking. There is no connection to the original repository.↩︎",
     "crumbs": [
       "JupyterHub",
-      "Git in the terminal"
+      "Git in RStudio"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-jupyter.html#prerequisites",
-    "href": "topics-skills/02-git-jupyter.html#prerequisites",
-    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
-    "section": "Prerequisites",
-    "text": "Prerequisites\n\nRead Intro to Git\nHave a GitHub account\nGit Authentication",
-    "crumbs": [
-      "JupyterHub",
-      "Git in JupyterLab"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-jupyter.html#create-a-github-account",
-    "href": "topics-skills/02-git-jupyter.html#create-a-github-account",
-    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
-    "section": "Create a GitHub account",
-    "text": "Create a GitHub account\nFor access to the NMFS Openscapes JupyterHub, you will need at GitHub account. See the main HackHour page on how to request access (NOAA staff). For NMFS staff, you can look at the NMFS OpenSci GitHub Guide information for how to create your user account and you will find lots of information on the NMFS GitHub Governance Team Training Page (visible only to NOAA staff).",
-    "crumbs": [
-      "JupyterHub",
-      "Git in JupyterLab"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-jupyter.html#setting-up-git-authentication",
-    "href": "topics-skills/02-git-jupyter.html#setting-up-git-authentication",
-    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
-    "section": "Setting up Git Authentication",
-    "text": "Setting up Git Authentication\nBefore we can work with Git in the JupyterHub, your need to authenticate. Do the steps here: Git Authentication",
-    "crumbs": [
-      "JupyterHub",
-      "Git in JupyterLab"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-jupyter.html#git-extension-in-jupyterlab",
-    "href": "topics-skills/02-git-jupyter.html#git-extension-in-jupyterlab",
-    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
-    "section": "Git extension in JupyterLab",
-    "text": "Git extension in JupyterLab\nWhen the instructions say to use or open or click the Git GUI, look here:",
-    "crumbs": [
-      "JupyterHub",
-      "Git in JupyterLab"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-jupyter.html#the-key-skills",
-    "href": "topics-skills/02-git-jupyter.html#the-key-skills",
-    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
-    "section": "The Key Skills",
-    "text": "The Key Skills\n\nSkill 1: Create a blank repo on GitHub\nSkill 2: Clone your GitHub repo\nSkill 3: Make some changes and commit those local changes\nSkill 4: Push the changes to GitHub\nSkill 1b: Copy someone else’s GitHub repository",
-    "crumbs": [
-      "JupyterHub",
-      "Git in JupyterLab"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-jupyter.html#lets-see-it-done",
-    "href": "topics-skills/02-git-jupyter.html#lets-see-it-done",
-    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
-    "section": "Let’s see it done!",
-    "text": "Let’s see it done!\n\nSkill 1: Create a blank repo on GitHub\n\nClick the + in the upper left from YOUR GitHub account (https://www.github.com/yourusername).\nGive your repo the name Test and make sure it is public.\nClick new and check checkbox to add the Readme file and .gitignore\nCopy the URL of your new repo. It’s in the browser where you normally see a URL.\n\n\n\nSkill 2: Clone your repo\nFirst make sure you are at the home directory level. Look at the folder icon under the blue launcher button. It should show, folder icon only like in this image. If not, then click on the folder icon.\n\n\nCopy the URL of your repo. https://www.github.com/yourname/Test\nClick on the git icon and then click “Clone a Repository” \nPaste in the URL of your repo from Step 1\nClick Clone. You can stay with the defaults for the checkboxes.\n\nShow me\n\n\nSkill 3: Make some changes and commit your changes\nThis writes a note about what changes you have made. It also marks a ‘point’ in time that you can go back to if you need to.\n\nClick on the README.md file in the Test repo.\nMake some changes to the file.\nClick the Git icon (in left navbar), and stage the change(s) by checking the “+” next to the files listed.\nAdd a commit message in the box.\nClick the Commit button at bottom.\n\nShow me\n\n\nSkill 4: Push changes to GitHub / Pull changes from GitHub\nTo push changes you committed in Skill #3\n\nFrom Git icon, look for the little cloud at the top. It is rather small. Click that to push changes.\n\nTo pull changes on GitHub that are not on your local computer:\n\nMake some changes directly on GitHub (not in JupyterLab)\nFrom Git icon, click on the little cloud with a down arrow.\n\n\n\nActivity 1\n\nMake a copy of README.md\nRename it to .md\nAdd some text.\nStage and commit the added file.\nPush to GitHub.\n\nShow me\n\n\nActivity 2\n\nIn the Test repo, create a file called to &lt;yourname&gt;.md.\nStage and then commit that new file.\nPush to GitHub.\nMake some more changes and push to GitHub.\n\n\n\nActivity 3\nYou can copy your own or other people’s repos1.\n\nIn a browser, go to the GitHub repository https://github.com/RWorkflow-Workshops/Week5\nCopy its URL.\nNavigate to your GitHub page: click your icon in the upper right and then ‘your repositories’\nClick the + in top right and click import repository. Paste in the URL and give your repo a name.\nUse Skill #1 to clone your new repo to JupyterLab",
-    "crumbs": [
-      "JupyterHub",
-      "Git in JupyterLab"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-jupyter.html#clean-up-after-you-are-done",
-    "href": "topics-skills/02-git-jupyter.html#clean-up-after-you-are-done",
-    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
-    "section": "Clean up after you are done",
-    "text": "Clean up after you are done\n\nOpen a Terminal\nType\ncd ~\nrm -rf Test\nrm -rf Week5",
-    "crumbs": [
-      "JupyterHub",
-      "Git in JupyterLab"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-jupyter.html#footnotes",
-    "href": "topics-skills/02-git-jupyter.html#footnotes",
-    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis is different from forking. There is no connection to the original repository.↩︎",
-    "crumbs": [
-      "JupyterHub",
-      "Git in JupyterLab"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-clinic.html",
-    "href": "topics-skills/02-git-clinic.html",
-    "title": "Git Clinic",
+    "objectID": "topics-skills/02-git-jupyter-old.html",
+    "href": "topics-skills/02-git-jupyter-old.html",
+    "title": "Git in JupyterLab",
     "section": "",
     "text": "In this tutorial, we will provide a brief introduction to version control with Git."
   },
   {
-    "objectID": "topics-skills/02-git-clinic.html#step-3",
-    "href": "topics-skills/02-git-clinic.html#step-3",
-    "title": "Git Clinic",
+    "objectID": "topics-skills/02-git-jupyter-old.html#step-3",
+    "href": "topics-skills/02-git-jupyter-old.html#step-3",
+    "title": "Git in JupyterLab",
     "section": "Step 3:",
     "text": "Step 3:\nConfigure git with your name and email address.\n``` bash\ngit config --global user.name \"Makhan Virdi\"\ngit config --global user.email \"Makhan.Virdi@gmail.com\"\n```\n\n**Note:** This name and email could be different from your github.com credentials. Remember `git` is a program that keeps track of your changes locally (on 2i2c JupyterHub or your own computer) and github.com is a platform to host your repositories. However, since your changes are tracked by `git`, the email/name used in git configuration will show up next to your contributions on github.com when you `push` your repository to github.com (`git push` is discussed in a later step).\n\nConfigure git to store your github credentials to avoid having to enter your github username and token each time you push changes to your repository(in Step 5, we will describe how to use github token instead of a password)\ngit config --global credential.helper store\nCopy link for the demo repository from your github account. Click the green “Code” button and copy the link as shown.\n\nClone the repository using git clone command in the terminal\nTo clone a repository from github, copy the link for the repository (previous step) and use git clone:\ngit clone https://github.com/YOUR-GITHUB-USERNAME/check_github_setup\nNote: Replace YOUR-GITHUB-USERNAME here with your github.com username. For example, it is virdi for my github.com account as seen in this image.\n\nUse ls (list files) to verify the existence of the repository that you just cloned\n\nChange directory to the cloned repository using cd check_github_setup and check the current directory using pwd command (present working directory)\n\nCheck status of your git repository to confirm git set up using git status\n\nYou are all set with using git on your 2i2c JupyterHub! But the collaborative power of git through github needs some additional setup.\nIn the next step, we will create a new file in this repository, track changes to this file, and link it with your github.com account.\n\n\nStep 4. Creating new file and tracking changes\n\nIn the left panel on your 2i2c JupyterHub, click on the “directory” icon and then double click on “check_github_setup” directory.\n\n\nOnce you are in the check_github_setup directory, create a new file using the text editor in your 2i2c JupyterHub (File &gt;&gt; New &gt;&gt; Text File).\n\nName the file lastname.txt. For example, virdi.txt for me (use your last name). Add some content to this file (for example, I added this to my virdi.txt file: my last name is virdi).\n\nNow you should have a new file (lastname.txt) in the git repository directory check_github_setup\nCheck if git can see that you have added a new file using git status. Git reports that you have a new file that is not tracked by git yet, and suggests adding that file to the git tracking system.\n\nAs seen in this image, git suggests adding that file so it can be tracked for changes. You can add file to git for tracking changes using git add. Then, you can commit changes to this file’s content using git commit as shown in the image.\ngit add virdi.txt\ngit status\ngit commit -m \"adding a new file\"\ngit status\n\nAs seen in the image above, git is suggesting to push the change that you just committed to the remote server at github.com (so that your collaborators can also see what changes you made).\nNote: DO NOT execute push yet. Before we push to github.com, let’s configure git further and store our github.com credentials to avoid entering the credentials every time we invoke git push. For doing so, we need to create a token on github.com to be used in place of your github.com password.\n\n\n\nStep 5. Create access token on github.com\n\nGo to your github account and create a new “personal access token”: https://github.com/settings/tokens/new\n\n\n\nGenerate Personal Access Token on github.com\n\n\nEnter a description in “Note” field as seen above, select “repo” checkbox, and scroll to the bottom and click the green button “Generate Token”. Once generated, copy the token (or save it in a text file for reference).\nIMPORTANT: You will see this token only once, so be sure to copy this. If you do not copy your token at this stage, you will need to generate a new token.\n\nTo push (transfer) your changes to github, use git push in terminal. It requires you to enter your github credentials. You will be prompted to enter your github username and “password”. When prompted for your “password”, DO NOT use your github password, use the github token that was copied in the previous step.\ngit push\n\nNote: When you paste your token in the terminal window, windows users will press Ctrl+V and mac os users will press Cmd+V. If it does not work, try generating another token and use the copy icon next to the token to copy the token. Then, paste using your computer’s keyboard shortcut for paste.\nNow your password is stored in ~/.git-credentials and you will not be prompted again unless the Github token expires. You can check the presence of this git-credentials file using Terminal. Here the ~ character represents your home directory (/home/jovyan/).\nls -la ~\nThe output looks like this:\ndrwxr-xr-x 13 jovyan jovyan 6144 Oct 22 17:35 .\ndrwxr-xr-x  1 root   root   4096 Oct  4 16:21 ..\n-rw-------  1 jovyan jovyan 1754 Oct 29 18:30 .bash_history\ndrwxr-xr-x  4 jovyan jovyan 6144 Oct 29 16:38 .config\n-rw-------  1 jovyan jovyan   66 Oct 22 17:35 .git-credentials\n-rw-r--r--  1 jovyan jovyan   84 Oct 22 17:14 .gitconfig\ndrwxr-xr-x 10 jovyan jovyan 6144 Oct 21 16:19 2021-Cloud-Hackathon\nYou can also verify your git configuration\n(notebook) jovyan@jupyter-virdi:~$ git config -l\nThe output should have credential.helper = store:\nuser.email        = Makhan.Virdi@gmail.com\nuser.name         = Makhan Virdi\ncredential.helper = store\n\nNow we are all set to collaborate with github on the JupyterHub during the Cloud Hackathon!\n\n\nSummary: Git Commands\n\nCommonly used git commands (modified from source)\n\n\nGit Command\nDescription\n\n\n\n\ngit status\nShows the current state of the repository: the current working branch, files in the staging area, etc.\n\n\ngit add\nAdds a new, previously untracked file to version control and marks already tracked files to be committed with the next commit\n\n\ngit commit\nSaves the current state of the repository and creates an entry in the log\n\n\ngit log\nShows the history for the repository\n\n\ngit diff\nShows content differences between commits, branches, individual files and more\n\n\ngit clone\nCopies a repository to your local environment, including all the history\n\n\ngit pull\nGets the latest changes of a previously cloned repository\n\n\ngit push\nPushes your local changes to the remote repository, sharing them with others\n\n\n\n\n\nGit: More Details\nLesson: For a more detailed self-paced lesson on git, visit Git Lesson from Software Carpentry\nCheatsheet: Frequently used git commands\nDangit, Git!?!: If you are stuck after a git mishap, there are ready-made solutions to common problems at Dangit, Git!?!\n\n\nCloning our repository using the git JupyterLab extension.\nIf we’re already familiar with git commands and feel more confortable using a GUI our Jupyterhub deployment comes with a git extension. This plugin allows us to operate with git using a simple user interface.\nFor example we can clone our repository using the extension.\n\n\n\ngit extension"
   },
   {
-    "objectID": "topics-2025/index.html",
-    "href": "topics-2025/index.html",
-    "title": "HackHours 2025",
-    "section": "",
-    "text": "During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need to install anything. About the HackHours\nWhen: Fridays 11am Pacific/2pm Eastern. How do I get access? Click here for Video Link and JupyterHub Access (NOAA only)",
+    "objectID": "topics-skills/02-git-authentication.html#tell-git-who-you-are",
+    "href": "topics-skills/02-git-authentication.html#tell-git-who-you-are",
+    "title": "GitHub Authentication",
+    "section": "Tell Git who you are",
+    "text": "Tell Git who you are\nFirst open a terminal and run these lines. Replace &lt;your email&gt; with your email and remove the angle brackets.\ngit config --global user.email \"&lt;your email&gt;\"\ngit config --global user.name \"&lt;your name&gt;\"\ngit config --global pull.rebase false",
     "crumbs": [
-      "HackHours 2025"
+      "JupyterHub",
+      "Git Authentication"
     ]
   },
   {
-    "objectID": "topics-2025/index.html#schedule",
-    "href": "topics-2025/index.html#schedule",
-    "title": "HackHours 2025",
-    "section": "Schedule",
-    "text": "Schedule\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (NOAA CoastWatch team) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (NOAA CoastWatch team) \nMar 14 - Working with data on OPeNDAP servers in Python & R  \nMar 21 - Parallel processing NODD model data with Coiled (Rich Signell, Open Science Consulting) \nMar 28 - Machine-Learning with Ocean Data: gap-filling with CNNs \nApr 4 - Machine-Learning with Ocean Data: TBD \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization in Python (earthaccess) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization in R \nMay 19 - EDMW 3-hour Workshop working with PACE hyperspectral data",
+    "objectID": "topics-skills/02-git-authentication.html#authentication",
+    "href": "topics-skills/02-git-authentication.html#authentication",
+    "title": "GitHub Authentication",
+    "section": "Authentication",
+    "text": "Authentication\nYou need to authenticate to GitHub so you can push your local changes up to GitHub. There are a few ways to do this. For the JupyterHub, we will mainly use gh-scroped-creds which is a secure app that temporarily stores your GitHub credentials on a JupyterHub. But we will also show you a way to store your credentials in a file that works on any computer, including a virtual computer like the JupyterHub.",
     "crumbs": [
-      "HackHours 2025"
+      "JupyterHub",
+      "Git Authentication"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-git-authentication.html#preferred-gh-scoped-creds",
+    "href": "topics-skills/02-git-authentication.html#preferred-gh-scoped-creds",
+    "title": "GitHub Authentication",
+    "section": "Preferred: gh-scoped-creds",
+    "text": "Preferred: gh-scoped-creds\nIf you get the error that it cannot find gh-scoped-creds, then type\npip install gh-scoped-creds\nin a termnal.\n\nOpen a terminal\nType gh-scoped-creds\nFollow the instructions\nFIRST TIME: Make sure to follow the second pop-up instructions and tell it what repos it is allowed to interact with. You have to go through a number of pop up windows.\n\nJump down to the “Test” section to test.",
+    "crumbs": [
+      "JupyterHub",
+      "Git Authentication"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-git-authentication.html#also-works-set-up-authentication-with-a-personal-token",
+    "href": "topics-skills/02-git-authentication.html#also-works-set-up-authentication-with-a-personal-token",
+    "title": "GitHub Authentication",
+    "section": "Also works: Set up authentication with a Personal Token",
+    "text": "Also works: Set up authentication with a Personal Token\nThis will store your credentials in a file on the hub. This is not as secure since the file is unencrypted but sometimes gh-scoped-creds will not be an option.\n\nStep 1: Generate a Personal Access Token\nWe are going to generate a classic token.\n\nGo to https://github.com/settings/tokens\nClick Generate new token &gt; Generate new token (classic)\nWhen the pop-up shows up, fill in a description, click the “repo” checkbox, and then scroll to bottom to click “Generate”.\nSAVE the token. You need it for the next step.\n\n\n\nStep 2: Tell Git who your are\n\nOpen a terminal in JupyterLab or RStudio\nPaste these 3 lines of code into the terminal\n\ngit config --global credential.helper store",
+    "crumbs": [
+      "JupyterHub",
+      "Git Authentication"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-git-authentication.html#test",
+    "href": "topics-skills/02-git-authentication.html#test",
+    "title": "GitHub Authentication",
+    "section": "Test",
+    "text": "Test\n\nGo to https://github.com/new\nCreate a PRIVATE repo called “test”\nMake sure to check the “Add a README file” box!\nOpen a terminal and type these lines. Make sure to replace &lt;username&gt;\n\ngit clone https://github.com/&lt;username&gt;/test\n\nIf you properly authenticated, git will ask for your username and password. At the password, paste in the TOKEN not your actual password.",
+    "crumbs": [
+      "JupyterHub",
+      "Git Authentication"
     ]
   },
   {
@@ -1074,325 +1010,424 @@
     ]
   },
   {
-    "objectID": "topics-skills/02-git-authentication.html#tell-git-who-you-are",
-    "href": "topics-skills/02-git-authentication.html#tell-git-who-you-are",
-    "title": "GitHub Authentication",
-    "section": "Tell Git who you are",
-    "text": "Tell Git who you are\nFirst open a terminal and run these lines. Replace &lt;your email&gt; with your email and remove the angle brackets.\ngit config --global user.email \"&lt;your email&gt;\"\ngit config --global user.name \"&lt;your name&gt;\"\ngit config --global pull.rebase false",
+    "objectID": "topics-2025/index.html",
+    "href": "topics-2025/index.html",
+    "title": "HackHours 2025",
+    "section": "",
+    "text": "During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need to install anything. About the HackHours\nWhen: Fridays 11am Pacific/2pm Eastern. How do I get access? Click here for Video Link and JupyterHub Access (NOAA only)",
     "crumbs": [
       "JupyterHub",
-      "Git Authentication"
+      "HackHours 2025"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-authentication.html#authentication",
-    "href": "topics-skills/02-git-authentication.html#authentication",
-    "title": "GitHub Authentication",
-    "section": "Authentication",
-    "text": "Authentication\nYou need to authenticate to GitHub so you can push your local changes up to GitHub. There are a few ways to do this. For the JupyterHub, we will mainly use gh-scroped-creds which is a secure app that temporarily stores your GitHub credentials on a JupyterHub. But we will also show you a way to store your credentials in a file that works on any computer, including a virtual computer like the JupyterHub.",
+    "objectID": "topics-2025/index.html#schedule",
+    "href": "topics-2025/index.html#schedule",
+    "title": "HackHours 2025",
+    "section": "Schedule",
+    "text": "Schedule\n\nFeb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours\nFeb 14 - Accessing NASA Earth Observation data in Python (Eli Holmes) \nFeb 21 - Accessing NASA Earth Observation data in R (Eli Holmes) \nFeb 28 - Working with ERDDAP data in Python: CoastWatch tutorials (NOAA CoastWatch team) \nMar 7 - Working with ERDDAP data in R: CoastWatch tutorials (NOAA CoastWatch team) \nMar 14 - Working with data on OPeNDAP servers in Python & R  \nMar 21 - Parallel processing NODD model data with Coiled (Rich Signell, Open Science Consulting) \nMar 28 - Machine-Learning with Ocean Data: gap-filling with CNNs \nApr 4 - Machine-Learning with Ocean Data: TBD \nApr 11 - Accessing CEFI data on OPeNDAP, AWS and Google (Chia-Wei Hsu, NOAA PSL) \nApr 25 - Working with acoustic data in Python: echopype (Wu-Jung Lee, UW APL) \nMay 2 - Coiled demo – parallel processing for big data pipelines (Coiled team)\nMay 9 - PACE Hyperspectral Ocean Color Data Access and Visualization in Python (earthaccess) \nMay 16 - PACE Hyperspectral Ocean Color Data Access and Visualization in R \nMay 19 - EDMW 3-hour Workshop working with PACE hyperspectral data",
     "crumbs": [
       "JupyterHub",
-      "Git Authentication"
+      "HackHours 2025"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-authentication.html#preferred-gh-scoped-creds",
-    "href": "topics-skills/02-git-authentication.html#preferred-gh-scoped-creds",
-    "title": "GitHub Authentication",
-    "section": "Preferred: gh-scoped-creds",
-    "text": "Preferred: gh-scoped-creds\nIf you get the error that it cannot find gh-scoped-creds, then type\npip install gh-scoped-creds\nin a termnal.\n\nOpen a terminal\nType gh-scoped-creds\nFollow the instructions\nFIRST TIME: Make sure to follow the second pop-up instructions and tell it what repos it is allowed to interact with. You have to go through a number of pop up windows.\n\nJump down to the “Test” section to test.",
-    "crumbs": [
-      "JupyterHub",
-      "Git Authentication"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-authentication.html#also-works-set-up-authentication-with-a-personal-token",
-    "href": "topics-skills/02-git-authentication.html#also-works-set-up-authentication-with-a-personal-token",
-    "title": "GitHub Authentication",
-    "section": "Also works: Set up authentication with a Personal Token",
-    "text": "Also works: Set up authentication with a Personal Token\nThis will store your credentials in a file on the hub. This is not as secure since the file is unencrypted but sometimes gh-scoped-creds will not be an option.\n\nStep 1: Generate a Personal Access Token\nWe are going to generate a classic token.\n\nGo to https://github.com/settings/tokens\nClick Generate new token &gt; Generate new token (classic)\nWhen the pop-up shows up, fill in a description, click the “repo” checkbox, and then scroll to bottom to click “Generate”.\nSAVE the token. You need it for the next step.\n\n\n\nStep 2: Tell Git who your are\n\nOpen a terminal in JupyterLab or RStudio\nPaste these 3 lines of code into the terminal\n\ngit config --global credential.helper store",
-    "crumbs": [
-      "JupyterHub",
-      "Git Authentication"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-authentication.html#test",
-    "href": "topics-skills/02-git-authentication.html#test",
-    "title": "GitHub Authentication",
-    "section": "Test",
-    "text": "Test\n\nGo to https://github.com/new\nCreate a PRIVATE repo called “test”\nMake sure to check the “Add a README file” box!\nOpen a terminal and type these lines. Make sure to replace &lt;username&gt;\n\ngit clone https://github.com/&lt;username&gt;/test\n\nIf you properly authenticated, git will ask for your username and password. At the password, paste in the TOKEN not your actual password.",
-    "crumbs": [
-      "JupyterHub",
-      "Git Authentication"
-    ]
-  },
-  {
-    "objectID": "topics-skills/02-git-jupyter-old.html",
-    "href": "topics-skills/02-git-jupyter-old.html",
-    "title": "Git in JupyterLab",
+    "objectID": "topics-skills/02-git-clinic.html",
+    "href": "topics-skills/02-git-clinic.html",
+    "title": "Git Clinic",
     "section": "",
     "text": "In this tutorial, we will provide a brief introduction to version control with Git."
   },
   {
-    "objectID": "topics-skills/02-git-jupyter-old.html#step-3",
-    "href": "topics-skills/02-git-jupyter-old.html#step-3",
-    "title": "Git in JupyterLab",
+    "objectID": "topics-skills/02-git-clinic.html#step-3",
+    "href": "topics-skills/02-git-clinic.html#step-3",
+    "title": "Git Clinic",
     "section": "Step 3:",
     "text": "Step 3:\nConfigure git with your name and email address.\n``` bash\ngit config --global user.name \"Makhan Virdi\"\ngit config --global user.email \"Makhan.Virdi@gmail.com\"\n```\n\n**Note:** This name and email could be different from your github.com credentials. Remember `git` is a program that keeps track of your changes locally (on 2i2c JupyterHub or your own computer) and github.com is a platform to host your repositories. However, since your changes are tracked by `git`, the email/name used in git configuration will show up next to your contributions on github.com when you `push` your repository to github.com (`git push` is discussed in a later step).\n\nConfigure git to store your github credentials to avoid having to enter your github username and token each time you push changes to your repository(in Step 5, we will describe how to use github token instead of a password)\ngit config --global credential.helper store\nCopy link for the demo repository from your github account. Click the green “Code” button and copy the link as shown.\n\nClone the repository using git clone command in the terminal\nTo clone a repository from github, copy the link for the repository (previous step) and use git clone:\ngit clone https://github.com/YOUR-GITHUB-USERNAME/check_github_setup\nNote: Replace YOUR-GITHUB-USERNAME here with your github.com username. For example, it is virdi for my github.com account as seen in this image.\n\nUse ls (list files) to verify the existence of the repository that you just cloned\n\nChange directory to the cloned repository using cd check_github_setup and check the current directory using pwd command (present working directory)\n\nCheck status of your git repository to confirm git set up using git status\n\nYou are all set with using git on your 2i2c JupyterHub! But the collaborative power of git through github needs some additional setup.\nIn the next step, we will create a new file in this repository, track changes to this file, and link it with your github.com account.\n\n\nStep 4. Creating new file and tracking changes\n\nIn the left panel on your 2i2c JupyterHub, click on the “directory” icon and then double click on “check_github_setup” directory.\n\n\nOnce you are in the check_github_setup directory, create a new file using the text editor in your 2i2c JupyterHub (File &gt;&gt; New &gt;&gt; Text File).\n\nName the file lastname.txt. For example, virdi.txt for me (use your last name). Add some content to this file (for example, I added this to my virdi.txt file: my last name is virdi).\n\nNow you should have a new file (lastname.txt) in the git repository directory check_github_setup\nCheck if git can see that you have added a new file using git status. Git reports that you have a new file that is not tracked by git yet, and suggests adding that file to the git tracking system.\n\nAs seen in this image, git suggests adding that file so it can be tracked for changes. You can add file to git for tracking changes using git add. Then, you can commit changes to this file’s content using git commit as shown in the image.\ngit add virdi.txt\ngit status\ngit commit -m \"adding a new file\"\ngit status\n\nAs seen in the image above, git is suggesting to push the change that you just committed to the remote server at github.com (so that your collaborators can also see what changes you made).\nNote: DO NOT execute push yet. Before we push to github.com, let’s configure git further and store our github.com credentials to avoid entering the credentials every time we invoke git push. For doing so, we need to create a token on github.com to be used in place of your github.com password.\n\n\n\nStep 5. Create access token on github.com\n\nGo to your github account and create a new “personal access token”: https://github.com/settings/tokens/new\n\n\n\nGenerate Personal Access Token on github.com\n\n\nEnter a description in “Note” field as seen above, select “repo” checkbox, and scroll to the bottom and click the green button “Generate Token”. Once generated, copy the token (or save it in a text file for reference).\nIMPORTANT: You will see this token only once, so be sure to copy this. If you do not copy your token at this stage, you will need to generate a new token.\n\nTo push (transfer) your changes to github, use git push in terminal. It requires you to enter your github credentials. You will be prompted to enter your github username and “password”. When prompted for your “password”, DO NOT use your github password, use the github token that was copied in the previous step.\ngit push\n\nNote: When you paste your token in the terminal window, windows users will press Ctrl+V and mac os users will press Cmd+V. If it does not work, try generating another token and use the copy icon next to the token to copy the token. Then, paste using your computer’s keyboard shortcut for paste.\nNow your password is stored in ~/.git-credentials and you will not be prompted again unless the Github token expires. You can check the presence of this git-credentials file using Terminal. Here the ~ character represents your home directory (/home/jovyan/).\nls -la ~\nThe output looks like this:\ndrwxr-xr-x 13 jovyan jovyan 6144 Oct 22 17:35 .\ndrwxr-xr-x  1 root   root   4096 Oct  4 16:21 ..\n-rw-------  1 jovyan jovyan 1754 Oct 29 18:30 .bash_history\ndrwxr-xr-x  4 jovyan jovyan 6144 Oct 29 16:38 .config\n-rw-------  1 jovyan jovyan   66 Oct 22 17:35 .git-credentials\n-rw-r--r--  1 jovyan jovyan   84 Oct 22 17:14 .gitconfig\ndrwxr-xr-x 10 jovyan jovyan 6144 Oct 21 16:19 2021-Cloud-Hackathon\nYou can also verify your git configuration\n(notebook) jovyan@jupyter-virdi:~$ git config -l\nThe output should have credential.helper = store:\nuser.email        = Makhan.Virdi@gmail.com\nuser.name         = Makhan Virdi\ncredential.helper = store\n\nNow we are all set to collaborate with github on the JupyterHub during the Cloud Hackathon!\n\n\nSummary: Git Commands\n\nCommonly used git commands (modified from source)\n\n\nGit Command\nDescription\n\n\n\n\ngit status\nShows the current state of the repository: the current working branch, files in the staging area, etc.\n\n\ngit add\nAdds a new, previously untracked file to version control and marks already tracked files to be committed with the next commit\n\n\ngit commit\nSaves the current state of the repository and creates an entry in the log\n\n\ngit log\nShows the history for the repository\n\n\ngit diff\nShows content differences between commits, branches, individual files and more\n\n\ngit clone\nCopies a repository to your local environment, including all the history\n\n\ngit pull\nGets the latest changes of a previously cloned repository\n\n\ngit push\nPushes your local changes to the remote repository, sharing them with others\n\n\n\n\n\nGit: More Details\nLesson: For a more detailed self-paced lesson on git, visit Git Lesson from Software Carpentry\nCheatsheet: Frequently used git commands\nDangit, Git!?!: If you are stuck after a git mishap, there are ready-made solutions to common problems at Dangit, Git!?!\n\n\nCloning our repository using the git JupyterLab extension.\nIf we’re already familiar with git commands and feel more confortable using a GUI our Jupyterhub deployment comes with a git extension. This plugin allows us to operate with git using a simple user interface.\nFor example we can clone our repository using the extension.\n\n\n\ngit extension"
   },
   {
-    "objectID": "topics-skills/02-git-rstudio.html#prerequisites",
-    "href": "topics-skills/02-git-rstudio.html#prerequisites",
-    "title": "Basic Git/GitHub Skills in RStudio",
+    "objectID": "topics-skills/02-git-jupyter.html#prerequisites",
+    "href": "topics-skills/02-git-jupyter.html#prerequisites",
+    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
     "section": "Prerequisites",
     "text": "Prerequisites\n\nRead Intro to Git\nHave a GitHub account\nGit Authentication",
     "crumbs": [
       "JupyterHub",
-      "Git in RStudio"
+      "Git in JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-rstudio.html#create-a-github-account",
-    "href": "topics-skills/02-git-rstudio.html#create-a-github-account",
-    "title": "Basic Git/GitHub Skills in RStudio",
+    "objectID": "topics-skills/02-git-jupyter.html#create-a-github-account",
+    "href": "topics-skills/02-git-jupyter.html#create-a-github-account",
+    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
     "section": "Create a GitHub account",
     "text": "Create a GitHub account\nFor access to the NMFS Openscapes JupyterHub, you will need at GitHub account. See the main HackHour page on how to request access (NOAA staff). For NMFS staff, you can look at the NMFS OpenSci GitHub Guide information for how to create your user account and you will find lots of information on the NMFS GitHub Governance Team Training Page (visible only to NOAA staff).",
     "crumbs": [
       "JupyterHub",
-      "Git in RStudio"
+      "Git in JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-rstudio.html#setting-up-git-authentication",
-    "href": "topics-skills/02-git-rstudio.html#setting-up-git-authentication",
-    "title": "Basic Git/GitHub Skills in RStudio",
+    "objectID": "topics-skills/02-git-jupyter.html#setting-up-git-authentication",
+    "href": "topics-skills/02-git-jupyter.html#setting-up-git-authentication",
+    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
     "section": "Setting up Git Authentication",
-    "text": "Setting up Git Authentication\nBefore we can work with Git in the JupyterHub, your need to do some set up. Do the steps here: Git Authentication",
+    "text": "Setting up Git Authentication\nBefore we can work with Git in the JupyterHub, your need to authenticate. Do the steps here: Git Authentication",
     "crumbs": [
       "JupyterHub",
-      "Git in RStudio"
+      "Git in JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-rstudio.html#git-tab-in-rstudio",
-    "href": "topics-skills/02-git-rstudio.html#git-tab-in-rstudio",
-    "title": "Basic Git/GitHub Skills in RStudio",
-    "section": "Git tab in RStudio",
-    "text": "Git tab in RStudio\nWhen the instructions say to use or open or click the Git tab, look here:",
+    "objectID": "topics-skills/02-git-jupyter.html#git-extension-in-jupyterlab",
+    "href": "topics-skills/02-git-jupyter.html#git-extension-in-jupyterlab",
+    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
+    "section": "Git extension in JupyterLab",
+    "text": "Git extension in JupyterLab\nWhen the instructions say to use or open or click the Git GUI, look here:",
     "crumbs": [
       "JupyterHub",
-      "Git in RStudio"
+      "Git in JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-rstudio.html#the-key-skills",
-    "href": "topics-skills/02-git-rstudio.html#the-key-skills",
-    "title": "Basic Git/GitHub Skills in RStudio",
+    "objectID": "topics-skills/02-git-jupyter.html#the-key-skills",
+    "href": "topics-skills/02-git-jupyter.html#the-key-skills",
+    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
     "section": "The Key Skills",
-    "text": "The Key Skills\n\nSkill 1: Create a blank repo on GitHub\nSkill 2: Clone your GitHub repo to RStudio\nSkill 3: Make some changes and commit those local changes\nSkill 4: Push the changes to GitHub\nSkill 1b: Copy someone else’s GitHub repository",
+    "text": "The Key Skills\n\nSkill 1: Create a blank repo on GitHub\nSkill 2: Clone your GitHub repo\nSkill 3: Make some changes and commit those local changes\nSkill 4: Push the changes to GitHub\nSkill 1b: Copy someone else’s GitHub repository",
     "crumbs": [
       "JupyterHub",
-      "Git in RStudio"
+      "Git in JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-rstudio.html#lets-see-it-done",
-    "href": "topics-skills/02-git-rstudio.html#lets-see-it-done",
-    "title": "Basic Git/GitHub Skills in RStudio",
+    "objectID": "topics-skills/02-git-jupyter.html#lets-see-it-done",
+    "href": "topics-skills/02-git-jupyter.html#lets-see-it-done",
+    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
     "section": "Let’s see it done!",
-    "text": "Let’s see it done!\n\nSkill 1: Create a blank repo on GitHub\n\nClick the + in the upper left from YOUR GitHub page.\nGive your repo the name Test and make sure it is public.\nClick new and check checkbox to add the Readme file and .gitignore\nCopy the URL of your new repo. It’s in the browser where you normally see a URL.\n\nShow me\n\n\nSkill 2: Clone your repo to the RStudio\nIn RStudio we do this by making a new project.\n\nCopy the URL of your repo. https://www.github.com/yourname/Test\nFile &gt; New Project &gt; Version Control &gt; Git\nPaste in the URL of your repo from Step 1\nCheck that it is being created in your Home directory which will be denoted ~ in the JupyterHub.\nClick Create.\n\nShow me\n\n\nSkill 3: Make some changes and commit your changes\nThis writes a note about what changes you have made. It also marks a ‘point’ in time that you can go back to if you need to.\n\nMake some changes to the README.md file in the Test repo.\nClick the Git tab, and stage the change(s) by checking the checkboxes next to the files listed.\nClick the Commit button.\nAdd a commit comment, click commit.\n\nShow me\n\n\nSkill 4: Push changes to GitHub / Pull changes from GitHub\nTo push changes you committed in Skill #3\n\nFrom Git tab, click on the Green up arrow that says Push.\n\nTo pull changes on GitHub that are not on your local computer:\n\nMake some changes directly on GitHub (not in RStudio)\nFrom Git tab, click on the down arrow that says Pull.\n\nShow me\n\n\nActivity 1\nIn RStudio,\n\nMake a copy of README.md\nRename it to .md\nAdd some text.\nStage and commit the added file.\nPush to GitHub.\n\nShow me in RStudio\n\n\nActivity 2\n\nGo to your Test repo on GitHub. https://www.github.com/yourname/Test\nCreate a file called test.md.\nStage and then commit that new file.\nGo to RStudio and pull in that new file.\n\n\n\nActivity 3\nYou can copy your own or other people’s repos1.\n\nIn a browser, go to the GitHub repository https://github.com/RWorkflow-Workshops/Week5\nCopy its URL.\nNavigate to your GitHub page: click your icon in the upper right and then ‘your repositories’\nClick the + in top right and click import repository. Paste in the URL and give your repo a name.\nUse Skill #1 to clone your new repo to RStudio and create a new project",
+    "text": "Let’s see it done!\n\nSkill 1: Create a blank repo on GitHub\n\nClick the + in the upper left from YOUR GitHub account (https://www.github.com/yourusername).\nGive your repo the name Test and make sure it is public.\nClick new and check checkbox to add the Readme file and .gitignore\nCopy the URL of your new repo. It’s in the browser where you normally see a URL.\n\n\n\nSkill 2: Clone your repo\nFirst make sure you are at the home directory level. Look at the folder icon under the blue launcher button. It should show, folder icon only like in this image. If not, then click on the folder icon.\n\n\nCopy the URL of your repo. https://www.github.com/yourname/Test\nClick on the git icon and then click “Clone a Repository” \nPaste in the URL of your repo from Step 1\nClick Clone. You can stay with the defaults for the checkboxes.\n\nShow me\n\n\nSkill 3: Make some changes and commit your changes\nThis writes a note about what changes you have made. It also marks a ‘point’ in time that you can go back to if you need to.\n\nClick on the README.md file in the Test repo.\nMake some changes to the file.\nClick the Git icon (in left navbar), and stage the change(s) by checking the “+” next to the files listed.\nAdd a commit message in the box.\nClick the Commit button at bottom.\n\nShow me\n\n\nSkill 4: Push changes to GitHub / Pull changes from GitHub\nTo push changes you committed in Skill #3\n\nFrom Git icon, look for the little cloud at the top. It is rather small. Click that to push changes.\n\nTo pull changes on GitHub that are not on your local computer:\n\nMake some changes directly on GitHub (not in JupyterLab)\nFrom Git icon, click on the little cloud with a down arrow.\n\n\n\nActivity 1\n\nMake a copy of README.md\nRename it to .md\nAdd some text.\nStage and commit the added file.\nPush to GitHub.\n\nShow me\n\n\nActivity 2\n\nIn the Test repo, create a file called to &lt;yourname&gt;.md.\nStage and then commit that new file.\nPush to GitHub.\nMake some more changes and push to GitHub.\n\n\n\nActivity 3\nYou can copy your own or other people’s repos1.\n\nIn a browser, go to the GitHub repository https://github.com/RWorkflow-Workshops/Week5\nCopy its URL.\nNavigate to your GitHub page: click your icon in the upper right and then ‘your repositories’\nClick the + in top right and click import repository. Paste in the URL and give your repo a name.\nUse Skill #1 to clone your new repo to JupyterLab",
     "crumbs": [
       "JupyterHub",
-      "Git in RStudio"
+      "Git in JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-rstudio.html#clean-up-after-you-are-done",
-    "href": "topics-skills/02-git-rstudio.html#clean-up-after-you-are-done",
-    "title": "Basic Git/GitHub Skills in RStudio",
+    "objectID": "topics-skills/02-git-jupyter.html#clean-up-after-you-are-done",
+    "href": "topics-skills/02-git-jupyter.html#clean-up-after-you-are-done",
+    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
     "section": "Clean up after you are done",
     "text": "Clean up after you are done\n\nOpen a Terminal\nType\ncd ~\nrm -rf Test\nrm -rf Week5",
     "crumbs": [
       "JupyterHub",
-      "Git in RStudio"
+      "Git in JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/02-git-rstudio.html#footnotes",
-    "href": "topics-skills/02-git-rstudio.html#footnotes",
-    "title": "Basic Git/GitHub Skills in RStudio",
+    "objectID": "topics-skills/02-git-jupyter.html#footnotes",
+    "href": "topics-skills/02-git-jupyter.html#footnotes",
+    "title": "Basic Git/GitHub Skills in JupyterLab git GUI",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nThis is different from forking. There is no connection to the original repository.↩︎",
     "crumbs": [
       "JupyterHub",
-      "Git in RStudio"
+      "Git in JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/02-git.html#what-is-git-and-github",
-    "href": "topics-skills/02-git.html#what-is-git-and-github",
-    "title": "Intro to Version Control, Git and GitHub",
-    "section": "What is Git and GitHub?",
-    "text": "What is Git and GitHub?\nGit A program to track your file changes and create a history of those changes. Creates a ‘container’ for a set of files called a repository.\nGitHub A website to host these repositories and allow you to sync local copies (on your computer) to the website. Lots of functionality built on top of this.",
+    "objectID": "topics-skills/02-git-terminal.html#prerequisites",
+    "href": "topics-skills/02-git-terminal.html#prerequisites",
+    "title": "Basic Git/GitHub Skills in the Terminal",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nRead Intro to Git\nHave a GitHub account\nGit Authentication",
     "crumbs": [
       "JupyterHub",
-      "Intro to Git"
+      "Git in the terminal"
     ]
   },
   {
-    "objectID": "topics-skills/02-git.html#some-basic-git-jargon",
-    "href": "topics-skills/02-git.html#some-basic-git-jargon",
-    "title": "Intro to Version Control, Git and GitHub",
-    "section": "Some basic Git jargon",
-    "text": "Some basic Git jargon\n\nRepo Repository. It is your code and the record of your changes. This record and also the status of your repo is a hidden folder called .git . You have a local repo and a remote repo. The remote repo is on GitHub (for in our case) is called origin. The local repo is on the JupyterHub.\nStage Tell Git which changes you want to commit (write to the repo history).\nCommit Write a note about what change the staged files and “commit” that note to the repository record. You are also tagging this state of the repo and you could go back to this state if you wanted.\nPush Push local changes (commits) up to the remote repository on GitHub (origin).\nPull Pull changes on GitHub into the local repository on the JupyterHub.\nGit GUIs A graphical interface for Git (which is command line). Today I will use jupyterlab-git which we have installed on JupyterHub.\nShell A terminal window where we can issue git commands.",
+    "objectID": "topics-skills/02-git-terminal.html#create-a-github-account",
+    "href": "topics-skills/02-git-terminal.html#create-a-github-account",
+    "title": "Basic Git/GitHub Skills in the Terminal",
+    "section": "Create a GitHub account",
+    "text": "Create a GitHub account\nFor access to the NMFS Openscapes JupyterHub, you will need at GitHub account. See the main HackHour page on how to request access (NOAA staff). For NMFS staff, you can look at the NMFS OpenSci GitHub Guide information for how to create your user account and you will find lots of information on the NMFS GitHub Governance Team Training Page (visible only to NOAA staff).",
     "crumbs": [
       "JupyterHub",
-      "Intro to Git"
+      "Git in the terminal"
     ]
   },
   {
-    "objectID": "topics-skills/02-git.html#overview",
-    "href": "topics-skills/02-git.html#overview",
-    "title": "Intro to Version Control, Git and GitHub",
-    "section": "Overview",
-    "text": "Overview\nToday I will cover the four basic Git/GitHub skills. The goal for today is to first get you comfortable with the basic skills and terminology. We will use what is called a “trunk-based workflow”.\n\nSimple Trunk-based Workflow:\n\nMake local (on your computer) changes to code.\nRecord what those changes were about and commit to the code change record (history).\nPush those changes to your remote repository (aka origin)\n\nWe’ll do this",
+    "objectID": "topics-skills/02-git-terminal.html#setting-up-git-authentication",
+    "href": "topics-skills/02-git-terminal.html#setting-up-git-authentication",
+    "title": "Basic Git/GitHub Skills in the Terminal",
+    "section": "Setting up Git Authentication",
+    "text": "Setting up Git Authentication\nBefore we can work with Git in the JupyterHub, your need to do some set up. Do the steps here: Git Authentication",
     "crumbs": [
       "JupyterHub",
-      "Intro to Git"
+      "Git in the terminal"
     ]
   },
   {
-    "objectID": "topics-skills/02-git.html#the-key-skills",
-    "href": "topics-skills/02-git.html#the-key-skills",
-    "title": "Intro to Version Control, Git and GitHub",
+    "objectID": "topics-skills/02-git-terminal.html#git-in-the-terminal",
+    "href": "topics-skills/02-git-terminal.html#git-in-the-terminal",
+    "title": "Basic Git/GitHub Skills in the Terminal",
+    "section": "Git in the terminal",
+    "text": "Git in the terminal\nYou will need to open a terminal in JupyterLab or RStudio.",
+    "crumbs": [
+      "JupyterHub",
+      "Git in the terminal"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-git-terminal.html#the-key-skills",
+    "href": "topics-skills/02-git-terminal.html#the-key-skills",
+    "title": "Basic Git/GitHub Skills in the Terminal",
     "section": "The Key Skills",
-    "text": "The Key Skills\nThese basic skills are all you need to learn to get started:\n\nSkill 1: Create a blank repo on GitHub (the remote or origin)\nSkill 2: Clone your GitHub repo to your local computer (in our case the JupyterHub)\nSkill 3: Make some changes and commit those local changes\nSkill 4: Push the changes to GitHub (the remote or origin)\nSkill 1b: Create a new repo from some else’s GitHub repository\n\nIn the next tutorials, you will practice these in RStudio or JuptyerHub.",
+    "text": "The Key Skills\n\nSkill 1: Create a blank repo on GitHub\nSkill 2: Clone your GitHub repo\nSkill 3: Make some changes and commit those local changes\nSkill 4: Push the changes to GitHub\nSkill 1b: Copy someone else’s GitHub repository",
     "crumbs": [
       "JupyterHub",
-      "Intro to Git"
+      "Git in the terminal"
     ]
   },
   {
-    "objectID": "topics-skills/03-AWS_S3_bucket.html",
-    "href": "topics-skills/03-AWS_S3_bucket.html",
-    "title": "Instructions for setting up an AWS S3 bucket for your project",
+    "objectID": "topics-skills/02-git-terminal.html#lets-see-it-done",
+    "href": "topics-skills/02-git-terminal.html#lets-see-it-done",
+    "title": "Basic Git/GitHub Skills in the Terminal",
+    "section": "Let’s see it done!",
+    "text": "Let’s see it done!\n\nSkill 1: Create a blank repo on GitHub\nThis skill is done on GitHub.com.\n\nClick the + in the upper left from YOUR GitHub page.\nGive your repo the name Test and make sure it is public.\nClick new and check checkbox to add the Readme file and .gitignore\nCopy the URL of your new repo. It’s in the browser where you normally see a URL.\n\n\n\nSkill 2: Clone your repo\nThese skills are done in a terminal from JupyterLab or RStudio.\n\nCopy the URL of your repo. https://www.github.com/yourname/Test\nOpen a terminal.\nMake sure you are at the home directory level. Type this: cd ~\nClone the repo with this command. Replace yourname with your username. git clone https://www.github.com/yourname/Test\n\n\n\nSkill 3: Make some changes and commit your changes\nDo step 1 in your editor, JupyterLab or RStudio.\n\nMake some changes to the README.md file in the Test repo.\nGo to the terminal and make sure you are in your Test repo. cd ~/Test\nSee what has changed. You should see that README.md has changed. git status\nStage the change to the README.md git add README.md\nCommit the change. `git commit -m “small change”\n\n\n\nSkill 4: Push changes to GitHub / Pull changes from GitHub\nTo push changes you committed in Skill #3\n\nFrom the terminal, type git push\n\nTo pull changes on GitHub that are not on your local computer:\n\nMake some changes directly on GitHub.com and commit\nFrom the terminal, type git pull\n\n\n\nActivity 1\nDo steps 1 to 3 in your editor, JupyterLab or RStudio, and steps 4 and 5 in the terminal on the JupyterHub.\n\nMake a copy of README.md\nRename it to .md\nAdd some text.\nStage and commit the added file.\nPush to GitHub.\n\nShow me\n\n\nActivity 2\nDo steps 1-3 on GitHub and step 4 from the terminal on the JupyterHub.\n\nGo to your Test repo on GitHub. https://www.github.com/yourname/Test\nCreate a file called test.md.\nStage and then commit that new file.\nPull in that new file.\n\n\n\nActivity 3\nYou can copy your own or other people’s repos1.\n\nIn a browser, go to the GitHub repository https://github.com/RWorkflow-Workshops/Week5\nCopy its URL.\nNavigate to your GitHub page: click your icon in the upper right and then ‘your repositories’\nClick the + in top right and click import repository. Paste in the URL and give your repo a name.\nUse Skill #1 to clone your new repo to the JupyterHub.",
+    "crumbs": [
+      "JupyterHub",
+      "Git in the terminal"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-git-terminal.html#clean-up-after-you-are-done",
+    "href": "topics-skills/02-git-terminal.html#clean-up-after-you-are-done",
+    "title": "Basic Git/GitHub Skills in the Terminal",
+    "section": "Clean up after you are done",
+    "text": "Clean up after you are done\n\nOpen a Terminal\nType\ncd ~\nrm -rf Test\nrm -rf Week5",
+    "crumbs": [
+      "JupyterHub",
+      "Git in the terminal"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-git-terminal.html#footnotes",
+    "href": "topics-skills/02-git-terminal.html#footnotes",
+    "title": "Basic Git/GitHub Skills in the Terminal",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThis is different from forking. There is no connection to the original repository.↩︎",
+    "crumbs": [
+      "JupyterHub",
+      "Git in the terminal"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-intro-to-lab.html",
+    "href": "topics-skills/02-intro-to-lab.html",
+    "title": "Intro to JupyterLab",
     "section": "",
-    "text": "This set of instructions will walk through how to setup an AWS S3 bucket for a specific project and how to configure that bucket to allow all members of the project team to have access.\nThis notebook is from the CryoCloud documentation. THE CODE WILL NOT WORK SINCE YOU NEED TO AUTHENTICATE TO THE S3 BUCKET.",
+    "text": "When you start the JupyterHub, you will be in JupyterLab.",
     "crumbs": [
       "JupyterHub",
-      "AWS S3 Bucket"
+      "JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/03-AWS_S3_bucket.html#create-an-aws-account-and-s3-bucket",
-    "href": "topics-skills/03-AWS_S3_bucket.html#create-an-aws-account-and-s3-bucket",
-    "title": "Instructions for setting up an AWS S3 bucket for your project",
-    "section": "Create an AWS account and S3 bucket",
-    "text": "Create an AWS account and S3 bucket\nThe first step is to create an AWS account that will be billed to your particular project. This can be done using these instructions.",
+    "objectID": "topics-skills/02-intro-to-lab.html#terminalshell",
+    "href": "topics-skills/02-intro-to-lab.html#terminalshell",
+    "title": "Intro to JupyterLab",
+    "section": "Terminal/Shell",
+    "text": "Terminal/Shell\nLog into the JupyterHub. If you do not see something like this\n\nThen go to File &gt; New Launcher\nClick on the “Terminal” box to open a new terminal window.\n\nShell or Terminal Basics\nIf you have no experience working in a terminal, check out this self-paced lesson on running scripts from the shell: Shell Lesson from Software Carpentry\nBasic shell commands:\n\npwd where am I\ncd nameofdir move into a directory\ncd .. move up a directory\nls list the files in the current directory\nls -a list the files including hidden files\nls -l list the files with more info\ncat filename print out the contents of a file\nrm filename remove a file\nrm -r directoryname remove a directory\nrm -rf directoryname force remove a directory; careful no recovery\n\nClose the terminal by clicking on the X in the terminal tab.",
     "crumbs": [
       "JupyterHub",
-      "AWS S3 Bucket"
+      "JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/03-AWS_S3_bucket.html#create-aws-s3-bucket",
-    "href": "topics-skills/03-AWS_S3_bucket.html#create-aws-s3-bucket",
-    "title": "Instructions for setting up an AWS S3 bucket for your project",
-    "section": "Create AWS S3 bucket",
-    "text": "Create AWS S3 bucket\nWithin your new AWS account, create an new S3 bucket:\n\nOpen the AWS S3 console (https://console.aws.amazon.com/s3/)\nFrom the navigation pane, choose Buckets\nChoose Create bucket\nName the bucket and select us-west-2 for the region\nLeave all other default options\nClick Create Bucket",
+    "objectID": "topics-skills/02-intro-to-lab.html#file-navigation",
+    "href": "topics-skills/02-intro-to-lab.html#file-navigation",
+    "title": "Intro to JupyterLab",
+    "section": "File Navigation",
+    "text": "File Navigation\nIn the far left, you will see a line of icons. The top one is a folder and allows us to move around our file system.\n\nClick on file icon below the blue button with a +. Now you see files in your home directory.\nClick on the folder icon that looks like this. Click on the actual folder image. \nThis shows me doing this\n\nCreate a new folder.\n\nNext to the blue rectange with a +, is a grey folder with a +. Click that to create a new folder, called lesson-scripts.\n\n\nCreate a new file\n\nCreate with File &gt; New &gt; Text file\nThe file will open and you can edit it.\nSave with File &gt; Save Text\n\nDelete a file\n\nDelete a file by right-clicking on it and clicking “Delete”",
     "crumbs": [
       "JupyterHub",
-      "AWS S3 Bucket"
+      "JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/03-AWS_S3_bucket.html#create-a-user",
-    "href": "topics-skills/03-AWS_S3_bucket.html#create-a-user",
-    "title": "Instructions for setting up an AWS S3 bucket for your project",
-    "section": "Create a user",
-    "text": "Create a user\nWithin the same AWS account, create a new IAM user:\n\nOn the AWS Console Home page, select the IAM service\nIn the navigation pane, select Users and then select Add users\nName the user and click Next\nAttach policies directly\nDo not select any policies\nClick Next\nCreate user\n\nOnce the user has been created, find the user’s ARN and copy it.\nNow, create access keys for this user:\n\nSelect Users and click the user that you created\nOpen the Security Credentials tab\nCreate access key\nSelect Command Line Interface (CLI)\nCheck the box to agree to the recommendation and click Next\nLeave the tag blank and click Create access key\nIMPORTANT: Copy the access key and the secret access key. This will be used later.",
+    "objectID": "topics-skills/02-intro-to-lab.html#create-a-new-jupyter-notebook",
+    "href": "topics-skills/02-intro-to-lab.html#create-a-new-jupyter-notebook",
+    "title": "Intro to JupyterLab",
+    "section": "Create a new Jupyter notebook",
+    "text": "Create a new Jupyter notebook\nFrom Launcher, click on the “Python 3” button, this will open a new Jupyter notebook.",
     "crumbs": [
       "JupyterHub",
-      "AWS S3 Bucket"
+      "JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/03-AWS_S3_bucket.html#create-the-bucket-policy",
-    "href": "topics-skills/03-AWS_S3_bucket.html#create-the-bucket-policy",
-    "title": "Instructions for setting up an AWS S3 bucket for your project",
-    "section": "Create the bucket policy",
-    "text": "Create the bucket policy\nConfigure a policy for this S3 bucket that will allow the newly created user to access it.\n\nOpen the AWS S3 console (https://console.aws.amazon.com/s3/)\nFrom the navigation pane, choose Buckets\nSelect the new S3 bucket that you created\nOpen the Permissions tab\nAdd the following bucket policy, replacing USER_ARN with the ARN that you copied above and BUCKET_ARN with the bucket ARN, found on the Edit bucket policy page on the AWS console:\n\n{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Sid\": \"ListBucket\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"USER_ARN\"\n            },\n            \"Action\": \"s3:ListBucket\",\n            \"Resource\": \"BUCKET_ARN\"\n        },\n        {\n            \"Sid\": \"AllObjectActions\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"USER_ARN\"\n            },\n            \"Action\": \"s3:*Object\",\n            \"Resource\": \"BUCKET_ARN/*\"\n        }\n    ]\n}",
+    "objectID": "topics-skills/02-intro-to-lab.html#basic-jupyter-notebook-navigation",
+    "href": "topics-skills/02-intro-to-lab.html#basic-jupyter-notebook-navigation",
+    "title": "Intro to JupyterLab",
+    "section": "Basic Jupyter notebook navigation",
+    "text": "Basic Jupyter notebook navigation\nA Jupyter notebook is a series of cells than can be code (default), markdown or raw text.\n\nLook at the top cell, this is a code cell which I could see if I click on the cell and look at the top navbar. Next to “Download”, it says “Code”. I can click that dropdown and change the cell type to markdown or raw.\nTo the left of the “Save” icon in the top navbar is a “+”. This will add a new cell.\nWithin a cell, you will see some icons on the right. Roll over these icons to see what they do.",
     "crumbs": [
       "JupyterHub",
-      "AWS S3 Bucket"
+      "JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/03-AWS_S3_bucket.html#reading-from-the-s3-bucket",
-    "href": "topics-skills/03-AWS_S3_bucket.html#reading-from-the-s3-bucket",
-    "title": "Instructions for setting up an AWS S3 bucket for your project",
-    "section": "Reading from the S3 bucket",
-    "text": "Reading from the S3 bucket\n\nExample: ls bucket using s3fs\n\nimport s3fs\ns3 = s3fs.S3FileSystem(anon=False, profile='icesat2')\n\n\n\nExample: open HDF5 file using xarray\n\nimport s3fs\nimport xarray as xr\n\nfs_s3 = s3fs.core.S3FileSystem(profile='icesat2')\n\ns3_url = 's3://gris-outlet-glacier-seasonality-icesat2/ssh_grids_v2205_1992101012.nc'\ns3_file_obj = fs_s3.open(s3_url, mode='rb')\nssh_ds = xr.open_dataset(s3_file_obj, engine='h5netcdf')\nprint(ssh_ds)\n\n&lt;xarray.Dataset&gt;\nDimensions:      (Longitude: 2160, nv: 2, Latitude: 960, Time: 1)\nCoordinates:\n  * Longitude    (Longitude) float32 0.08333 0.25 0.4167 ... 359.6 359.8 359.9\n  * Latitude     (Latitude) float32 -79.92 -79.75 -79.58 ... 79.58 79.75 79.92\n  * Time         (Time) datetime64[ns] 1992-10-10T12:00:00\nDimensions without coordinates: nv\nData variables:\n    Lon_bounds   (Longitude, nv) float32 ...\n    Lat_bounds   (Latitude, nv) float32 ...\n    Time_bounds  (Time, nv) datetime64[ns] ...\n    SLA          (Time, Latitude, Longitude) float32 ...\n    SLA_ERR      (Time, Latitude, Longitude) float32 ...\nAttributes: (12/21)\n    Conventions:            CF-1.6\n    ncei_template_version:  NCEI_NetCDF_Grid_Template_v2.0\n    Institution:            Jet Propulsion Laboratory\n    geospatial_lat_min:     -79.916664\n    geospatial_lat_max:     79.916664\n    geospatial_lon_min:     0.083333336\n    ...                     ...\n    version_number:         2205\n    Data_Pnts_Each_Sat:     {\"16\": 661578, \"1001\": 636257}\n    source_version:         commit dc95db885c920084614a41849ce5a7d417198ef3\n    SLA_Global_MEAN:        -0.0015108844021796562\n    SLA_Global_STD:         0.09098986023297456\n    latency:                final\n\n\n\nimport s3fs\n\nimport xarray as xr\n\nimport hvplot.xarray\nimport holoviews as hv\n\nfs_s3 = s3fs.core.S3FileSystem(profile='icesat2')\n\ns3_url = 's3://gris-outlet-glacier-seasonality-icesat2/ssh_grids_v2205_1992101012.nc'\ns3_file_obj = fs_s3.open(s3_url, mode='rb')\nssh_ds = xr.open_dataset(s3_file_obj, engine='h5netcdf')\nssh_da = ssh_ds.SLA\n\nssh_da.hvplot.image(x='Longitude', y='Latitude', cmap='Spectral_r', geo=True, tiles='ESRI', global_extent=True)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\nExample: read a geotiff using rasterio\n\nimport rasterio\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nsession = rasterio.env.Env(profile_name='icesat2')\n\nurl = 's3://gris-outlet-glacier-seasonality-icesat2/out.tif'\n\nwith session:\n    with rasterio.open(url) as ds:\n        print(ds.profile)\n        band1 = ds.read(1)\n        \nband1[band1==-9999] = np.nan\nplt.imshow(band1)\nplt.colorbar()\n\n{'driver': 'GTiff', 'dtype': 'float32', 'nodata': -9999.0, 'width': 556, 'height': 2316, 'count': 1, 'crs': CRS.from_epsg(3413), 'transform': Affine(50.0, 0.0, -204376.0,\n       0.0, -50.0, -2065986.0), 'blockysize': 3, 'tiled': False, 'interleave': 'band'}",
+    "objectID": "topics-skills/02-intro-to-lab.html#running-code-in-a-cell",
+    "href": "topics-skills/02-intro-to-lab.html#running-code-in-a-cell",
+    "title": "Intro to JupyterLab",
+    "section": "Running code in a cell",
+    "text": "Running code in a cell\nTo run code in a cell, click in the cell and then hit “Shift Return”. You can also click “Run” in the menu or click the little right arrow in the top navbar above the cells.",
     "crumbs": [
       "JupyterHub",
-      "AWS S3 Bucket"
+      "JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/03-AWS_S3_bucket.html#writing-to-the-s3-bucket",
-    "href": "topics-skills/03-AWS_S3_bucket.html#writing-to-the-s3-bucket",
-    "title": "Instructions for setting up an AWS S3 bucket for your project",
-    "section": "Writing to the S3 bucket",
-    "text": "Writing to the S3 bucket\n\ns3 = s3fs.core.S3FileSystem(profile='icesat2')\n\nwith s3.open('gris-outlet-glacier-seasonality-icesat2/new-file', 'wb') as f:\n    f.write(2*2**20 * b'a')\n    f.write(2*2**20 * b'a') # data is flushed and file closed\n\ns3.du('gris-outlet-glacier-seasonality-icesat2/new-file')\n\n4194304",
+    "objectID": "topics-skills/02-intro-to-lab.html#creating-and-rendering-markdown",
+    "href": "topics-skills/02-intro-to-lab.html#creating-and-rendering-markdown",
+    "title": "Intro to JupyterLab",
+    "section": "Creating and rendering markdown",
+    "text": "Creating and rendering markdown\nCreate an new cell (you can click the “+” in the top navbar) and then change to markdown by clicking the dropdown next to “Download” in the top navbar. Type in some markdown and the run the cell (see above on how to run cells).",
     "crumbs": [
       "JupyterHub",
-      "AWS S3 Bucket"
+      "JupyterLab"
     ]
   },
   {
-    "objectID": "topics-skills/03-earthdata.html",
-    "href": "topics-skills/03-earthdata.html",
-    "title": "Earthdata Login",
+    "objectID": "topics-skills/02-intro-to-lab.html#running-all-cells-in-a-notebook",
+    "href": "topics-skills/02-intro-to-lab.html#running-all-cells-in-a-notebook",
+    "title": "Intro to JupyterLab",
+    "section": "Running all cells in a notebook",
+    "text": "Running all cells in a notebook\nUse the “Run” menu.",
+    "crumbs": [
+      "JupyterHub",
+      "JupyterLab"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-intro-to-lab.html#install-packages",
+    "href": "topics-skills/02-intro-to-lab.html#install-packages",
+    "title": "Intro to JupyterLab",
+    "section": "Install packages",
+    "text": "Install packages\nUse pip install in a cell. This will not persist between sessions.",
+    "crumbs": [
+      "JupyterHub",
+      "JupyterLab"
+    ]
+  },
+  {
+    "objectID": "topics-skills/02-intro-to-lab.html#learn-more",
+    "href": "topics-skills/02-intro-to-lab.html#learn-more",
+    "title": "Intro to JupyterLab",
+    "section": "Learn more",
+    "text": "Learn more\nThere are lots of tutorials on JupyterLab out there. Do a search to find content that works for you.",
+    "crumbs": [
+      "JupyterHub",
+      "JupyterLab"
+    ]
+  },
+  {
+    "objectID": "topics-skills/03-ScratchBucket.html",
+    "href": "topics-skills/03-ScratchBucket.html",
+    "title": "Using the S3 Scratch Bucket",
     "section": "",
-    "text": "NASA data are stored at one of several Distributed Active Archive Centers (DAACs). If you’re interested in available data for a given area and time of interest, the Earthdata Search portal provides a convenient web interface.",
+    "text": "The JupyterHub has a preconfigured S3 “Scratch Bucket” that automatically deletes files after 7 days. This is a great resource for experimenting with large datasets and working collaboratively on a shared dataset with other users.",
     "crumbs": [
       "JupyterHub",
-      "Earthdata login"
+      "S3 Scratch Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/03-earthdata.html#why-do-i-need-an-earthdata-login",
-    "href": "topics-skills/03-earthdata.html#why-do-i-need-an-earthdata-login",
-    "title": "Earthdata Login",
-    "section": "Why do I need an Earthdata login?",
-    "text": "Why do I need an Earthdata login?\nTo programmatically access NASA data from within your Python or R scripts, you will need to enter your Earthdata username and password.",
+    "objectID": "topics-skills/03-ScratchBucket.html#access-the-scratch-bucket",
+    "href": "topics-skills/03-ScratchBucket.html#access-the-scratch-bucket",
+    "title": "Using the S3 Scratch Bucket",
+    "section": "Access the scratch bucket",
+    "text": "Access the scratch bucket\nThe scratch bucket is hosted at s3://nmfs-openscapes-scratch. The JupyterHub automatically sets an environment variable SCRATCH_BUCKET that appends a suffix to the s3 url with your GitHub username. This is intended to keep track of file ownership, stay organized, and prevent users from overwriting data!\nEveryone has full access to the scratch bucket, so be careful not to overwrite data from other users when uploading files. Also, any data you put there will be deleted 7 days after it is uploaded\nIf you need more permanent S3 bucket storage refer to AWS_S3_bucket documentation (left) to configure your own S3 Bucket.\nWe’ll use the S3FS Python package, which provides a nice interface for interacting with S3 buckets.\n\nimport os\nimport s3fs\nimport fsspec\nimport boto3\nimport xarray as xr\nimport geopandas as gpd\n\n\n# My GitHub username is `eeholmes`\nscratch = os.environ['SCRATCH_BUCKET']\nscratch \n\n's3://nmfs-openscapes-scratch/eeholmes'\n\n\n\n# But you can set a different S3 object prefix to use:\nscratch = 's3://nmfs-openscapes-scratch/hackhours'",
     "crumbs": [
       "JupyterHub",
-      "Earthdata login"
+      "S3 Scratch Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/03-earthdata.html#getting-an-earthdata-login",
-    "href": "topics-skills/03-earthdata.html#getting-an-earthdata-login",
-    "title": "Earthdata Login",
-    "section": "Getting an Earthdata login",
-    "text": "Getting an Earthdata login\nIf you do not already have an Earthdata login, then navigate to the Earthdata Login page, a username and password, and then record this somewhere for use during the tutorials:",
+    "objectID": "topics-skills/03-ScratchBucket.html#uploading-data",
+    "href": "topics-skills/03-ScratchBucket.html#uploading-data",
+    "title": "Using the S3 Scratch Bucket",
+    "section": "Uploading data",
+    "text": "Uploading data\nIt’s great to store data in S3 buckets because this storage features very high network throughput. If many users are simultaneously accessing the same file on a spinning networked harddrive (/home/jovyan/shared) performance can be quite slow. S3 has much higher performance for such cases.\n\nUpload single file\n\nlocal_file = '~/NOAAHackDays/topics-2025/2025-02-14-earthdata/littlecube.nc'\n\nremote_object = f\"{scratch}/littlecube.nc\"\n\ns3.upload(local_file, remote_object)\n\n[None]\n\n\nOnce a bucket has files, I can list them. If the bucket is empty, you will get errors instead of [].\n\ns3 = s3fs.S3FileSystem()\ns3.ls(scratch)\n\n['nmfs-openscapes-scratch/hackhours/littlecube.nc']\n\n\n\ns3.stat(remote_object)\n\n{'Key': 'nmfs-openscapes-scratch/hackhours/littlecube.nc',\n 'LastModified': datetime.datetime(2025, 2, 13, 21, 41, 5, tzinfo=tzlocal()),\n 'ETag': '\"d73616d9e3ad84cf58a4a676b1e3d454\"',\n 'ChecksumAlgorithm': ['CRC32'],\n 'ChecksumType': 'FULL_OBJECT',\n 'Size': 50224,\n 'StorageClass': 'STANDARD',\n 'type': 'file',\n 'size': 50224,\n 'name': 'nmfs-openscapes-scratch/hackhours/littlecube.nc'}\n\n\n\n\nUpload a directory\n\nlocal_dir = '~/NOAAHackDays/topics-2025/resources'\n\n!ls -lh {local_dir}\n\ntotal 5.9M\n-rw-r--r-- 1 jovyan jovyan 5.9M Feb 12 21:05 e_sst.nc\ndrwxr-xr-x 3 jovyan jovyan  281 Feb 12 21:18 longhurst_v4_2010\n\n\n\ns3.upload(local_dir, scratch, recursive=True)\n\n[None, None, None, None, None, None, None, None, None]\n\n\nThe directory name is the directory name (only) of the local directory.\n\ns3.ls(f'{scratch}/resources')\n\n['nmfs-openscapes-scratch/hackhours/resources/e_sst.nc',\n 'nmfs-openscapes-scratch/hackhours/resources/longhurst_v4_2010']",
     "crumbs": [
       "JupyterHub",
-      "Earthdata login"
+      "S3 Scratch Bucket"
     ]
   },
   {
-    "objectID": "topics-skills/03-earthdata.html#configure-programmatic-access-to-nasa-servers",
-    "href": "topics-skills/03-earthdata.html#configure-programmatic-access-to-nasa-servers",
-    "title": "Earthdata Login",
-    "section": "Configure programmatic access to NASA servers",
-    "text": "Configure programmatic access to NASA servers\nRun the following commands on the JupyterHub:\n\n\n\n\n\n\nImportant\n\n\n\nIn the below command, replace EARTHDATA_LOGIN with your personal username and EARTHDATA_PASSWORD with your password\n\n\necho 'machine urs.earthdata.nasa.gov login \"EARTHDATA_LOGIN\" password \"EARTHDATA_PASSWORD\"' &gt; ~/.netrc\nchmod 0600 ~/.netrc",
+    "objectID": "topics-skills/03-ScratchBucket.html#accessing-data",
+    "href": "topics-skills/03-ScratchBucket.html#accessing-data",
+    "title": "Using the S3 Scratch Bucket",
+    "section": "Accessing Data",
+    "text": "Accessing Data\nSome software packages allow you to stream data directly from S3 Buckets. But you can always pull objects from S3 and work with local file paths.\nThis download-first, then analyze workflow typically works well for older file formats like HDF and netCDF that were designed to perform well on local hard drives rather than Cloud storage systems like S3.\nFor best performance do not work with data in your home directory. Instead use a local scratch space like `/tmp`\n\nremote_object\n\n's3://nmfs-openscapes-scratch/hackhours/littlecube.nc'\n\n\n\nlocal_object = '/tmp/test.nc'\ns3.download(remote_object, local_object)\n\n[None]\n\n\n\nds = xr.open_dataset(local_object)\nds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt; Size: 97kB\nDimensions:       (time: 366, lat: 8, lon: 8)\nCoordinates:\n  * time          (time) datetime64[ns] 3kB 2020-01-01 2020-01-02 ... 2020-12-31\n  * lat           (lat) float32 32B 33.62 33.88 34.12 ... 34.88 35.12 35.38\n  * lon           (lon) float32 32B -75.38 -75.12 -74.88 ... -73.88 -73.62\nData variables:\n    analysed_sst  (time, lat, lon) float32 94kB ...xarray.DatasetDimensions:time: 366lat: 8lon: 8Coordinates: (3)time(time)datetime64[ns]2020-01-01 ... 2020-12-31long_name :reference time of sst fieldstandard_name :timeaxis :Tcomment :Nominal time because observations are from different sources and are made at different times of the day.array(['2020-01-01T00:00:00.000000000', '2020-01-02T00:00:00.000000000',\n       '2020-01-03T00:00:00.000000000', ..., '2020-12-29T00:00:00.000000000',\n       '2020-12-30T00:00:00.000000000', '2020-12-31T00:00:00.000000000'],\n      dtype='datetime64[ns]')lat(lat)float3233.62 33.88 34.12 ... 35.12 35.38long_name :latitudestandard_name :latitudeaxis :Yunits :degrees_northvalid_min :-90.0valid_max :90.0bounds :lat_bndscomment :Uniform grid with centers from -89.875 to 89.875 by 0.25 degreesarray([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375],\n      dtype=float32)lon(lon)float32-75.38 -75.12 ... -73.88 -73.62long_name :longitudestandard_name :longitudeaxis :Xunits :degrees_eastvalid_min :-180.0valid_max :180.0bounds :lon_bndscomment :Uniform grid with centers from -179.875 to 179.875 by 0.25 degreesarray([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625],\n      dtype=float32)Data variables: (1)analysed_sst(time, lat, lon)float32...long_name :analysed sea surface temperaturestandard_name :sea_surface_temperatureunits :kelvinvalid_min :-300valid_max :4500source :UNKNOWN,ICOADS SHIPS,ICOADS BUOYS,ICOADS argos,MMAB_50KM-NCEP-ICEcomment :Single-sensor Pathfinder 5.0/5.1 AVHRR SSTs used until 2005; two AVHRRs at a time are used 2007 onward. Sea ice and in-situ data used also are near real time quality for recent period. SST (bulk) is at ambiguous depth because multiple types of observations are used.[23424 values with dtype=float32]Indexes: (3)timePandasIndexPandasIndex(DatetimeIndex(['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04',\n               '2020-01-05', '2020-01-06', '2020-01-07', '2020-01-08',\n               '2020-01-09', '2020-01-10',\n               ...\n               '2020-12-22', '2020-12-23', '2020-12-24', '2020-12-25',\n               '2020-12-26', '2020-12-27', '2020-12-28', '2020-12-29',\n               '2020-12-30', '2020-12-31'],\n              dtype='datetime64[ns]', name='time', length=366, freq=None))latPandasIndexPandasIndex(Index([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375], dtype='float32', name='lat'))lonPandasIndexPandasIndex(Index([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625], dtype='float32', name='lon'))Attributes: (0)\n\n\nIf you don't want to think about downloading files you can let `fsspec` handle this behind the scenes for you! This way you only need to think about remote paths\n\nfs = fsspec.filesystem(\"simplecache\", \n                       cache_storage='/tmp/files/',\n                       same_names=True,  \n                       target_protocol='s3',\n                       )\n\n\n# The `simplecache` setting above will download the full file to /tmp/files\nprint(remote_object)\nwith fs.open(remote_object) as f:\n    ds = xr.open_dataset(f.name) # NOTE: pass f.name for local cached path\n\ns3://nmfs-openscapes-scratch/hackhours/littlecube.nc\n\n\n\nds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.Dataset&gt; Size: 97kB\nDimensions:       (time: 366, lat: 8, lon: 8)\nCoordinates:\n  * time          (time) datetime64[ns] 3kB 2020-01-01 2020-01-02 ... 2020-12-31\n  * lat           (lat) float32 32B 33.62 33.88 34.12 ... 34.88 35.12 35.38\n  * lon           (lon) float32 32B -75.38 -75.12 -74.88 ... -73.88 -73.62\nData variables:\n    analysed_sst  (time, lat, lon) float32 94kB ...xarray.DatasetDimensions:time: 366lat: 8lon: 8Coordinates: (3)time(time)datetime64[ns]2020-01-01 ... 2020-12-31long_name :reference time of sst fieldstandard_name :timeaxis :Tcomment :Nominal time because observations are from different sources and are made at different times of the day.array(['2020-01-01T00:00:00.000000000', '2020-01-02T00:00:00.000000000',\n       '2020-01-03T00:00:00.000000000', ..., '2020-12-29T00:00:00.000000000',\n       '2020-12-30T00:00:00.000000000', '2020-12-31T00:00:00.000000000'],\n      dtype='datetime64[ns]')lat(lat)float3233.62 33.88 34.12 ... 35.12 35.38long_name :latitudestandard_name :latitudeaxis :Yunits :degrees_northvalid_min :-90.0valid_max :90.0bounds :lat_bndscomment :Uniform grid with centers from -89.875 to 89.875 by 0.25 degreesarray([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375],\n      dtype=float32)lon(lon)float32-75.38 -75.12 ... -73.88 -73.62long_name :longitudestandard_name :longitudeaxis :Xunits :degrees_eastvalid_min :-180.0valid_max :180.0bounds :lon_bndscomment :Uniform grid with centers from -179.875 to 179.875 by 0.25 degreesarray([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625],\n      dtype=float32)Data variables: (1)analysed_sst(time, lat, lon)float32...long_name :analysed sea surface temperaturestandard_name :sea_surface_temperatureunits :kelvinvalid_min :-300valid_max :4500source :UNKNOWN,ICOADS SHIPS,ICOADS BUOYS,ICOADS argos,MMAB_50KM-NCEP-ICEcomment :Single-sensor Pathfinder 5.0/5.1 AVHRR SSTs used until 2005; two AVHRRs at a time are used 2007 onward. Sea ice and in-situ data used also are near real time quality for recent period. SST (bulk) is at ambiguous depth because multiple types of observations are used.[23424 values with dtype=float32]Indexes: (3)timePandasIndexPandasIndex(DatetimeIndex(['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04',\n               '2020-01-05', '2020-01-06', '2020-01-07', '2020-01-08',\n               '2020-01-09', '2020-01-10',\n               ...\n               '2020-12-22', '2020-12-23', '2020-12-24', '2020-12-25',\n               '2020-12-26', '2020-12-27', '2020-12-28', '2020-12-29',\n               '2020-12-30', '2020-12-31'],\n              dtype='datetime64[ns]', name='time', length=366, freq=None))latPandasIndexPandasIndex(Index([33.625, 33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375], dtype='float32', name='lat'))lonPandasIndexPandasIndex(Index([-75.375, -75.125, -74.875, -74.625, -74.375, -74.125, -73.875, -73.625], dtype='float32', name='lon'))Attributes: (0)",
     "crumbs": [
       "JupyterHub",
-      "Earthdata login"
+      "S3 Scratch Bucket"
+    ]
+  },
+  {
+    "objectID": "topics-skills/03-ScratchBucket.html#cloud-optimized-formats",
+    "href": "topics-skills/03-ScratchBucket.html#cloud-optimized-formats",
+    "title": "Using the S3 Scratch Bucket",
+    "section": "Cloud-optimized formats",
+    "text": "Cloud-optimized formats\nOther formats like COG, ZARR, Parquet are ‘Cloud-optimized’ and allow for very efficient streaming directly from S3. In other words, you do not need to download entire files and instead can easily read subsets of the data.\nThe example below reads a Parquet file directly into memory (RAM) from S3 without using a local disk:\n\n# first upload the file\nlocal_file = '~/NOAAHackDays/topics-2025/resources/example.parquet'\n\nremote_object = f\"{scratch}/example.parquet\"\n\ns3.upload(local_file, remote_object)\n\n[None]\n\n\n\ngf = gpd.read_parquet(remote_object)\ngf.head(2)\n\n\n\n\n\n\n\n\npop_est\ncontinent\nname\niso_a3\ngdp_md_est\ngeometry\n\n\n\n\n0\n889953.0\nOceania\nFiji\nFJI\n5496\nMULTIPOLYGON (((180 -16.06713, 180 -16.55522, ...\n\n\n1\n58005463.0\nAfrica\nTanzania\nTZA\n63177\nPOLYGON ((33.90371 -0.95, 34.07262 -1.05982, 3...",
+    "crumbs": [
+      "JupyterHub",
+      "S3 Scratch Bucket"
+    ]
+  },
+  {
+    "objectID": "topics-skills/03-ScratchBucket.html#advanced-access-scratch-bucket-outside-of-jupyterhub",
+    "href": "topics-skills/03-ScratchBucket.html#advanced-access-scratch-bucket-outside-of-jupyterhub",
+    "title": "Using the S3 Scratch Bucket",
+    "section": "Advanced: Access Scratch bucket outside of JupyterHub",
+    "text": "Advanced: Access Scratch bucket outside of JupyterHub\nLet’s say you have a lot of files on your laptop you want to work with. The S3 Bucket is a convient way to upload large datasets for collaborative analysis. To do this, you need to copy AWS Credentials from the JupyterHub to use on other machines. More extensive documentation on this workflow can be found in this repository https://github.com/scottyhq/jupyter-cloud-scoped-creds.\nThe following code must be run on the JupyterHub to get temporary credentials:\n\nclient = boto3.client('sts')\n\nwith open(os.environ['AWS_WEB_IDENTITY_TOKEN_FILE']) as f:\n    TOKEN = f.read()\n\nresponse = client.assume_role_with_web_identity(\n    RoleArn=os.environ['AWS_ROLE_ARN'],\n    RoleSessionName=os.environ['JUPYTERHUB_CLIENT_ID'],\n    WebIdentityToken=TOKEN,\n    DurationSeconds=3600\n)\n\nreponse will be a python dictionary that looks like this:\n{'Credentials': {'AccessKeyId': 'ASIAYLNAJMXY2KXXXXX',\n  'SecretAccessKey': 'J06p5IOHcxq1Rgv8XE4BYCYl8TG1XXXXXXX',\n  'SessionToken': 'IQoJb3JpZ2luX2VjEDsaCXVzLXdlc////0dsD4zHfjdGi/0+s3XKOUKkLrhdXgZ8nrch2KtzKyYyb...',\n  'Expiration': datetime.datetime(2023, 7, 21, 19, 51, 56, tzinfo=tzlocal())},\n  ...\nYou can copy and paste the values to another computer, and use them to configure your access to S3:\n\ns3 = s3fs.S3FileSystem(key=response['Credentials']['AccessKeyId'],\n                       secret=response['Credentials']['SecretAccessKey'],\n                       token=response['Credentials']['SessionToken'] )\n\n\n# Confirm your credentials give you access\ns3.ls('nmfs-openscapes-scratch', refresh=True)",
+    "crumbs": [
+      "JupyterHub",
+      "S3 Scratch Bucket"
+    ]
+  },
+  {
+    "objectID": "topics-skills/04-learning.html",
+    "href": "topics-skills/04-learning.html",
+    "title": "Learning Resources",
+    "section": "",
+    "text": "You are welcome to use the JupyterHub outside of the HackHours and workshops in order to facilitate your data science and cloud-computing learning. Here are some ideas:",
+    "crumbs": [
+      "JupyterHub",
+      "Learning resources"
+    ]
+  },
+  {
+    "objectID": "topics-skills/04-learning.html#python",
+    "href": "topics-skills/04-learning.html#python",
+    "title": "Learning Resources",
+    "section": "Python",
+    "text": "Python\n\nUdemy, Coursera, and DataCamp are popular platforms that have data science courses.\n\nI did Python for Data Science and Machine Learning Bootcamp in Udemy\n\nThe same have deep-learning and ML courses\nHarvard https://pll.harvard.edu/catalog and MIT https://ocw.mit.edu/search/?q=python have lots of free material\nGeosciences\n\nhttps://cookbooks.projectpythia.org/\nhttps://nasa-openscapes.github.io/earthdata-cloud-cookbook/\nhttps://ioos.github.io/ioos_code_lab/content/intro.html\nhttps://github.com/coastwatch-training/CoastWatch-Tutorials\nhttps://github.com/NASAARSET",
+    "crumbs": [
+      "JupyterHub",
+      "Learning resources"
+    ]
+  },
+  {
+    "objectID": "topics-skills/04-learning.html#r",
+    "href": "topics-skills/04-learning.html#r",
+    "title": "Learning Resources",
+    "section": "R",
+    "text": "R\n\nUdemy, Coursera, and DataCamp are popular platforms that have data science courses.\nGeosciences\n\nhttps://github.com/USGS-R",
+    "crumbs": [
+      "JupyterHub",
+      "Learning resources"
     ]
   },
   {

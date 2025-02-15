@@ -6,9 +6,10 @@ In this session, you will get an introduction to the [earthaccess](https://earth
 
 # Tutorials
 
-* earthaccess
-* subset-and-plot
-* data-cubes
+* [earthdata-catalog](0-earthdata-catalog.html)
+* [earthaccess](1-earthaccess.html)
+* [subset-and-plot](2-subset-and-plot.html)
+* [data-cubes](4-data-cubes.html)
 
 ## How to clone
 
