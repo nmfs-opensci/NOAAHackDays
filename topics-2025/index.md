@@ -16,7 +16,7 @@ During these stand-alone informal sessions we will get introduced to a variety o
 * Mar 14 - Working with data on OPeNDAP servers in Python & R {{< fa brands python >}} {{< fa brands r-project >}}
 * Mar 21 - Parallel processing NODD model data with [Coiled](https://www.coiled.io/) ([Rich Signell](https://opensciencecomputing.com/), Open Science Consulting) {{< fa brands python >}} 
 * Mar 28 - Machine-Learning with Ocean Data: [gap-filling](https://doi.org/10.6084/m9.figshare.27936036.v1) with CNNs {{< fa brands python >}} 
-* Apr 4 - Machine-Learning with Ocean Data: TBD {{< fa brands python >}} 
+* Apr 4 - xarray + GPU integration ([Max Jones](https://github.com/maxrjones), Development Seed) {{< fa brands python >}} 
 * Apr 11 - Accessing [CEFI data](https://psl.noaa.gov/cefi_portal/) on OPeNDAP, AWS and Google ([Chia-Wei Hsu](https://psl.noaa.gov/people/chia-wei.hsu/), NOAA PSL) {{< fa brands python >}} 
 * Apr 25 - Working with acoustic data in Python: [echopype](https://echopype.readthedocs.io/en/stable/) ([Wu-Jung Lee](https://www.apl.washington.edu/people/profile.php?last_name=Lee&first_name=Wu-Jung), UW APL) {{< fa brands python >}} 
 * May 2 - [Coiled](https://www.coiled.io/) demo -- parallel processing for big data pipelines (Coiled team)
