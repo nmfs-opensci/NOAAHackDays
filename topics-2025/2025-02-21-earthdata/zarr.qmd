@@ -1,0 +1,55 @@
+---
+title: Zarr
+author: Eli Holmes
+---
+
+::: {.callout-note title="Learning Objectives"}
+1.  How to access a Zarr collection in R
+:::
+
+## Summary
+
+In this example, we will get single files from a Zarr collection.
+
+## Reading in a `Zarr` file
+
+Reading in collection in `Zarr` format is easy in Python:
+```
+ds = xarray.open_zarr("https://mur-sst.s3.us-west-2.amazonaws.com/zarr-v1")
+```
+However we can open individual files from a `Zarr` file.
+
+Read one file.
+
+```{r read_one_Zarr}
+url <- "https://mur-sst.s3.us-west-2.amazonaws.com/zarr-v1"
+prefixes <- 'ZARR:\"/vsicurl/'
+slice <- '\":/analysed_sst:0"'
+addr <- paste0(prefixes, url, slice)
+y = terra::rast(addr)
+```
+
+Plot.
+
+```{r}
+e <- terra::ext(c(xmin=-75.5, xmax=-73.5,  ymin=33.5, ymax=35.5 ))
+y |> terra::crop(e) |> terra::plot()
+```
+
+Read multiple files.
+
+```{r}
+vrt <- function(i) {
+  prefix <-  'ZARR:\"/vsicurl/'
+  url <- "https://mur-sst.s3.us-west-2.amazonaws.com/zarr-v1"
+  slice <- paste0('\":/analysed_sst:',i,'"')
+  paste0(prefix, url, slice)
+}
+```
+
+```{r}
+y <- terra::rast(vrt(0:3))
+e <- terra::ext(c(xmin=-75.5, xmax=-73.5,  ymin=33.5, ymax=35.5 ))
+y |> terra::crop(e) |> terra::plot()
+```
+
