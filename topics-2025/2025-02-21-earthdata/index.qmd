@@ -2,12 +2,13 @@
 title: NASA Earth Data - R
 ---
 
-Link to originals tutorials: [EDMW Workshop](https://nmfs-opensci.github.io/EDMW-EarthData-Workshop-2024/).
+We are using the [earthdatalogin]() and [terra](https://rspatial.github.io/terra/index.html) packages.
 
 # Tutorials
 
-* earthdatalogin
-* subset-and-plot
+* [earthdata-catalog](0-earthdata-catalog.html)
+* [earthdatalogin](1-earthdatalogin.html)
+* [subset-and-plot](2-subset-and-plot.html)
 * data-cubes
 
 ## How to clone
