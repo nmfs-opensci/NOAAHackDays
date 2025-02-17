@@ -28,9 +28,13 @@ An Earthdata Login account is required to access data from NASA Earthdata. Pleas
 
 ## Load Required Packages
 
-We are using the JupyterHub and all necessary packages are already installed for you.
+We are using the JupyterHub and all necessary packages are already installed for you. If you are running locally, you can install the packages with
+```
+devtools::install_github("boettiger-lab/earthdatalogin")
+install.packages("terra")
+```
+But be aware that it is common to run into trouble getting GDAL set up properly to handle netCDF files. Using a Docker image like Rocker geospatial is often less aggravating.
 
-*Note: See the set-up tab (in left nav bar) for instructions on getting set up on your own computer, but be aware that it is common to run into trouble getting GDAL set up properly to handle netCDF files. Using a Docker image (and Python) is often less aggravating.*
 
 ```{r}
 library(earthdatalogin)
