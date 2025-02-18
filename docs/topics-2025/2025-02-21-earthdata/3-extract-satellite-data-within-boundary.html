@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#terminology" id="toc-terminology" class="nav-link" data-scroll-target="#terminology">Terminology</a></li>
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#datasets-used" id="toc-datasets-used" class="nav-link" data-scroll-target="#datasets-used">Datasets used</a></li>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a></li>
   <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages">Load packages</a></li>
   <li><a href="#load-boundary-coordinates" id="toc-load-boundary-coordinates" class="nav-link" data-scroll-target="#load-boundary-coordinates">Load boundary coordinates</a></li>
   <li><a href="#search-data-from-nasa-earthdata-with-the-dataset-unique-name-and-coordinatesdates" id="toc-search-data-from-nasa-earthdata-with-the-dataset-unique-name-and-coordinatesdates" class="nav-link" data-scroll-target="#search-data-from-nasa-earthdata-with-the-dataset-unique-name-and-coordinatesdates">Search data from NASA Earthdata with the dataset unique name and coordinates/dates</a></li>
@@ -244,8 +244,8 @@ Learning Objectives
 <p><em>Note: See the set-up tab (in left nav bar) for instructions on getting set up on your own computer, but be aware that getting it is common to run into trouble getting GDAL set up properly to handle netCDF files. Using a Docker image (and Python) is often less aggravating.</em></p>
 </section>
 </section>
-<section id="datasets-used" class="level2">
-<h2 class="anchored" data-anchor-id="datasets-used">Datasets used</h2>
+<section id="datasets" class="level2">
+<h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
 <p><strong>GHRSST Level 4 AVHRR_OI Global Blended Sea Surface Temperature Analysis (GDS2) from NCEI</strong><br>
 This NOAA blended SST is a moderate resolution satellite-based gap-free sea surface temperature (SST) product. We will use the daily data. https://cmr.earthdata.nasa.gov/search/concepts/C2036881712-POCLOUD.html</p>
 <p><strong>Longhurst Marine Provinces</strong><br>
@@ -256,376 +256,10 @@ The dataset represents the division of the world oceans into provinces as define
 <section id="load-packages" class="level2">
 <h2 class="anchored" data-anchor-id="load-packages">Load packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so) (GDAL
-error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so) (GDAL
-error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so) (GDAL
-error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so) (GDAL
-error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(earthdatalogin)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so)
-Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27)
-Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801)
-Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801)
-Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so)
-Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27)
-Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801)
-Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801)
-Warning in CPL_gdal_init(): GDAL Error 1:
-/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not found
-(required by /srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0
-Warning in CPL_gdal_init(): GDAL Error 1:
-/srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined symbol:
-jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(earthdatalogin)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="load-boundary-coordinates" class="level2">
@@ -633,14 +267,14 @@ jpeg12_write_raw_data, version LIBJPEG_8.0</code></pre>
 <p>The shapefile for the Longhurst marine provinces includes a list of regions.<br>
 For this exercise, we will only use the boundary of one province, the Gulf Stream region (“GFST”).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set directory path for shapefile</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>dir_path <span class="ot">&lt;-</span> <span class="st">'../resources/longhurst_v4_2010/'</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import shape files (Longhurst coordinates)</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>shapes <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="at">dsn =</span> dir_path, <span class="at">layer =</span> <span class="st">"Longhurst_world_v4_2010"</span>)</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Example List of all the province names</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>shapes<span class="sc">$</span>ProvCode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set directory path for shapefile</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dir_path <span class="ot">&lt;-</span> <span class="st">'../resources/longhurst_v4_2010/'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import shape files (Longhurst coordinates)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>shapes <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="at">dsn =</span> dir_path, <span class="at">layer =</span> <span class="st">"Longhurst_world_v4_2010"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Example List of all the province names</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>shapes<span class="sc">$</span>ProvCode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "BPLR" "ARCT" "SARC" "NADR" "GFST" "NASW" "NATR" "WTRA" "ETRA" "SATL"
 [11] "NECS" "CNRY" "GUIN" "GUIA" "NWCS" "MEDI" "CARB" "NASE" "BRAZ" "FKLD"
@@ -649,40 +283,40 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 [41] "WARM" "ARCH" "ALSK" "CCAL" "CAMR" "CHIL" "CHIN" "SUND" "AUSE" "NEWZ"
 [51] "SSTC" "SANT" "ANTA" "APLR"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get boundary coordinates for Gulf Stream region (GFST)</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>GFST <span class="ot">&lt;-</span> shapes[shapes<span class="sc">$</span>ProvCode <span class="sc">==</span> <span class="st">"GFST"</span>,]</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>xcoord <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(GFST)[,<span class="dv">1</span>]</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>ycoord <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(GFST)[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get boundary coordinates for Gulf Stream region (GFST)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>GFST <span class="ot">&lt;-</span> shapes[shapes<span class="sc">$</span>ProvCode <span class="sc">==</span> <span class="st">"GFST"</span>,]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>xcoord <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(GFST)[,<span class="dv">1</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ycoord <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(GFST)[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="search-data-from-nasa-earthdata-with-the-dataset-unique-name-and-coordinatesdates" class="level2">
 <h2 class="anchored" data-anchor-id="search-data-from-nasa-earthdata-with-the-dataset-unique-name-and-coordinatesdates">Search data from NASA Earthdata with the dataset unique name and coordinates/dates</h2>
 <p>First, connect to NASA Earthdata with no credentials</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>earthdatalogin<span class="sc">::</span><span class="fu">edl_netrc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>earthdatalogin<span class="sc">::</span><span class="fu">edl_netrc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, define your search and cropping criteria</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset unique name</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>short_name <span class="ot">&lt;-</span> <span class="st">'AVHRR_OI-NCEI-L4-GLOB-v2.1'</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set boundaries based on the shapefile</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin=</span><span class="fu">min</span>(xcoord), <span class="at">ymin=</span><span class="fu">min</span>(ycoord), <span class="at">xmax=</span><span class="fu">max</span>(xcoord), <span class="at">ymax=</span><span class="fu">max</span>(ycoord)) </span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set time range</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>tbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-01"</span>, <span class="st">"2020-04-01"</span>)</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Search data that match the boundaries and time range</span></span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">edl_search</span>(</span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">short_name =</span> short_name,</span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="st">"2.1"</span>,</span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">temporal =</span> tbox,</span>
-<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">bounding_box =</span> <span class="fu">paste</span>(bbox, <span class="at">collapse =</span> <span class="st">","</span>)</span>
-<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Check number of files </span></span>
-<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset unique name</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>short_name <span class="ot">&lt;-</span> <span class="st">'AVHRR_OI-NCEI-L4-GLOB-v2.1'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set boundaries based on the shapefile</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin=</span><span class="fu">min</span>(xcoord), <span class="at">ymin=</span><span class="fu">min</span>(ycoord), <span class="at">xmax=</span><span class="fu">max</span>(xcoord), <span class="at">ymax=</span><span class="fu">max</span>(ycoord)) </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set time range</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>tbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-01"</span>, <span class="st">"2020-04-01"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Search data that match the boundaries and time range</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">edl_search</span>(</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">short_name =</span> short_name,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="st">"2.1"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">temporal =</span> tbox,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">bounding_box =</span> <span class="fu">paste</span>(bbox, <span class="at">collapse =</span> <span class="st">","</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Check number of files </span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 93</code></pre>
 </div>
@@ -692,23 +326,23 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 <section id="apply-shapefiles-as-mask-to-satellite-data" class="level2">
 <h2 class="anchored" data-anchor-id="apply-shapefiles-as-mask-to-satellite-data">Apply shapefiles as mask to satellite data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first result</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ras <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="dv">1</span>], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract SST from the multi-layer raster data</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>ras_sst <span class="ot">&lt;-</span> ras[[<span class="st">"analysed_sst"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first result</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ras <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="dv">1</span>], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract SST from the multi-layer raster data</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ras_sst <span class="ot">&lt;-</span> ras[[<span class="st">"analysed_sst"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Convert shape to SpatVector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize shapes</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>shp <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">vect</span>(shapes)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get boundaries for GFST</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>GFST <span class="ot">&lt;-</span> shp[shp<span class="sc">$</span>ProvCode <span class="sc">==</span> <span class="st">"GFST"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorize shapes</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>shp <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">vect</span>(shapes)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get boundaries for GFST</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>GFST <span class="ot">&lt;-</span> shp[shp<span class="sc">$</span>ProvCode <span class="sc">==</span> <span class="st">"GFST"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plot the SST data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ras_sst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ras_sst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -719,7 +353,7 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 </div>
 <p>Plot GFST boundaries from shapefile.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GFST,<span class="at">col=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GFST,<span class="at">col=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -730,10 +364,10 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 </div>
 <p>Mask SST with the GFST boundaries and plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>masked_rc <span class="ot">&lt;-</span> <span class="fu">mask</span>(ras_sst, GFST)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the SST in GFST Province and crop to the GFST extent</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(masked_rc, <span class="at">ext =</span> GFST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>masked_rc <span class="ot">&lt;-</span> <span class="fu">mask</span>(ras_sst, GFST)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the SST in GFST Province and crop to the GFST extent</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(masked_rc, <span class="at">ext =</span> GFST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -748,27 +382,27 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 <p>We will construct a data cube to compute monthly average for sea surface temperature data within the boundary. To minimize data loading times, the first 10 results, which correspond to approximately two months of data, will be used for this exercise.</p>
 <p>Select the first 10 SST results (end of January and beginning of February).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ras_all <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="fu">c</span>(<span class="dv">25</span><span class="sc">:</span><span class="dv">35</span>)], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ras_all <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="fu">c</span>(<span class="dv">25</span><span class="sc">:</span><span class="dv">35</span>)], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Select SST data. The trim and mask operations are memory intensive and we want to select only the layer we will be working with.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> ras_all[<span class="st">"analysed_sst"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> ras_all[<span class="st">"analysed_sst"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Crop to the GFST boundaries.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(rc_sst, GFST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(rc_sst, GFST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Trim the SST data to the boundaries of GFST.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">mask</span>(rc_sst, GFST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">mask</span>(rc_sst, GFST)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Calculate mean SST over the entire time series and map it</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean over 12 time layers</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>raster_mean <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">mean</span>(rc_sst, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Map mean SST </span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(raster_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean over 12 time layers</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>raster_mean <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">mean</span>(rc_sst, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Map mean SST </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(raster_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -776,44 +410,44 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map only the GFST area</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(terra<span class="sc">::</span><span class="fu">crop</span>(raster_mean, GFST))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map only the GFST area</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(terra<span class="sc">::</span><span class="fu">crop</span>(raster_mean, GFST))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Calculate monthly mean SST means across raster (lat, lon).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert times to year-month format</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>year_month <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">format</span>(<span class="fu">as.Date</span>(<span class="fu">time</span>(x), <span class="at">format=</span><span class="st">"%Y-%m-%d"</span>), <span class="st">"%Y-%m"</span>)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Format time to Year-month for monthly aggregation </span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>ym <span class="ot">&lt;-</span> <span class="fu">year_month</span>(rc_sst)</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute raster mean grouped by Year-month</span></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>monthly_mean_rast <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">tapp</span>(rc_sst, ym, <span class="at">fun =</span> mean)</span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean across raster grouped by Year-month</span></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>monthly_means <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">global</span>(monthly_mean_rast, <span class="at">fun =</span> mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert times to year-month format</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>year_month <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">format</span>(<span class="fu">as.Date</span>(<span class="fu">time</span>(x), <span class="at">format=</span><span class="st">"%Y-%m-%d"</span>), <span class="st">"%Y-%m"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Format time to Year-month for monthly aggregation </span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>ym <span class="ot">&lt;-</span> <span class="fu">year_month</span>(rc_sst)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute raster mean grouped by Year-month</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>monthly_mean_rast <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">tapp</span>(rc_sst, ym, <span class="at">fun =</span> mean)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean across raster grouped by Year-month</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>monthly_means <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">global</span>(monthly_mean_rast, <span class="at">fun =</span> mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="convert-raster-into-data-frame" class="level2">
 <h2 class="anchored" data-anchor-id="convert-raster-into-data-frame">Convert raster into data frame</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert raster into data.frame</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>monthly_means_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(monthly_means)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert year_month to a column</span></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>monthly_means_df<span class="sc">$</span>year_month <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"X"</span>, <span class="st">""</span>, <span class="fu">rownames</span>(monthly_means_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert raster into data.frame</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>monthly_means_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(monthly_means)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert year_month to a column</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>monthly_means_df<span class="sc">$</span>year_month <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"X"</span>, <span class="st">""</span>, <span class="fu">rownames</span>(monthly_means_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plot-monthly-mean-of-sea-surface-temperature-within-gfst-province" class="level2">
 <h2 class="anchored" data-anchor-id="plot-monthly-mean-of-sea-surface-temperature-within-gfst-province">Plot monthly mean of sea surface temperature within GFST province</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> monthly_means_df, <span class="fu">aes</span>(<span class="at">x =</span> year_month, <span class="at">y =</span> mean, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year.Month"</span>) <span class="sc">+</span> </span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Mean SST (F)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> monthly_means_df, <span class="fu">aes</span>(<span class="at">x =</span> year_month, <span class="at">y =</span> mean, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year.Month"</span>) <span class="sc">+</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Mean SST (F)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

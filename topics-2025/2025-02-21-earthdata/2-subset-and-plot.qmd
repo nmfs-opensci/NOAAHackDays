@@ -30,13 +30,13 @@ library(lubridate)
 library(terra)
 ```
 
-## Get a vector of urls to our nc files
-
-Authenticate.
+Authenticate to NASA Earthdata.
 
 ```{r}
 earthdatalogin::edl_netrc() 
 ```
+
+## Get a vector of urls to our nc files
 
 Get the urls. The `results` object is a vector of urls pointing to our `netCDF` files in the cloud. Each `netCDF` file is circa 670Mb.
 

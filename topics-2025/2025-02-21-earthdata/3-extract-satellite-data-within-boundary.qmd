@@ -35,7 +35,7 @@ Earthdata Login account. This account is free to create and only takes a moment 
 be aware that getting it is common to run into trouble getting GDAL set up properly to handle
 netCDF files. Using a Docker image (and Python) is often less aggravating.*
 
-## Datasets used
+## Datasets
 
 **GHRSST Level 4 AVHRR_OI Global Blended Sea Surface Temperature Analysis (GDS2) from NCEI**\
 This NOAA blended SST is a moderate resolution satellite-based gap-free sea surface temperature (SST) product. We will use the daily data. https://cmr.earthdata.nasa.gov/search/concepts/C2036881712-POCLOUD.html

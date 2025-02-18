@@ -60,7 +60,7 @@ This will put your login info in a `netrc` file located at:
 earthdatalogin:::edl_netrc_path()
 ```
 
-Once your `netrc` file is saved, you can use `earthdatalogin::edl_netrc()` to authenticate.
+Once your `netrc` file is saved, you can authenticate.
 
 ```{r}
 earthdatalogin::edl_netrc()

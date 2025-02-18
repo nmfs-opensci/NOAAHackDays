@@ -242,193 +242,31 @@ Learning Objectives
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(earthdatalogin)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so) (GDAL
-error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so) (GDAL
-error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so) (GDAL
-error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by /srv/conda/envs/notebook/lib/gdalplugins/gdal_PDF.so) (GDAL
-error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.31' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libtiledb.so.2.27) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libarrow.so.1801) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801) (GDAL error 1)
-Warning: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.32' not
-found (required by
-/srv/conda/envs/notebook/lib/gdalplugins/../libparquet.so.1801) (GDAL error 1)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)
-Warning: /srv/conda/envs/notebook/lib/gdalplugins/.././libtiff.so.6: undefined
-symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
-</div>
+<p>Authenticate to NASA Earthdata.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>earthdatalogin<span class="sc">::</span><span class="fu">edl_netrc</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="get-a-vector-of-urls-to-our-nc-files" class="level2">
 <h2 class="anchored" data-anchor-id="get-a-vector-of-urls-to-our-nc-files">Get a vector of urls to our nc files</h2>
-<p>Authenticate.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>earthdatalogin<span class="sc">::</span><span class="fu">edl_netrc</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Get the urls. The <code>results</code> object is a vector of urls pointing to our <code>netCDF</code> files in the cloud. Each <code>netCDF</code> file is circa 670Mb.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>short_name <span class="ot">&lt;-</span> <span class="st">'MUR-JPL-L4-GLOB-v4.1'</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span>) </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>tbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-16"</span>, <span class="st">"2020-12-16"</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> earthdatalogin<span class="sc">::</span><span class="fu">edl_search</span>(</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">short_name =</span> short_name,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="st">"4.1"</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">temporal =</span> tbox, </span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">bounding_box =</span> <span class="fu">paste</span>(bbox,<span class="at">collapse=</span><span class="st">","</span>)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>short_name <span class="ot">&lt;-</span> <span class="st">'MUR-JPL-L4-GLOB-v4.1'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span>) </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-16"</span>, <span class="st">"2020-12-16"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> earthdatalogin<span class="sc">::</span><span class="fu">edl_search</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">short_name =</span> short_name,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="st">"4.1"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">temporal =</span> tbox, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">bounding_box =</span> <span class="fu">paste</span>(bbox,<span class="at">collapse=</span><span class="st">","</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 336</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/MUR-JPL-L4-GLOB-v4.1/20200116090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc"
 [2] "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/MUR-JPL-L4-GLOB-v4.1/20200117090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc"
@@ -440,14 +278,14 @@ symbol: jpeg12_write_raw_data, version LIBJPEG_8.0 (GDAL error 1)</code></pre>
 <h2 class="anchored" data-anchor-id="crop-and-plot-one-netcdf-file">Crop and plot one netCDF file</h2>
 <p>Each MUR SST <code>netCDF</code> file is large so I do not want to download. Instead I will use <code>terra::rast()</code> to do subset the data on the server side. <code>vsi = TRUE</code> is letting function know that these are files in the cloud and to use GDAL functionality for that type of resource.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ras <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="dv">1</span>], <span class="at">vsi=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ras <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="dv">1</span>], <span class="at">vsi=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Getting errors? Scroll below to the troubleshooting section.</em></p>
 <p>Crop to a very small region. Note order of terms is different than in bbox!!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">ext</span>(<span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>,  <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span> ))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>rc <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(ras, e)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>rc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">ext</span>(<span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>,  <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span> ))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rc <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(ras, e)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>rc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 200, 200, 6  (nrow, ncol, nlyr)
@@ -463,7 +301,7 @@ time        : 2020-01-16 09:00:00 UTC </code></pre>
 </div>
 <p>Plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rc[[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rc[[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -477,8 +315,8 @@ time        : 2020-01-16 09:00:00 UTC </code></pre>
 <h2 class="anchored" data-anchor-id="crop-and-plot-multiple-netcdf-files">Crop and plot multiple netCDF files</h2>
 <p>We can send multiple urls to <code>terra</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ras_all <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ras_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ras_all <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ras_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 17999, 36000, 24  (nrow, ncol, nlyr)
@@ -500,10 +338,10 @@ time        : 2020-01-16 09:00:00 to 2020-01-19 09:00:00 UTC </code></pre>
 </div>
 <p>Crop to a small extent. Note order of terms is different than in bbox! Since we will only plot sst for this example, it is faster to first select our variable of interest.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">ext</span>(<span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>,  <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span> ))</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ras_sst <span class="ot">&lt;-</span> ras_all[<span class="st">"analysed_sst"</span>,]</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(ras_sst, e)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>rc_sst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">ext</span>(<span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>,  <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span> ))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ras_sst <span class="ot">&lt;-</span> ras_all[<span class="st">"analysed_sst"</span>,]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(ras_sst, e)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>rc_sst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
 dimensions  : 200, 200, 4  (nrow, ncol, nlyr)
@@ -521,14 +359,14 @@ time        : 2020-01-16 09:00:00 to 2020-01-19 09:00:00 UTC </code></pre>
 </div>
 <p>Convert Kelvin to Celsius.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> rc_sst <span class="sc">-</span> <span class="fl">273.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> rc_sst <span class="sc">-</span> <span class="fl">273.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now plot. We will set the range so it is the same across plots and clean up the titles to be just day without time.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>titles <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">time</span>(<span class="at">x =</span> rc_sst) <span class="sc">|&gt;</span> lubridate<span class="sc">::</span><span class="fu">date</span>() <span class="sc">|&gt;</span> <span class="fu">as.character</span>()</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rc_sst, </span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">26</span>),</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> titles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>titles <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">time</span>(<span class="at">x =</span> rc_sst) <span class="sc">|&gt;</span> lubridate<span class="sc">::</span><span class="fu">date</span>() <span class="sc">|&gt;</span> <span class="fu">as.character</span>()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rc_sst, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">26</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> titles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

@@ -17,8 +17,6 @@ We will use the [GHRSST Level 4 AVHRR_OI Global Blended Sea Surface Temperature 
 
 ## Prerequisites
 
-The tutorial can be run with the guest Earthdata Login that is in `earthdatalogin`. However, if you will be using the NASA Earthdata portal more regularly, please register for an Earthdata Login account. Please <https://urs.earthdata.nasa.gov> to register and manage your Earthdata Login account. This account is free to create and only takes a moment to set up.
-
 See the [1-earthdatalogin](1-earthdatalogin.html) tutorial for set-up if you are running the tutorial locally.
 
 ## Load Required Packages
