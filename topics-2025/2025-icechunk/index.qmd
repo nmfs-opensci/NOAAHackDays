@@ -1,0 +1,13 @@
+---
+title: Icechunk
+---
+
+https://earthmover.io/blog/icechunk/
+https://icechunk.io/en/latest/
+https://icechunk.io/en/latest/icechunk-python/quickstart/
+
+1 hr talk https://youtu.be/i-73e3_irpY?feature=shared
+Pangeo showcase: https://youtu.be/l_y8YOn8hm8?feature=shared
+
+
+
