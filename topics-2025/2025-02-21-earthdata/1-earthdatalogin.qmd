@@ -60,8 +60,6 @@ This will put your login info in a `netrc` file located at:
 earthdatalogin:::edl_netrc_path()
 ```
 
-You can open a terminal and run `cat /home/jovyan/.local/share/R/earthdatalogin/netrc` to see that it has your username and login.
-
 Once your `netrc` file is saved, you can use `earthdatalogin::edl_netrc()` to authenticate.
 
 ```{r}
