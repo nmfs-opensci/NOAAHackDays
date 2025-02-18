@@ -10,6 +10,7 @@ project:
     - "!topics-2025/2025-cefi/*"
     - "!topics-2025/2025-echopype/*"
     - "!topics-2025/2025-PACE/*"
+    - "!topics-2025/2025-02-21-earthdata/gdalcubes.qmd"
 
 execute:
   freeze: auto
