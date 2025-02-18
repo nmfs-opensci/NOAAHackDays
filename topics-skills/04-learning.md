@@ -17,6 +17,7 @@ your data science and cloud-computing learning. Here are some ideas:
   - https://ioos.github.io/ioos_code_lab/content/intro.html
   - https://github.com/coastwatch-training/CoastWatch-Tutorials
   - https://github.com/NASAARSET
+  - https://earth-env-data-science.github.io/intro.html
   
 ## R
 
