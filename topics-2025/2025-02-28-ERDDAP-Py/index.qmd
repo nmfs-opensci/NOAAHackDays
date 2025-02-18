@@ -1,14 +1,14 @@
 ---
-title: Coastwatch Python module
-author: Sunny Hospital and Dale Robinson (CoastWatch)
+title: ERDDAP in Python
+author: Sunny Hospital (Polar Watch) and Daisy Shi (CoastWatch)
 ---
 
 Link to originals tutorials in the CoastWatch org: [CoastWatch tutorials in Python](https://github.com/coastwatch-training/Workshops/tree/main/NMFS-HackHour-Cloud-JupyterHubs/15March2024-Python).
 
 # Tutorials
 
-* [Match up satellite to track locations](matchup-satellite-data-to-track-locations.ipynb)
-* [Match up satellite to track locations - xarray](satellite_matchups_to_track_locations_xarray.ipynb)
+* [Match up satellite to track locations](matchup-satellite-data-to-track-locations.html)
+* [Match up satellite to track locations - xarray](satellite_matchups_to_track_locations_xarray.html)
 
 ## How to clone
 

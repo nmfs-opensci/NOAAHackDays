@@ -23,4 +23,8 @@ your data science and cloud-computing learning. Here are some ideas:
 * Udemy, Coursera, and DataCamp are popular platforms that have data science courses. 
 * Geosciences
   - https://github.com/USGS-R
-  - 
+  - https://pmarchand1.github.io/atelier_rgeo/rgeo_workshop.html
+  - https://datacarpentry.github.io/r-raster-vector-geospatial/
+  - https://r.geocompx.org/
+  - https://bookdown.org/mcwimberly/gdswr-book/
+  - https://rspatial.org/index.html

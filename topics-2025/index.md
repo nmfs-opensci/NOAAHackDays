@@ -9,10 +9,10 @@ During these stand-alone informal sessions we will get introduced to a variety o
 ## Schedule
 
 * Feb 7 - Q&A and Intro to the Ocean Data Science JupyterHub and Friday HackHours
-* [Feb 14](2025-02-14-earthdata/index.qmd) - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in Python (Eli Holmes) {{< fa brands python >}} 
-* [Feb 21](2025-02-21-earthdata/index.qmd) - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in R (Eli Holmes) {{< fa brands r-project >}} 
-* Feb 28 - Working with ERDDAP data in Python: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (NOAA CoastWatch team) {{< fa brands python >}} 
-* Mar 7 - Working with ERDDAP data in R: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (NOAA CoastWatch team) {{< fa brands r-project >}} 
+* [Feb 14](2025-02-14-earthdata/index.html) - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in Python (Eli Holmes) {{< fa brands python >}} 
+* [Feb 21](2025-02-21-earthdata/index.html) - Accessing [NASA Earth Observation data](https://www.earthdata.nasa.gov/) in R (Eli Holmes) {{< fa brands r-project >}} 
+* [Feb 28](2025-02-28-ERDDAP-Py/index.html) - Working with ERDDAP data in Python: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) {{< fa brands python >}} 
+* [Mar 7](2025-03-07-ERDDAP-R/index.html) - Working with ERDDAP data in R: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials) (Sunny Hospital, Polarwatch; Daisy Shi, CoastWatch) {{< fa brands r-project >}} 
 * Mar 14 - Introduction to the [Nautilus](https://nationalresearchplatform.org/nautilus/) HyperCluster for running containerized Big Data Applications ([Carl Boettiger](https://www.carlboettiger.info/), UC Berkeley) {{< fa brands python >}}
 * Mar 21 - Parallel processing NODD model data with [Coiled](https://www.coiled.io/) ([Rich Signell](https://opensciencecomputing.com/), Open Science Consulting) {{< fa brands python >}} 
 * Mar 28 - Working with data on OPeNDAP servers in Python & R {{< fa brands python >}} {{< fa brands r-project >}}
