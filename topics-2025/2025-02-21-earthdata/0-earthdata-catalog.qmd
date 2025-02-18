@@ -1,7 +1,6 @@
 ---
 title: NASA Earthdata Catalog
-author: Eli Holmes (NOAA)
-jupyter: python3
+author: Eli Holmes
 ---
 
 >📘 Learning Objectives
@@ -15,19 +14,7 @@ In this tutorial we will get to know the NASA Earthdata catalog and assets. And 
 
 ## Earthdata Login account
 
-An Earthdata Login account is required to access data from NASA Earthdata. Please visit <https://urs.earthdata.nasa.gov> to register and manage your Earthdata Login account. This account is free to create and only takes a moment to set up.  
-
-Once you have an account, test that you can log in.
-
-```{python}
-#| tags: []
-import earthaccess
-auth = earthaccess.login()
-# are we authenticated?
-if not auth.authenticated:
-    # ask for credentials and persist them in a .netrc file
-    auth.login(strategy="interactive", persist=True)
-```
+An Earthdata Login account is required to access data from NASA Earthdata. Please visit <https://urs.earthdata.nasa.gov> to register and manage your Earthdata Login account. This account is free to create and only takes a moment to set up. You will need your username and password in the tutorials.
 
 ### The Earthdata catalog search page
 
@@ -60,7 +47,6 @@ Click on the View More Info to find the collection `concept_id`.
 
 ## Conclusion
 
-This concludes the introduction to the NASA Earthdata collection identifiers. With the information in the table above we will use the Python earthaccess library to search the files in collections.
+This concludes the introduction to the NASA Earthdata collection identifiers. 
 
----
 
