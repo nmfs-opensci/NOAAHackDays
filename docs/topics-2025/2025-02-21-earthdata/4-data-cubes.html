@@ -166,8 +166,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#load-required-packages" id="toc-load-required-packages" class="nav-link" data-scroll-target="#load-required-packages">Load Required Packages</a></li>
   <li><a href="#get-a-vector-of-urls-to-our-nc-files" id="toc-get-a-vector-of-urls-to-our-nc-files" class="nav-link" data-scroll-target="#get-a-vector-of-urls-to-our-nc-files">Get a vector of urls to our nc files</a></li>
-  <li><a href="#crop-and-plot-one-netcdf-file" id="toc-crop-and-plot-one-netcdf-file" class="nav-link" data-scroll-target="#crop-and-plot-one-netcdf-file">Crop and plot one netCDF file</a></li>
-  <li><a href="#crop-and-plot-multiple-netcdf-files" id="toc-crop-and-plot-multiple-netcdf-files" class="nav-link" data-scroll-target="#crop-and-plot-multiple-netcdf-files">Crop and plot multiple netCDF files</a></li>
+  <li><a href="#create-a-data-cube" id="toc-create-a-data-cube" class="nav-link" data-scroll-target="#create-a-data-cube">Create a data cube</a></li>
+  <li><a href="#raster-summary" id="toc-raster-summary" class="nav-link" data-scroll-target="#raster-summary">Raster summary</a></li>
+  <li><a href="#global-summary" id="toc-global-summary" class="nav-link" data-scroll-target="#global-summary">Global summary</a></li>
+  <li><a href="#monthly-means" id="toc-monthly-means" class="nav-link" data-scroll-target="#monthly-means">Monthly means</a></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2025/2025-02-21-earthdata/4-data-cubes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-21-earthdata/4-data-cubes.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -229,7 +231,6 @@ Learning Objectives
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <p>Once we have a <code>terra</code> SpatRaster, there are many things we can do with it like aggregation, sampling, means and interpolation.</p>
-<p>We will use the <a href="https://cmr.earthdata.nasa.gov/search/concepts/C2036881712-POCLOUD.html">GHRSST Level 4 AVHRR_OI Global Blended Sea Surface Temperature Analysis</a> data from NCEI. It is lower resolution than the MUR data and will load faster.</p>
 </section>
 <section id="prerequisites" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
@@ -251,127 +252,194 @@ Learning Objectives
 </div>
 <p>Get the urls. The <code>results</code> object is a vector of urls pointing to our <code>netCDF</code> files in the cloud. Each <code>netCDF</code> file is circa 670Mb.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>short_name <span class="ot">&lt;-</span> <span class="st">'MUR-JPL-L4-GLOB-v4.1'</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>short_name <span class="ot">&lt;-</span> <span class="st">'AVHRR_OI-NCEI-L4-GLOB-v2.1'</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span>) </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-16"</span>, <span class="st">"2020-12-16"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-20"</span>, <span class="st">"2020-02-10"</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> earthdatalogin<span class="sc">::</span><span class="fu">edl_search</span>(</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">short_name =</span> short_name,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="st">"4.1"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="st">"2.1"</span>,</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">temporal =</span> tbox, </span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">bounding_box =</span> <span class="fu">paste</span>(bbox,<span class="at">collapse=</span><span class="st">","</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 336</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>results[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/MUR-JPL-L4-GLOB-v4.1/20200116090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc"
-[2] "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/MUR-JPL-L4-GLOB-v4.1/20200117090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc"
-[3] "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/MUR-JPL-L4-GLOB-v4.1/20200118090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc"</code></pre>
+<pre><code>[1] 23</code></pre>
 </div>
 </div>
 </section>
-<section id="crop-and-plot-one-netcdf-file" class="level2">
-<h2 class="anchored" data-anchor-id="crop-and-plot-one-netcdf-file">Crop and plot one netCDF file</h2>
-<p>Each MUR SST <code>netCDF</code> file is large so I do not want to download. Instead I will use <code>terra::rast()</code> to do subset the data on the server side. <code>vsi = TRUE</code> is letting function know that these are files in the cloud and to use GDAL functionality for that type of resource.</p>
+<section id="create-a-data-cube" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-data-cube">Create a data cube</h2>
+<p>I will get 10 days of data and crop to a small area.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ras <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="dv">1</span>], <span class="at">vsi=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">ext</span>(<span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>,  <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span> ))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ras <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results, <span class="at">vsi=</span><span class="cn">TRUE</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ras <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(ras, e)[<span class="st">"analysed_sst"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Getting errors? Scroll below to the troubleshooting section.</em></p>
-<p>Crop to a very small region. Note order of terms is different than in bbox!!</p>
+<p>Plot the first day.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">ext</span>(<span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>,  <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span> ))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rc <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(ras, e)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>rc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>class       : SpatRaster 
-dimensions  : 200, 200, 6  (nrow, ncol, nlyr)
-resolution  : 0.01, 0.01  (x, y)
-extent      : -75.495, -73.495, 33.505, 35.505  (xmin, xmax, ymin, ymax)
-coord. ref. : lon/lat WGS 84 
-source(s)   : memory
-names       : analysed_sst, analy~error, mask, sea_i~ction, dt_1km_data, sst_anomaly 
-min values  :      290.656,        0.37,    1,        1.28,         128,       0.410 
-max values  :      298.954,        0.40,    2,        1.28,         128,       3.585 
-time        : 2020-01-16 09:00:00 UTC </code></pre>
-</div>
-</div>
-<p>Plot:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rc[[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ras[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="4-data-cubes_files/figure-html/plot_MUR-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="4-data-cubes_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="crop-and-plot-multiple-netcdf-files" class="level2">
-<h2 class="anchored" data-anchor-id="crop-and-plot-multiple-netcdf-files">Crop and plot multiple netCDF files</h2>
-<p>We can send multiple urls to <code>terra</code>.</p>
+<section id="raster-summary" class="level2">
+<h2 class="anchored" data-anchor-id="raster-summary">Raster summary</h2>
+<p>mean, max, var etc of a SpatRaster returns a single SpatRaster.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ras_all <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ras_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ras)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>class       : SpatRaster 
-dimensions  : 17999, 36000, 24  (nrow, ncol, nlyr)
-resolution  : 0.01, 0.01  (x, y)
-extent      : -179.995, 180.005, -89.995, 89.995  (xmin, xmax, ymin, ymax)
-coord. ref. : lon/lat WGS 84 
-sources     : 20200116090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc:analysed_sst  
-              20200116090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc:analysis_error  
-              20200116090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc:mask  
-              ... and 21 more source(s)
-varnames    : analysed_sst (analysed sea surface temperature) 
-              analysis_error (estimated error standard deviation of analysed_sst) 
-              mask (sea/land field composite mask) 
-              ...
-names       : analysed_sst, analy~error, mask, sea_i~ction, dt_1km_data, sst_anomaly, ... 
-unit        :       kelvin,      kelvin,     ,            ,       hours,      kelvin, ... 
-time        : 2020-01-16 09:00:00 to 2020-01-19 09:00:00 UTC </code></pre>
-</div>
-</div>
-<p>Crop to a small extent. Note order of terms is different than in bbox! Since we will only plot sst for this example, it is faster to first select our variable of interest.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">ext</span>(<span class="fu">c</span>(<span class="at">xmin=</span><span class="sc">-</span><span class="fl">75.5</span>, <span class="at">xmax=</span><span class="sc">-</span><span class="fl">73.5</span>,  <span class="at">ymin=</span><span class="fl">33.5</span>, <span class="at">ymax=</span><span class="fl">35.5</span> ))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ras_sst <span class="ot">&lt;-</span> ras_all[<span class="st">"analysed_sst"</span>,]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(ras_sst, e)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>rc_sst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>class       : SpatRaster 
-dimensions  : 200, 200, 4  (nrow, ncol, nlyr)
-resolution  : 0.01, 0.01  (x, y)
-extent      : -75.495, -73.495, 33.505, 35.505  (xmin, xmax, ymin, ymax)
+dimensions  : 8, 8, 1  (nrow, ncol, nlyr)
+resolution  : 0.25, 0.25  (x, y)
+extent      : -75.5, -73.5, 33.5, 35.5  (xmin, xmax, ymin, ymax)
 coord. ref. : lon/lat WGS 84 
 source(s)   : memory
-varname     : analysed_sst (analysed sea surface temperature) 
-names       : analysed_sst, analysed_sst, analysed_sst, analysed_sst 
-min values  :      290.656,      290.316,      289.456,      289.216 
-max values  :      298.954,      298.869,      298.662,      298.119 
-unit        :       kelvin,       kelvin,       kelvin,       kelvin 
-time        : 2020-01-16 09:00:00 to 2020-01-19 09:00:00 UTC </code></pre>
+name        :     mean 
+min value   : 287.9596 
+max value   : 297.5391 </code></pre>
 </div>
 </div>
-<p>Convert Kelvin to Celsius.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rc_sst <span class="ot">&lt;-</span> rc_sst <span class="sc">-</span> <span class="fl">273.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now plot. We will set the range so it is the same across plots and clean up the titles to be just day without time.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>titles <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">time</span>(<span class="at">x =</span> rc_sst) <span class="sc">|&gt;</span> lubridate<span class="sc">::</span><span class="fu">date</span>() <span class="sc">|&gt;</span> <span class="fu">as.character</span>()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rc_sst, </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">26</span>),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> titles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">mean</span>(ras))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="4-data-cubes_files/figure-html/plot_four_MUR-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="4-data-cubes_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
+</div>
+</div>
+</section>
+<section id="global-summary" class="level2">
+<h2 class="anchored" data-anchor-id="global-summary">Global summary</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">global</span>(ras, mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    mean
+analysed_sst    295.4739
+analysed_sst.1  295.4770
+analysed_sst.2  295.5378
+analysed_sst.3  295.7533
+analysed_sst.4  296.2651
+analysed_sst.5  296.2378
+analysed_sst.6  296.2144
+analysed_sst.7  296.1822
+analysed_sst.8  295.9805
+analysed_sst.9  295.8164
+analysed_sst.10 295.7742
+analysed_sst.11 295.4317
+analysed_sst.12 295.0430
+analysed_sst.13 294.8886
+analysed_sst.14 295.2201
+analysed_sst.15 295.4745
+analysed_sst.16 295.7053
+analysed_sst.17 295.7719
+analysed_sst.18 295.7725
+analysed_sst.19 295.9198
+analysed_sst.20 295.9339
+analysed_sst.21 295.4420
+analysed_sst.22 295.2062</code></pre>
+</div>
+</div>
+<p>You can do custom functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">global</span>(ras, <span class="cf">function</span>(i) <span class="fu">min</span>(i) <span class="sc">/</span> <span class="fu">max</span>(i))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">time</span>(ras)), g, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         date    global
+1  2020-01-19 0.9724734
+2  2020-01-20 0.9752058
+3  2020-01-21 0.9786648
+4  2020-01-22 0.9784272
+5  2020-01-23 0.9773435
+6  2020-01-24 0.9771800
+7  2020-01-25 0.9779417
+8  2020-01-26 0.9783383
+9  2020-01-27 0.9736170
+10 2020-01-28 0.9659007
+11 2020-01-29 0.9614405
+12 2020-01-30 0.9607350
+13 2020-01-31 0.9635287
+14 2020-02-01 0.9597049
+15 2020-02-02 0.9513898
+16 2020-02-03 0.9530059
+17 2020-02-04 0.9540010
+18 2020-02-05 0.9557561
+19 2020-02-06 0.9588261
+20 2020-02-07 0.9603808
+21 2020-02-08 0.9633926
+22 2020-02-09 0.9653459
+23 2020-02-10 0.9651319</code></pre>
+</div>
+</div>
+<p>You can get the range.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">global</span>(ras, range, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">time</span>(ras)), g, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         date     X1     X2
+1  2020-01-19 289.34 297.53
+2  2020-01-20 290.27 297.65
+3  2020-01-21 291.28 297.63
+4  2020-01-22 291.63 298.06
+5  2020-01-23 292.04 298.81
+6  2020-01-24 292.04 298.86
+7  2020-01-25 291.72 298.30
+8  2020-01-26 291.31 297.76
+9  2020-01-27 289.69 297.54
+10 2020-01-28 287.51 297.66
+11 2020-01-29 286.74 298.24
+12 2020-01-30 286.52 298.23
+13 2020-01-31 286.38 297.22
+14 2020-02-01 284.85 296.81
+15 2020-02-02 283.40 297.88
+16 2020-02-03 283.91 297.91
+17 2020-02-04 284.34 298.05
+18 2020-02-05 284.93 298.12
+19 2020-02-06 286.20 298.49
+20 2020-02-07 286.52 298.34
+21 2020-02-08 287.38 298.30
+22 2020-02-09 287.48 297.80
+23 2020-02-10 287.59 297.98</code></pre>
+</div>
+</div>
+</section>
+<section id="monthly-means" class="level2">
+<h2 class="anchored" data-anchor-id="monthly-means">Monthly means</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert times to year-month format</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>year_month <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">format</span>(<span class="fu">as.Date</span>(<span class="fu">time</span>(x), <span class="at">format=</span><span class="st">"%Y-%m-%d"</span>), <span class="st">"%Y-%m"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Format time to Year-month for monthly aggregation </span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ym <span class="ot">&lt;-</span> <span class="fu">year_month</span>(ras)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ym</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "2020-01" "2020-01" "2020-01" "2020-01" "2020-01" "2020-01" "2020-01"
+ [8] "2020-01" "2020-01" "2020-01" "2020-01" "2020-01" "2020-01" "2020-02"
+[15] "2020-02" "2020-02" "2020-02" "2020-02" "2020-02" "2020-02" "2020-02"
+[22] "2020-02" "2020-02"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute raster mean grouped by Year-month</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>monthly_mean_rast <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">tapp</span>(ras, ym, <span class="at">fun =</span> mean)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute mean across raster grouped by Year-month</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>monthly_means <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">global</span>(monthly_mean_rast, <span class="at">fun =</span> mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>monthly_means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             mean
+X2020.01 295.7836
+X2020.02 295.5335</code></pre>
 </div>
 </div>
 </section>

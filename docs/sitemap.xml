@@ -2,15 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-21-earthdata/3-extract-satellite-data-within-boundary.html</loc>
-    <lastmod>2025-02-18T00:49:13.962Z</lastmod>
+    <lastmod>2025-02-20T23:32:21.015Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-19-earthdatalogin-intro/earthdatalogin.html</loc>
-    <lastmod>2024-10-18T20:05:56.285Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-21-earthdata/4-data-cubes.html</loc>
+    <lastmod>2025-02-20T23:29:38.670Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-21-earthdata/2-subset-and-plot.html</loc>
-    <lastmod>2025-02-18T00:48:47.594Z</lastmod>
+    <lastmod>2025-02-20T21:40:04.162Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-19-earthdatalogin-intro/Intro_to_Cloud_R.html</loc>
@@ -218,7 +218,7 @@
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/ms_OOI_EK60_mooringtimeseries.html</loc>
-    <lastmod>2025-02-17T23:45:16.605Z</lastmod>
+    <lastmod>2025-02-18T23:44:02.730Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2024/2024-04-26-echopype/ms_PacificHake_EK60_cruisetracks.html</loc>
@@ -337,11 +337,11 @@
     <lastmod>2024-10-18T20:05:57.635Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-21-earthdata/4-data-cubes.html</loc>
-    <lastmod>2025-02-18T00:49:33.774Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2023/2023-12-19-earthdatalogin-intro/earthdatalogin.html</loc>
+    <lastmod>2024-10-18T20:05:56.285Z</lastmod>
   </url>
   <url>
     <loc>https://nmfs-opensci.github.io/NOAAHackDays/topics-2025/2025-02-21-earthdata/1-earthdatalogin.html</loc>
-    <lastmod>2025-02-18T00:48:10.162Z</lastmod>
+    <lastmod>2025-02-20T21:39:26.745Z</lastmod>
   </url>
 </urlset>
