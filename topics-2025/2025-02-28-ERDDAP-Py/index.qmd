@@ -6,7 +6,7 @@ author: Sunny Hospital (Polar Watch) and Daisy Shi (CoastWatch)
 
 # Tutorial
 
-* [Erddap intro and Satellite matchup track locations](erddap_intro_satellite_matchup_track_2_options.html)
+* [ERDDAP intro and Satellite data matchup track locations with two options](erddap_intro_satellite_matchup_track_2_options.html)
 
 
 ## How to clone
