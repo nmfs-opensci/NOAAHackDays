@@ -1,8 +1,8 @@
 ---
 title: ERDDAP in Python
-author: Sunny Hospital (Polar Watch) and Daisy Shi (CoastWatch)
+author: Sunny Hospital (Polar Watch) and Daisy Shi (Ocean Watch Central Pacific)
 ---
-
+Link to training repo in CoastWatch org: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials)
 
 # Tutorial
 
