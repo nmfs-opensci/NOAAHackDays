@@ -1,8 +1,10 @@
 ---
 title: ERDDAP in Python
-author: NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)
----
 
+author: NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)
+
+---
+Link to training repo in CoastWatch org: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials)
 
 # Tutorial
 
