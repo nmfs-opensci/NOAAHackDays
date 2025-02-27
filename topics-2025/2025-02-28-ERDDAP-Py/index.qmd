@@ -1,6 +1,6 @@
 ---
 title: ERDDAP in Python
-author: Sunny Hospital (Polar Watch) and Daisy Shi (CoastWatch)
+author: NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)
 ---
 
 
@@ -9,9 +9,10 @@ author: Sunny Hospital (Polar Watch) and Daisy Shi (CoastWatch)
 * [ERDDAP intro and Satellite data matchup track locations with two options](erddap_intro_satellite_matchup_track_2_options.html)
 
 
-## How to clone
+## How to clone the git repository 
 
 Never cloned the NOAAHackDays repo?
+
 ```
 cd ~
 git clone https://github.com/nmfs-opensci/NOAAHackDays
