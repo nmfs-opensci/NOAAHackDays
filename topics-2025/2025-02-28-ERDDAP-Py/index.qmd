@@ -10,6 +10,7 @@ Link to training repo in CoastWatch org: [CoastWatch tutorials](https://github.c
 
 * [ERDDAP intro and Satellite data matchup track locations with two options](erddap_intro_satellite_matchup_track_2_options.html)
 
+More tutorials on ERDDAP in Python can be found on the IOOS CodeLab: <https://ioos.github.io/ioos_code_lab/search.html?q=import+erddapy>
 
 ## How to clone the git repository 
 
