@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Eli Holmes, Roy Mendelssohn, Sunny Hospital">
+<meta name="author" content="Eli Holmes with help from Roy Mendelssohn, Sunny Hospital">
 
 <title>Loading ERDDAP Data with xarray – NOAA HackHours</title>
 <style>
@@ -201,7 +201,7 @@ function googleTranslateElementInit() {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Eli Holmes, Roy Mendelssohn, Sunny Hospital </p>
+             <p>Eli Holmes with help from Roy Mendelssohn, Sunny Hospital </p>
           </div>
   </div>
     
@@ -232,17 +232,17 @@ function googleTranslateElementInit() {
 </section>
 <section id="load-the-data-set-lazily" class="level2">
 <h2 class="anchored" data-anchor-id="load-the-data-set-lazily">Load the data set (lazily)</h2>
-<div id="fd7fc4af-ddd7-4f43-ab34-ac94e438f266" class="cell" data-execution_count="10">
+<div id="fd7fc4af-ddd7-4f43-ab34-ac94e438f266" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplMURSST41"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(url)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Size in TB: </span><span class="sc">{</span>ds<span class="sc">.</span>nbytes <span class="op">/</span> <span class="fl">1e12</span><span class="sc">:.2f}</span><span class="ss"> TB"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ds.sizes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Size in TB: 150.77 TB</code></pre>
+<pre><code>Size in TB: 150.79 TB</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>Frozen({'time': 8310, 'latitude': 17999, 'longitude': 36000})</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Frozen({'time': 8311, 'latitude': 17999, 'longitude': 36000})</code></pre>
 </div>
 </div>
 <div id="43d28dce-25df-42db-b070-e543eae73708" class="cell" data-execution_count="11">
@@ -786,29 +786,28 @@ Wall time: 1min 33s</code></pre>
 </section>
 <section id="chunking-to-do-larger-than-memory-computations" class="level2">
 <h2 class="anchored" data-anchor-id="chunking-to-do-larger-than-memory-computations">Chunking to do larger than memory computations</h2>
-<p>If we load in all the days for our 2 degree square, it is a bit larger than the memory on the small virtual machines (&gt; 2 Gb) of the large data set is 18 Gb. If we try to take the mean of one day it would use up all the memory if we have less than that. We can use <code>dask</code> and chunking to do the calculation in smaller chunks so we don’t run out of memory.</p>
-<div id="6138edf6-95b4-4370-96ad-40c68d5f86fa" class="cell" data-execution_count="20">
+<p>If we load in all the days for our 2 degree square, it is 18 Gb and larger than the memory on the small virtual machines (2 Gb). If we run the daily mean code, it would load all that data into memory and crash the kernel. In addition, ERDDAP has a 2Gb per request limit and we will run into that limit also. We can use <code>dask</code> and chunking to do the calculation in smaller chunks so we don’t run out of memory or run into download per request limits.</p>
+<div id="6138edf6-95b4-4370-96ad-40c68d5f86fa" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dc_all <span class="op">=</span> ds[<span class="st">'analysed_sst'</span>].sel(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                        latitude<span class="op">=</span><span class="bu">slice</span>(<span class="fl">33.5</span>, <span class="fl">35.5</span>), </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                        longitude<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="fl">75.5</span>, <span class="op">-</span><span class="fl">73.5</span>),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                        time<span class="op">=</span><span class="bu">slice</span>(<span class="st">'2003-01-01'</span>, <span class="st">'2006-12-31'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                        longitude<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="fl">75.5</span>, <span class="op">-</span><span class="fl">73.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6c62e42a-6116-4841-9740-8c5c8ae2b9c4" class="cell" data-execution_count="21">
+<div id="6c62e42a-6116-4841-9740-8c5c8ae2b9c4" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Size in GB: </span><span class="sc">{</span>dc_all<span class="sc">.</span>nbytes <span class="op">/</span> <span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> GB"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dc_all.sizes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Size in GB: 0.47 GB</code></pre>
+<pre><code>Size in GB: 2.69 GB</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>Frozen({'time': 1461, 'latitude': 201, 'longitude': 201})</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>Frozen({'time': 8311, 'latitude': 201, 'longitude': 201})</code></pre>
 </div>
 </div>
 <p>Use dask to chunk the data into 500 day chunks. Now when we process the data, it will load only one chunk at a time. We can (slowly) work through all the chunks without maxing out the data.</p>
-<div id="d61d5340-327f-4cbd-ba36-4324977dc203" class="cell" data-execution_count="23">
+<div id="d61d5340-327f-4cbd-ba36-4324977dc203" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>dc_chunk <span class="op">=</span> dc_all.chunk({<span class="st">'time'</span>: <span class="dv">500</span>, <span class="st">'latitude'</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">'longitude'</span>: <span class="op">-</span><span class="dv">1</span>})</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>dc_chunk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
 <defs>
 <symbol id="icon-database" viewbox="0 0 32 32">
@@ -1179,10 +1178,10 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray 'analysed_sst' (time: 1461, latitude: 201, longitude: 201)&gt; Size: 472MB
-dask.array&lt;xarray-&lt;this-array&gt;, shape=(1461, 201, 201), dtype=float64, chunksize=(500, 201, 201), chunktype=numpy.ndarray&gt;
+</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray 'analysed_sst' (time: 8311, latitude: 201, longitude: 201)&gt; Size: 3GB
+dask.array&lt;xarray-&lt;this-array&gt;, shape=(8311, 201, 201), dtype=float64, chunksize=(500, 201, 201), chunktype=numpy.ndarray&gt;
 Coordinates:
-  * time       (time) datetime64[ns] 12kB 2003-01-01T09:00:00 ... 2006-12-31T...
+  * time       (time) datetime64[ns] 66kB 2002-06-01T09:00:00 ... 2025-03-05T...
   * latitude   (latitude) float32 804B 33.5 33.51 33.52 ... 35.48 35.49 35.5
   * longitude  (longitude) float32 804B -75.5 -75.49 -75.48 ... -73.51 -73.5
 Attributes:
@@ -1195,7 +1194,7 @@ Attributes:
     standard_name:    sea_surface_foundation_temperature
     units:            degree_C
     valid_max:        57.767
-    valid_min:        -7.767000000000003</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'analysed_sst'</div><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 1461</li><li><span class="xr-has-index">latitude</span>: 201</li><li><span class="xr-has-index">longitude</span>: 201</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-8bd622a1-f0cd-4498-99ae-ce042f5e22d6" class="xr-array-in" type="checkbox" checked=""><label for="section-8bd622a1-f0cd-4498-99ae-ce042f5e22d6" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>dask.array&lt;chunksize=(500, 201, 201), meta=np.ndarray&gt;</span></div><div class="xr-array-data">
+    valid_min:        -7.767000000000003</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name">'analysed_sst'</div><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 8311</li><li><span class="xr-has-index">latitude</span>: 201</li><li><span class="xr-has-index">longitude</span>: 201</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-5fe89bc8-7239-4a84-9aec-6962eb915fbf" class="xr-array-in" type="checkbox" checked=""><label for="section-5fe89bc8-7239-4a84-9aec-6962eb915fbf" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>dask.array&lt;chunksize=(500, 201, 201), meta=np.ndarray&gt;</span></div><div class="xr-array-data">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
@@ -1214,17 +1213,17 @@ Attributes:
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Bytes</td>
-<td>450.33 MiB</td>
+<td>2.50 GiB</td>
 <td>154.12 MiB</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Shape</td>
-<td>(1461, 201, 201)</td>
+<td>(8311, 201, 201)</td>
 <td>(500, 201, 201)</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Dask graph</td>
-<td colspan="2">3 chunks in 2 graph layers</td>
+<td colspan="2">17 chunks in 2 graph layers</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Data type</td>
@@ -1232,27 +1231,27 @@ Attributes:
 </tr>
 </tbody>
 </table></td>
-<td><svg width="170" height="160" style="stroke:rgb(0,0,0);stroke-width:1">
-<!-- Horizontal lines --> <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2"></line> <line x1="10" y1="40" x2="80" y2="110" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="40" style="stroke-width:2"></line> <line x1="34" y1="24" x2="34" y2="64"></line> <line x1="58" y1="48" x2="58" y2="88"></line> <line x1="80" y1="70" x2="80" y2="110" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 80.58823529411765,70.58823529411765 80.58823529411765,110.869852957393 10.0,40.28161766327534" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="50" y2="0" style="stroke-width:2"></line> <line x1="34" y1="24" x2="74" y2="24"></line> <line x1="58" y1="48" x2="98" y2="48"></line> <line x1="80" y1="70" x2="120" y2="70" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2"></line> <line x1="50" y1="0" x2="120" y2="70" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 50.28161766327534,0.0 120.869852957393,70.58823529411765 80.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="80" y1="70" x2="120" y2="70" style="stroke-width:2"></line> <line x1="80" y1="110" x2="120" y2="110" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="80" y1="70" x2="80" y2="110" style="stroke-width:2"></line> <line x1="120" y1="70" x2="120" y2="110" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="80.58823529411765,70.58823529411765 120.869852957393,70.58823529411765 120.869852957393,110.869852957393 80.58823529411765,110.869852957393" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="100.729044" y="130.869853" font-size="1.0rem" font-weight="100" text-anchor="middle">201</text> <text x="140.869853" y="90.729044" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.869853,90.729044)">201</text> <text x="35.294118" y="95.575735" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,95.575735)">1461</text>
+<td><svg width="160" height="150" style="stroke:rgb(0,0,0);stroke-width:1">
+<!-- Horizontal lines --> <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2"></line> <line x1="10" y1="30" x2="80" y2="100" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="10" y2="30" style="stroke-width:2"></line> <line x1="14" y1="4" x2="14" y2="34"></line> <line x1="18" y1="8" x2="18" y2="38"></line> <line x1="22" y1="12" x2="22" y2="42"></line> <line x1="26" y1="16" x2="26" y2="47"></line> <line x1="31" y1="21" x2="31" y2="51"></line> <line x1="35" y1="25" x2="35" y2="55"></line> <line x1="39" y1="29" x2="39" y2="59"></line> <line x1="43" y1="33" x2="43" y2="64"></line> <line x1="48" y1="38" x2="48" y2="68"></line> <line x1="52" y1="42" x2="52" y2="72"></line> <line x1="56" y1="46" x2="56" y2="76"></line> <line x1="60" y1="50" x2="60" y2="81"></line> <line x1="65" y1="55" x2="65" y2="85"></line> <line x1="69" y1="59" x2="69" y2="89"></line> <line x1="73" y1="63" x2="73" y2="93"></line> <line x1="77" y1="67" x2="77" y2="98"></line> <line x1="80" y1="70" x2="80" y2="100" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 80.58823529411765,70.58823529411765 80.58823529411765,100.70636408936957 10.0,30.118128795251923" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="10" y1="0" x2="40" y2="0" style="stroke-width:2"></line> <line x1="14" y1="4" x2="44" y2="4"></line> <line x1="18" y1="8" x2="48" y2="8"></line> <line x1="22" y1="12" x2="52" y2="12"></line> <line x1="26" y1="16" x2="57" y2="16"></line> <line x1="31" y1="21" x2="61" y2="21"></line> <line x1="35" y1="25" x2="65" y2="25"></line> <line x1="39" y1="29" x2="69" y2="29"></line> <line x1="43" y1="33" x2="74" y2="33"></line> <line x1="48" y1="38" x2="78" y2="38"></line> <line x1="52" y1="42" x2="82" y2="42"></line> <line x1="56" y1="46" x2="86" y2="46"></line> <line x1="60" y1="50" x2="91" y2="50"></line> <line x1="65" y1="55" x2="95" y2="55"></line> <line x1="69" y1="59" x2="99" y2="59"></line> <line x1="73" y1="63" x2="103" y2="63"></line> <line x1="77" y1="67" x2="108" y2="67"></line> <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2"></line> <line x1="40" y1="0" x2="110" y2="70" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="10.0,0.0 40.11812879525192,0.0 110.70636408936957,70.58823529411765 80.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Horizontal lines --> <line x1="80" y1="70" x2="110" y2="70" style="stroke-width:2"></line> <line x1="80" y1="100" x2="110" y2="100" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="80" y1="70" x2="80" y2="100" style="stroke-width:2"></line> <line x1="110" y1="70" x2="110" y2="100" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="80.58823529411765,70.58823529411765 110.70636408936957,70.58823529411765 110.70636408936957,100.70636408936957 80.58823529411765,100.70636408936957" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="95.647300" y="120.706364" font-size="1.0rem" font-weight="100" text-anchor="middle">201</text> <text x="130.706364" y="85.647300" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,130.706364,85.647300)">201</text> <text x="35.294118" y="85.412246" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,85.412246)">8311</text>
 </svg></td>
 </tr>
 </tbody>
 </table>
-</div></div></li><li class="xr-section-item"><input id="section-c07be405-4b04-4122-a336-4ed80d9ba72d" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-c07be405-4b04-4122-a336-4ed80d9ba72d" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2003-01-01T09:00:00 ... 2006-12-...</div><input id="attrs-f746b7aa-a86f-4ea7-ad9f-810cd467fd72" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f746b7aa-a86f-4ea7-ad9f-810cd467fd72" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-754c9be3-0876-4784-ab29-8159442601a4" class="xr-var-data-in" type="checkbox"><label for="data-754c9be3-0876-4784-ab29-8159442601a4" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Time</dd><dt><span>actual_range :</span></dt><dd>[1.0229220e+09 1.7410788e+09]</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>comment :</span></dt><dd>Nominal time of analyzed fields</dd><dt><span>ioos_category :</span></dt><dd>Time</dd><dt><span>long_name :</span></dt><dd>reference time of sst field</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>time_origin :</span></dt><dd>01-JAN-1970 00:00:00</dd></dl></div><div class="xr-var-data"><pre>array(['2003-01-01T09:00:00.000000000', '2003-01-02T09:00:00.000000000',
-       '2003-01-03T09:00:00.000000000', ..., '2006-12-29T09:00:00.000000000',
-       '2006-12-30T09:00:00.000000000', '2006-12-31T09:00:00.000000000'],
-      dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">latitude</span></div><div class="xr-var-dims">(latitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">33.5 33.51 33.52 ... 35.49 35.5</div><input id="attrs-7e723b01-7e5f-4d24-99c5-273b8fb4bb30" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7e723b01-7e5f-4d24-99c5-273b8fb4bb30" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-3451df30-6d1e-420c-84d4-e85005617bea" class="xr-var-data-in" type="checkbox"><label for="data-3451df30-6d1e-420c-84d4-e85005617bea" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Lat</dd><dt><span>actual_range :</span></dt><dd>[-89.99  89.99]</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>ioos_category :</span></dt><dd>Location</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>valid_max :</span></dt><dd>90.0</dd><dt><span>valid_min :</span></dt><dd>-90.0</dd></dl></div><div class="xr-var-data"><pre>array([33.5 , 33.51, 33.52, ..., 35.48, 35.49, 35.5 ], dtype=float32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">longitude</span></div><div class="xr-var-dims">(longitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">-75.5 -75.49 ... -73.51 -73.5</div><input id="attrs-81203e12-a8c2-4bab-99c6-5ad2e0746131" class="xr-var-attrs-in" type="checkbox"><label for="attrs-81203e12-a8c2-4bab-99c6-5ad2e0746131" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-a8ef5f7c-3fd0-4ba3-84d4-b53c1cac092f" class="xr-var-data-in" type="checkbox"><label for="data-a8ef5f7c-3fd0-4ba3-84d4-b53c1cac092f" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Lon</dd><dt><span>actual_range :</span></dt><dd>[-179.99  180.  ]</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>ioos_category :</span></dt><dd>Location</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>valid_min :</span></dt><dd>-180.0</dd></dl></div><div class="xr-var-data"><pre>array([-75.5 , -75.49, -75.48, ..., -73.52, -73.51, -73.5 ], dtype=float32)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-5e6822c2-89b8-4e70-837d-60e492414677" class="xr-section-summary-in" type="checkbox"><label for="section-5e6822c2-89b8-4e70-837d-60e492414677" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-17b96f16-f64a-4d2f-922e-ebf6ccbfedb7" class="xr-index-data-in" type="checkbox"><label for="index-17b96f16-f64a-4d2f-922e-ebf6ccbfedb7" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2003-01-01 09:00:00', '2003-01-02 09:00:00',
-               '2003-01-03 09:00:00', '2003-01-04 09:00:00',
-               '2003-01-05 09:00:00', '2003-01-06 09:00:00',
-               '2003-01-07 09:00:00', '2003-01-08 09:00:00',
-               '2003-01-09 09:00:00', '2003-01-10 09:00:00',
+</div></div></li><li class="xr-section-item"><input id="section-82cfa77a-6e88-428e-aa7f-f64e540328c5" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-82cfa77a-6e88-428e-aa7f-f64e540328c5" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2002-06-01T09:00:00 ... 2025-03-...</div><input id="attrs-a1a3effb-a9d8-4797-ba2b-cec302e1f3fe" class="xr-var-attrs-in" type="checkbox"><label for="attrs-a1a3effb-a9d8-4797-ba2b-cec302e1f3fe" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f0509477-b55c-4276-bc16-0c5405151547" class="xr-var-data-in" type="checkbox"><label for="data-f0509477-b55c-4276-bc16-0c5405151547" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Time</dd><dt><span>actual_range :</span></dt><dd>[1.0229220e+09 1.7411652e+09]</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>comment :</span></dt><dd>Nominal time of analyzed fields</dd><dt><span>ioos_category :</span></dt><dd>Time</dd><dt><span>long_name :</span></dt><dd>reference time of sst field</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>time_origin :</span></dt><dd>01-JAN-1970 00:00:00</dd></dl></div><div class="xr-var-data"><pre>array(['2002-06-01T09:00:00.000000000', '2002-06-02T09:00:00.000000000',
+       '2002-06-03T09:00:00.000000000', ..., '2025-03-03T09:00:00.000000000',
+       '2025-03-04T09:00:00.000000000', '2025-03-05T09:00:00.000000000'],
+      dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">latitude</span></div><div class="xr-var-dims">(latitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">33.5 33.51 33.52 ... 35.49 35.5</div><input id="attrs-edee59e3-a17c-475a-831c-fa9ab86e720d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-edee59e3-a17c-475a-831c-fa9ab86e720d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-f86b5a41-9c1d-44aa-b520-0593d8924d92" class="xr-var-data-in" type="checkbox"><label for="data-f86b5a41-9c1d-44aa-b520-0593d8924d92" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Lat</dd><dt><span>actual_range :</span></dt><dd>[-89.99  89.99]</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>ioos_category :</span></dt><dd>Location</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>valid_max :</span></dt><dd>90.0</dd><dt><span>valid_min :</span></dt><dd>-90.0</dd></dl></div><div class="xr-var-data"><pre>array([33.5 , 33.51, 33.52, ..., 35.48, 35.49, 35.5 ], dtype=float32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">longitude</span></div><div class="xr-var-dims">(longitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">-75.5 -75.49 ... -73.51 -73.5</div><input id="attrs-ca3e820f-b1b8-4e07-887a-7b67047e3e86" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ca3e820f-b1b8-4e07-887a-7b67047e3e86" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-d4efa2c6-dc36-4c42-8dd7-19bda7ed98ee" class="xr-var-data-in" type="checkbox"><label for="data-d4efa2c6-dc36-4c42-8dd7-19bda7ed98ee" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Lon</dd><dt><span>actual_range :</span></dt><dd>[-179.99  180.  ]</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>ioos_category :</span></dt><dd>Location</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>valid_max :</span></dt><dd>180.0</dd><dt><span>valid_min :</span></dt><dd>-180.0</dd></dl></div><div class="xr-var-data"><pre>array([-75.5 , -75.49, -75.48, ..., -73.52, -73.51, -73.5 ], dtype=float32)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-2e3940a2-bba4-4152-bbd7-8d7273b3a0f9" class="xr-section-summary-in" type="checkbox"><label for="section-2e3940a2-bba4-4152-bbd7-8d7273b3a0f9" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-c4b70916-dd76-444c-bfcd-28d76b786516" class="xr-index-data-in" type="checkbox"><label for="index-c4b70916-dd76-444c-bfcd-28d76b786516" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2002-06-01 09:00:00', '2002-06-02 09:00:00',
+               '2002-06-03 09:00:00', '2002-06-04 09:00:00',
+               '2002-06-05 09:00:00', '2002-06-06 09:00:00',
+               '2002-06-07 09:00:00', '2002-06-08 09:00:00',
+               '2002-06-09 09:00:00', '2002-06-10 09:00:00',
                ...
-               '2006-12-22 09:00:00', '2006-12-23 09:00:00',
-               '2006-12-24 09:00:00', '2006-12-25 09:00:00',
-               '2006-12-26 09:00:00', '2006-12-27 09:00:00',
-               '2006-12-28 09:00:00', '2006-12-29 09:00:00',
-               '2006-12-30 09:00:00', '2006-12-31 09:00:00'],
-              dtype='datetime64[ns]', name='time', length=1461, freq=None))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>latitude</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-600e764a-cb90-4934-a581-aa2a96648bdc" class="xr-index-data-in" type="checkbox"><label for="index-600e764a-cb90-4934-a581-aa2a96648bdc" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([              33.5,   33.5099983215332,  33.52000045776367,
+               '2025-02-24 09:00:00', '2025-02-25 09:00:00',
+               '2025-02-26 09:00:00', '2025-02-27 09:00:00',
+               '2025-02-28 09:00:00', '2025-03-01 09:00:00',
+               '2025-03-02 09:00:00', '2025-03-03 09:00:00',
+               '2025-03-04 09:00:00', '2025-03-05 09:00:00'],
+              dtype='datetime64[ns]', name='time', length=8311, freq=None))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>latitude</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-21160768-f5e6-4bc3-9eeb-a0794a862362" class="xr-index-data-in" type="checkbox"><label for="index-21160768-f5e6-4bc3-9eeb-a0794a862362" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([              33.5,   33.5099983215332,  33.52000045776367,
        33.529998779296875, 33.540000915527344,  33.54999923706055,
        33.560001373291016,  33.56999969482422,  33.58000183105469,
         33.59000015258789,
@@ -1261,7 +1260,7 @@ Attributes:
        35.439998626708984,  35.45000076293945, 35.459999084472656,
        35.470001220703125,  35.47999954223633,   35.4900016784668,
                      35.5],
-      dtype='float32', name='latitude', length=201))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>longitude</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-7cedea8b-f7ab-400a-bec4-94c35e7ac20d" class="xr-index-data-in" type="checkbox"><label for="index-7cedea8b-f7ab-400a-bec4-94c35e7ac20d" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([             -75.5, -75.48999786376953,  -75.4800033569336,
+      dtype='float32', name='latitude', length=201))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>longitude</div></div><div class="xr-index-preview">PandasIndex</div><input type="checkbox" disabled=""><label></label><input id="index-627ffef6-522a-4ff8-8058-cf7245e994a2" class="xr-index-data-in" type="checkbox"><label for="index-627ffef6-522a-4ff8-8058-cf7245e994a2" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Index([             -75.5, -75.48999786376953,  -75.4800033569336,
        -75.47000122070312, -75.45999908447266, -75.44999694824219,
        -75.44000244140625, -75.43000030517578, -75.41999816894531,
        -75.41000366210938,
@@ -1270,20 +1269,21 @@ Attributes:
        -73.55999755859375, -73.55000305175781, -73.54000091552734,
        -73.52999877929688,  -73.5199966430664, -73.51000213623047,
                     -73.5],
-      dtype='float32', name='longitude', length=201))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-459b2938-d337-468e-8a35-3dd1006edc91" class="xr-section-summary-in" type="checkbox"><label for="section-459b2938-d337-468e-8a35-3dd1006edc91" class="xr-section-summary">Attributes: <span>(10)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>colorBarMaximum :</span></dt><dd>32.0</dd><dt><span>colorBarMinimum :</span></dt><dd>0.0</dd><dt><span>comment :</span></dt><dd>Interim near-real-time (nrt) version using Multi-Resolution Variational Analysis (MRVA) method for interpolation; to be replaced by Final version</dd><dt><span>ioos_category :</span></dt><dd>Temperature</dd><dt><span>long_name :</span></dt><dd>Analysed Sea Surface Temperature</dd><dt><span>source :</span></dt><dd>MODIS_T-JPL, MODIS_A-JPL, AMSR2-REMSS, AVHRRMTB_G-NAVO, iQUAM-NOAA/NESDIS, Ice_Conc-OSISAF</dd><dt><span>standard_name :</span></dt><dd>sea_surface_foundation_temperature</dd><dt><span>units :</span></dt><dd>degree_C</dd><dt><span>valid_max :</span></dt><dd>57.767</dd><dt><span>valid_min :</span></dt><dd>-7.767000000000003</dd></dl></div></li></ul></div></div>
+      dtype='float32', name='longitude', length=201))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-4921877c-bb7d-4e00-bc39-732c2b3d8844" class="xr-section-summary-in" type="checkbox"><label for="section-4921877c-bb7d-4e00-bc39-732c2b3d8844" class="xr-section-summary">Attributes: <span>(10)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>colorBarMaximum :</span></dt><dd>32.0</dd><dt><span>colorBarMinimum :</span></dt><dd>0.0</dd><dt><span>comment :</span></dt><dd>Interim near-real-time (nrt) version using Multi-Resolution Variational Analysis (MRVA) method for interpolation; to be replaced by Final version</dd><dt><span>ioos_category :</span></dt><dd>Temperature</dd><dt><span>long_name :</span></dt><dd>Analysed Sea Surface Temperature</dd><dt><span>source :</span></dt><dd>MODIS_T-JPL, MODIS_A-JPL, AMSR2-REMSS, AVHRRMTB_G-NAVO, iQUAM-NOAA/NESDIS, Ice_Conc-OSISAF</dd><dt><span>standard_name :</span></dt><dd>sea_surface_foundation_temperature</dd><dt><span>units :</span></dt><dd>degree_C</dd><dt><span>valid_max :</span></dt><dd>57.767</dd><dt><span>valid_min :</span></dt><dd>-7.767000000000003</dd></dl></div></li></ul></div></div>
 </div>
 </div>
-<div id="3c9aacbd-9bc1-462d-b11e-50b1ba7cd7e0" class="cell" data-execution_count="25">
+<p>Here I will use just 3 years of data to illustrate the concept since chugging through all years would take awhile. but you can watch the memory (at the bottom nav bar in the Jupyter Hub) and see that it stays low. Note, 150 Mb chunks are a bit smaller than needed and we could speed things up by optimizing chunk size.</p>
+<div id="3c9aacbd-9bc1-462d-b11e-50b1ba7cd7e0" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is takes about 6 minutes</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.diagnostics <span class="im">import</span> ProgressBar</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ProgressBar():</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    mean_all_years <span class="op">=</span> dc_chunk.mean(dim<span class="op">=</span>[<span class="st">'latitude'</span>, <span class="st">'longitude'</span>]).compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    mean_all_years <span class="op">=</span> dc_chunk.sel(time<span class="op">=</span><span class="bu">slice</span>(<span class="st">"2002"</span>, <span class="st">"2006"</span>)).mean(dim<span class="op">=</span>[<span class="st">'latitude'</span>, <span class="st">'longitude'</span>]).compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[########################################] | 100% Completed | 266.24 s</code></pre>
+<pre><code>[########################################] | 100% Completed | 400.90 s</code></pre>
 </div>
 </div>
-<div id="483e0de5-7271-4a49-bb0d-2f705976766a" class="cell" data-execution_count="28">
+<div id="483e0de5-7271-4a49-bb0d-2f705976766a" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mean_all_years.plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1294,7 +1294,7 @@ Attributes:
 </div>
 </div>
 <p>We can resample to monthly.</p>
-<div id="62ed27b6-3e56-4386-8f10-1e4530faf4dc" class="cell" data-execution_count="30">
+<div id="62ed27b6-3e56-4386-8f10-1e4530faf4dc" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mean_all_years.resample(time<span class="op">=</span><span class="st">'ME'</span>).mean().plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1304,7 +1304,7 @@ Attributes:
 </div>
 </div>
 </div>
-<p>Note when we loaded all the data in, versus chunking with dask, running this code was fast because the data was already loaded. But with the chunked data, we don’t keep all of it in memory so running this would not be fast. Instead, above, the daily data was resampled to monthly.</p>
+<p>Note when we loaded all the data in, versus chunking with dask, running the <code>resample</code> code was fast because the data was already loaded. But with the chunked data, we don’t keep all of it in memory so running <code>resample</code> would mean chugging through all the chunks again, i.e.&nbsp;would not be fast. Instead, above, the daily means were resampled to monthly instead of doing this:</p>
 <pre><code>dc_monthly = dc.resample(time='ME').mean()</code></pre>
 </section>
 <section id="compare-to-zarr" class="level2">
@@ -1320,7 +1320,7 @@ Attributes:
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                        lon<span class="op">=</span><span class="bu">slice</span>(<span class="op">-</span><span class="fl">75.5</span>, <span class="op">-</span><span class="fl">73.5</span>),</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                        time<span class="op">=</span><span class="bu">slice</span>(<span class="st">'2003-01-01'</span>, <span class="st">'2006-12-31'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Processing the chunked data takes only 1.5 minutes versus 6 minutes with the data on ERDDAP.</p>
+<p>Processing the Zarr dataset on AWS takes only 1.5 minutes versus 6 minutes with the data on ERDDAP.</p>
 <div id="b43249c7-ec88-4f91-8717-491722fad5e8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>dc2_chunk <span class="op">=</span> dc2.chunk({<span class="st">'time'</span>: <span class="dv">500</span>, <span class="st">'lat'</span>: <span class="op">-</span><span class="dv">1</span>, <span class="st">'lon'</span>: <span class="op">-</span><span class="dv">1</span>})</span>
