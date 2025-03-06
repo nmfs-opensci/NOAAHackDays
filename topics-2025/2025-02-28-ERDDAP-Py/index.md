@@ -1,11 +1,12 @@
 # ERDDAP in Python
 
-NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)
-<hr>
+**Author:** NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)
 
-Link to training repo in CoastWatch org: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials)
+
 
 ## Tutorials
+
+Link to training repo in CoastWatch org: [CoastWatch tutorials](https://github.com/coastwatch-training/CoastWatch-Tutorials)
 
 * [Satellite data matchup track locations](erddap_intro_satellite_matchup_track_2_options.html) This tutorial shows how to use ERDDAP data to get SST and CHL along a sea turtle track.
 * [ERDDAP and xarray](erddap_xarray.html) This tutorial shows an example of creating a data cube from a ERDDAP data collection and creating spatial and temporal means.
