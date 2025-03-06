@@ -1,0 +1,12 @@
+{
+  "hash": "89911bb2e4d1bc2b07aad71b8f1da60f",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: ERDDAP in Python\nauthor: 'NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)'\njupyter:\n  jupytext:\n    text_representation:\n      extension: .qmd\n      format_name: quarto\n      format_version: '1.0'\n      jupytext_version: 1.16.7\n  kernelspec:\n    display_name: Python 3 (ipykernel)\n    language: python\n    name: python3\n---\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
