@@ -2,13 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)">
 
-<title>ERDDAP in Python – NOAA HackHours</title>
+<title>index – NOAA HackHours</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -36,12 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-67a2e84020a814b898de6a6e6a645961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2f8c0978bb89e63a0561cfc3282945b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,12 +127,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#tutorial" id="toc-tutorial" class="nav-link active" data-scroll-target="#tutorial">Tutorial</a>
+  <li><a href="#erddap-in-python" id="toc-erddap-in-python" class="nav-link active" data-scroll-target="#erddap-in-python">ERDDAP in Python</a>
+  <ul class="collapse">
+  <li><a href="#author-noaa-coastwatch-modified-by-daisy-shi-oceanwatch-pacific" id="toc-author-noaa-coastwatch-modified-by-daisy-shi-oceanwatch-pacific" class="nav-link" data-scroll-target="#author-noaa-coastwatch-modified-by-daisy-shi-oceanwatch-pacific">author: ‘NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)’</a></li>
+  </ul></li>
+  <li><a href="#tutorials" id="toc-tutorials" class="nav-link" data-scroll-target="#tutorials">Tutorials</a>
   <ul class="collapse">
   <li><a href="#how-to-clone-the-git-repository" id="toc-how-to-clone-the-git-repository" class="nav-link" data-scroll-target="#how-to-clone-the-git-repository">How to clone the git repository</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2025/2025-02-28-ERDDAP-Py/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-28-ERDDAP-Py/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2025/2025-02-28-ERDDAP-Py/index.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-28-ERDDAP-Py/index.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -147,38 +150,23 @@ function googleTranslateElementInit() {
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">ERDDAP in Python</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific) </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="erddap-in-python" class="level1">
+<h1>ERDDAP in Python</h1>
+<section id="author-noaa-coastwatch-modified-by-daisy-shi-oceanwatch-pacific" class="level2">
+<h2 class="anchored" data-anchor-id="author-noaa-coastwatch-modified-by-daisy-shi-oceanwatch-pacific">author: ‘NOAA CoastWatch, modified by Daisy Shi (OceanWatch Pacific)’</h2>
 <p>Link to training repo in CoastWatch org: <a href="https://github.com/coastwatch-training/CoastWatch-Tutorials">CoastWatch tutorials</a></p>
-<section id="tutorial" class="level1">
-<h1>Tutorial</h1>
+</section>
+</section>
+<section id="tutorials" class="level1">
+<h1>Tutorials</h1>
 <ul>
-<li><a href="erddap_intro_satellite_matchup_track_2_options.html">ERDDAP intro and Satellite data matchup track locations with two options</a></li>
+<li><a href="erddap_intro_satellite_matchup_track_2_options.html">Satellite data matchup track locations</a> This tutorial shows how to use ERDDAP data to get SST and CHL along a sea turtle track.</li>
+<li><a href="erddap_xarray.html">ERDDAP and xarray</a> This tutorial shows an example of creating a data cube from a ERDDAP data collection and creating spatial and temporal means.</li>
 </ul>
-<p>More tutorials on ERDDAP in Python can be found on the IOOS CodeLab: <a href="https://ioos.github.io/ioos_code_lab/search.html?q=import+erddapy" class="uri">https://ioos.github.io/ioos_code_lab/search.html?q=import+erddapy</a></p>
+<p>The <a href="https://ioos.github.io/erddapy/">erddapy Python package</a> helps you search and do common tasks with ERDDAP servers. See the tutorials on the IOOS CodeLab: <a href="https://ioos.github.io/ioos_code_lab/search.html?q=import+erddapy" class="uri">https://ioos.github.io/ioos_code_lab/search.html?q=import+erddapy</a></p>
 <section id="how-to-clone-the-git-repository" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-clone-the-git-repository">How to clone the git repository</h2>
 <p>Never cloned the NOAAHackDays repo?</p>
@@ -420,6 +408,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -530,6 +520,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -763,7 +754,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2025/2025-02-28-ERDDAP-Py/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-28-ERDDAP-Py/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/edit/main/topics-2025/2025-02-28-ERDDAP-Py/index.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-28-ERDDAP-Py/index.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
