@@ -1,12 +1,14 @@
 ---
-title: Match up satellite to buoy data
-author: NOAA CoastWatch
-date: March 2024
+title: "Match up satellite to buoy data"
+author: "NOAA CoastWatch, modified by Sunny Hospital, Daisy Hui, Eli Holmes"
+date: "March 2025"
 output:
-  md_document:
+  html_document:
     variant: gfm
+  pdf_document: default
 ---
 ```{r echo=FALSE}
+# Set generate image directory
 knitr::opts_chunk$set(
   echo = TRUE,
   fig.path = "images/",
@@ -15,21 +17,30 @@ knitr::opts_chunk$set(
 ```  
   
 # Match up satellite and buoy data
-> history | Updated March 2024
+> history | Updated March 2025
+
+Today we will work on R code that combine satellite data and buoy data.
 
 ## Background
-There are buoys in many locations around the world that provide data streams of oceanic and atmospheric parameters. The data are often available through data centers like the National Data Buoy Center (NDBC https://www.ndbc.noaa.gov) and the ARGO floats program (http://www.argo.ucsd.edu). In situ buoy data are widely used to monitor environmental conditions.
 
-In-situ buoy data can be used to evaluate the accuracy of satellite data.
+There are buoys in many locations around the world that provide data streams of oceanic and atmospheric parameters. In situ buoy data are widely used to monitor environmental conditions.  In situ buoy data are often used as ground truth to assess the accuracy of satellite observations.
+
+
+**Tabular data (buoy data)** - data  are organized in columns and rows (e.g, observation, record, survey)
+
+![](images/tabular_data.png)
+
+
+**Gridded data (satellite)** - Data are arranged on a regularly spaced grid (e.g., geospatial data, temperature, chlorophyll).
+
+![](images/gridded_data.png)
 
 ## Objective
-In this exercise, we will learn how to match up satellite data to in situ buoy data using rerddap and rxtracto R packages.  
-
+In this exercise, will combine satellite data and in situ buoy data using `rerddap` and `rxtracto` R packages.
 
 ## The exercise demonstrates the following techniques:
   
 * Downloading tabular data (buoy data) from CoastWatch ERDDAP data server
-* Retrieving information about a dataset from ERDDAP
 * Subsetting satellite data within a rectangular boundary
 * Matching satellite data with the buoy data
 * Running statistical analysis to compare buoy and satellite data
@@ -37,16 +48,16 @@ In this exercise, we will learn how to match up satellite data to in situ buoy d
 
 ## Datasets used:
   
--  <a href="https://coastwatch.pfeg.noaa.gov/erddap/griddap/nesdisBLENDEDsstDNDaily.graph">The sea surface temperature (SST) satellite data</a> from the NOAA Geo-polar blended analysis
+-  <a href="https://coastwatch.pfeg.noaa.gov/erddap/griddap/nesdisBLENDEDsstDNDaily.graph">The sea surface temperature (SST) satellite data</a> from the NOAA Geo-polar blended analysis, Daily
 -  <a href="https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.graph?time%2Cwtmp%2Cwd&station=%2246259%22&time%3E=2020-09-15T00%3A00%3A00Z&time%3C=2022-09-15T00%3A00%3A00Z&.draw=markers&.marker=5%7C5&.color=0x000000&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff"> The NDBC Standard Meteorological Buoy Data (dataset ID: cwwcNDBCMet) </a> is used for validating or ground truthing the satellite SST data
 
 
-  
 ## Install required packages and load libraries  
-  
+
+
 ```{r install, message=FALSE, warning=FALSE}
 
-# Function to check if pkgs are installed, install missing pkgs, and load
+# Function to check missing packages, install and load 
 
 pkgTest <- function(x)
 {
@@ -71,10 +82,12 @@ for (pk in list.of.packages) {
 
 ```
 
-## Downloading buoy data from ERDDAP  
+## Downloading buoy data from ERDDAP using `rerddap::tabledap`  
 **Extract data using the rerddap::tabledap function**  
+
+[to learn more about `rerddap`](https://docs.ropensci.org/rerddap/articles/rerddap.html)
   
-  Using rerddap::tabledap function, we will request and download data with the following specifications:
+  Using `rerddap::tabledap` function, we will request and download data with the following specifications:
   
 * Buoy dataset ID: cwwcNDBCMet
 * Region boundaries: 35 to 40 north latitude and -125 to -120 east longitude  
@@ -87,12 +100,18 @@ for (pk in list.of.packages) {
 ERDDAP_Node = "https://coastwatch.pfeg.noaa.gov/erddap"
 
 NDBC_id = 'cwwcNDBCMet'
-NDBC_info=info(datasetid = NDBC_id,url = ERDDAP_Node)
 
-buoy <- rerddap::tabledap( url = ERDDAP_Node, NDBC_id,
-  fields=c('station', 'latitude',  'longitude', 'time', 'wtmp'), 
-  'time>=2023-08-01',   'time<=2023-08-10', 
-  'latitude>=35','latitude<=40', 'longitude>=-125','longitude<=-120',
+# Get data information
+NDBC_info=rerddap::info(datasetid = NDBC_id,url = ERDDAP_Node)
+
+# Get data tabledap(url, dataset_id, variables, condition)
+buoy <- rerddap::tabledap( 
+  url = ERDDAP_Node,   
+  NDBC_id,              
+  fields=c('station', 'latitude',  'longitude', 'time', 'wtmp'),   
+  'time>=2023-08-01',   'time<=2023-08-10',   
+  'latitude>=35','latitude<=40', 
+  'longitude>=-125','longitude<=-120',
   'wtmp>0'
 )
 
@@ -120,10 +139,10 @@ n.sta
 
 plot(buoy.df$time,buoy.df$temp,type='n', xlab='Date', ylab='SST (ºC)',main='SST from the first 10 stations')
 
-
+colors = rainbow(10)
 for (i in 1:10){
   I=which(buoy.df$station==unique.sta[i])
-  lines(buoy.df$time[I],buoy.df$temp[I])
+  lines(buoy.df$time[I],buoy.df$temp[I], col=colors[i])
 }
 ```
 
@@ -132,7 +151,7 @@ for (i in 1:10){
 Since buoy data are hourly and the satellite data are daily, the buoy data needs to be averaged daily for each station.
 
 ```{r average}
-
+library(dplyr)
 buoy.df.day=buoy.df %>%
   group_by(station, date) %>%
   summarize(
