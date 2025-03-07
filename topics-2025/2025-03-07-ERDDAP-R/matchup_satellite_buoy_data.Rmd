@@ -38,6 +38,12 @@ There are buoys in many locations around the world that provide data streams of 
 ## Objective
 In this exercise, will combine satellite data and in situ buoy data using `rerddap` and `rxtracto` R packages.
 
+## Datasets used:
+  
+-  <a href="https://coastwatch.pfeg.noaa.gov/erddap/griddap/nesdisBLENDEDsstDNDaily.graph">The sea surface temperature (SST) satellite data</a> from the NOAA Geo-polar blended analysis, Daily
+-  <a href="https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.graph?time%2Cwtmp%2Cwd&station=%2246259%22&time%3E=2020-09-15T00%3A00%3A00Z&time%3C=2022-09-15T00%3A00%3A00Z&.draw=markers&.marker=5%7C5&.color=0x000000&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff"> The NDBC Standard Meteorological Buoy Data (dataset ID: cwwcNDBCMet) </a> is used for validating or ground truthing the satellite SST data
+
+
 ## The exercise demonstrates the following techniques:
   
 * Downloading tabular data (buoy data) from CoastWatch ERDDAP data server
@@ -45,11 +51,6 @@ In this exercise, will combine satellite data and in situ buoy data using `rerdd
 * Matching satellite data with the buoy data
 * Running statistical analysis to compare buoy and satellite data
 * Producing satellite maps and overlaying buoy data
-
-## Datasets used:
-  
--  <a href="https://coastwatch.pfeg.noaa.gov/erddap/griddap/nesdisBLENDEDsstDNDaily.graph">The sea surface temperature (SST) satellite data</a> from the NOAA Geo-polar blended analysis, Daily
--  <a href="https://coastwatch.pfeg.noaa.gov/erddap/tabledap/cwwcNDBCMet.graph?time%2Cwtmp%2Cwd&station=%2246259%22&time%3E=2020-09-15T00%3A00%3A00Z&time%3C=2022-09-15T00%3A00%3A00Z&.draw=markers&.marker=5%7C5&.color=0x000000&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff"> The NDBC Standard Meteorological Buoy Data (dataset ID: cwwcNDBCMet) </a> is used for validating or ground truthing the satellite SST data
 
 
 ## Install required packages and load libraries  
@@ -190,15 +191,6 @@ We will extract satellite data for each buoy station.
 1. get coordinates of each buoy station
 2. use the rxtracto function and the buoy coordinates to download satellite data closest to each station
 
-```{r}
-# Set the variable name of interest from the satellite data
-parameter <- 'analysed_sst'
-
-# Set x,y,t,z coordinates based on buoy data
-xcoord <- buoy.df.day$lon
-ycoord <- buoy.df.day$lat
-tcoord <- buoy.df.day$date
-```
 
 ```{r matchups}
 
@@ -317,4 +309,4 @@ myplot
 - <a href="https://coastwatch.pfeg.noaa.gov/data.html">NOAA CoastWatch Westcoast Node Data Catalog</a>
 - <a href="https://www.ndbc.noaa.gov/download_data.php?filename=46259h2017.txt.gz&dir=data/historical/stdme ">NOAA National Data Buoy Center</a>
 - <a href="https://docs.ropensci.org/rerddap/">Rerddap R Package reference</a>
-
+- <a href="https://cran.r-project.org/web/packages/rerddapXtracto/vignettes/UsingrerddapXtracto.html">rxtracto R Package reference</a>
