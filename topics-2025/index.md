@@ -4,7 +4,7 @@ title: "HackHours 2025"
 
 During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need to install anything.  [About the HackHours](https://nmfs-opensci.github.io/NOAAHackDays/content/hackhours.html)
 
-**When:** Fridays 11am Pacific/2pm Eastern. **How do I get access?** Click here for [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
+**When:** Fridays 11am Pacific/2pm Eastern. **How do I get access?** Click here for [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?tab=t.0#bookmark=id.5yi3wiw1oc7n) (NOAA only)
 
 ## Schedule
 
