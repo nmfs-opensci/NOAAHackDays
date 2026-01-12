@@ -64,6 +64,8 @@ website:
           href: topics-2024/index.md
         - text: HackHours 2025
           href: topics-2025/index.md
+        - text: HackHours 2026
+          href: topics-2026/index.md
         - text: "---"
         - href: content/reuse.md
           text: Reuse Statement
@@ -177,6 +179,18 @@ website:
         - text: "---"
         - text: Python - NASA Earth Data
           href: topics-2025/2025-02-14-earthdata/index.qmd
+    - id: topics-2026
+      logo: https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true
+      style: "docked"
+      collapse-level: 1
+      toc-expand: false
+      pinned: true
+      align: left
+      contents:
+        - text: HackHours 2026
+          href: topics-2026/index.md
+        - text: back
+          href: index.md
 format:
   html:
     theme:
