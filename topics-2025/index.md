@@ -4,7 +4,9 @@ title: "HackHours 2025"
 
 During these stand-alone informal sessions we will get introduced to a variety of tools for ocean data access and analysis in Python and R. We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need to install anything.  [About the HackHours](https://nmfs-opensci.github.io/NOAAHackDays/content/hackhours.html)
 
-**When:** Fridays 11am Pacific/2pm Eastern. **How do I get access?** Click here for [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?usp=sharing) (NOAA only)
+**Repo:** Tutorials (notebooks) are here: [NMFSHackDays-2025](https://nmfs-opensci.github.io/NMFSHackDays-2025/)
+
+**When:** Fridays 11am Pacific/2pm Eastern. **How do I get access?** Click here for [Video Link and JupyterHub Access](https://docs.google.com/document/d/15Wu28DGDKNsdQmW5yuFd3JJuUSn91HFxCEb3dqPxYcs/edit?tab=t.0#bookmark=id.5yi3wiw1oc7n) (NOAA only)
 
 ## Schedule
 
@@ -23,5 +25,16 @@ During these stand-alone informal sessions we will get introduced to a variety o
 * May 9 - [PACE](https://pace.oceansciences.org/home.htm) Hyperspectral Ocean Color Data Access and Visualization in Python ([earthaccess](https://earthaccess.readthedocs.io/en/latest/)) {{< fa brands python >}} 
 * May 16 - [PACE](https://pace.oceansciences.org/home.htm) Hyperspectral Ocean Color Data Access and Visualization in R {{< fa brands r-project >}} 
 * May 19 - EDMW 3-hour Workshop working with PACE hyperspectral data
-* May 30 - Machine-Learning with Ocean Data: [gap-filling](https://doi.org/10.6084/m9.figshare.27936036.v1) with CNNs {{< fa brands python >}} 
+* May 30 - Machine-Learning with Ocean Data: [gap-filling](https://doi.org/10.6084/m9.figshare.27936036.v1) with CNNs {{< fa brands python >}}
+* June 6 - CNNs for gridded earth data (xarray + tensorflow): [Part I](https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/CHL_prediction_CNN_Part_1.html)
+* June 13 - CNNs for gridded earth data (xarray + tensorflow): [Part II](https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/CHL_prediction_CNN_Part_2.html)
+* June 20 - CNNs for gridded earth data (xbatcher and Colab): [Part III](https://ocean-satellite-tools.github.io/mind-the-chl-gap/notebooks/CHL_prediction_CNN_Part_3.html)
+* June 27 - Writing R code with LLMs ([Simon Couch](https://www.simonpcouch.com/), Posit) [repo](https://github.com/simonpcouch/openscapes-25) - [Video (NOAA only)](https://drive.google.com/file/d/1B70OeUUg57XHJU3wM42mk6_mf1dcjsfH/view?usp=sharing)
+* July 4 HOLIDAY
+* July 11 - LLMs in R Shiny apps ([Nic Crane](https://www.linkedin.com/in/niccrane/)) [repo](https://github.com/thisisnic/hackhours2025) - [Video (NOAA only)](https://drive.google.com/file/d/15lW_wAg8q7TaTpDd4SfbpwqZWFADTwWI/view?usp=sharing)
+* July 18 - ML cloud-classification using PACE spectral data ([Sean Foley](https://science.gsfc.nasa.gov/sci/bio/sean.r.foley), NASA) [info](topics-2025/2025-07-18-cloud-mask/index.html) [notebook](topics-2025/2025-07-18-cloud-mask/ml_cloud_mask.html) [Video (NOAA only)](https://drive.google.com/file/d/12IvKnxJ8i0PsRr5huqeJjEZLOhCNfpFn/view?usp=sharing)
+* July 25 - Vision CNN models for fisheries applications ([Michael Akridge](https://www.linkedin.com/in/michael-akridge/), NOAA)
+* Aug 1 - LLMs in StreamLit Apps ([Boris Shapkin](https://www.linkedin.com/in/boris-shapkin/?originalSubdomain=de), Alfred Wegener Institute)
+* BREAK UNTIL 2026!
+
 

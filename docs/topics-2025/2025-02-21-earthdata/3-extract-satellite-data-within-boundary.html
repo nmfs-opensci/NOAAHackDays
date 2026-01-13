@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="NOAA CoastWatch modifications by NMFS Openscapes">
 
 <title>Extract data within a boundary – NOAA HackHours</title>
 <style>
@@ -197,6 +198,12 @@ function googleTranslateElementInit() {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>NOAA CoastWatch modifications by NMFS Openscapes </p>
+          </div>
+  </div>
     
   
     
@@ -241,7 +248,8 @@ Learning Objectives
 <p>The tutorials today can be run with the guest Earthdata Login that is in <code>earthdatalogin</code>. However, if you will be using the NASA Earthdata portal more regularly, please register for an Earthdata Login account. Please <a href="https://urs.earthdata.nasa.gov" class="uri">https://urs.earthdata.nasa.gov</a> to register and manage your Earthdata Login account. This account is free to create and only takes a moment to set up.</p>
 <section id="import-required-packages" class="level3">
 <h3 class="anchored" data-anchor-id="import-required-packages">Import Required Packages</h3>
-<p><em>Note: See the set-up tab (in left nav bar) for instructions on getting set up on your own computer, but be aware that getting it is common to run into trouble getting GDAL set up properly to handle netCDF files. Using a Docker image (and Python) is often less aggravating.</em></p>
+<p>See the <a href="1-earthdatalogin.html">1-earthdatalogin</a> tutorial for set-up if you are running the tutorial locally.</p>
+<p><em>Note: Be aware that getting it is common to run into trouble getting GDAL set up properly to handle netCDF files. Using a Docker image (and Python) is often less aggravating.</em></p>
 </section>
 </section>
 <section id="datasets" class="level2">
@@ -305,7 +313,7 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>bbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin=</span><span class="fu">min</span>(xcoord), <span class="at">ymin=</span><span class="fu">min</span>(ycoord), <span class="at">xmax=</span><span class="fu">max</span>(xcoord), <span class="at">ymax=</span><span class="fu">max</span>(ycoord)) </span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set time range</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>tbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-01"</span>, <span class="st">"2020-04-01"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>tbox <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2020-01-01"</span>, <span class="st">"2020-12-31"</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Search data that match the boundaries and time range</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">edl_search</span>(</span>
@@ -318,10 +326,10 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Check number of files </span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 93</code></pre>
+<pre><code>[1] 367</code></pre>
 </div>
 </div>
-<p>There are 93 files.</p>
+<p>There are 367 files.</p>
 </section>
 <section id="apply-shapefiles-as-mask-to-satellite-data" class="level2">
 <h2 class="anchored" data-anchor-id="apply-shapefiles-as-mask-to-satellite-data">Apply shapefiles as mask to satellite data</h2>
@@ -380,9 +388,9 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 <section id="compute-monthly-average-of-sst" class="level2">
 <h2 class="anchored" data-anchor-id="compute-monthly-average-of-sst">Compute monthly average of SST</h2>
 <p>We will construct a data cube to compute monthly average for sea surface temperature data within the boundary. To minimize data loading times, the first 10 results, which correspond to approximately two months of data, will be used for this exercise.</p>
-<p>Select the first 10 SST results (end of January and beginning of February).</p>
+<p>Select the 10 SST results (end of January and beginning of February).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ras_all <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="fu">c</span>(<span class="dv">25</span><span class="sc">:</span><span class="dv">35</span>)], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ras_all <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(results[<span class="dv">30</span><span class="sc">:</span><span class="dv">40</span>], <span class="at">vsi =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Select SST data. The trim and mask operations are memory intensive and we want to select only the layer we will be working with.</p>
 <div class="cell">
@@ -442,6 +450,7 @@ For this exercise, we will only use the boundary of one province, the Gulf Strea
 </section>
 <section id="plot-monthly-mean-of-sea-surface-temperature-within-gfst-province" class="level2">
 <h2 class="anchored" data-anchor-id="plot-monthly-mean-of-sea-surface-temperature-within-gfst-province">Plot monthly mean of sea surface temperature within GFST province</h2>
+<p>You will only see 2 points since we loaded only 10 days of data (end of January and beginning of February).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> monthly_means_df, <span class="fu">aes</span>(<span class="at">x =</span> year_month, <span class="at">y =</span> mean, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>

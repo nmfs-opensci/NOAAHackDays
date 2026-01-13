@@ -7,8 +7,8 @@ Link to original repos in CoastWatch org: [CoastWatch tutorials R](https://githu
 
 # Tutorials
 
-* [Mask shallow pixels for satellite ocean color datasets](mask-shallow-ocean-color.html)
 * [Match up satellite to buoy data](matchup_satellite_buoy_data.html)
+* [(Optional) Mask shallow pixels for satellite ocean color datasets](mask-shallow-ocean-color.html)
 
 ## How to clone
 

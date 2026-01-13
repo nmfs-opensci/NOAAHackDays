@@ -29,12 +29,13 @@ An Earthdata Login account is required to access data from NASA Earthdata. Pleas
 ## Load Required Packages
 
 We are using the JupyterHub and all necessary packages are already installed for you. If you are running locally, you can install the packages with
-```
+
+```         
 devtools::install_github("boettiger-lab/earthdatalogin")
 install.packages("terra")
 ```
-But be aware that it is common to run into trouble getting GDAL set up properly to handle netCDF files. Using a Docker image like Rocker geospatial is often less aggravating.
 
+But be aware that it is common to run into trouble getting GDAL set up properly to handle netCDF files. Using a Docker image like Rocker geospatial is often less aggravating.
 
 ```{r}
 library(earthdatalogin)
@@ -45,7 +46,7 @@ library(terra)
 
 We will start by authenticating using our Earthdata Login credentials. Authentication is not necessarily needed to search for publicly available data collections in Earthdata, but is always needed to download or access data from the NASA Earthdata archives. We can use `edl_netrc()` from the `earthdatalogin` package to create a `.netrc` file that will store our credentials.
 
-The first time you run authentication use:
+The first time you run authentication use this code. Note, do this even if you authenticated in Jupyter Lab earlier. This netrc file is placed in a different location.
 
 ```{r, eval = FALSE}
 earthdatalogin::edl_netrc(
@@ -66,7 +67,7 @@ Once your `netrc` file is saved, you can authenticate.
 earthdatalogin::edl_netrc()
 ```
 
-*For the purposes of this workshop, `edl_netrc()` will work by using a default public account login. Feel free to login with your own [NASA Earthdata account](https://urs.earthdata.nasa.gov/home)*
+*`edl_netrc()` will also work by using a default public account login, but feel free to login with your own [NASA Earthdata account](https://urs.earthdata.nasa.gov/home)*
 
 ## Search for data
 
@@ -79,13 +80,13 @@ There are multiple keywords we can use to discover data from collections. The ta
 
 How can we find the `shortname`, `concept_id`, and `doi` for collections not in the table above? Let's take a quick detour:
 
-1.  Navigate to https://search.earthdata.nasa.gov/search 2: Search for "GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis" or click this [link](https://search.earthdata.nasa.gov/search?q=GHRSST%20Level%204%20MUR%20Global%20Foundation%20Sea%20Surface%20Temperature%20Analysis) (screenshot below).
+1.  Navigate to <https://search.earthdata.nasa.gov/search> 2: Search for "GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis" or click this [link](https://search.earthdata.nasa.gov/search?q=GHRSST%20Level%204%20MUR%20Global%20Foundation%20Sea%20Surface%20Temperature%20Analysis) (screenshot below).
 
 ![](images/SST_Blended_Earthdata_Search.png){width="50%"}
 
-If we hover over the top box, find and click on the more information button (an i with a circle around it). On this page, you will see the `DOI`. Now click "View More Info" to get to <https://cmr.earthdata.nasa.gov/search/concepts/C1996881146-POCLOUD.html>.
+Find and click on the more information button (an i with a circle around it). On this page, you will see the `DOI`. Now click "View More Info" to get to <https://cmr.earthdata.nasa.gov/search/concepts/C1996881146-POCLOUD.html>.
 
-On that page you will see the **"short name"** `MUR-JPL-L4-GLOB-v4.1`. Note the short name was also on the first search page (though it wasn't labeled as the short name, there).
+On that page you will see the **"short name"** `MUR-JPL-L4-GLOB-v4.1` and below that in an unlabelled box is the Concept ID.
 
 ### Search by short name
 
@@ -196,6 +197,6 @@ How to you accept EULA's? Go to <https://urs.earthdata.nasa.gov/profile>. Look f
 
 ## Conclusion
 
-This concludes tutorial 1. You have worked with remote-sensing data in the cloud and plotted it. Way to go!
+This concludes tutorial 1. You have worked with remote-sensing data in the cloud and plotted it.
 
 Next we will learn to subset the data so we can work with bigger datasets in the cloud without downloading the whole dataset.

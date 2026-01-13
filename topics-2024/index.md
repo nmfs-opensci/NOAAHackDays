@@ -2,7 +2,7 @@
 title: "HackHours 2024"
 ---
 
-## Select an event to the left
+## Schedule
 
 * June 14. [CEFI Portal](https://psl.noaa.gov/cefi_portal/#cookbooks) team. (Python)
 * May 31. Another PACE satellite mission tutorial by the NASA OB.DAAC [Ocean Color](https://oceancolor.gsfc.nasa.gov/resources/docs/tutorials/) team. (Python)

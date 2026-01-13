@@ -11,10 +11,9 @@ author: Eli Holmes
 
 ## Summary
 
-In this example, we will utilize the `earthdatalogin` R package to retrieve, subset, and crop sea surface temperature data as a file and as a datacube from [NASA Earthdata search](https://search.earthdata.nasa.gov/search). The `earthdatalogin` R package simplifies the process of discovering and accessing NASA Earth science data. We manipulate with the [terra](https://rspatial.github.io/terra/) package. terra is a very versitle package and we are just scratching the surface. Read more about terra [here](https://rspatial.org/spatial/index.html).
+In this example, we will utilize the `earthdatalogin` R package to retrieve, subset, and crop sea surface temperature data as a file and as a datacube from [NASA Earthdata search](https://search.earthdata.nasa.gov/search). The `earthdatalogin` R package simplifies the process of discovering and accessing NASA Earth science data. We manipulate with the [terra](https://rspatial.github.io/terra/) package. terra is a very versatile package and we are just scratching the surface. Read more about terra [here](https://rspatial.org/spatial/index.html).
 
 For more on `earthdatalogin` visit the [`earthdatalogin` GitHub](https://github.com/boettiger-lab/earthdatalogin/) page and/or the [`earthdatalogin` documentation](https://boettiger-lab.github.io/earthdatalogin/) site. Be aware that `earthdatalogin` is under active development and that we are using the development version on GitHub.
-
 
 ## Prerequisites
 

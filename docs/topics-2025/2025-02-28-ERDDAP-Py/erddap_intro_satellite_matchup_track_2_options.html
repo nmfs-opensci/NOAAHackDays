@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction to ERDDAP and Matchup satellite data to animal tracks – NOAA HackHours</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon-16x16.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">NOAA HackHours</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://nmfs-openscapes.2i2c.cloud/"> <i class="bi bi-server" role="img">
+</i> 
+<span class="menu-text">JupyterHub</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays/discussions"> <i class="bi bi-wechat" role="img">
+</i> 
+<span class="menu-text">Discussions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/nmfs-opensci/NOAAHackDays"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">repo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/nmfs-opensci"> <i class="bi bi-globe" role="img">
+</i> 
+<span class="menu-text">GH org</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#what-is-erddap" id="toc-what-is-erddap" class="nav-link" data-scroll-target="#what-is-erddap">What is ERDDAP</a></li>
+  <li><a href="#understanding-the-erddap-url" id="toc-understanding-the-erddap-url" class="nav-link" data-scroll-target="#understanding-the-erddap-url">Understanding the ERDDAP URL</a></li>
+  <li><a href="#list-of-erddap-servers" id="toc-list-of-erddap-servers" class="nav-link" data-scroll-target="#list-of-erddap-servers">List of ERDDAP servers</a></li>
+  <li><a href="#matchup-satellite-data-to-animal-tracks" id="toc-matchup-satellite-data-to-animal-tracks" class="nav-link" data-scroll-target="#matchup-satellite-data-to-animal-tracks">Matchup satellite data to animal tracks</a></li>
+  <li><a href="#import-the-required-python-modules" id="toc-import-the-required-python-modules" class="nav-link" data-scroll-target="#import-the-required-python-modules">Import the required Python modules</a></li>
+  <li><a href="#load-the-track-data-into-a-pandas-data-frame" id="toc-load-the-track-data-into-a-pandas-data-frame" class="nav-link" data-scroll-target="#load-the-track-data-into-a-pandas-data-frame">Load the track data into a Pandas data frame</a></li>
+  <li><a href="#plot-the-track-on-a-map" id="toc-plot-the-track-on-a-map" class="nav-link" data-scroll-target="#plot-the-track-on-a-map">Plot the track on a map</a></li>
+  <li><a href="#option-1-using-erddap-data-request-url-to-extract-data-and-mactchup-to-track" id="toc-option-1-using-erddap-data-request-url-to-extract-data-and-mactchup-to-track" class="nav-link" data-scroll-target="#option-1-using-erddap-data-request-url-to-extract-data-and-mactchup-to-track">Option 1: Using ERDDAP data-request URL to extract data and mactchup to track</a></li>
+  <li><a href="#prepare-track-data-for-use-in-the-erddap-data-request-url" id="toc-prepare-track-data-for-use-in-the-erddap-data-request-url" class="nav-link" data-scroll-target="#prepare-track-data-for-use-in-the-erddap-data-request-url">Prepare track data for use in the ERDDAP data-request URL</a></li>
+  <li><a href="#extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track" id="toc-extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track" class="nav-link" data-scroll-target="#extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track">Extract data from a satellite dataset corresponding to points on the track</a></li>
+  <li><a href="#option-2-using-xarray-select-function-to-extract-data-and-mactchup-to-track" id="toc-option-2-using-xarray-select-function-to-extract-data-and-mactchup-to-track" class="nav-link" data-scroll-target="#option-2-using-xarray-select-function-to-extract-data-and-mactchup-to-track">Option 2: Using xarray select function to extract data and mactchup to track</a></li>
+  <li><a href="#prepare-track-data-for-use-to-extract-satellite-data" id="toc-prepare-track-data-for-use-to-extract-satellite-data" class="nav-link" data-scroll-target="#prepare-track-data-for-use-to-extract-satellite-data">Prepare track data for use to extract satellite data</a></li>
+  <li><a href="#extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track-1" id="toc-extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track-1" class="nav-link" data-scroll-target="#extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track-1">Extract data from a satellite dataset corresponding to points on the track</a></li>
+  <li><a href="#plot-chlorophyll-and-sst-matchup-data-onto-a-map" id="toc-plot-chlorophyll-and-sst-matchup-data-onto-a-map" class="nav-link" data-scroll-target="#plot-chlorophyll-and-sst-matchup-data-onto-a-map">Plot chlorophyll and SST matchup data onto a map</a></li>
+  <li><a href="#on-your-own" id="toc-on-your-own" class="nav-link" data-scroll-target="#on-your-own">On your own!</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to ERDDAP and Matchup satellite data to animal tracks</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<blockquote class="blockquote">
+<p>History | Updated Feb 2025</p>
+</blockquote>
+<p>In this tutorial you will learn about ERDDAP data server, access satellite data from ERDDAP server, and match the data with an animal telemetry track.</p>
+</section>
+<section id="what-is-erddap" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-erddap">What is ERDDAP</h2>
+<p>For many users, obtaining the ocean satellite data they need requires downloading data from several data providers, each with its own file formats, download protocols, subset abilities, and preview abilities.</p>
+<p>The goal behind ERDDAP is to make it easier for you to get scientific data. To accomplish that goal, ERDDAP acts as a middleman, selectively channeling datasets from remote and local data sources to a single data portal. With ERDDAP as the single-source portal, you have access to a simple, consistent way to download subsets of gridded and tabular scientific datasets in common file formats, with options and make graphs and maps.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="erddap_intro_satellite_matchup_track_2_options_files/figure-html/cell-3-1-edba14cf-140c-43ce-b585-67f384ce66a5.png" class="img-fluid figure-img"></p>
+<figcaption>erddap.png</figcaption>
+</figure>
+</div>
+<p><strong>Features of ERDDAP:</strong></p>
+<ul>
+<li>Data in the common file format of your choice. ERDDAP offers all data as .html table, ESRI .asc and .csv, Google Earth .kml, OPeNDAP binary, .mat, .nc, ODV .txt, .csv, .tsv, .json, and .xhtml</li>
+<li>ERDDAP can also return a .png or .pdf image with a customized graph or map</li>
+<li>Standardized dates/times (“seconds since 1970-01-01T00:00:00Z” in UTC)</li>
+<li>A graphical interface for humans with browsers</li>
+<li>RESTful web services for machine-to-machine data exchange and downloading data directly into your software applications (e.g.Matlab, R, Python…) and even into web pages.</li>
+</ul>
+</section>
+<section id="understanding-the-erddap-url" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-the-erddap-url">Understanding the ERDDAP URL</h2>
+<p>Download requests to ERDDAP are completely defined within a URL, allowing:</p>
+<ul>
+<li>machine-to-machine data exchange,</li>
+<li>bringing data directly into analysis tools,</li>
+<li>and the use ERDDAP as a back end to drive customized online interfaces.</li>
+</ul>
+<p>For example, here is the ERDDAP URLs of the monthly chlorophyll-a from European Space Agency’s OC-CCI product: <code>https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2023-03-01)][(89.9792):(-89.9792)][(0.02083):(359.9792)]</code></p>
+<p><strong>We can deconstruct the URL into its component parts:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 38%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Name</th>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">ERDDAP base URL</td>
+<td style="text-align: left;"><strong>https://oceanwatch.pifsc.noaa.gov/erddap/griddap/</strong></td>
+<td style="text-align: left;">Web location of ERDDAP server</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Dataset ID</td>
+<td style="text-align: left;"><strong>esa-cci-chla-monthly-v6-0</strong></td>
+<td style="text-align: left;">Unique dataset ID</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Download file</td>
+<td style="text-align: left;"><strong>.csv</strong></td>
+<td style="text-align: left;">Data file to download (CSV is this case)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Query indicator</td>
+<td style="text-align: left;"><strong>?</strong></td>
+<td style="text-align: left;">Mark start of data query</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Variable</td>
+<td style="text-align: left;"><strong>chlor_a</strong></td>
+<td style="text-align: left;">ERDDAP variable to download</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Time range</td>
+<td style="text-align: left;"><strong>[(2023-02-15):1:(2023-03-01)]</strong></td>
+<td style="text-align: left;">Temporal date range to download</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Latitude range</td>
+<td style="text-align: left;"><strong>[(89.9792):(-89.9792)]</strong></td>
+<td style="text-align: left;">Latitude range to download</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Longitude range</td>
+<td style="text-align: left;"><strong>[(0.02083):(359.9792)]</strong></td>
+<td style="text-align: left;">Longitude range to download</td>
+</tr>
+</tbody>
+</table>
+<p>By reading the URL, you get an idea of the data to be accessed, and you can modify the data request by simply modifying the URL.</p>
+</section>
+<section id="list-of-erddap-servers" class="level2">
+<h2 class="anchored" data-anchor-id="list-of-erddap-servers">List of ERDDAP servers</h2>
+<p>ERDDAP has been installed by over 100 organizations worldwide. A complete list is available here: https://coastwatch.pfeg.noaa.gov/erddap/download/setup.html#organizations</p>
+<p><strong>CoastWatch</strong><br>
+* CoastWatch West Coast Node https://coastwatch.pfeg.noaa.gov/erddap/ * CoastWatch PolarWatch Node https://polarwatch.noaa.gov/erddap/index.html * CoastWatch Central Pacific Node https://oceanwatch.pifsc.noaa.gov/erddap/ * CoastWatch Gulf of Mexico Node https://cwcgom.aoml.noaa.gov/erddap/ * CoastWatch Great Lakes Node https://coastwatch.glerl.noaa.gov/erddap/ * CoastWatch Central https://coastwatch.noaa.gov/erddap/</p>
+<p><strong>More tutorials on how to use ERDDAP servers</strong><br>
+CoastWatch Tutorials- ERDDAP basics: https://github.com/coastwatch-training/CoastWatch-Tutorials/tree/main/ERDDAP-basics</p>
+</section>
+<section id="matchup-satellite-data-to-animal-tracks" class="level2">
+<h2 class="anchored" data-anchor-id="matchup-satellite-data-to-animal-tracks">Matchup satellite data to animal tracks</h2>
+<p>In this exercise you will extract satellite data around a set of points defined by longitude, latitude, and time coordinates, like that produced by an animal telemetry tag, and ship track, or a glider tract.</p>
+<p>Please note that there may be more efficient ways, more Pythonic ways, to accomplish the tasks in this tutorial. The tutorial was developed to be easier to follow for less experienced users of Python.</p>
+<section id="the-exercise-demonstrates-the-following-techniques" class="level3">
+<h3 class="anchored" data-anchor-id="the-exercise-demonstrates-the-following-techniques">The exercise demonstrates the following techniques:</h3>
+<ul>
+<li>Loading data from a tab- or comma-separated file</li>
+<li>Plotting the latitude/longitude points onto a map</li>
+<li>Extracting satellite data along a track</li>
+<li>Building an ERDDAP data-request URL</li>
+<li>Saving results as a CSV file</li>
+<li>Plotting the satellite data onto a map</li>
+</ul>
+</section>
+<section id="track-data-used" class="level3">
+<h3 class="anchored" data-anchor-id="track-data-used">Track data used:</h3>
+<ul>
+<li>A loggerhead turtle telemetry track that has been subsample to reduce the data requests needed for this tutorial from over 1200 to 25. The turtle was raised in captivity in Japan, then tagged and released on 05/04/2005 in the Central Pacific. Its tag transmitted for over 3 years and went all the way to the Southern tip of Baja California. The track data can be downloaded from <code>data</code> folder in this project folder.</li>
+</ul>
+</section>
+<section id="python-packages-used" class="level3">
+<h3 class="anchored" data-anchor-id="python-packages-used">Python packages used:</h3>
+<ul>
+<li>pandas (reading and analyzing data)<br>
+</li>
+<li>numpy (data analysis, manipulation)</li>
+<li>xarray (multi-dimensional data analysis, manipulation)</li>
+<li>matplotlib (mapping)</li>
+<li>cartopy (mapping)</li>
+<li>datetime (date manipulation)</li>
+</ul>
+</section>
+</section>
+<section id="import-the-required-python-modules" class="level2">
+<h2 class="anchored" data-anchor-id="import-the-required-python-modules">Import the required Python modules</h2>
+<div id="cell-7" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> clear_output</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#from urllib.parse import quote</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.crs <span class="im">as</span> ccrs</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cartopy.feature <span class="im">as</span> cfeature</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cartopy.mpl.ticker <span class="im">import</span> LongitudeFormatter, LatitudeFormatter</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xarray <span class="im">as</span> xr</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-the-track-data-into-a-pandas-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-track-data-into-a-pandas-data-frame">Load the track data into a Pandas data frame</h2>
+<p>Below, the track data will load using the Pandas “read_csv” method. * Then use the “.head()” method to view the column names and the first few rows of data.</p>
+<div id="cell-9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>track_path <span class="op">=</span> os.path.join(<span class="st">'.'</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'data'</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'25317_05_subsampled.dat'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(track_path)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">2</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Data types for each column'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Spatial corrdinate ranges'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'latitude range'</span>, <span class="bu">round</span>(df.mean_lat.<span class="bu">min</span>(), <span class="dv">2</span>), <span class="bu">round</span>(df.mean_lat.<span class="bu">max</span>(), <span class="dv">2</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'longitude range'</span>, <span class="bu">round</span>(df.mean_lon.<span class="bu">min</span>(), <span class="dv">2</span>), <span class="bu">round</span>(df.mean_lon.<span class="bu">max</span>(), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean_lon   mean_lat  year  month  day
+0  176.619433  32.678728  2005      5    4
+1  175.860895  35.057734  2005      6   23
+ 
+Data types for each column
+mean_lon    float64
+mean_lat    float64
+year          int64
+month         int64
+day           int64
+dtype: object
+ 
+Spatial corrdinate ranges
+latitude range 23.72 41.77
+longitude range 175.86 248.57</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-track-on-a-map" class="level2">
+<h2 class="anchored" data-anchor-id="plot-the-track-on-a-map">Plot the track on a map</h2>
+<div id="cell-11" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Label axes of a Plate Carree projection with a central longitude of 180:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">211</span>, projection<span class="op">=</span>ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the lon and lat ranges to set the extent of the map</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># the 120, 260 lon range will show the whole Pacific</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the 15, 55 lat range with capture the range of the data</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax1.set_extent([<span class="dv">120</span>, <span class="dv">260</span>, <span class="dv">15</span>, <span class="dv">55</span>], ccrs.PlateCarree())</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the tick marks to be slightly inside the map extents</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax1.set_xticks(<span class="bu">range</span>(<span class="dv">125</span>, <span class="dv">255</span>, <span class="dv">20</span>), crs<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax1.set_yticks(<span class="bu">range</span>(<span class="dv">20</span>, <span class="dv">60</span>, <span class="dv">10</span>), crs<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add feature to the map</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ax1.add_feature(cfeature.LAND, facecolor<span class="op">=</span><span class="st">'0.6'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>ax1.coastlines()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Format the lat and lon axis labels</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>lon_formatter <span class="op">=</span> LongitudeFormatter(zero_direction_label<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>lat_formatter <span class="op">=</span> LatitudeFormatter()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax1.xaxis.set_major_formatter(lon_formatter)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>ax1.yaxis.set_major_formatter(lat_formatter)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Bring the lon and lat data into a numpy array </span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> df.mean_lon.to_numpy(), df.mean_lat.to_numpy()</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.plot(x, y, transform<span class="op">=</span>ccrs.PlateCarree(), color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># start point in green star</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.plot(x[<span class="dv">0</span>], y[<span class="dv">0</span>],</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>               marker<span class="op">=</span><span class="st">'*'</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span><span class="st">'g'</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>               transform<span class="op">=</span>ccrs.PlateCarree(),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>               markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># end point in red X</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.plot(x[<span class="op">-</span><span class="dv">1</span>], y[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>               marker<span class="op">=</span><span class="st">'X'</span>,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span><span class="st">'r'</span>,</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>               transform<span class="op">=</span>ccrs.PlateCarree(),</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>               markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Animal Track for Turtle #25317'</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="erddap_intro_satellite_matchup_track_2_options_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="option-1-using-erddap-data-request-url-to-extract-data-and-mactchup-to-track" class="level2">
+<h2 class="anchored" data-anchor-id="option-1-using-erddap-data-request-url-to-extract-data-and-mactchup-to-track">Option 1: Using ERDDAP data-request URL to extract data and mactchup to track</h2>
+</section>
+<section id="prepare-track-data-for-use-in-the-erddap-data-request-url" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-track-data-for-use-in-the-erddap-data-request-url">Prepare track data for use in the ERDDAP data-request URL</h2>
+<p>To build the ERDDAP data-request URLs, we will need: * Dates as strings in a format that ERDDAP can understand, i.e.&nbsp;YYYY-mm-dd.<br>
+* The latitude and longitude values need to be converted to strings (characters) not the numerical values found in the mean_lon and mean_lat columns.</p>
+<section id="create-a-formatted-date-column-and-change-the-columns-data-type" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-formatted-date-column-and-change-the-columns-data-type">Create a formatted date column and change the columns data type</h3>
+<p>Let’s do that in two steps:</p>
+<ol type="1">
+<li><strong>Reload the “25317_05_subsampled.dat”. This time we will use the “parse_dates” option to create a Pandas date object column (year_month_day) from the ‘year’, ‘month’, and ‘day’ columns.</strong></li>
+</ol>
+<div id="cell-13" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./data/25317_05_subsampled.dat'</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                 parse_dates<span class="op">=</span>[[<span class="st">'year'</span>, <span class="st">'month'</span>, <span class="st">'day'</span>]]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The new year_month_day column contains the Pandas date objects'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The new year_month_day column contains the Pandas date objects</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year_month_day</th>
+<th data-quarto-table-cell-role="th">mean_lon</th>
+<th data-quarto-table-cell-role="th">mean_lat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2005-05-04</td>
+<td>176.619433</td>
+<td>32.678728</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2005-06-23</td>
+<td>175.860895</td>
+<td>35.057734</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>Use the year_month_day column to create a column called “date_str” containing string versions of the date with the format “YYYY-mm-dd”.</strong><br>
+</li>
+</ol>
+<ul>
+<li>Delete the year_month_day column to keep the data frame smaller</li>
+</ul>
+<div id="cell-15" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date_str'</span>] <span class="op">=</span> df[<span class="st">'year_month_day'</span>].dt.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up the data frame a little by deleting the year_month_day column</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> df[<span class="st">'year_month_day'</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">2</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The time range is:'</span>, df.date_str.<span class="bu">min</span>(), df.date_str.<span class="bu">max</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean_lon   mean_lat    date_str
+0  176.619433  32.678728  2005-05-04
+1  175.860895  35.057734  2005-06-23
+ 
+The time range is: 2005-05-04 2008-08-16</code></pre>
+</div>
+</div>
+</section>
+<section id="create-string-versions-of-the-latitude-and-longitude-data" class="level3">
+<h3 class="anchored" data-anchor-id="create-string-versions-of-the-latitude-and-longitude-data">Create string versions of the latitude and longitude data</h3>
+<p><strong>Create two new columns (mean_lon_str and mean_lat_str) the have the latitude and longitude coordinates as string data types rather than numerical (float) data types found in columns mean_lon and mean_lat.</strong><br>
+* The two new columns are mean_lon_str and mean_lat_str</p>
+<div id="cell-17" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">'mean_lon_str'</span>, <span class="st">'mean_lat_str'</span>]] <span class="op">=</span> df[[<span class="st">'mean_lon'</span>, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">'mean_lat'</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                          ]].to_numpy(dtype<span class="op">=</span><span class="bu">str</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">2</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Data types for each column'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean_lon   mean_lat    date_str      mean_lon_str      mean_lat_str
+0  176.619433  32.678728  2005-05-04  176.619432886108  32.6787283689241
+1  175.860895  35.057734  2005-06-23  175.860895212552   35.057734124614
+ 
+Data types for each column
+mean_lon        float64
+mean_lat        float64
+date_str         object
+mean_lon_str     object
+mean_lat_str     object
+dtype: object</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track" class="level2">
+<h2 class="anchored" data-anchor-id="extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track">Extract data from a satellite dataset corresponding to points on the track</h2>
+<p>We are going to download data from an ERDDAP server using the following steps: * Select a dataset on an ERDDAP server * Loop though the track data using the string versions of data, latitude and longitude to build an ERDDAP data-request URL for each row of the track data frame. * Use the ERDDAP data-request URL to download satellite data into Pandas * Add the downloaded data to your track data frame.</p>
+<section id="select-a-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="select-a-dataset">Select a dataset</h3>
+<p>We’ll use the European Space Agency’s Ocean Colour Climate Change Initiative (OC-CCI) product (https://climate.esa.int/en/projects/ocean-colour/) to obtain chlorophyll data. This is a merged product combining data from many ocean color sensors to create a long time series (1997-present).</p>
+<p>Ideally we would use a daily dataset, selecting the day correspond the the track data date. However, chlorophyll measurements can have lots of missing data, primarily due to cloud cover. To reduce data gaps and improve the likelihood of data for our matchups, we can use a dataset that combines data monthly averages.</p>
+<p><strong>Let’s use data from the monthly version of the OC-CCI datasets.</strong><br>
+The ERDDAP URLs to the monthly version is below:<br>
+https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0</p>
+<p><strong>A note on dataset selection</strong><br>
+We have preselected the dataset because we know it will work with this exercise. If you were selecting datasets on your own, you would want to check out the dataset to determine if its spatial and temporal coverages are suitable for your application. Following the link above you will find:</p>
+<p>The latitude range is -89.97916 to 89.97916 and the longitude range is 0.020833 to 359.97916, which covers the track latitude range of 23.72 to 41.77 and longitude range of 175.86 to 248.57.</p>
+<p>The time range is 1997-09-04 to 2023-03-01 (at the day of this writing), which covers the track time range of 2005-05-04 to 2008-08-16.</p>
+<p>You should also note the name of the variable you will be downloading. For this dataset it is “<strong>chlor_a</strong>” ### Refresher on building the ERDDAP data-request URL To refresh your memory from the ERDDAP Tutorial, a full ERDDAP data-request URL looks like the following: <code>https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2023-03-01)][(89.9792):(-89.9792)][(0.02083):(359.9792)]</code></p>
+<p><strong>We can deconstruct the URL into its component parts:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 38%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Name</th>
+<th style="text-align: left;">Value</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">ERDDAP base URL</td>
+<td style="text-align: left;"><strong>https://oceanwatch.pifsc.noaa.gov/erddap/griddap/</strong></td>
+<td style="text-align: left;">Web location of ERDDAP server</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Dataset ID</td>
+<td style="text-align: left;"><strong>aesa-cci-chla-monthly-v6-0</strong></td>
+<td style="text-align: left;">Unique dataset ID</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Download file</td>
+<td style="text-align: left;"><strong>.csv</strong></td>
+<td style="text-align: left;">Data file to download (CSV is this case)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Query indicator</td>
+<td style="text-align: left;"><strong>?</strong></td>
+<td style="text-align: left;">Mark start of data query</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Variable</td>
+<td style="text-align: left;"><strong>chlor_a</strong></td>
+<td style="text-align: left;">ERDDAP variable to download</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Time range</td>
+<td style="text-align: left;"><strong>[(2023-02-15):1:(2023-03-01)]</strong></td>
+<td style="text-align: left;">Temporal date range to download</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Latitude range</td>
+<td style="text-align: left;"><strong>[(89.9792):(-89.9792)]</strong></td>
+<td style="text-align: left;">Latitude range to download</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Longitude range</td>
+<td style="text-align: left;"><strong>[(0.02083):(359.9792)]</strong></td>
+<td style="text-align: left;">Longitude range to download</td>
+</tr>
+</tbody>
+</table>
+<p><strong>We need to construct these components parts for each row of the track data frame and join them together to form the ERDDAP data-request URL.</strong></p>
+</section>
+<section id="building-the-erddap-data-request-url-and-downloading-satellite-data" class="level3">
+<h3 class="anchored" data-anchor-id="building-the-erddap-data-request-url-and-downloading-satellite-data">Building the ERDDAP data-request URL and downloading satellite data</h3>
+<div id="cell-20" class="cell" data-scrolled="true" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame to hold the downloaded satellite data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>col_names <span class="op">=</span> [<span class="st">"iso_date"</span>, <span class="st">"matched_lat"</span>, <span class="st">"matched_lon"</span>, <span class="st">"matched_chla"</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create tot dataframe with the column names</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>tot <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col_names)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create variables for the unchanging parts of the ERDDAP data-request URL. </span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">'https://oceanwatch.pifsc.noaa.gov/erddap/griddap/'</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>dataset_id <span class="op">=</span> <span class="st">"esa-cci-chla-monthly-v6-0"</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>file_type <span class="op">=</span> <span class="st">'.csv'</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>query_start <span class="op">=</span> <span class="st">'?'</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>erddap_variable <span class="op">=</span> <span class="st">'chlor_a'</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># create the start of the ERDDAP data-request URL by joining URL components</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>start_url <span class="op">=</span> <span class="st">''</span>.join([base_url,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                     dataset_id,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                     file_type,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                     query_start,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                     erddap_variable</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>                     ])</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Finish each URL and download</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(df)):</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for each row in the track data frame, create the query part of the ERDDAP data-request URL.</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    query_url <span class="op">=</span> <span class="st">''</span>.join([</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'[('</span> <span class="op">+</span> df[<span class="st">'date_str'</span>][i] <span class="op">+</span> <span class="st">'):1:('</span> <span class="op">+</span> df[<span class="st">'date_str'</span>][i] <span class="op">+</span> <span class="st">')]'</span>,</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'[('</span> <span class="op">+</span> df[<span class="st">'mean_lat_str'</span>][i] <span class="op">+</span> <span class="st">'):1:('</span> <span class="op">+</span> df[<span class="st">'mean_lat_str'</span>][i] <span class="op">+</span> <span class="st">')]'</span>, </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'[('</span> <span class="op">+</span> df[<span class="st">'mean_lon_str'</span>][i] <span class="op">+</span> <span class="st">'):1:('</span> <span class="op">+</span> df[<span class="st">'mean_lon_str'</span>][i] <span class="op">+</span> <span class="st">')]'</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>                         ])</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">#encoded_query = quote(query_url, safe='')</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># join the start and query parts of the url</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> start_url <span class="op">+</span> query_url </span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i<span class="op">+</span><span class="dv">1</span>, <span class="st">'of'</span>, <span class="bu">len</span>(df), url)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># download the data as a CSV file directly into Pandas</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    new <span class="op">=</span> pd.read_csv(url, skiprows<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    new.columns <span class="op">=</span> col_names</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># load into the holding data frame</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    tot <span class="op">=</span> pd.concat([tot, new], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2005-05-04):1:(2005-05-04)][(32.6787283689241):1:(32.6787283689241)][(176.619432886108):1:(176.619432886108)]
+2 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2005-06-23):1:(2005-06-23)][(35.057734124614):1:(35.057734124614)][(175.860895212552):1:(175.860895212552)]
+3 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2005-08-12):1:(2005-08-12)][(40.4057593651645):1:(40.4057593651645)][(180.592617770427):1:(180.592617770427)]
+4 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2005-10-01):1:(2005-10-01)][(41.6848032419466):1:(41.6848032419466)][(183.510212411605):1:(183.510212411605)]
+5 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2005-11-20):1:(2005-11-20)][(37.3662285175569):1:(37.3662285175569)][(186.999746586372):1:(186.999746586372)]
+6 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2006-01-09):1:(2006-01-09)][(32.1379277609952):1:(32.1379277609952)][(193.315150592714):1:(193.315150592714)]
+7 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2006-02-28):1:(2006-02-28)][(32.1112577913518):1:(32.1112577913518)][(199.01578005525):1:(199.01578005525)]
+8 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2006-04-19):1:(2006-04-19)][(34.9122377945573):1:(34.9122377945573)][(196.367856222399):1:(196.367856222399)]
+9 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2006-06-08):1:(2006-06-08)][(34.6966077152962):1:(34.6966077152962)][(194.311561551928):1:(194.311561551928)]
+10 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2006-07-28):1:(2006-07-28)][(37.0917501942058):1:(37.0917501942058)][(192.85445935735):1:(192.85445935735)]
+11 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2006-09-16):1:(2006-09-16)][(41.7693290372383):1:(41.7693290372383)][(194.078757811627):1:(194.078757811627)]
+12 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2006-11-05):1:(2006-11-05)][(38.2279593047231):1:(38.2279593047231)][(192.044436165313):1:(192.044436165313)]
+13 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2006-12-25):1:(2006-12-25)][(34.7385780752043):1:(34.7385780752043)][(191.760026290605):1:(191.760026290605)]
+14 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2007-02-13):1:(2007-02-13)][(31.7396435280445):1:(31.7396435280445)][(195.063134981283):1:(195.063134981283)]
+15 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2007-04-04):1:(2007-04-04)][(34.3432418597437):1:(34.3432418597437)][(199.306553405532):1:(199.306553405532)]
+16 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2007-05-24):1:(2007-05-24)][(35.1277116865649):1:(35.1277116865649)][(205.605040455239):1:(205.605040455239)]
+17 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2007-07-13):1:(2007-07-13)][(38.460826483342):1:(38.460826483342)][(210.280467921659):1:(210.280467921659)]
+18 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2007-09-01):1:(2007-09-01)][(39.3374947731784):1:(39.3374947731784)][(215.722452964025):1:(215.722452964025)]
+19 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2007-10-21):1:(2007-10-21)][(35.8679284198372):1:(35.8679284198372)][(223.007301112593):1:(223.007301112593)]
+20 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2007-12-10):1:(2007-12-10)][(30.1854023141461):1:(30.1854023141461)][(225.638647308816):1:(225.638647308816)]
+21 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2008-01-29):1:(2008-01-29)][(28.328588352337):1:(28.328588352337)][(232.406424355302):1:(232.406424355302)]
+22 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2008-03-19):1:(2008-03-19)][(25.9810780813157):1:(25.9810780813157)][(239.552975360004):1:(239.552975360004)]
+23 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2008-05-08):1:(2008-05-08)][(24.8366188324699):1:(24.8366188324699)][(245.871574770029):1:(245.871574770029)]
+24 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2008-06-27):1:(2008-06-27)][(23.7241735345355):1:(23.7241735345355)][(248.571044756):1:(248.571044756)]
+25 of 25 https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csv?chlor_a[(2008-08-16):1:(2008-08-16)][(26.7817714626367):1:(26.7817714626367)][(245.7579071789):1:(245.7579071789)]</code></pre>
+</div>
+</div>
+<div id="cell-21" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tot.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">iso_date</th>
+<th data-quarto-table-cell-role="th">matched_lat</th>
+<th data-quarto-table-cell-role="th">matched_lon</th>
+<th data-quarto-table-cell-role="th">matched_chla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2005-05-01T00:00:00Z</td>
+<td>32.6875</td>
+<td>176.604167</td>
+<td>0.293616</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2005-07-01T00:00:00Z</td>
+<td>35.0625</td>
+<td>175.854167</td>
+<td>0.114716</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="consolidate-the-downloaded-satellite-data-into-the-track-data-frame" class="level3">
+<h3 class="anchored" data-anchor-id="consolidate-the-downloaded-satellite-data-into-the-track-data-frame">Consolidate the downloaded satellite data into the track data frame</h3>
+<div id="cell-23" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_chla <span class="op">=</span> df</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_chla[[<span class="st">'matched_lat'</span>, <span class="st">'matched_lon'</span>, <span class="st">'matched_chla'</span>]] <span class="op">=</span> tot[[<span class="st">'matched_lat'</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                                                          <span class="st">'matched_lon'</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                                                          <span class="st">'matched_chla'</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                                          ]]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>df_chla.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean_lon</th>
+<th data-quarto-table-cell-role="th">mean_lat</th>
+<th data-quarto-table-cell-role="th">date_str</th>
+<th data-quarto-table-cell-role="th">mean_lon_str</th>
+<th data-quarto-table-cell-role="th">mean_lat_str</th>
+<th data-quarto-table-cell-role="th">matched_lat</th>
+<th data-quarto-table-cell-role="th">matched_lon</th>
+<th data-quarto-table-cell-role="th">matched_chla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>176.619433</td>
+<td>32.678728</td>
+<td>2005-05-04</td>
+<td>176.619432886108</td>
+<td>32.6787283689241</td>
+<td>32.6875</td>
+<td>176.604167</td>
+<td>0.293616</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>175.860895</td>
+<td>35.057734</td>
+<td>2005-06-23</td>
+<td>175.860895212552</td>
+<td>35.057734124614</td>
+<td>35.0625</td>
+<td>175.854167</td>
+<td>0.114716</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="save-your-work" class="level3">
+<h3 class="anchored" data-anchor-id="save-your-work">Save your work</h3>
+<div id="cell-25" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_chla.to_csv(<span class="st">'chl_matchup_turtle25327.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="option-2-using-xarray-select-function-to-extract-data-and-mactchup-to-track" class="level2">
+<h2 class="anchored" data-anchor-id="option-2-using-xarray-select-function-to-extract-data-and-mactchup-to-track">Option 2: Using xarray select function to extract data and mactchup to track</h2>
+</section>
+<section id="prepare-track-data-for-use-to-extract-satellite-data" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-track-data-for-use-to-extract-satellite-data">Prepare track data for use to extract satellite data</h2>
+<section id="create-a-column-with-pandas-date-objects" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-column-with-pandas-date-objects">Create a column with Pandas date objects</h3>
+<p><strong>Reload the “25317_05_subsampled.dat”. Again we will use the “parse_dates” option to create a Pandas date object column (year_month_day) from the ‘year’, ‘month’, and ‘day’ columns.</strong></p>
+<div id="cell-27" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_1 <span class="op">=</span> pd.read_csv(track_path,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                 parse_dates<span class="op">=</span>[[<span class="st">'year'</span>, <span class="st">'month'</span>, <span class="st">'day'</span>]]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The new year_month_day column contains the Pandas date objects'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_1.head(<span class="dv">2</span>))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_1.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The new year_month_day column contains the Pandas date objects
+  year_month_day    mean_lon   mean_lat
+0     2005-05-04  176.619433  32.678728
+1     2005-06-23  175.860895  35.057734
+year_month_day    datetime64[ns]
+mean_lon                 float64
+mean_lat                 float64
+dtype: object</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track-1" class="level2">
+<h2 class="anchored" data-anchor-id="extract-data-from-a-satellite-dataset-corresponding-to-points-on-the-track-1">Extract data from a satellite dataset corresponding to points on the track</h2>
+<p>We are going to download data from an ERDDAP server using the following steps: * Select a dataset on an ERDDAP server * Open the dataset using the Xarray module * Loop though the track data and pull out the date, latitude and longitude coordinates from each row * Insert these coordinates into the Xarray open-dataset object to select and download the satellite data that corresponds to the coordinates. * Store the satellite data in a temporary Pandas data frame * Once all the satellite data has been added to the temporary data frame, merge it with the track data frame.</p>
+<section id="select-a-dataset-1" class="level3">
+<h3 class="anchored" data-anchor-id="select-a-dataset-1">Select a dataset</h3>
+<p><strong>This time let’s look at the sea surface temperature data using the NOAA Geo-polar Blended Analysis SST, GHRSST dataset. The ERDDAP URL for the near real time daily GHRSST dataset is:</strong><br>
+https://oceanwatch.pifsc.noaa.gov/erddap/griddap/goes-poes-1d-ghrsst-RAN</p>
+</section>
+<section id="open-the-satellite-data-in-xarray" class="level3">
+<h3 class="anchored" data-anchor-id="open-the-satellite-data-in-xarray">Open the satellite data in Xarray</h3>
+<ul>
+<li>Use the ERDDAP URL with no extension (e.g.&nbsp;without .html or .graph…). This is the OPeNDAP URL, which allows viewing the dataset metadata and, when you select the data you want, downloading the data.</li>
+<li>Use the Xarray “open_dataset” function then view the metadata</li>
+</ul>
+<div id="cell-30" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>erddap_url <span class="op">=</span> <span class="st">'/'</span>.join([<span class="st">'https://oceanwatch.pifsc.noaa.gov'</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'erddap'</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'griddap'</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'goes-poes-1d-ghrsst-RAN'</span>])</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> xr.open_dataset(erddap_url)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>ds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewbox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewbox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class="xr-text-repr-fallback">&lt;xarray.Dataset&gt;
+Dimensions:           (time: 8180, latitude: 3600, longitude: 7200)
+Coordinates:
+  * time              (time) datetime64[ns] 2002-09-01T12:00:00 ... 2025-02-2...
+  * latitude          (latitude) float32 -89.97 -89.93 -89.88 ... 89.93 89.97
+  * longitude         (longitude) float32 0.025 0.075 0.125 ... 359.9 360.0
+Data variables:
+    analysed_sst      (time, latitude, longitude) float32 ...
+    analysis_error    (time, latitude, longitude) float32 ...
+    mask              (time, latitude, longitude) float32 ...
+    sea_ice_fraction  (time, latitude, longitude) float32 ...
+Attributes: (12/51)
+    acknowledgement:            NOAA/NESDIS
+    cdm_data_type:              Grid
+    comment:                    The Geo-Polar Blended Sea Surface Temperature...
+    Conventions:                CF-1.6, Unidata Observation Dataset v1.0, COA...
+    creator_email:              john.sapper@noaa.gov
+    creator_name:               Office of Satellite Products and Operations
+    ...                         ...
+    standard_name_vocabulary:   CF Standard Name Table v29
+    summary:                    Analyzed blended sea surface temperature over...
+    time_coverage_end:          2025-02-24T12:00:00Z
+    time_coverage_start:        2002-09-01T12:00:00Z
+    title:                      Sea Surface Temperature, NOAA geopolar blende...
+    Westernmost_Easting:        0.025</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.Dataset</div></div><ul class="xr-sections"><li class="xr-section-item"><input id="section-a0116a6b-5394-477b-a47d-98a09fdcee54" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-a0116a6b-5394-477b-a47d-98a09fdcee54" class="xr-section-summary" title="Expand/collapse section">Dimensions:</label><div class="xr-section-inline-details"><ul class="xr-dim-list"><li><span class="xr-has-index">time</span>: 8180</li><li><span class="xr-has-index">latitude</span>: 3600</li><li><span class="xr-has-index">longitude</span>: 7200</li></ul></div><div class="xr-section-details"></div></li><li class="xr-section-item"><input id="section-3fc75d7e-6f90-4a23-9407-72b47d1c6423" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-3fc75d7e-6f90-4a23-9407-72b47d1c6423" class="xr-section-summary">Coordinates: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">time</span></div><div class="xr-var-dims">(time)</div><div class="xr-var-dtype">datetime64[ns]</div><div class="xr-var-preview xr-preview">2002-09-01T12:00:00 ... 2025-02-...</div><input id="attrs-6afcf2bb-a4bf-4b3c-be56-bbd9d56bdd0d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-6afcf2bb-a4bf-4b3c-be56-bbd9d56bdd0d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4a0d6e5f-9b8b-4349-9d60-26d2a3b03869" class="xr-var-data-in" type="checkbox"><label for="data-4a0d6e5f-9b8b-4349-9d60-26d2a3b03869" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Time</dd><dt><span>actual_range :</span></dt><dd>[1.0308816e+09 1.7403984e+09]</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>comment :</span></dt><dd>Nominal time of Level 4 analysis</dd><dt><span>ioos_category :</span></dt><dd>Time</dd><dt><span>long_name :</span></dt><dd>reference time of sst field</dd><dt><span>standard_name :</span></dt><dd>time</dd><dt><span>time_origin :</span></dt><dd>01-JAN-1970 00:00:00</dd></dl></div><div class="xr-var-data"><pre>array(['2002-09-01T12:00:00.000000000', '2002-09-02T12:00:00.000000000',
+       '2002-09-03T12:00:00.000000000', ..., '2025-02-22T12:00:00.000000000',
+       '2025-02-23T12:00:00.000000000', '2025-02-24T12:00:00.000000000'],
+      dtype='datetime64[ns]')</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">latitude</span></div><div class="xr-var-dims">(latitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">-89.97 -89.93 ... 89.93 89.97</div><input id="attrs-860e4e72-22c4-4cd1-91f4-c4360374daae" class="xr-var-attrs-in" type="checkbox"><label for="attrs-860e4e72-22c4-4cd1-91f4-c4360374daae" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-7ca08221-888c-4c87-8526-65dac088301a" class="xr-var-data-in" type="checkbox"><label for="data-7ca08221-888c-4c87-8526-65dac088301a" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Lat</dd><dt><span>actual_range :</span></dt><dd>[-89.975  89.975]</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>comment :</span></dt><dd>equirectangular projection</dd><dt><span>ioos_category :</span></dt><dd>Location</dd><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>valid_max :</span></dt><dd>90.0</dd><dt><span>valid_min :</span></dt><dd>-90.0</dd></dl></div><div class="xr-var-data"><pre>array([-89.975, -89.925, -89.875, ...,  89.875,  89.925,  89.975],
+      dtype=float32)</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span class="xr-has-index">longitude</span></div><div class="xr-var-dims">(longitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">0.025 0.075 0.125 ... 359.9 360.0</div><input id="attrs-f4574723-ba35-4ef2-80bc-fd2b4551714d" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f4574723-ba35-4ef2-80bc-fd2b4551714d" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-38a198e9-4942-4bdd-8546-5dd982cb1702" class="xr-var-data-in" type="checkbox"><label for="data-38a198e9-4942-4bdd-8546-5dd982cb1702" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>_CoordinateAxisType :</span></dt><dd>Lon</dd><dt><span>actual_range :</span></dt><dd>[2.50000e-02 3.59975e+02]</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>comment :</span></dt><dd>equirectangular projection</dd><dt><span>ioos_category :</span></dt><dd>Location</dd><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>valid_max :</span></dt><dd>360.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd></dl></div><div class="xr-var-data"><pre>array([2.50000e-02, 7.50000e-02, 1.25000e-01, ..., 3.59875e+02, 3.59925e+02,
+       3.59975e+02], dtype=float32)</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-8ea78aa6-1923-4445-8ecc-06456b3d700d" class="xr-section-summary-in" type="checkbox" checked=""><label for="section-8ea78aa6-1923-4445-8ecc-06456b3d700d" class="xr-section-summary">Data variables: <span>(4)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-var-name"><span>analysed_sst</span></div><div class="xr-var-dims">(time, latitude, longitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-f36620ce-f4af-4b6f-9cf9-f8007513e29a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-f36620ce-f4af-4b6f-9cf9-f8007513e29a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4d1b3cfb-7d3a-4e5b-b3d2-8b932d9dd9ad" class="xr-var-data-in" type="checkbox"><label for="data-4d1b3cfb-7d3a-4e5b-b3d2-8b932d9dd9ad" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>colorBarMaximum :</span></dt><dd>305.0</dd><dt><span>colorBarMinimum :</span></dt><dd>273.0</dd><dt><span>comment :</span></dt><dd>nighttime analysed SST for each ocean grid point</dd><dt><span>ioos_category :</span></dt><dd>Temperature</dd><dt><span>long_name :</span></dt><dd>analysed sea surface temperature</dd><dt><span>references :</span></dt><dd>Fieguth,P.W. et al. "Mapping Mediterranean altimeter data with a multiresolution optimal interpolation algorithm", J. Atmos. Ocean Tech, 15 (2): 535-546, 1998.     Fieguth, P. Multiply-Rooted Multiscale Models for Large-Scale Estimation, IEEE Image Processing, 10(11), 1676-1686, 2001.     Khellah, F., P.W. Fieguth, M.J. Murray and M.R. Allen, "Statistical Processing of Large Image Sequences", IEEE Transactions on Geoscience and Remote Sensing, 12 (1), 80-93, 2005.</dd><dt><span>standard_name :</span></dt><dd>sea_surface_foundation_temperature</dd><dt><span>units :</span></dt><dd>degree_K</dd><dt><span>valid_max :</span></dt><dd>313.15</dd><dt><span>valid_min :</span></dt><dd>271.15</dd></dl></div><div class="xr-var-data"><pre>[212025600000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>analysis_error</span></div><div class="xr-var-dims">(time, latitude, longitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-7889ab2f-e81f-413f-a830-4daae470b239" class="xr-var-attrs-in" type="checkbox"><label for="attrs-7889ab2f-e81f-413f-a830-4daae470b239" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-4627732a-4db0-41a5-97a6-66fd8426926b" class="xr-var-data-in" type="checkbox"><label for="data-4627732a-4db0-41a5-97a6-66fd8426926b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>colorBarMaximum :</span></dt><dd>5.0</dd><dt><span>colorBarMinimum :</span></dt><dd>0.0</dd><dt><span>comment :</span></dt><dd>Estimate of internal analysis accuracy</dd><dt><span>ioos_category :</span></dt><dd>Statistics</dd><dt><span>long_name :</span></dt><dd>estimated error standard deviation of analysed_sst</dd><dt><span>units :</span></dt><dd>degree_C</dd><dt><span>valid_max :</span></dt><dd>5.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd></dl></div><div class="xr-var-data"><pre>[212025600000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>mask</span></div><div class="xr-var-dims">(time, latitude, longitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-ec6c5296-d50b-4782-89e3-0526f230c97e" class="xr-var-attrs-in" type="checkbox"><label for="attrs-ec6c5296-d50b-4782-89e3-0526f230c97e" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-31e25471-646a-4cf0-9195-3b2e3816479d" class="xr-var-data-in" type="checkbox"><label for="data-31e25471-646a-4cf0-9195-3b2e3816479d" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>colorBarMaximum :</span></dt><dd>5.0</dd><dt><span>colorBarMinimum :</span></dt><dd>0.0</dd><dt><span>comment :</span></dt><dd>b0: 1=grid cell is water, b1: 1=grid cell is land, b2: 1=grid cell is ice</dd><dt><span>flag_meanings :</span></dt><dd>water land ice</dd><dt><span>flag_values :</span></dt><dd>[1 2 4]</dd><dt><span>ioos_category :</span></dt><dd>Ice Distribution</dd><dt><span>long_name :</span></dt><dd>sea/land/ice bit mask</dd><dt><span>source :</span></dt><dd> NCEP 1/12th degree ice mask, OSTIA land mask</dd><dt><span>standard_name :</span></dt><dd>sea_land_ice_bit_mask</dd><dt><span>valid_max :</span></dt><dd>4</dd><dt><span>valid_min :</span></dt><dd>1</dd></dl></div><div class="xr-var-data"><pre>[212025600000 values with dtype=float32]</pre></div></li><li class="xr-var-item"><div class="xr-var-name"><span>sea_ice_fraction</span></div><div class="xr-var-dims">(time, latitude, longitude)</div><div class="xr-var-dtype">float32</div><div class="xr-var-preview xr-preview">...</div><input id="attrs-49985b83-e6b4-4c93-854b-2a4cb1f1be0a" class="xr-var-attrs-in" type="checkbox"><label for="attrs-49985b83-e6b4-4c93-854b-2a4cb1f1be0a" title="Show/Hide attributes"><svg class="icon xr-icon-file-text2"><use href="#icon-file-text2"></use></svg></label><input id="data-eeb5d8b3-c29c-4feb-9f27-101a91cd483b" class="xr-var-data-in" type="checkbox"><label for="data-eeb5d8b3-c29c-4feb-9f27-101a91cd483b" title="Show/Hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-var-attrs"><dl class="xr-attrs"><dt><span>colorBarMaximum :</span></dt><dd>1.0</dd><dt><span>colorBarMinimum :</span></dt><dd>0.0</dd><dt><span>comment :</span></dt><dd>Fraction of ice</dd><dt><span>ioos_category :</span></dt><dd>Ice Distribution</dd><dt><span>long_name :</span></dt><dd>sea ice fraction</dd><dt><span>source :</span></dt><dd>NCEP 1/12th degree ice mask</dd><dt><span>standard_name :</span></dt><dd>sea_ice_area_fraction</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>valid_max :</span></dt><dd>1.0</dd><dt><span>valid_min :</span></dt><dd>0.0</dd></dl></div><div class="xr-var-data"><pre>[212025600000 values with dtype=float32]</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-f6be02cd-3067-4856-8f89-fae5bd5b8c35" class="xr-section-summary-in" type="checkbox"><label for="section-f6be02cd-3067-4856-8f89-fae5bd5b8c35" class="xr-section-summary">Indexes: <span>(3)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"><li class="xr-var-item"><div class="xr-index-name"><div>time</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-9bc94c74-7a21-4120-855d-4e389e8486d2" class="xr-index-data-in" type="checkbox"><label for="index-9bc94c74-7a21-4120-855d-4e389e8486d2" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(DatetimeIndex(['2002-09-01 12:00:00', '2002-09-02 12:00:00',
+               '2002-09-03 12:00:00', '2002-09-04 12:00:00',
+               '2002-09-05 12:00:00', '2002-09-06 12:00:00',
+               '2002-09-07 12:00:00', '2002-09-08 12:00:00',
+               '2002-09-09 12:00:00', '2002-09-10 12:00:00',
+               ...
+               '2025-02-15 12:00:00', '2025-02-16 12:00:00',
+               '2025-02-17 12:00:00', '2025-02-18 12:00:00',
+               '2025-02-19 12:00:00', '2025-02-20 12:00:00',
+               '2025-02-21 12:00:00', '2025-02-22 12:00:00',
+               '2025-02-23 12:00:00', '2025-02-24 12:00:00'],
+              dtype='datetime64[ns]', name='time', length=8180, freq=None))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>latitude</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-56ed8e16-fe1b-4958-a0d7-73bb6b97257a" class="xr-index-data-in" type="checkbox"><label for="index-56ed8e16-fe1b-4958-a0d7-73bb6b97257a" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Float64Index([ -89.9749984741211, -89.92500305175781,            -89.875,
+              -89.82499694824219,  -89.7750015258789,  -89.7249984741211,
+              -89.67500305175781,            -89.625, -89.57499694824219,
+               -89.5250015258789,
+              ...
+                89.5250015258789,  89.57499694824219,             89.625,
+               89.67500305175781,   89.7249984741211,   89.7750015258789,
+               89.82499694824219,             89.875,  89.92500305175781,
+                89.9749984741211],
+             dtype='float64', name='latitude', length=3600))</pre></div></li><li class="xr-var-item"><div class="xr-index-name"><div>longitude</div></div><div class="xr-index-preview">PandasIndex</div><div></div><input id="index-7c84c8dd-dfd7-4d8e-a415-18ec31923e0d" class="xr-index-data-in" type="checkbox"><label for="index-7c84c8dd-dfd7-4d8e-a415-18ec31923e0d" title="Show/Hide index repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-index-data"><pre>PandasIndex(Float64Index([0.02500000037252903, 0.07500000298023224,               0.125,
+              0.17499999701976776, 0.22499999403953552,  0.2750000059604645,
+              0.32499998807907104,               0.375, 0.42500001192092896,
+               0.4749999940395355,
+              ...
+                359.5249938964844,  359.57501220703125,             359.625,
+               359.67498779296875,   359.7250061035156,   359.7749938964844,
+               359.82501220703125,             359.875,  359.92498779296875,
+                359.9750061035156],
+             dtype='float64', name='longitude', length=7200))</pre></div></li></ul></div></li><li class="xr-section-item"><input id="section-c442c02f-2366-4792-ae44-08e7b816fced" class="xr-section-summary-in" type="checkbox"><label for="section-c442c02f-2366-4792-ae44-08e7b816fced" class="xr-section-summary">Attributes: <span>(51)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"><dt><span>acknowledgement :</span></dt><dd>NOAA/NESDIS</dd><dt><span>cdm_data_type :</span></dt><dd>Grid</dd><dt><span>comment :</span></dt><dd>The Geo-Polar Blended Sea Surface Temperature (SST) Analysis combines multi-satellite retrievals of sea surface temperature into a single analysis of SST. This analysis includes only nighttime data.</dd><dt><span>Conventions :</span></dt><dd>CF-1.6, Unidata Observation Dataset v1.0, COARDS, ACDD-1.3</dd><dt><span>creator_email :</span></dt><dd>john.sapper@noaa.gov</dd><dt><span>creator_name :</span></dt><dd>Office of Satellite Products and Operations</dd><dt><span>creator_type :</span></dt><dd>group</dd><dt><span>creator_url :</span></dt><dd>www.osdpd.nesdis.noaa.gov</dd><dt><span>date_created :</span></dt><dd>2019-01-28T11:42:42Z</dd><dt><span>Easternmost_Easting :</span></dt><dd>359.975</dd><dt><span>gds_version_id :</span></dt><dd>2.0</dd><dt><span>geospatial_lat_max :</span></dt><dd>89.975</dd><dt><span>geospatial_lat_min :</span></dt><dd>-89.975</dd><dt><span>geospatial_lat_resolution :</span></dt><dd>0.049999999999999996</dd><dt><span>geospatial_lat_units :</span></dt><dd>degrees_north</dd><dt><span>geospatial_lon_max :</span></dt><dd>359.975</dd><dt><span>geospatial_lon_min :</span></dt><dd>0.025</dd><dt><span>geospatial_lon_resolution :</span></dt><dd>0.05000000000000001</dd><dt><span>geospatial_lon_units :</span></dt><dd>degrees_east</dd><dt><span>history :</span></dt><dd>Fri Feb 21 02:05:21 2025: ncatted -O -a easternmost_longitude,global,o,f,360.0 20250220000000-OSPO-L4_GHRSST-SSTfnd-Geo_Polar_Blended_Night-GLOB-v02.0-fv01.0-0-360.nc
+Fri Feb 21 02:05:21 2025: ncatted -O -a westernmost_longitude,global,o,f,0.0 20250220000000-OSPO-L4_GHRSST-SSTfnd-Geo_Polar_Blended_Night-GLOB-v02.0-fv01.0-0-360.nc
+Fri Feb 21 02:05:21 2025: ncatted -O -a valid_max,lon,o,f,360.0 20250220000000-OSPO-L4_GHRSST-SSTfnd-Geo_Polar_Blended_Night-GLOB-v02.0-fv01.0-0-360.nc
+Fri Feb 21 02:05:21 2025: ncatted -O -a valid_min,lon,o,f,0.0 20250220000000-OSPO-L4_GHRSST-SSTfnd-Geo_Polar_Blended_Night-GLOB-v02.0-fv01.0-0-360.nc
+Fri Feb 21 02:05:13 2025: ncap2 -O -s where(lon&lt;0) lon=lon+360 20250220000000-OSPO-L4_GHRSST-SSTfnd-Geo_Polar_Blended_Night-GLOB-v02.0-fv01.0-0-360.nc 20250220000000-OSPO-L4_GHRSST-SSTfnd-Geo_Polar_Blended_Night-GLOB-v02.0-fv01.0-0-360.nc
+Fri Feb 21 02:05:05 2025: ncks -O --msa_usr_rdr -d lon,0.0,180.0 -d lon,-180.0,0.0 20250220000000-OSPO-L4_GHRSST-SSTfnd-Geo_Polar_Blended_Night-GLOB-v02.0-fv01.0.nc 20250220000000-OSPO-L4_GHRSST-SSTfnd-Geo_Polar_Blended_Night-GLOB-v02.0-fv01.0-0-360.nc
+NESDIS geo-SST L1 to L2 processor, NESDIS Advanced Clear-Sky Processor for Oceans (ACSPO), NESDIS Geo-Polar 1/20th degree Blended SST Analysis
+2025-02-25T21:06:20Z (local files)
+2025-02-25T21:06:20Z https://oceanwatch.pifsc.noaa.gov/erddap/griddap/goes-poes-1d-ghrsst-RAN.das</dd><dt><span>id :</span></dt><dd>Geo_Polar_Blended_Night-OSPO-L4-GLOB-v1.0</dd><dt><span>infoUrl :</span></dt><dd>https://podaac.jpl.nasa.gov/dataset/Geo_Polar_Blended_Night-OSPO-L4-GLOB-v1.0</dd><dt><span>institution :</span></dt><dd>Office of Satellite Products and Operations</dd><dt><span>keywords :</span></dt><dd>analysed, analysed_sst, analysis_error, area, bit, blended, cryosphere, data, deviation, distribution, earth, Earth Science &gt; Cryosphere &gt; Sea Ice &gt; Ice Extent, Earth Science &gt; Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature, Earth Science &gt; Oceans &gt; Sea Ice &gt; Ice Extent, error, estimated, extent, foundation, fraction, global, ice, ice distribution, infrared, input, land, mask, night, ocean, oceans, office, only, operations, over, products, satellite, science, sea, sea/land/ice, sea_ice_area_fraction, sea_ice_fraction, sea_land_ice_bit_mask, sea_surface_foundation_temperature, sst, standard, statistics, surface, temperature, time, using</dd><dt><span>keywords_vocabulary :</span></dt><dd>GCMD Science Keywords</dd><dt><span>license :</span></dt><dd>GHRSST protocol describes data use as free and open</dd><dt><span>metadata_link :</span></dt><dd>https://podaac.jpl.nasa.gov/ws/metadata/dataset?format=iso&amp;shortName=Geo_Polar_Blended_Night-OSPO-L4-GLOB-v1.0</dd><dt><span>naming_authority :</span></dt><dd>org.ghrsst</dd><dt><span>NCO :</span></dt><dd>netCDF Operators version 4.7.5 (Homepage = http://nco.sf.net, Code = https://github.com/nco/nco)</dd><dt><span>nco_openmp_thread_number :</span></dt><dd>1</dd><dt><span>Northernmost_Northing :</span></dt><dd>89.975</dd><dt><span>platform :</span></dt><dd>goes-16, goes-18, himawari-9, metop-b, metop-c, meteosat-9, meteosat-10, NOAA-20, NOAA-21,</dd><dt><span>processing_level :</span></dt><dd>L4</dd><dt><span>product_version :</span></dt><dd>1.0</dd><dt><span>project :</span></dt><dd>Group for High Resolution Sea Surface Temperature</dd><dt><span>publisher_email :</span></dt><dd>ghrsst-po@nceo.ac.uk</dd><dt><span>publisher_name :</span></dt><dd>The GHRSST Project Office</dd><dt><span>publisher_type :</span></dt><dd>group</dd><dt><span>publisher_url :</span></dt><dd>https://www.ghrsst.org</dd><dt><span>references :</span></dt><dd>Fieguth,P.W. et al. "Mapping Mediterranean altimeter data with a multiresolution optimal interpolation algorithm", J. Atmos. Ocean Tech, 15 (2): 535-546, 1998.     Fieguth, P. Multiply-Rooted Multiscale Models for Large-Scale Estimation, IEEE Image Processing, 10(11), 1676-1686, 2001.     Khellah, F., P.W. Fieguth, M.J. Murray and M.R. Allen, "Statistical Processing of Large Image Sequences", IEEE Transactions on Geoscience and Remote Sensing, 12 (1), 80-93, 2005.</dd><dt><span>sensor :</span></dt><dd>abi, abi, ahi, avhrr, avhrr, severi, severi, viirs, viirs,</dd><dt><span>source :</span></dt><dd>OSPO_acspoSST_GOES16_ABI, OSPO_acspoSST_GOES18_ABI, STAR_acspoSST_HIMAWARI-9_AHI, OSPO_acspoSST_METOPB_AVHRR, OSPO_acspoSST_METOPC_AVHRR, OSPO_geoSST_METEOSAT9_severi, OSPO_geoSST_METEOSAT10_severi, OSPO_acspoSST_NOAA20_VIIRS, OSPO_acspoSST_NOAA21_VIIRS,</dd><dt><span>sourceUrl :</span></dt><dd>(local files)</dd><dt><span>Southernmost_Northing :</span></dt><dd>-89.975</dd><dt><span>spatial_resolution :</span></dt><dd>0.05 degree</dd><dt><span>standard_name_vocabulary :</span></dt><dd>CF Standard Name Table v29</dd><dt><span>summary :</span></dt><dd>Analyzed blended sea surface temperature over the global ocean using night only input data. An SST estimation scheme which combines multi-satellite retrievals of sea surface temperature datasets available from polar orbiters, geostationary InfraRed (IR) and microwave sensors into a single global analysis. This global SST analysis providez a daily gap-free map of the foundation sea surface temperature at 0.05º spatial resolution.</dd><dt><span>time_coverage_end :</span></dt><dd>2025-02-24T12:00:00Z</dd><dt><span>time_coverage_start :</span></dt><dd>2002-09-01T12:00:00Z</dd><dt><span>title :</span></dt><dd>Sea Surface Temperature, NOAA geopolar blended - Daily, 2002-Present (2017 Reanalysis)</dd><dt><span>Westernmost_Easting :</span></dt><dd>0.025</dd></dl></div></li></ul></div></div>
+</div>
+</div>
+<p><strong>Opening the dataset in Xarray lets you look at the dataset metadata.</strong><br>
+* The metadata are listed above. * No data is downloaded until you request it.</p>
+<p><strong>From the metadata you can view:</strong> * The coordinates (time, latitude and longitude) that you will use to select the data to download. * A list of four data variables. For this exercise, we want the “analysed_sst” variable. If you want, you can find out about each variable with clicking the page icon to the right of each variable name.</p>
+<p><strong>A note on dataset selection</strong><br>
+We have preselected this dataset because we know it will work with this exercise. If you were selecting datasets on your own, you would want to check out the dataset to determine if its spatial and temporal coverages are suitable for your application.</p>
+<p>You can find that information above by clicking the right arrow next to “Attribute”. Then look through the list to find: * ‘time_coverage_start’ and ‘time_coverage_end’: the time range * ‘geospatial_lat_min’ and ‘geospatial_lat_max’: the latitude range * ‘geospatial_lon_min’ and ‘geospatial_lon_max’: the longitude range</p>
+<p>There are a lot of metadata attributes to look through. We can make it easier with a little code to print out the metadata of interest. Then compare these ranges to those found in your track data.</p>
+<div id="cell-32" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Temporal and spatial ranges of the satellite dataset'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'time range'</span>, ds.attrs[<span class="st">'time_coverage_start'</span>], </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>      ds.attrs[<span class="st">'time_coverage_end'</span>])</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'latitude range'</span>, ds.attrs[<span class="st">'geospatial_lat_min'</span>], </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>      ds.attrs[<span class="st">'geospatial_lat_max'</span>])</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'longitude range'</span>, ds.attrs[<span class="st">'geospatial_lon_min'</span>], </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      ds.attrs[<span class="st">'geospatial_lon_max'</span>])</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Temporal and spatial ranges of the track data'</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'time range'</span>, df_1.year_month_day.<span class="bu">min</span>(), df_1.year_month_day.<span class="bu">max</span>())</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'latitude range'</span>, </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>      <span class="bu">round</span>(df_1.mean_lat.<span class="bu">min</span>(), <span class="dv">2</span>), <span class="bu">round</span>(df_1.mean_lat.<span class="bu">max</span>(), <span class="dv">2</span>))</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'longitude range'</span>, </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">round</span>(df_1.mean_lon.<span class="bu">min</span>(), <span class="dv">2</span>), <span class="bu">round</span>(df_1.mean_lon.<span class="bu">max</span>(), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Temporal and spatial ranges of the satellite dataset
+time range 2002-09-01T12:00:00Z 2025-02-24T12:00:00Z
+latitude range -89.975 89.975
+longitude range 0.025 359.975
+ 
+Temporal and spatial ranges of the track data
+time range 2005-05-04 00:00:00 2008-08-16 00:00:00
+latitude range 23.72 41.77
+longitude range 175.86 248.57</code></pre>
+</div>
+</div>
+</section>
+<section id="download-the-satellite-data-that-corresponds-to-each-track-location" class="level3">
+<h3 class="anchored" data-anchor-id="download-the-satellite-data-that-corresponds-to-each-track-location">Download the satellite data that corresponds to each track location</h3>
+<div id="cell-34" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary Pandas data frame to hold the downloaded satellite data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>col_names <span class="op">=</span> [<span class="st">"erddap_date"</span>, <span class="st">"matched_lat"</span>, <span class="st">"matched_lon"</span>, <span class="st">"matched_sst"</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>tot <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col_names)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Finish each URL and download</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(df)):</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    clear_output(wait<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i<span class="op">+</span><span class="dv">1</span>, <span class="st">'of'</span>, <span class="bu">len</span>(df))</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Crop the dataset to include data that corresponds to track locations</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    cropped_ds <span class="op">=</span> ds[<span class="st">'analysed_sst'</span>].sel(time<span class="op">=</span>df_1.year_month_day[i],</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>                                   latitude<span class="op">=</span>df_1.mean_lat[i],</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>                                   longitude<span class="op">=</span>df_1.mean_lon[i],</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>                                   method<span class="op">=</span><span class="st">'nearest'</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>                                   ) <span class="op">-</span><span class="fl">273.1</span> <span class="co">#Kelvin to Degree Celsius </span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Downloaded the data and add it to a new line in the tot data frame</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    tot.loc[<span class="bu">len</span>(tot.index)] <span class="op">=</span> [cropped_ds.time.values,</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>                               np.<span class="bu">round</span>(cropped_ds.latitude.values, <span class="dv">5</span>),  <span class="co"># round 5 dec</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>                               np.<span class="bu">round</span>(cropped_ds.longitude.values, <span class="dv">5</span>), <span class="co"># round 5 dec</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>                               np.<span class="bu">round</span>(cropped_ds.values, <span class="dv">2</span>)  <span class="co"># round 2 decimals</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>                               ]</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(tot.loc[[<span class="bu">len</span>(tot)<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>tot.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>25 of 25
+           erddap_date  matched_lat  matched_lon  matched_sst
+24 2008-08-16 12:00:00       26.775   245.774994         25.6</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">erddap_date</th>
+<th data-quarto-table-cell-role="th">matched_lat</th>
+<th data-quarto-table-cell-role="th">matched_lon</th>
+<th data-quarto-table-cell-role="th">matched_sst</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2005-05-04 12:00:00</td>
+<td>32.674999</td>
+<td>176.625</td>
+<td>16.97</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2005-06-23 12:00:00</td>
+<td>35.075001</td>
+<td>175.875</td>
+<td>17.65</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="consolidate-the-downloaded-satellite-data-into-the-track-data-frame-1" class="level3">
+<h3 class="anchored" data-anchor-id="consolidate-the-downloaded-satellite-data-into-the-track-data-frame-1">Consolidate the downloaded satellite data into the track data frame</h3>
+<div id="cell-36" class="cell" data-scrolled="true" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_sst <span class="op">=</span> df_1</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df_sst[[<span class="st">'matched_lat'</span>, </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'matched_lon'</span>, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'matched_sst'</span>, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'erddap_date'</span>]] <span class="op">=</span> tot[[<span class="st">'matched_lat'</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'matched_lon'</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'matched_sst'</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'erddap_date'</span>]]</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>df_sst.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year_month_day</th>
+<th data-quarto-table-cell-role="th">mean_lon</th>
+<th data-quarto-table-cell-role="th">mean_lat</th>
+<th data-quarto-table-cell-role="th">matched_lat</th>
+<th data-quarto-table-cell-role="th">matched_lon</th>
+<th data-quarto-table-cell-role="th">matched_sst</th>
+<th data-quarto-table-cell-role="th">erddap_date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2005-05-04</td>
+<td>176.619433</td>
+<td>32.678728</td>
+<td>32.674999</td>
+<td>176.625</td>
+<td>16.97</td>
+<td>2005-05-04 12:00:00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2005-06-23</td>
+<td>175.860895</td>
+<td>35.057734</td>
+<td>35.075001</td>
+<td>175.875</td>
+<td>17.65</td>
+<td>2005-06-23 12:00:00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="save-your-work-1" class="level3">
+<h3 class="anchored" data-anchor-id="save-your-work-1">Save your work</h3>
+<div id="cell-38" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_sst.to_csv(<span class="st">'sst_matchup_turtle25327.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="plot-chlorophyll-and-sst-matchup-data-onto-a-map" class="level2">
+<h2 class="anchored" data-anchor-id="plot-chlorophyll-and-sst-matchup-data-onto-a-map">Plot chlorophyll and SST matchup data onto a map</h2>
+<section id="first-plot-a-histogram-of-the-chlorophyll-data" class="level3">
+<h3 class="anchored" data-anchor-id="first-plot-a-histogram-of-the-chlorophyll-data">First plot a histogram of the chlorophyll data</h3>
+<div id="cell-41" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Range:'</span>, df_chla.matched_chla.<span class="bu">min</span>(), df_chla.matched_chla.<span class="bu">max</span>())</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> df_chla.matched_chla.hist(bins<span class="op">=</span><span class="dv">40</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Range: 0.05568646 0.7134876</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="erddap_intro_satellite_matchup_track_2_options_files/figure-html/cell-18-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Near the Transition Zone Chlorophyll Front (0.2mg/m<span class="math inline">\(^3\)</span>), a foraging ground for many preditor species in the North Pacific.</p>
+</section>
+<section id="plot-a-histogram-of-the-sst-data" class="level3">
+<h3 class="anchored" data-anchor-id="plot-a-histogram-of-the-sst-data">Plot a histogram of the SST data</h3>
+<div id="cell-43" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Range:'</span>, df_sst.matched_sst.<span class="bu">min</span>(), df_sst.matched_sst.<span class="bu">max</span>())</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> df_sst.matched_sst.hist(bins<span class="op">=</span><span class="dv">40</span>,color<span class="op">=</span><span class="st">'orange'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Range: 14.86 25.6</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="erddap_intro_satellite_matchup_track_2_options_files/figure-html/cell-19-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Largely within the thermal habitat for Loggerhead sea turtle, i.e., 16.5-18.5 <span class="math inline">\(^o\)</span>C (63.5-65.5F) in the North Pacific.</p>
+</section>
+<section id="map-the-chlorophyll-and-sst-data" class="level3">
+<h3 class="anchored" data-anchor-id="map-the-chlorophyll-and-sst-data">Map the chlorophyll and SST data</h3>
+<div id="cell-45" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plot chl-a matchup</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Label axes of a Plate Carree projection with a central longitude of 180:</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set the projection</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">211</span>, projection<span class="op">=</span>ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>))</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the lon and lat ranges to set the extent of the map</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the 120, 260 lon range will show the whole Pacific</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># the 15, 55 lat range with capture the range of the data</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>ax1.set_extent([<span class="dv">120</span>,<span class="dv">255</span>, <span class="dv">15</span>, <span class="dv">55</span>], ccrs.PlateCarree())</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># set the tick marks to be slightly inside the map extents</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>ax1.set_xticks(<span class="bu">range</span>(<span class="dv">120</span>,<span class="dv">255</span>,<span class="dv">20</span>), crs<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>ax1.set_yticks(<span class="bu">range</span>(<span class="dv">20</span>,<span class="dv">50</span>,<span class="dv">10</span>), crs<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geographical features</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>ax1.add_feature(cfeature.LAND, facecolor<span class="op">=</span><span class="st">'0.6'</span>)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>ax1.coastlines()</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># format the lat and lon axis labels</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>lon_formatter <span class="op">=</span> LongitudeFormatter(zero_direction_label<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>lat_formatter <span class="op">=</span> LatitudeFormatter()</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>ax1.xaxis.set_major_formatter(lon_formatter)</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>ax1.yaxis.set_major_formatter(lat_formatter)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="co"># build and plot coordinates onto map</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> <span class="bu">list</span>(df_chla.mean_lon),<span class="bu">list</span>(df_chla.mean_lat)</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.plot(x, y, transform<span class="op">=</span>ccrs.PlateCarree(), color<span class="op">=</span><span class="st">'lightgray'</span>,linestyle<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.scatter(x, y, transform<span class="op">=</span>ccrs.PlateCarree(),</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>                  marker<span class="op">=</span><span class="st">'o'</span>,</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>                  c<span class="op">=</span>np.log(df_chla.matched_chla),</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>                  cmap<span class="op">=</span>plt.get_cmap(<span class="st">'Greens'</span>)<span class="co">#BuGn')</span></span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>                  )</span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>ax1<span class="op">=</span>plt.plot(x[<span class="dv">0</span>],y[<span class="dv">0</span>],marker<span class="op">=</span><span class="st">'*'</span>, transform<span class="op">=</span>ccrs.PlateCarree(), markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>ax1<span class="op">=</span>plt.plot(x[<span class="op">-</span><span class="dv">1</span>],y[<span class="op">-</span><span class="dv">1</span>],marker<span class="op">=</span><span class="st">'X'</span>, transform<span class="op">=</span>ccrs.PlateCarree(), markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a><span class="co"># control color bar values spacing</span></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>levs2 <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">2.5</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>cbar<span class="op">=</span>plt.colorbar(ticks<span class="op">=</span>levs2, shrink<span class="op">=</span><span class="fl">0.75</span>, aspect<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">"Chl a (mg/$m^3$)"</span>, size<span class="op">=</span><span class="dv">15</span>, labelpad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a><span class="co"># set the labels to be exp(levs2) so the label reflect values of chl-a, not log(chl-a)</span></span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>cbar.ax.set_yticklabels(np.around(np.exp(levs2), <span class="dv">2</span>), size<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Chlorophyll Matchup to Animal Track #25317"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a><span class="co">#plot sst matchup</span></span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a><span class="co"># set the projection</span></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">212</span>, projection<span class="op">=</span>ccrs.PlateCarree(central_longitude<span class="op">=</span><span class="dv">180</span>))</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the lon and lat ranges to set the extent of the map</span></span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a><span class="co"># the 120, 260 lon range will show the whole Pacific</span></span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a><span class="co"># the 15, 55 lat range with capture the range of the data</span></span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>ax2.set_extent([<span class="dv">120</span>,<span class="dv">255</span>, <span class="dv">15</span>, <span class="dv">55</span>], ccrs.PlateCarree())</span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a><span class="co"># set the tick marks to be slightly inside the map extents</span></span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>ax2.set_xticks(<span class="bu">range</span>(<span class="dv">120</span>,<span class="dv">255</span>,<span class="dv">20</span>), crs<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a>ax2.set_yticks(<span class="bu">range</span>(<span class="dv">20</span>,<span class="dv">50</span>,<span class="dv">10</span>), crs<span class="op">=</span>ccrs.PlateCarree())</span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geographical features</span></span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>ax2.add_feature(cfeature.LAND, facecolor<span class="op">=</span><span class="st">'0.6'</span>)</span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>ax2.coastlines()</span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a><span class="co"># format the lat and lon axis labels</span></span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a>lon_formatter <span class="op">=</span> LongitudeFormatter(zero_direction_label<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a>lat_formatter <span class="op">=</span> LatitudeFormatter()</span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a>ax2.xaxis.set_major_formatter(lon_formatter)</span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>ax2.yaxis.set_major_formatter(lat_formatter)</span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a><span class="co"># build and plot coordinates onto map</span></span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> <span class="bu">list</span>(df_sst.mean_lon),<span class="bu">list</span>(df_sst.mean_lat)</span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.plot(x, y, transform<span class="op">=</span>ccrs.PlateCarree(), color<span class="op">=</span><span class="st">'lightgray'</span>,linestyle<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.scatter(x, y, transform<span class="op">=</span>ccrs.PlateCarree(),</span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>                  marker<span class="op">=</span><span class="st">'o'</span>,</span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>                  c<span class="op">=</span>df_sst.matched_sst,</span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>                  cmap<span class="op">=</span>plt.get_cmap(<span class="st">'hot_r'</span>)</span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>                  )</span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a>ax2<span class="op">=</span>plt.plot(x[<span class="dv">0</span>],y[<span class="dv">0</span>],marker<span class="op">=</span><span class="st">'*'</span>, transform<span class="op">=</span>ccrs.PlateCarree(), markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a>ax2<span class="op">=</span>plt.plot(x[<span class="op">-</span><span class="dv">1</span>],y[<span class="op">-</span><span class="dv">1</span>],marker<span class="op">=</span><span class="st">'X'</span>, transform<span class="op">=</span>ccrs.PlateCarree(), markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a><span class="co"># plot colorbar</span></span>
+<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a>cbar<span class="op">=</span>plt.colorbar(shrink<span class="op">=</span><span class="fl">0.75</span>, aspect<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb29-85"><a href="#cb29-85" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">"SST ($^o$C)"</span>, size<span class="op">=</span><span class="dv">15</span>, labelpad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb29-86"><a href="#cb29-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-87"><a href="#cb29-87" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sea Surface Temperature Matchup to Animal Track #25317"</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb29-88"><a href="#cb29-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-89"><a href="#cb29-89" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb29-90"><a href="#cb29-90" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="erddap_intro_satellite_matchup_track_2_options_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="on-your-own" class="level2">
+<h2 class="anchored" data-anchor-id="on-your-own">On your own!</h2>
+<section id="exercise-1" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-1">Exercise 1:</h5>
+<p>Repeat the steps above with a different dataset. For example, use the weekly version of the OC-CCI dataset to see how cloud cover can reduce the data you retrieve. https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-8d-v6-0.html * This dataset is a different ERDDAP; It has the same base URL and variable name, but a different dataset ID.</p>
+</section>
+<section id="exercise-2" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-2">Exercise 2:</h5>
+<p>Go to an ERDDAP of your choice, find a dataset of interest, generate the URL, copy it and edit the script above to run a match up on that dataset. To find other ERDDAP servers, you can use this search engine: http://erddap.com/<br>
+* This dataset will likely be on a different base URL and dataset ID and variable name. * Check the metadata to make sure the dataset covers the spatial and temporal range of the track dataset.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/nmfs-opensci\.github\.io\/NOAAHackDays");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><img src="https://github.com/nmfs-opensci/assets/blob/main/logo/nmfs-opensci-logo2.png?raw=true" alt="NMFS Open Science logo" style="width:150px"><br>NMFS Open Science (2023)</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/nmfs-opensci/NOAAHackDays/blob/main/topics-2025/2025-02-28-ERDDAP-Py/erddap_intro_satellite_matchup_track_2_options.ipynb" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

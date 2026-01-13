@@ -262,7 +262,7 @@ install.packages("terra")</code></pre>
 <section id="authentication-for-nasa-earthdata" class="level2">
 <h2 class="anchored" data-anchor-id="authentication-for-nasa-earthdata">Authentication for NASA Earthdata</h2>
 <p>We will start by authenticating using our Earthdata Login credentials. Authentication is not necessarily needed to search for publicly available data collections in Earthdata, but is always needed to download or access data from the NASA Earthdata archives. We can use <code>edl_netrc()</code> from the <code>earthdatalogin</code> package to create a <code>.netrc</code> file that will store our credentials.</p>
-<p>The first time you run authentication use:</p>
+<p>The first time you run authentication use this code. Note, do this even if you authenticated in Jupyter Lab earlier. This netrc file is placed in a different location.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>earthdatalogin<span class="sc">::</span><span class="fu">edl_netrc</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"user"</span>, <span class="co"># add your user name</span></span>
@@ -280,7 +280,7 @@ install.packages("terra")</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>earthdatalogin<span class="sc">::</span><span class="fu">edl_netrc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>For the purposes of this workshop, <code>edl_netrc()</code> will work by using a default public account login. Feel free to login with your own <a href="https://urs.earthdata.nasa.gov/home">NASA Earthdata account</a></em></p>
+<p><em><code>edl_netrc()</code> will also work by using a default public account login, but feel free to login with your own <a href="https://urs.earthdata.nasa.gov/home">NASA Earthdata account</a></em></p>
 </section>
 <section id="search-for-data" class="level2">
 <h2 class="anchored" data-anchor-id="search-for-data">Search for data</h2>
@@ -313,11 +313,11 @@ install.packages("terra")</code></pre>
 </table>
 <p>How can we find the <code>shortname</code>, <code>concept_id</code>, and <code>doi</code> for collections not in the table above? Let’s take a quick detour:</p>
 <ol type="1">
-<li>Navigate to https://search.earthdata.nasa.gov/search 2: Search for “GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis” or click this <a href="https://search.earthdata.nasa.gov/search?q=GHRSST%20Level%204%20MUR%20Global%20Foundation%20Sea%20Surface%20Temperature%20Analysis">link</a> (screenshot below).</li>
+<li>Navigate to <a href="https://search.earthdata.nasa.gov/search" class="uri">https://search.earthdata.nasa.gov/search</a> 2: Search for “GHRSST Level 4 MUR Global Foundation Sea Surface Temperature Analysis” or click this <a href="https://search.earthdata.nasa.gov/search?q=GHRSST%20Level%204%20MUR%20Global%20Foundation%20Sea%20Surface%20Temperature%20Analysis">link</a> (screenshot below).</li>
 </ol>
 <p><img src="images/SST_Blended_Earthdata_Search.png" class="img-fluid" style="width:50.0%"></p>
-<p>If we hover over the top box, find and click on the more information button (an i with a circle around it). On this page, you will see the <code>DOI</code>. Now click “View More Info” to get to <a href="https://cmr.earthdata.nasa.gov/search/concepts/C1996881146-POCLOUD.html" class="uri">https://cmr.earthdata.nasa.gov/search/concepts/C1996881146-POCLOUD.html</a>.</p>
-<p>On that page you will see the <strong>“short name”</strong> <code>MUR-JPL-L4-GLOB-v4.1</code>. Note the short name was also on the first search page (though it wasn’t labeled as the short name, there).</p>
+<p>Find and click on the more information button (an i with a circle around it). On this page, you will see the <code>DOI</code>. Now click “View More Info” to get to <a href="https://cmr.earthdata.nasa.gov/search/concepts/C1996881146-POCLOUD.html" class="uri">https://cmr.earthdata.nasa.gov/search/concepts/C1996881146-POCLOUD.html</a>.</p>
+<p>On that page you will see the <strong>“short name”</strong> <code>MUR-JPL-L4-GLOB-v4.1</code> and below that in an unlabelled box is the Concept ID.</p>
 <section id="search-by-short-name" class="level3">
 <h3 class="anchored" data-anchor-id="search-by-short-name">Search by short name</h3>
 <div class="cell">
@@ -460,7 +460,7 @@ Troubleshooting
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This concludes tutorial 1. You have worked with remote-sensing data in the cloud and plotted it. Way to go!</p>
+<p>This concludes tutorial 1. You have worked with remote-sensing data in the cloud and plotted it.</p>
 <p>Next we will learn to subset the data so we can work with bigger datasets in the cloud without downloading the whole dataset.</p>
 
 
