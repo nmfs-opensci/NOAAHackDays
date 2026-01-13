@@ -9,8 +9,8 @@ We will be using the NOAA Fisheries Openscapes JupyterHub and you will not need 
 
 ## Schedule
 
-* Feb 6 - Boosted Regression Trees in Python: creating global chlorophyll density at depth profiles (Eli Holmes) {{< fa brands python >}}
-* Feb 13 - 
+* Feb 6 - Intro to Boosted Regression Trees in Python (Eli Holmes) {{< fa brands python >}}
+* Feb 13 - Big Data BRT application: creating global chlorophyll density at depth profiles (Eli Holmes) {{< fa brands python >}}
 * Feb 20 -
 * Feb 27 -
 
