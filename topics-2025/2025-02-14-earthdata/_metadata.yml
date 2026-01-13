@@ -1,6 +1,0 @@
- 
-sidebar: topics-earthdata-1
-search: false
-contents:
-  - text: Test
-    href: 0-earthdata-catalog.ipynb

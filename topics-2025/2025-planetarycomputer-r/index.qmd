@@ -1,8 +1,0 @@
----
-title: Microsoft Planetary Computer in R
----
-
-https://planetarycomputer.microsoft.com/docs/quickstarts/reading-stac-r/
-
-
-
